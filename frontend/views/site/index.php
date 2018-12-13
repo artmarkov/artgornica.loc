@@ -1,3 +1,11 @@
+<?php
+
+/* @var $this yii\web\View */
+
+use yii\helpers\Html;
+
+
+?>
 <!-- REVOLUTION SLIDER -->
     <div class="fullwidthbanner-container roundedcorners">
         <div class="fullwidthbanner">

@@ -11,7 +11,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'auth' => [
-            'class' => 'yeesoft\auth\AuthModule',
+            'class' => 'frontend\modules\auth\AuthModule',
         ],
     ],
     'components' => [

@@ -29,8 +29,9 @@ class AppAsset extends AssetBundle
         'plugins/magnific-popup/magnific-popup.css',
         'css/animate.css',
         'css/superslides.css',
-
+        
         'plugins/revolution-slider/css/settings.css',
+        'css/portfolio.css',
         'css/essentials.css',
         'css/layout.css',
         'css/layout-responsive.css',

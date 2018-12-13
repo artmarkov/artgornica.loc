@@ -24,7 +24,7 @@ class SiteController extends \yeesoft\controllers\BaseController
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => '\frontend\components\ErrorAction',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',

@@ -7,6 +7,7 @@ use frontend\assets\AppAsset;
 use frontend\assets\ThemeAsset;
 use yeesoft\models\Menu;
 use yii\bootstrap\Nav;
+use yii\helpers\Url;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
@@ -49,11 +50,11 @@ ThemeAsset::register($this);
                  ]);*/
 
                 ?>
-                <ul class="nav nav-pills nav-main">
-                    <li><a href="#" class="pull-left social fa fa-facebook"></a></li>
-                    <li><a href="#" class="pull-left social fa fa-linkedin"></a></li>
-                    <li><a href="#" class="pull-left social fa fa-youtube-square"></a></li>
-                </ul>
+                <div class="pull-right socials">
+                    <a href="#" class="pull-left social fa fa-facebook"></a>
+                    <a href="#" class="pull-left social fa fa-linkedin"></a>
+                    <a href="#" class="pull-left social fa fa-youtube-square"></a>
+                </div>
         </div>
     </div>
 </header>
@@ -78,20 +79,13 @@ ThemeAsset::register($this);
                 <?php
                 $menuItems = Menu::getMenuItems('main-menu');
                 if (Yii::$app->user->isGuest) {
-                    $menuItems[] = ['label' => Yii::t('yee/auth', 'Signup'), 'url' => \yii\helpers\Url::to(['/auth/default/signup'])];
                     $menuItems[] = ['label' => Yii::t('yee/auth', 'Login'), 'url' => ['/auth/default/login']];
                 } else {
-                    $menuItems[] = [
-                        'label' => Yii::$app->user->identity->username,
-                        'url' => ['/auth/default/profile'],
-                    ];
-
                     $menuItems[] = [
                         'label' => Yii::t('yee/auth', 'Logout'),
                         'url' => ['/auth/default/logout', 'language' => false],
                         'linkOptions' => ['data-method' => 'post']
                     ];
-
                 }
                 $menuItems[] = [
                     'label' => '<form method="get" action="#" class="input-group pull-right">
@@ -115,14 +109,17 @@ ThemeAsset::register($this);
         <!-- /Top Nav -->
     </div>
 </header>
-<div id="wrapper">
-
-    <!--    <div class="site-about">-->
-<!-- /TOP NAV -->
-<!--<br/><br/><br/><br/>-->
-
-<?//= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
-<?= Alert::widget() ?>
+<div id="wrapper"> 
+    <?php if (Url::to() != '/'): ?>
+ <!-- PAGE TITLE -->
+ <header id="page-title">
+     <div class="container">
+         <h1><?= Html::encode($this->title) ?></h1>
+         <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
+     </div>
+ </header>
+ <?php endif; ?>
+        <?= Alert::widget() ?>
 <?= $content ?>
 
 </div>
