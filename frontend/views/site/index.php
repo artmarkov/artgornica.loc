@@ -1,6 +1,4 @@
-<!-- WRAPPER -->
-<div id="wrapper">
-    <!-- REVOLUTION SLIDER -->
+<!-- REVOLUTION SLIDER -->
     <div class="fullwidthbanner-container roundedcorners">
         <div class="fullwidthbanner">
             <ul>
@@ -258,7 +256,7 @@
         <div class="divider  styleColor"><!-- divider -->
             <i class="fa fa-leaf"></i>
         </div>
-    
+
     <!-- PARALLAX -->
     <div style="background: #000;" >
         <section id="paralax" class="parallax delayed" data-stellar-background-ratio="0.8"
@@ -502,5 +500,3 @@
         </div>
     </section>
     <!-- /CONTACT -->
-</div>
-<!-- /WRAPPER -->
