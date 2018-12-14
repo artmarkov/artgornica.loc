@@ -42,7 +42,7 @@ return [
                 '<module:auth>/<action:\w+>' => '<module>/default/<action>',
                 '<controller:(category|tag)>/<slug:[\w \-]+>' => '<controller>/index',
                 '<controller:(category|tag)>' => '<controller>/index',
-                '<slug:[\w \-]+>' => 'site/index/',
+                '<slug:[\w \-]+>' => 'site/blog/',
                 '/' => 'site/index',
                 '<action:[\w \-]+>' => 'site/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

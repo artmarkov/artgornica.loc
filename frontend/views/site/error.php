@@ -16,10 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
 
             <div class="col-md-12">
-                <h2>
-                    <strong>Oops</strong>, This Page Could Not Be Found!
-                    <span class="subtitle">We're sorry, but the page you were looking for doesn't exist.</span>
-                </h2>
 
                 <div class="alert alert-danger">
                     <i class="fa fa-frown-o"></i> 

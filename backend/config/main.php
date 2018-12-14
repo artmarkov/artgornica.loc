@@ -13,9 +13,23 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        'eav' => [
-        'class' => 'yeesoft\eav\EavModule',
-    ],
+        'db' => [
+            'class' => 'backend\modules\db\Module',
+        ],
+        'post' => [
+            'class' => 'backend\modules\post\Module',
+        ],
+        'comment' => [
+            'class' => 'backend\modules\comment\Module',
+        ],
+        'media' => [
+            'class' => 'backend\modules\media\Module',
+            'routes' => [
+                'baseUrl' => '', // Base absolute path to web directory
+                'basePath' => '@public', // Base web directory url
+                'uploadPath' => 'uploads', // Path for uploaded files in web directory
+            ],
+        ],
         'settings' => [
             'class' => 'yeesoft\settings\SettingsModule',
         ],
@@ -28,25 +42,12 @@ return [
         'user' => [
             'class' => 'yeesoft\user\UserModule',
         ],
-        'media' => [
-            'class' => 'yeesoft\media\MediaModule',
-            'routes' => [
-                'baseUrl' => '', // Base absolute path to web directory
-                'basePath' => '@frontend/web', // Base web directory url
-                'uploadPath' => 'uploads', // Path for uploaded files in web directory
-            ],
-        ],
-        'post' => [
-            'class' => 'yeesoft\post\PostModule',
-        ],
+
         'page' => [
             'class' => 'yeesoft\page\PageModule',
         ],
         'seo' => [
             'class' => 'yeesoft\seo\SeoModule',
-        ],
-        'comment' => [
-            'class' => 'yeesoft\comment\CommentModule',
         ],
     ],
     'components' => [

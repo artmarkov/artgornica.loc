@@ -38,10 +38,20 @@ class SiteController extends \yeesoft\controllers\BaseController
      *
      * @return mixed
      */
-    public function actionIndex($slug = 'index')
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+
+    /**
+     * Displays blog
+     *
+     * @return mixed
+     */
+    public function actionBlog($slug = 'blog')
     {
         // display home page
-        if (empty($slug) || $slug == 'index') {
+        if (empty($slug) || $slug == 'blog') {
 
             $query = Post::find()->where(['status' => Post::STATUS_PUBLISHED]);
             $countQuery = clone $query;
@@ -55,7 +65,7 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->limit($pagination->limit)
                 ->all();
 
-            return $this->render('index', [
+            return $this->render('blog', [
                 'posts' => $posts,
                 'pagination' => $pagination,
             ]);
@@ -136,4 +146,5 @@ class SiteController extends \yeesoft\controllers\BaseController
     {
         return $this->render('about');
     }
+
 }

@@ -3,9 +3,10 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-
+use yii\widgets\LinkPager;
 
 ?>
+<div class="site-index">
 <!-- REVOLUTION SLIDER -->
     <div class="fullwidthbanner-container roundedcorners">
         <div class="fullwidthbanner">
@@ -508,3 +509,4 @@ use yii\helpers\Html;
         </div>
     </section>
     <!-- /CONTACT -->
+</div>
