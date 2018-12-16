@@ -16,10 +16,6 @@ return [
     ],
     'components' => [
         'view' => [
-//            'theme' => [
-//                'class' => 'frontend\components\Theme',
-//                'theme' => 'readable', //cerulean, cosmo, default, flatly, readable, simplex, united
-//            ],
             'as seo' => [
                 'class' => 'yeesoft\seo\components\SeoViewBehavior',
             ]
@@ -65,6 +61,20 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+         'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js'=> ['https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js']
+                ],
+                'yii\web\JqueryAsset' => [
+                    'js' => [YII_DEBUG ? 'https://code.jquery.com/jquery-2.0.3.js' : 'https://code.jquery.com/jquery-2.0.3.min.js'],
+                    'jsOptions' => ['type' => 'text/javascript'],
+                ],
+            ],
         ],
     ],
     'params' => $params,

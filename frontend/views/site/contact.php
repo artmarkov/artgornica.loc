@@ -6,7 +6,6 @@
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
@@ -67,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="row">
                     <div class="col-md-12">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                        <?= Html::submitButton('', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                     </div>
                 </div>
                 </form>

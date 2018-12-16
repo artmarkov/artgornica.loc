@@ -81,7 +81,7 @@ class SiteController extends \yeesoft\controllers\BaseController
         //try to display static page from datebase
         $page = Page::getDb()->cache(function ($db) use ($slug) {
             return Page::findOne(['slug' => $slug, 'status' => Page::STATUS_PUBLISHED]);
-        }, 3600);
+        }, 3);//3600
 
         if ($page) {
             $pageAction = new PageAction($slug, $this, [
@@ -97,7 +97,7 @@ class SiteController extends \yeesoft\controllers\BaseController
         //try to display post from datebase
         $post = Post::getDb()->cache(function ($db) use ($slug) {
             return Post::findOne(['slug' => $slug, 'status' => Post::STATUS_PUBLISHED]);
-        }, 3600);
+        }, 3);//3600
 
         if ($post) {
             $postAction = new PostAction($slug, $this, [

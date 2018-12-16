@@ -12,15 +12,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Who Am I -->
         <article class="row">
             <div class="col-md-6">
-                <div class="owl-carousel controlls-over" data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                <div class="owl-carousel controlls-over" data-plugin-options='{"autoPlay":9000, "items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
                     <div>
-                        <img class="img-responsive" src="../frontend/web/images/demo/about_1.jpg" width="555" height="311" alt="">
+                        <img class="img-responsive" src="../frontend/web/images/sunset-1.jpg" width="555" height="311" alt="">
                     </div>
                     <div>
-                        <iframe src="http://player.vimeo.com/video/23630702" width="800" height="450"></iframe>
+                        <img class="img-responsive" src="../frontend/web/images/fishermen-1.jpg" width="555" height="311" alt="">
                     </div>
                     <div>
-                        <img class="img-responsive" src="../frontend/web/images/demo/about_2.jpg" width="555" height="311" alt="">
+                        <img class="img-responsive" src="../frontend/web/images/sunset-silhouette-2081796_1920.jpg" width="555" height="311" alt="">
                     </div>
                 </div>
             </div>

@@ -7,17 +7,30 @@ use yii\widgets\LinkPager;
 $this->title = $category->title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="category-index">
-    <div class="body-content">
-        <h2><?= $category->title ?></h2>
+<div class="site-category">
+    <section id="category" class="container">
+        <?php // if (Yii::$app->getRequest()->getQueryParam('page') <= 1) : ?>
+        <!--            <div class="row">
+                        <div class="pull-right col-md-6">    
+                            <form method="get" action="#" class="input-group top-content-search">
+                                <input type="text" class="form-control" name="k" id="k" value="" placeholder="поиск..."/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>-->
+        <?php // endif; ?>
 
-        <?php /* @var $post yeesoft\post\models\Post */ ?>
         <?php foreach ($posts as $post) : ?>
             <?= $this->render('/items/post.php', ['post' => $post, 'page' => 'category']) ?>
+            <div class="divider"><!-- divider -->
+                <i class="fa fa-star"></i>
+            </div>
         <?php endforeach; ?>
-
         <div class="text-center">
             <?= LinkPager::widget(['pagination' => $pagination]) ?>
         </div>
-    </div>
+
+    </section>
 </div>

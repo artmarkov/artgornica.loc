@@ -4,7 +4,7 @@ use yeesoft\helpers\Html;
 use backend\modules\media\assets\MediaAsset;
 use backend\modules\media\models\Album;
 use yeesoft\models\User;
-use common\widgets\ActiveForm;
+use yeesoft\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 use yii\helpers\ArrayHelper;
 
