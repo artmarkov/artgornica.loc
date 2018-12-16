@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -14,30 +15,37 @@ class ContactForm extends Model
     public $email;
     public $subject;
     public $body;
-    public $verifyCode;
+    public $reCaptcha;
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+     public function rules() {
         return [
             // name, email, subject and body are required
             [['name', 'email', 'subject', 'body'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
-            // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            [['name', 'subject'], 'string', 'min' => 5],
+            ['body', 'string', 'min' => 30],
+            [
+                ['reCaptcha'], ReCaptchaValidator::className(),
+                'secret' => '6LdDI4IUAAAAAGHfEzx7IMbr5TvJPqeqBiivjqmc',
+                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
+            ],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
-            'verifyCode' => 'Verification Code',
+            'name' => Yii::t('yee', 'Full Name'),
+            'email' => Yii::t('yee', 'Email'),
+            'subject' => Yii::t('yee', 'Subject'),
+            'body' => Yii::t('yee', 'Content'),
+            'reCaptcha' => Yii::t('yee', 'reCaptcha'),
         ];
     }
 

@@ -3,8 +3,7 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\ContactForm */
 
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+use yeesoft\widgets\ActiveForm;
 use yii\helpers\Html;
 
 $this->title = 'Contact';
@@ -53,11 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-group">
                         <div class="col-md-12">
 
-                            <?=
-                            $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                            ])
-                            ?>
+                            <?= $this->render('@common/widgets/views/_captcha', ['model' => $model, 'form' => $form]) ?>
+                          
                         </div>
                     </div>
                 </div>
@@ -66,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="row">
                     <div class="col-md-12">
-                        <?= Html::submitButton('', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary btn-lg', 'name' => 'contact-button']) ?>
                     </div>
                 </div>
                 </form>

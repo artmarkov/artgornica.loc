@@ -116,7 +116,7 @@ $assetBundle = AppAsset::register($this);
             <div class="footer-bar">
                 <div class="container">
                     <span class="copyright">Copyright &copy; artgornica.ru,  Все права защищены.</span>
-                    <a class="toTop" href="#topNav">Вверх <i class="fa fa-arrow-up"></i></a>
+                   
                 </div>
             </div>
             <!-- copyright , scrollTo Top -->
@@ -149,6 +149,8 @@ $assetBundle = AppAsset::register($this);
             <!-- footer content -->
         </footer>
         <!-- /FOOTER -->
+        <!--кнопка вверх-->
+        <?= common\widgets\ScrollupWidget::widget() ?>
         <?php $this->endBody() ?>
     </body>
 </html>

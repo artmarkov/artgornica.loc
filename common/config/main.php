@@ -25,6 +25,12 @@ return [
                 \yeesoft\models\UserVisitLog::newVisitor($event->identity->id);
             }
         ],
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6LdDI4IUAAAAANYm-f1zoMXm7kBl9Qk6ChTi2rb7',
+            'secret' => '6LdDI4IUAAAAAGHfEzx7IMbr5TvJPqeqBiivjqmc',
+        ],
     ],
     'modules' => [
         'comments' => [
