@@ -226,9 +226,23 @@ class Post extends ActiveRecord
         $this->updateCounters(['revision' => 1]);
     }
 
-    public function getShortContent($delimiter = '<!-- pagebreak -->', $allowableTags = '<a>')
+    public function getAllContent($delimiter = '<p>')
     {
-        $content = explode($delimiter, $this->content);
+         $result = '';
+         $content = explode($delimiter, $this->content);
+        
+         foreach ($content as $id => $item)
+         {
+             if($id == 1) $result .= '<p class="dropcap">' . $item . '</p>';
+             else $result .= '<p>' . $item . '</p>';
+         }
+       return $result;
+        
+    } 
+    
+    public function getShortContent($delimiter = '<!-- pagebreak -->', $allowableTags = '<a><p><blockquote>')
+    {
+        $content = explode($delimiter, $this->getAllContent());
         return strip_tags($content[0], $allowableTags);
     }
 

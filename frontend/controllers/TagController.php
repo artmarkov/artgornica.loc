@@ -2,8 +2,8 @@
 
 namespace frontend\controllers;
 
-use yeesoft\post\models\Post;
-use yeesoft\post\models\Tag;
+use backend\modules\post\models\Post;
+use backend\modules\post\models\Tag;
 use Yii;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;

@@ -47,9 +47,9 @@ $page = (isset($page)) ? $page : 'post';
    
     <!-- article content -->
     <article>
-        <p class="dropcap">
-            <?= ($page === 'post') ? $post->content : $post->shortContent ?>
-        </p>
+
+            <?= ($page === 'post') ? $post->allContent : $post->shortContent ?>
+      
     </article>
     <!-- read more button -->
     <?php if ($page != 'post'): ?>

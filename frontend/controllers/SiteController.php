@@ -6,7 +6,7 @@ use frontend\actions\PageAction;
 use frontend\actions\PostAction;
 use frontend\models\ContactForm;
 use yeesoft\page\models\Page;
-use yeesoft\post\models\Post;
+use backend\modules\post\models\Post;
 use Yii;
 use yii\data\Pagination;
 

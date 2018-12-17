@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 
 use yeesoft\comments\widgets\Comments;
-use yeesoft\post\models\Post;
+use backend\modules\post\models\Post;
 
 /* @var $post yeesoft\post\models\Post */
 

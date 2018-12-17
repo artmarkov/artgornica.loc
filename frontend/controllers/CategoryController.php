@@ -2,9 +2,9 @@
 
 namespace frontend\controllers;
 
-use yeesoft\post\models\Post;
+use backend\modules\post\models\Post;
 use Yii;
-use yeesoft\post\models\Category;
+use backend\modules\post\models\Category;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
