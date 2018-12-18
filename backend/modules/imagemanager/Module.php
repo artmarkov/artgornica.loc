@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\image;
+namespace backend\modules\imagemanager;
 
 /**
  * db module definition class
@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'backend\modules\image\controllers';
+    public $controllerNamespace = 'backend\modules\imagemanager\controllers';
 
     /**
      * {@inheritdoc}

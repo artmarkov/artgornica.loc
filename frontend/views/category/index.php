@@ -7,8 +7,8 @@ use yii\widgets\LinkPager;
 $this->title = $category->title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-category">
-    <section id="category" class="container">
+<div id="blog">
+    <section class="container">
         <?php // if (Yii::$app->getRequest()->getQueryParam('page') <= 1) : ?>
         <!--            <div class="row">
                         <div class="pull-right col-md-6">    

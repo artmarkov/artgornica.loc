@@ -15,6 +15,9 @@ return [
     'modules' => [
         'db' => [
             'class' => 'backend\modules\db\Module',
+        ], 
+        'imagemanager' => [
+            'class' => 'backend\modules\imagemanager\Module',
         ],
         'post' => [
             'class' => 'backend\modules\post\Module',

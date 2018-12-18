@@ -75,3 +75,8 @@ a.desc:after {
 .grid-view th {
     white-space: nowrap;
 }
+
+/*klisl\nestable*/
+.dd3-content .actionColumn a:hover {
+   text-decoration: none !important;
+}

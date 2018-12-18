@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use klisl\nestable\Nestable;
+use backend\components\Nestable;
 use yii\helpers\Url;
 
 /* @var $query \yii\db\ActiveQuery */

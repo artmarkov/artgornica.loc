@@ -27,10 +27,12 @@ class AppAsset extends AssetBundle
         'plugins/owl-carousel/owl.carousel.css',
         'plugins/owl-carousel/owl.theme.css',
         'plugins/owl-carousel/owl.transitions.css',
-        'plugins/magnific-popup/magnific-popup.css',
+        'plugins/magnific-popup/magnific-popup.css',        
         
         'css/animate.css',
         'css/superslides.css',
+        
+        'css/blog.css',
         
         'plugins/revolution-slider/css/settings.css',
         

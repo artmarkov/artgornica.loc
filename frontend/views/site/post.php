@@ -9,7 +9,7 @@ use backend\modules\post\models\Post;
 $this->title = $post->title;
 $this->params['breadcrumbs'][] = $post->title;
 ?>
-<div class="site-post">
+<div id="blog">
     <section class="container">
 
         <div class="row">

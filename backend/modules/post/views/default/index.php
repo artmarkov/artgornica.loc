@@ -72,8 +72,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/post/default',
                         'title' => function (Post $model) {
-                            return Html::a($model->title, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->title, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
                     [
                         'attribute' => 'created_by',

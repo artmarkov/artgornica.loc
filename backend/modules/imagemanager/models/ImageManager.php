@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\image\models;
+namespace backend\modules\imagemanager\models;
 
 use Yii;
 use yii\helpers\Url;

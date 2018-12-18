@@ -8,8 +8,8 @@ use yii\helpers\Html;
 $this->title = $page->title;
 $this->params['breadcrumbs'][] = $page->title;
 ?>
-<div class="site-blog">
-    <section id="blog" class="container">
+<div class="site-page">
+    <section  class="container">
         <div class="row">
             <div class="left col-md-12">          
                 <?= $page->content ?>

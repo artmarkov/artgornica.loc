@@ -10,6 +10,8 @@ use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yeesoft\db\ActiveRecord;
 use yii\helpers\Html;
+use backend\modules\imagemanager\models\ImageManager;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "post".
@@ -246,14 +248,6 @@ class Post extends ActiveRecord
         return strip_tags($content[0], $allowableTags);
     }
 
-    public function getThumbnail($options = ['class' => 'thumbnail pull-left', 'style' => 'width: 240px'])
-    {
-        if (!empty($this->thumbnail)) {
-            return Html::img($this->thumbnail, $options);
-        }
-
-        return;
-    }
 
     /**
      * getTypeList
@@ -308,5 +302,26 @@ class Post extends ActiveRecord
     {
         return 'created_by';
     }
-
+    
+    public function getImages()
+    {
+        return $this->hasMany(ImageManager::className(), ['item_id' => 'id'])->orderBy('sort');
+    }
+    public function getImagesLinks()
+    {
+        return ArrayHelper::getColumn($this->images, 'imageUrl');
+    }
+    public function getImagesLinksData()
+    {
+        return ArrayHelper::toArray($this->images,[
+                    ImageManager::className() => [
+                    'type' => 'type',
+                    'filetype' => 'filetype',
+                    'downloadUrl' => 'url',
+                    'caption'=> 'name',
+                    'size'=> 'size',
+                    'key'=> 'id',
+                ]]
+        );
+    }
 }
