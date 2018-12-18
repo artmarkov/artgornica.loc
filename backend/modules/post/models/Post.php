@@ -228,18 +228,29 @@ class Post extends ActiveRecord
         $this->updateCounters(['revision' => 1]);
     }
 
-    public function getAllContent($delimiter = '<p>')
+    public function getAllContent($delimiter = '<p>', $allowableTags = '<a><blockquote>')
     {
          $result = '';
+         $i = 0;
          $content = explode($delimiter, $this->content);
         
-         foreach ($content as $id => $item)
-         {
-             if($id == 1) $result .= '<p class="dropcap">' . $item . '</p>';
-             else $result .= '<p>' . $item . '</p>';
-         }
-       return $result;
-        
+         foreach ($content as $id => $item) :
+         
+          $item =  strip_tags($item, $allowableTags);
+         
+             if(strlen($item) != 0) :          
+                if($i == 0) { 
+                    $result .= Html::tag('p', $item, ['class' => "dropcap"]);
+                    $i++;
+                }
+                else {
+                    $result .= Html::tag('p', $item);
+                }
+                
+            endif;
+         endforeach;
+         
+       return $result;        
     } 
     
     public function getShortContent($delimiter = '<!-- pagebreak -->', $allowableTags = '<a><p><blockquote>')

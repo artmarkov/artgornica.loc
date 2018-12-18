@@ -50,7 +50,7 @@ class Nestable extends \klisl\nestable\Nestable
             $spanDelete = Html::tag('span', null, ['class' => "glyphicon glyphicon-trash"]);
             $aDelete = Html::tag('a', $spanDelete . '&nbsp; ', ['title' => 'Delete', 'aria-label' => 'Delete', 'data-pjax' => '0', 'data-confirm' => 'Are you sure you want to delete this item?', 'data-method' => 'post', 'href'=> $this->delete .'?id=' . $id]);
 
-            $links = Html::tag('div', $aView . $aUpdate . $aDelete, ['class' => "actionColumn"]);
+            $links = Html::tag('div', $aUpdate . $aDelete, ['class' => "actionColumn"]);
             $item['content'] .= $links;
 
 

@@ -39,7 +39,7 @@ $page = (isset($page)) ? $page : 'post';
     <!-- carousel -->
 <?php else: ?>
     
-    <?= Html::img($assetBundle->baseUrl . '../frontend/web/images/demo/screens/scr4.jpg', ['alt' => 'img', 'class' => 'img-responsive']) ?>
+    <?= Html::img('../frontend/web/images/demo/screens/scr4.jpg', ['alt' => 'img', 'class' => 'img-responsive']) ?>
 
 <?php endif; ?>
 <!-- article content -->
