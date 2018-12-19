@@ -76,6 +76,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?php endforeach; ?>
                     </p>
+                    <?= \frontend\components\TagCloudWidget::widget([
+                            'maxTags' => false,
+                            'urlRoute' => '/tag/index',
+                           // 'linkOptions' => ['label', 'label-primary', 'light'],
+                            'tagClasses' => ['fsize13','fsize14','fsize15','fsize16','fsize17','fsize18','fsize19','fsize20','fsize26']
+                        
+                        
+]) ?>
 
                 </div>
 
