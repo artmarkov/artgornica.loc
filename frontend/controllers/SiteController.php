@@ -65,7 +65,7 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->limit($pagination->limit)
                 ->all();
 
-            return $this->render('blog', [
+            return $this->render('blog-masonry', [
                 'posts' => $posts,
                 'pagination' => $pagination,
             ]);

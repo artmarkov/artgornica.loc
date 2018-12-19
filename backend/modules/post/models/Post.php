@@ -228,7 +228,7 @@ class Post extends ActiveRecord
         $this->updateCounters(['revision' => 1]);
     }
 
-    public function getAllContent($delimiter = '<p>', $allowableTags = '<a><blockquote>')
+    public function getAllContent($delimiter = '<p>', $allowableTags = '<a><blockquote><!-- pagebreak -->')
     {
          $result = '';
          $i = 0;
@@ -255,7 +255,7 @@ class Post extends ActiveRecord
     
     public function getShortContent($delimiter = '<!-- pagebreak -->', $allowableTags = '<a><p><blockquote>')
     {
-        $content = explode($delimiter, $this->getAllContent());
+        $content = explode($delimiter, $this->content);
         return strip_tags($content[0], $allowableTags);
     }
 

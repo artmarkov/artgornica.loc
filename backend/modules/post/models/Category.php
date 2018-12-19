@@ -191,9 +191,17 @@ class Category extends ActiveRecord implements OwnerAccess
 //        return $result;
 //    }
 
- public static function getCategories()
+    public static function getCategories()
     {
         return \yii\helpers\ArrayHelper::map(Category::find()->joinWith('translations')->leaves()->all(), 'id', 'title');
+    }
+    /**
+     * 
+     * @return type
+     */
+    public static function getCategoriesMenu()
+    {
+        return \yii\helpers\ArrayHelper::map(Category::find()->joinWith('translations')->leaves()->all(), 'slug', 'title');
     }
     /**
      *
