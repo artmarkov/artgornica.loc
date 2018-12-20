@@ -31,64 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <div class="col-md-3">
-
-
-                <!-- blog search -->
-                <div class="widget">
-
-                    <h3>Поиск Блога</h3>
-
-                    <form method="get" action="#" class="input-group">
-                        <input type="text" class="form-control" name="k" id="k" value="" placeholder="search..." />
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
-                        </span>
-                    </form>
-                </div>
-
-                <!-- categories -->
-                <div class="widget">
-
-                    <h4><i class="fa fa-folder-open" aria-hidden="true"></i> Категории</h4>
-                    <?php $menuCategory = \backend\modules\post\models\Category::getCategoriesMenu(); ?>
-                    <ul class="nav nav-list">
-                        <?php //echo '<pre>' . print_r($menuCategory, true) . '</pre>'; ?>
-                        <?php foreach ($menuCategory as $slug => $title): ?>
-                            <li>
-                                <a href="<?= Url::to(['/category/index', 'slug' => $slug]) ?>"<i class="fa fa-circle-o"></i> <?= $title ?></a>
-
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-
-                </div>
-
-                <!-- recent posts -->
-                <div class="widget">
-
-                    <?php $tagcloud = \backend\modules\post\models\Tag::getTags() ?>
-                    <?php // echo '<pre>' . print_r($tagcloud, true) . '</pre>'; ?>
-                    <h4><i class="fa fa-tags" aria-hidden="true"></i> Облако тегов</h4>
-                    <p class="fsize13"> 
-                        <?php foreach ($tagcloud as $id => $slug): ?>
-                            <!--fsize11 - fsize40-->
-                            <?= Html::a('<i class="fa fa-tags" aria-hidden="true"></i> ' . $slug, ['/tag/index', 'slug' => $slug], ['class' => 'label label-primary light']) ?>
-
-                        <?php endforeach; ?>
-                    </p>
-                    <?= \frontend\components\TagCloudWidget::widget([
-                            'maxTags' => false,
-                            'urlRoute' => '/tag/index',
-                           // 'linkOptions' => ['label', 'label-primary', 'light'],
-                            'tagClasses' => ['fsize13','fsize14','fsize15','fsize16','fsize17','fsize18','fsize19','fsize20','fsize26']
-                        
-                        
-]) ?>
-
-                </div>
-
+                 <?= $this->render('/layouts/right_block.php') ?>
             </div>
-
+            
         </div>
     </section>
 

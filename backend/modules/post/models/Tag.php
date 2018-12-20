@@ -139,7 +139,7 @@ class Tag extends ActiveRecord implements OwnerAccess
      * @inheritdoc
      */
     
- public static function getTags()
+    public static function getTags()
     {
         $result = [];
         $tags = static::find()->all();
@@ -149,7 +149,33 @@ class Tag extends ActiveRecord implements OwnerAccess
         //echo '<pre>' . print_r($result, true) . '</pre>';
         return $result;
         
+    } 
+    /**
+     * для виджета Облако тегов
+     * @return type
+     */
+    public static function getTagsCloud() {
+        $result = [];
+        $tags = static::find()->all();
+        foreach ($tags as $tag) {
+            $count = self::find()
+                    ->innerJoin('post_tag_post', 'post_tag_post.tag_id = post_tag.id')
+                    ->where(['post_tag.id' => $tag->id])
+                    ->count();
+            $result[] = [
+                'id' => $tag->id,
+                'name' => $tag->title,
+                'slug' => $tag->slug,
+                'count' => $count
+            ];
+        }
+
+        return $result;
     }
+    /**
+     * 
+     * @return \backend\modules\post\models\TagQuery
+     */
     public static function find()
     {
         return new TagQuery(get_called_class());

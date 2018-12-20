@@ -8,29 +8,32 @@ $this->title = '#' . $tag->title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="blog">
-    <section class="container">
-        <?php // if (Yii::$app->getRequest()->getQueryParam('page') <= 1) : ?>
-        <!--            <div class="row">
-                        <div class="pull-right col-md-6">    
-                            <form method="get" action="#" class="input-group top-content-search">
-                                <input type="text" class="form-control" name="k" id="k" value="" placeholder="поиск..."/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary"><i class="fa fa-search"></i></button>
-                                </span>
-                            </form>
-                        </div>
-                    </div>-->
-        <?php // endif; ?>
+    <section class="container masonry-sidebar">
+        <div class="row">
+            <div class="col-md-9">
+                <ul class="masonry-list">
 
-        <?php foreach ($posts as $post) : ?>
-            <?= $this->render('/items/post.php', ['post' => $post, 'page' => 'tag']) ?>
-            <div class="divider"><!-- divider -->
-                <i class="fa fa-star"></i>
+                    <?php foreach ($posts as $post) : ?>
+                        <?= $this->render('/items/post-masonry.php', ['post' => $post, 'page' => 'tag']) ?>
+
+                    <?php endforeach; ?>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+                <!-- PAGINATION -->
+                <div class="text-center">
+                    <?= LinkPager::widget(['pagination' => $pagination]) ?>
+                </div>
+
             </div>
-        <?php endforeach; ?>
-        <div class="text-center">
-            <?= LinkPager::widget(['pagination' => $pagination]) ?>
-        </div>
 
+            <div class="col-md-3">
+                 <?= $this->render('/layouts/right_block.php') ?>
+            </div>
+            
+        </div>
     </section>
+
 </div>

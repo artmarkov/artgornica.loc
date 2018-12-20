@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $post->title;
     <section class="container">
 
         <div class="row">
-            <div class="left col-md-12">             
+             <div class="col-md-9">            
 
                 <?= $this->render('/items/post.php', ['post' => $post]) ?>
 
@@ -30,6 +30,9 @@ $this->params['breadcrumbs'][] = $post->title;
 
                 </div>
                 <!-- /COMMENTS -->
+            </div>
+            <div class="col-md-3">
+                 <?= $this->render('/layouts/right_block.php') ?>
             </div>
         </div>
     </section>

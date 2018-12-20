@@ -42,17 +42,10 @@ $page = (isset($page)) ? $page : 'post';
     <?= Html::img('../frontend/web/images/demo/screens/scr4.jpg', ['alt' => 'img', 'class' => 'img-responsive']) ?>
 
 <?php endif; ?>
-<!-- article content -->
-<article>
-
-    <?= ($page === 'post') ? $post->allContent : $post->shortContent ?>
-
-</article>
-
-<!-- TAGS -->
+    <!-- TAGS -->
 <?php $tags = $post->tags; ?>
 <?php if (!empty($tags)): ?>
-    <p class="fsize16"> <?= Yii::t('yee/post', 'Tags')?>: 
+    <p class="fsize13 nopadding-bottom nopadding-top"> 
         <?php foreach ($tags as $tag): ?>
 
             <?= Html::a('<i class="fa fa-tags" aria-hidden="true"></i> ' . $tag->title, ['/tag/index', 'slug' => $tag->slug], ['class' => 'label label-primary light']) ?>
@@ -60,10 +53,12 @@ $page = (isset($page)) ? $page : 'post';
         <?php endforeach; ?>
     </p>
 <?php endif; ?>
+<!-- article content -->
+<article>
 
-<!-- read more button -->
-<?php if ($page != 'post'): ?>
-    <?= Html::a('<i class="fa fa-sign-out"></i>' . Yii::t('yee/post', 'READ MORE'), ["/site/{$post->slug}"], ['class' => 'btn btn-xs']) ?>
-<?php endif; ?>
+    <?=  $post->allContent ?>
+
+</article>
+
 
 
