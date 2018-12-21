@@ -5,7 +5,7 @@ use yii\helpers\Url;
 <!-- blog search -->
 <div class="widget">
 
-    <h3>Поиск Блога</h3>
+    <h4 class="uppercase"><?= Yii::t('yee/post', 'Blog search') ?></h4>
 
     <form method="get" action="#" class="input-group">
         <input type="text" class="form-control" name="k" id="k" value="" placeholder="search..." />
@@ -15,10 +15,37 @@ use yii\helpers\Url;
     </form>
 </div>
 
-<!-- categories -->
+<!-- recent work -->
 <div class="widget">
 
-    <h4>КАТЕГОРИИ</h4>
+    <h4 class="uppercase"><?= Yii::t('yee/post', 'Recent works') ?></h4>
+
+    <a class="popup-image thumb" href="../frontend/web/images/preview/slider/1.jpg">
+        <img src="../frontend/web/images/1x1.png" class="img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+    </a>
+    <a class="popup-video thumb" href="http://www.youtube.com/watch?v=kh29_SERH0Y?rel=0">
+        <img src="../frontend/web/images/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+    </a>
+    <a class="popup-video thumb" href="http://vimeo.com/23630702">
+        <img src="../frontend/web/images/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+    </a>
+
+    <a class="external ajax-project thumb" href="project-external-1.html">
+        <img src="../frontend/web/images/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+    </a>
+    <a class="external ajax-project thumb" href="project-external-2.html">
+        <img src="../frontend/web/images/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+    </a>
+    <a class="external ajax-project thumb" href="project-external-3.html">
+        <img src="../frontend/web/images/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+    </a>
+
+    <div class="clearfix"></div>
+</div>
+<!-- categories -->
+<div class="widget">
+<h4 class="uppercase"><?= Yii::t('yee/post', 'Blog topics') ?></h4>
+    
     <?php
     $categoryKey = '__categoryKey' . Yii::$app->language;
 
@@ -35,20 +62,48 @@ use yii\helpers\Url;
 <!-- recent posts -->
 <div class="widget">
     
-    <h4>ОБЛАКО ТЕГОВ</h4>
+    <h4 class="uppercase"><?= Yii::t('yee/post', 'Keywords') ?></h4>
     <?php
-    $TagCloudKey = '__cloudKey' . Yii::$app->language;
+    $tagCloudKey = '__cloudKey' . Yii::$app->language;
 
-    if (!$TagCloud = Yii::$app->cache->get($TagCloudKey)) {
+    if (!$TagCloud = Yii::$app->cache->get($tagCloudKey)) {
         $TagCloud = \frontend\components\TagCloudWidget::widget([
                     'maxTags' => false,
                     'urlRoute' => '/tag/index',
                     'tagClasses' => ['fsize13', 'fsize14', 'fsize15', 'fsize16', 'fsize17', 'fsize18', 'fsize19', 'fsize20', 'fsize26'],
                     'tagsArray' => \backend\modules\post\models\Tag::getTagsCloud()
         ]);
-        Yii::$app->cache->set($TagCloudKey, $TagCloud, 3600);
+        Yii::$app->cache->set($tagCloudKey, $TagCloud, 3600);
     }
     echo $TagCloud;
     ?>
 
+</div>
+
+<!-- most popular -->
+<div class="widget">
+    
+    <h4 class="uppercase"><?= Yii::t('yee/post', 'Most popular') ?></h4>
+    <?php
+    $popularKey = '__popularKey' . Yii::$app->language;
+
+    if (!$popular = Yii::$app->cache->get($popularKey)) {
+//        $popular = \frontend\components\TagCloudWidget::widget([
+//                    'maxTags' => false,
+//                    'urlRoute' => '/tag/index',
+//                    'tagClasses' => ['fsize13', 'fsize14', 'fsize15', 'fsize16', 'fsize17', 'fsize18', 'fsize19', 'fsize20', 'fsize26'],
+//                    'tagsArray' => \backend\modules\post\models\Tag::getTagsCloud()
+//        ]);
+        Yii::$app->cache->set($popularKey, $popular, 3600);
+    }
+    echo $popular;
+    ?>
+
+</div>
+<!-- Recent Comments -->
+<div class="widget">  
+    <h4 class="uppercase"><?= Yii::t('yee/post', 'Recent Comments') ?></h4>
+    <div class="white-row">
+        <?= backend\modules\comment\widgets\RecentComments::widget() ?>    
+    </div>
 </div>

@@ -7,6 +7,7 @@ use yeesoft\comments\models\Comment;
 /* @var $post yeesoft\post\models\Post */
 
 $page = (isset($page)) ? $page : 'post';
+$post->updateRevision();
 ?>
 
 <!-- article title -->

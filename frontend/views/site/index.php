@@ -104,7 +104,7 @@ use yii\widgets\LinkPager;
                          data-start="1100"
                          data-easing="easeOutExpo">
                         <a href="#"
-                           target="_blank" class="btn btn-info btn-lg">ЧИТАТЬ ДАЛЬШЕ...</a>
+                           target="_blank" class="btn btn-info btn-lg">ЧИТАТЬ ДАЛЕЕ...</a>
                     </div>
                 </li>
 
@@ -201,7 +201,7 @@ use yii\widgets\LinkPager;
                                 желаниям. Контроль - это следствие недоверия к жизни и недоверия к людям.
                                 Мы злимся и раздражаемся, испытываем тревогу за ожидаемое событие будущего.
                                </p>
-                               <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЬШЕ...</a>
+                               <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЕЕ...</a>
                         </div>
                     </div>
                     <!-- /item -->
@@ -226,7 +226,7 @@ use yii\widgets\LinkPager;
                                 Почему мы не ценим свое время? Почему, выполнив просьбу, мы задумываемся о том,
                                 насколько нас уважают и ценят другие люди? Почему для нас важно чувствовать себя
                                 востребованным и ценным?</p>
-                            <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЬШЕ...</a>
+                            <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЕЕ...</a>
                         </div>
                     </div>
                     <!-- /item -->
@@ -251,7 +251,7 @@ use yii\widgets\LinkPager;
                                 физическая и умственная активность являются инструментом восстановления нервных клеток
                                 или «нейрогенезом», что способствует сохранению качества жизни.
                                </p>
-                            <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЬШЕ...</a>
+                            <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЕЕ...</a>
                         </div>
                     </div>
                     <!-- /item -->

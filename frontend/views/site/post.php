@@ -31,9 +31,9 @@ $this->params['breadcrumbs'][] = $post->title;
                 </div>
                 <!-- /COMMENTS -->
             </div>
-            <div class="col-md-3">
+           <aside class="right col-md-3">
                  <?= $this->render('/layouts/right_block.php') ?>
-            </div>
+            </aside>
         </div>
     </section>
 </div>

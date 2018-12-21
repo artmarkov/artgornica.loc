@@ -52,7 +52,17 @@ class Post extends ActiveRecord
     {
         return '{{%post}}';
     }
+     /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
 
+        if ($this->isNewRecord && $this->className() == Post::className()) {
+            $this->published_at = time();
+        }     
+    }
     /**
      * @inheritdoc
      */

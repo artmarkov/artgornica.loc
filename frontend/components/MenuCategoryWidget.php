@@ -13,7 +13,7 @@ class MenuCategoryWidget extends \yii\base\Widget {
         //echo '<pre>' . print_r($menuCategory, true) . '</pre>'; 
         foreach ($menuCategory as $slug => $title):
             echo '<li>
-                <a href="' . Url::to(['/category/index', 'slug' => $slug]) . '"<i class="fa fa-circle-o"></i> ' . $title . '</a>
+                <a href="' . Url::to(['/category/index', 'slug' => $slug]) . '"><i class = "fa fa-circle-o"></i> ' . $title . '</a>
             </li>';
         endforeach;
         echo '</ul>';
