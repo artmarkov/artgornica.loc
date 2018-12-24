@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div id="blog">
     <section class="container masonry-sidebar">
         <div class="row">
-            <div class="col-md-9">
+            <div class="left col-md-9">
                 <ul class="masonry-list">
 
                     <?php foreach ($posts as $post) : ?>

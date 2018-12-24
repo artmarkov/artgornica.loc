@@ -11,7 +11,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div id="blog">
     <section class="container masonry-sidebar">
         <div class="row">
-            <div class="col-md-9">
+            <div class="left col-md-9">
+
                 <ul class="masonry-list">
 
                     <?php foreach ($posts as $post) : ?>
@@ -31,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <aside class="right col-md-3">
-                 <?= $this->render('/layouts/right_block.php') ?>
+                <?= $this->render('/layouts/right_block.php') ?>
             </aside>
-            
+
         </div>
     </section>
 

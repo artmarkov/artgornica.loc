@@ -10,17 +10,16 @@ $this->title = $post->title;
 $this->params['breadcrumbs'][] = $post->title;
 ?>
 <div id="blog">
-    <section class="container">
-
+    <section class="container masonry-sidebar">
         <div class="row">
-             <div class="col-md-9">            
+            <div class="left col-md-9">            
 
                 <?= $this->render('/items/post.php', ['post' => $post]) ?>
 
                 <div class="divider"><!-- divider -->
                     <i class="fa fa-star"></i>
                 </div>
-
+                <div class="clearfix"></div>
                 <!-- COMMENTS -->
                 <div id="comments">
 
@@ -31,8 +30,8 @@ $this->params['breadcrumbs'][] = $post->title;
                 </div>
                 <!-- /COMMENTS -->
             </div>
-           <aside class="right col-md-3">
-                 <?= $this->render('/layouts/right_block.php') ?>
+            <aside class="right col-md-3">
+                <?= $this->render('/layouts/right_block.php') ?>
             </aside>
         </div>
     </section>
