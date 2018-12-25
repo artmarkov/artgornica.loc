@@ -124,9 +124,9 @@ class SiteController extends \yeesoft\controllers\BaseController
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
            if ($model->sendEmail(Yii::$app->settings->get('general.email'))) {
-                Yii::$app->session->setFlash('success', Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
+                Yii::$app->session->setFlash('success', '<i class="fa fa-check-circle"></i>' . Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
             } else {
-                Yii::$app->session->setFlash('error', Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
+                Yii::$app->session->setFlash('error', '<i class="fa fa-frown-o"></i>' . Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
             }
 
             return $this->refresh();

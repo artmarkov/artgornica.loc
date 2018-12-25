@@ -28,11 +28,11 @@ class ContactForm extends Model
             ['email', 'email'],
             [['name', 'subject'], 'string', 'min' => 5],
             ['body', 'string', 'min' => 30],
-//            [
-//                ['reCaptcha'], ReCaptchaValidator::className(),
-//                'secret' => '6LdDI4IUAAAAAGHfEzx7IMbr5TvJPqeqBiivjqmc',
-//                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
-//            ],
+            [
+                ['reCaptcha'], ReCaptchaValidator::className(),
+                'secret' => '6LdDI4IUAAAAAGHfEzx7IMbr5TvJPqeqBiivjqmc',
+                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
+            ],
         ];
     }
 
@@ -42,10 +42,10 @@ class ContactForm extends Model
     public function attributeLabels() {
         return [
             'name' => Yii::t('yee', 'Full Name'),
-            'email' => Yii::t('yee', 'Email'),
-            'subject' => Yii::t('yee', 'Subject'),
+            'email' => Yii::t('yee', 'E-mail'),
+            'subject' => Yii::t('yee', 'Title'),
             'body' => Yii::t('yee', 'Content'),
-            'reCaptcha' => Yii::t('yee', 'reCaptcha'),
+            'reCaptcha' => Yii::t('yee', 'Captcha'),
         ];
     }
 
@@ -57,11 +57,10 @@ class ContactForm extends Model
      */
     public function sendEmail($email)
     {
-        return Yii::$app->mailer->compose()
-            ->setTo($email)
+        return Yii::$app->mailer->compose(Yii::$app->yee->emailTemplates['send-contact'], ['body' => $this->body, 'subject' => $this->subject])
             ->setFrom([$this->email => $this->name])
-            ->setSubject($this->subject)
-            ->setTextBody($this->body)
+            ->setTo($email)
+            ->setSubject(Yii::t('yee', 'Message for') . ' ' . Yii::$app->name)          
             ->send();
     }
 }

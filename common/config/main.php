@@ -1,5 +1,6 @@
 <?php
 return [
+    'name' =>  'Artgornica.ru',    
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'bootstrap' => ['comments', 'yee'],
     'language' => 'ru',
@@ -12,6 +13,9 @@ return [
                 'ru' => 'Россия',
             ],
             'languageRedirects' => ['ru' => 'ru'],
+            'emailTemplates' => [
+                 'send-contact' => '@frontend/modules/auth/views/mail/send-contact-html',
+            ],
         ],
         'settings' => [
             'class' => 'yeesoft\components\Settings'
