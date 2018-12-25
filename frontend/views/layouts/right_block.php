@@ -16,7 +16,7 @@ use yii\helpers\Url;
 </div>
 
 <!-- recent work -->
-<div class="widget">
+<!--<div class="widget">
 
     <h4 class="uppercase"><?= Yii::t('yee/post', 'Recent works') ?></h4>
 
@@ -41,7 +41,7 @@ use yii\helpers\Url;
     </a>
 
     <div class="clearfix"></div>
-</div>
+</div>-->
 <!-- categories -->
 <div class="widget">
 <h4 class="uppercase"><?= Yii::t('yee/post', 'Blog topics') ?></h4>
@@ -81,25 +81,20 @@ use yii\helpers\Url;
 </div>
 
 <!-- most popular -->
-<div class="widget">
+<!--<div class="widget">
     
-    <h4 class="uppercase"><?= Yii::t('yee/post', 'Most popular') ?></h4>
+    <h4 class="uppercase"><?= Yii::t('yee/post', 'Most popular') ?></h4>-->
     <?php
-    $popularKey = '__popularKey' . Yii::$app->language;
-
-    if (!$popular = Yii::$app->cache->get($popularKey)) {
-//        $popular = \frontend\components\TagCloudWidget::widget([
-//                    'maxTags' => false,
-//                    'urlRoute' => '/tag/index',
-//                    'tagClasses' => ['fsize13', 'fsize14', 'fsize15', 'fsize16', 'fsize17', 'fsize18', 'fsize19', 'fsize20', 'fsize26'],
-//                    'tagsArray' => \backend\modules\post\models\Tag::getTagsCloud()
-//        ]);
-        Yii::$app->cache->set($popularKey, $popular, 3600);
-    }
-    echo $popular;
+//    $popularKey = '__popularKey' . Yii::$app->language;
+//
+//    if (!$popular = Yii::$app->cache->get($popularKey)) {
+//
+//        Yii::$app->cache->set($popularKey, $popular, 3600);
+//    }
+//    echo $popular;
     ?>
 
-</div>
+<!--</div>-->
 <!-- Recent Comments -->
 <div class="widget">  
     <h4 class="uppercase"><?= Yii::t('yee/post', 'Recent Comments') ?></h4>

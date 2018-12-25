@@ -104,9 +104,9 @@ $assetBundle = AppAsset::register($this);
                     </div>
                 </header>
             <?php endif; ?>
-
-            <?= Alert::widget() ?>
-
+                <section class="container">
+                    <?= Alert::widget() ?>
+                </section>
             <?= $content ?>
 
         </div>

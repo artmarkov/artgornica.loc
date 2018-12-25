@@ -394,53 +394,45 @@ use yii\widgets\LinkPager;
     <!--TESTIONARS-->
     <section id="testionars" class="container padding100">
 
-        <h2>Отзывы <strong>моих</strong> клиентов</h2>
+        				<div class="row">
+					<div class="col-md-6">
+						<h4>Почему выбирают нас?</h4>
+						<ul class="list-icon star-o">
+							<li>Fully responsive so your content will always look good on any screen size</li>
+							<li>Awesome sliders give you the opportunity to showcase important content</li>
+							<li>Unlimited color options with a backed color picker, including the gradients</li>
+							<li>Multiple layout options for home pages, portfolio section &amp; blog section</li>
+							<li>We offer free support because we care about your site as much as you do.</li>
+						</ul>
+					</div>
 
+					<div class="col-md-6">
+						<h4>Что говорят о нас клиенты?</h4>
+						<div class="owl-carousel text-center" data-plugin-options='{"items": 1, "singleItem": true, "navigation": false, "pagination": true, "autoPlay": true, "transitionStyle":"fadeUp"}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
+							<div class="testimonial white">
+								<p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
+								<cite><strong>John Doe</strong>, Customer</cite>
+							</div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="testimonial classic white female">
-                    <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <cite><strong>John Doe</strong>, Customer</cite>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="testimonial classic white male">
-                    <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <cite><strong>John Doe</strong>, Customer</cite>
-                </div>
-            </div>
-        </div>
+							<div class="testimonial white">
+								<p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+								<cite><strong>Jessica Doe</strong>, Customer</cite>
+							</div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="testimonial classic white female">
-                    <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <cite><strong>John Doe</strong>, Customer</cite>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="testimonial classic white male">
-                    <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <cite><strong>John Doe</strong>, Customer</cite>
-                </div>
-            </div>
-        </div>
+							<div class="testimonial white">
+								<p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
+								<cite><strong>Dorin Doe</strong>, Customer</cite>
+							</div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="testimonial classic white female">
-                    <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <cite><strong>John Doe</strong>, Customer</cite>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="testimonial classic white male">
-                    <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <cite><strong>John Doe</strong>, Customer</cite>
-                </div>
-            </div>
-        </div>
+							<div class="testimonial white">
+								<p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+								<cite><strong>Melissa Doe</strong>, Customer</cite>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
 <a class="btn btn-primary btn-lg" href="shortcodes-rows.html">Оставить отзыв</a>
 <a class="btn btn-default btn-lg" href="shortcodes-rows.html">Больше отзывов</a> 
     </section>

@@ -37,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             'change' => 'function(e) {}', //js событие при выборе элемента
                         ],
                         'pluginOptions' => [
-                            'maxDepth' => 10, //максимальное кол-во уровней вложенности
+                            'maxDepth' => 2, //максимальное кол-во уровней вложенности
                         ],
                         'update' => Url::to(['update']), //действие по обновлению
                         'delete' => Url::to(['delete']), //действие по удалению
-                        'viewItem' => Url::to(['view']), 
+//                        'viewItem' => Url::to(['view']), 
                     ]);
                     ?>
 

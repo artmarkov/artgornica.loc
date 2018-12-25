@@ -28,11 +28,11 @@ class ContactForm extends Model
             ['email', 'email'],
             [['name', 'subject'], 'string', 'min' => 5],
             ['body', 'string', 'min' => 30],
-            [
-                ['reCaptcha'], ReCaptchaValidator::className(),
-                'secret' => '6LdDI4IUAAAAAGHfEzx7IMbr5TvJPqeqBiivjqmc',
-                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
-            ],
+//            [
+//                ['reCaptcha'], ReCaptchaValidator::className(),
+//                'secret' => '6LdDI4IUAAAAAGHfEzx7IMbr5TvJPqeqBiivjqmc',
+//                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
+//            ],
         ];
     }
 

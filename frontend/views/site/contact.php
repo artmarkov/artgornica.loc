@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-group">
                         <div class="col-md-12">
 
-                            <?= $this->render('@common/widgets/views/_captcha', ['model' => $model, 'form' => $form]) ?>
+                            <?//= $this->render('@common/widgets/views/_captcha', ['model' => $model, 'form' => $form]) ?>
                           
                         </div>
                     </div>

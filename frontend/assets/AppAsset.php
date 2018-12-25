@@ -40,7 +40,9 @@ class AppAsset extends AssetBundle
         'css/essentials.css',
         'css/layout.css',
         'css/layout-responsive.css',
-        'css/color_scheme/red.css'
+        'css/color_scheme/red.css',
+        
+        'css/site.css'
     ];
 
     public $js = [
