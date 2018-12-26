@@ -39,10 +39,7 @@ $col3 = (int) ($col12 / 4);
 
                         <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
 
-                        <?= $form->field($model, 'captcha')->widget(Captcha::className(), [
-                            'template' => '<div class="row"><div class="col-sm-' . $col3 . '">{image}</div><div class="col-sm-' . $col3 . '">{input}</div></div>',
-                            'captchaAction' => ['/auth/captcha']
-                        ]) ?>
+                        <?= $this->render('@common/widgets/views/_captcha', ['model' => $model, 'form' => $form]) ?>
 
                         <?= Html::submitButton(Yii::t('yee/auth', 'Reset'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
 

@@ -16,6 +16,8 @@ return [
             'emailTemplates' => [
                  'send-contact' => '@frontend/modules/auth/views/mail/send-contact-html',
             ],
+            'usernameRegexp' => '/^(\w|\d)+$/',
+            'usernameBlackRegexp' => '/^(.)*moder(.)*$/i',
         ],
         'settings' => [
             'class' => 'yeesoft\components\Settings'
@@ -48,5 +50,17 @@ return [
                 return false;
             }
         ],
+        'gii' => [
+        'class' => 'yii\gii\Module',
+        'allowedIPs' => ['*'],
+        'generators' => [
+            'yee-crud' => [
+                'class' => 'yeesoft\generator\crud\Generator',
+                'templates' => [
+                    'default' => '@vendor/yeesoft/yii2-yee-generator/crud/yee-admin',
+                ]
+            ],
+        ],
+    ],
     ],
 ];

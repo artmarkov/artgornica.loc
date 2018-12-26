@@ -42,7 +42,8 @@
     "klisl/yii2-nested-sets-drag-and-drop": "^1.3",
     "nex/yii2-chosen": "*",
     "himiklab/yii2-recaptcha-widget": "*",
-    "kartik-v/yii2-widget-fileinput": "dev-master"
+    "kartik-v/yii2-widget-fileinput": "dev-master",
+    "yeesoft/yii2-yee-generator": "~0.1.0"
         
   },
   "require-dev": {

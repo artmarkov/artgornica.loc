@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
-$this->title = 'About';
+$this->title = Yii::t('yee', 'About');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
