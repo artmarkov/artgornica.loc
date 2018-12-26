@@ -6,3 +6,10 @@ a.label.label-primary.light:active,
 a.label.label-primary.light:focus {
     background-color: #ee3939 !important;
 }
+
+#portfolio ul.isotope-filter li.active a {
+    background-color: #F15757 !important;
+}
+#portfolio ul.isotope-filter li.active a:hover {
+    background-color: #ee3939 !important;
+}
