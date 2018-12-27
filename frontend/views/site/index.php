@@ -36,8 +36,9 @@ use yii\widgets\LinkPager;
                          data-speed="300"
                          data-start="1100"
                          data-easing="easeOutExpo">
-                        <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-primary btn-lg">Записаться на занятие 
-                            <i class="fa fa-chevron-circle-right"></i></a>
+                        
+                        <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
+              
                     </div>
                 </li>
 
@@ -68,7 +69,8 @@ use yii\widgets\LinkPager;
                          data-speed="300"
                          data-start="1100"
                          data-easing="easeOutExpo">
-                        <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-default btn-lg">Записаться на встречу</a>
+                        <?= Html::a(Yii::t('yee', 'Make an appointment') . '</span>', ["/site/contact"], ['class' => 'btn btn-default btn-lg']) ?>
+                  
                     </div>
                 </li>
 
@@ -99,7 +101,9 @@ use yii\widgets\LinkPager;
                          data-speed="300"
                          data-start="1100"
                          data-easing="easeOutExpo">
-                        <a href="<?= \yii\helpers\Url::to('/blog') ?>" class="btn btn-info btn-lg">УЗНАТЬ БОЛЬШЕ...</a>
+                        
+                        <?= Html::a(Yii::t('yee', 'Learn more...') . '</span>', ["/site/blog"], ['class' => 'btn btn-info btn-lg']) ?>
+                  
                     </div>
                 </li>
 
@@ -145,7 +149,8 @@ use yii\widgets\LinkPager;
                     <li>Создайте намерение, цель, свою мечту!</li>
                     <li>Зажгите в себе энергию и направьте ее на что-то важное, следуйте за своей мечтой!</li>
                 </ul>
-                <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-primary btn-lg">Записаться на курс <i class="fa fa-chevron-circle-right"></i></a>
+                <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
+                  
             </div>
 
             <div class="col-md-6">
@@ -282,9 +287,10 @@ use yii\widgets\LinkPager;
                             Путь к Поиску Себя! Благодаря взаимодействию с арт-терапией Вы осознаете, что можно жить без
                             лишних переживаний! Вы узнаете, как сохранить жизненные силы и где найти ресурсы!
                         </p>
-
-                        <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-primary btn-lg">Записаться на курс <i class="fa fa-chevron-circle-right"></i></a>
-                    </div>
+                        
+                        <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
+                  
+                        </div>
 
                     <!-- right image -->
                     <div class="col-md-5 animation_fade_in">
@@ -417,6 +423,8 @@ use yii\widgets\LinkPager;
                         <p>Курс "30 встреч" помогает познать себя и окружающий мир, раскрыть в себе новые способности, 
                             не бояться изменять свою жизнь, осознать свою способность быть счастливым и делиться этим счастьем с другими!</p>
                         <p>После заключения договора на авторский курс «30 встреч» мы с Вами встречаемся 2 раза в неделю в течение 4х месяцев. </p>
+                        <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Learn more...') . '</span>', ["/site/consult"], ['class' => 'btn btn-xs pull-right']) ?>
+                    
                     </div>
 
                 </div>
@@ -440,6 +448,8 @@ use yii\widgets\LinkPager;
                             «Эмоциональный интеллект», «Марафон прощания с обидами» и другие. </p>
                         <p>Вы сами выбираете интересующую Вас тему. </p>
                         <p>Вы записываетесь на мероприятие по телефону или отправляете сообщение в месенджере или на сайте.</p>
+                         <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Learn more...') . '</span>', ["/site/author-course"], ['class' => 'btn btn-xs pull-right']) ?>
+                    
                     </div>
 
                 </div>
@@ -491,7 +501,8 @@ use yii\widgets\LinkPager;
 
                     </div>
                     <div class="row text-center nomargin-bottom">
-                        <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-primary">Оставить отзыв</a>
+                        <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Leave a review...') . '</span>', ["/site/contact"], ['class' => 'btn btn-xs pull-right']) ?>
+                       
 
                     </div>
                 </div>
@@ -508,7 +519,11 @@ use yii\widgets\LinkPager;
     <section class="container">
 
         <div class="bs-callout special-row text-center nomargin">
-            <h3>Записаться на <strong>бесплатную</strong> консультацию! <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-primary btn-lg">Записаться <i class="fa fa-chevron-circle-right"></i></a></h3>
+            <h3>Записаться на <strong>бесплатную</strong> консультацию! 
+                
+                <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee', 'Sign up...') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
+                       
+               </h3>
         </div>
 
     </section>

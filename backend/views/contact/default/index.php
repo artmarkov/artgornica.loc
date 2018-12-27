@@ -11,7 +11,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Contacts';
+$this->title = Yii::t('yee', 'Contacts');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-index">
@@ -57,10 +57,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
+                    ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     ['class' => 'yii\grid\SerialColumn', 'options' => ['style' => 'width:20px'],],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'options' => ['style' => 'width:300px'],
+                        'options' => ['style' => 'width:200px'],
                         'attribute' => 'name',
                         'controller' => '/contact/default',
                         'title' => function(Contact $model) {
@@ -72,9 +73,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'subject',
             'body:ntext',
-            'subscribe',
+           
             [
-
+                'class' => 'yeesoft\grid\columns\StatusColumn',
+                'attribute' => 'subscribe',
+                'optionsArray' => [                    
+                    [Contact::SUBSCRIBE, Yii::t('yee', 'Subscribe On'), 'primary'],
+                    [Contact::UNSUBSCRIBE, Yii::t('yee', 'Subscribe Off'), 'info'],
+                ],
+                'options' => ['style' => 'width:150px']
+            ],
+            [
                 'attribute' => 'created_at',
                 'value' => function (Contact $model) {
                     return  $model->createdDatetime;

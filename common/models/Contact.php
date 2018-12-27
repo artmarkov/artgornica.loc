@@ -5,6 +5,7 @@ namespace common\models;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use Yii;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 
 /**
  * This is the model class for table "{{%contact}}".
@@ -19,7 +20,13 @@ use Yii;
  */
 class Contact extends ActiveRecord
 {
-        
+    const SUBSCRIBE = 1;
+    const UNSUBSCRIBE = 0;
+    /**
+     *
+     * @var type 
+     */
+    public $reCaptcha;
     /**
      * {@inheritdoc}
      */
@@ -49,13 +56,45 @@ class Contact extends ActiveRecord
     {
         return [
             [['name', 'email', 'subject', 'body'], 'required'],
-            [['body'], 'string'],
-            [['subscribe'], 'integer'],
-            [['name', 'email', 'subject'], 'string', 'max' => 127],
+            ['email', 'email'],
+            [['name', 'subject'], 'string', 'min' => 5],
+            ['body', 'string', 'min' => 30],
+            ['subscribe', 'integer'],
+            ['subscribe', 'default', 'value' => self::UNSUBSCRIBE],
+            ['reCaptcha', 'required',  'on' => ['contact']], 
+            [
+                ['reCaptcha'], ReCaptchaValidator::className(),
+                'secret' => Yii::$app->reCaptcha->secret,
+                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.'),
+                'on' => ['contact'], // scenario
+            ],
             ['created_at', 'safe'],
         ];
     }
+/**
+     * getSubscribeList
+     * @return array
+     */
+    public static function getSubscribeList()
+    {
+        return array(
+            self::SUBSCRIBE => Yii::t('yee', 'Subscribe On'),
+            self::UNSUBSCRIBE => Yii::t('yee', 'Subscribe Off'),
+        );
+    }
+    /**
+     * getSubscribeValue
+     *
+     * @param string $val
+     *
+     * @return string
+     */
+    public static function getSubscribeValue($val)
+    {
+        $ar = self::getSubscribeList();
 
+        return isset($ar[$val]) ? $ar[$val] : $val;
+    }
     /**
      * {@inheritdoc}
      */
@@ -68,8 +107,29 @@ class Contact extends ActiveRecord
             'subject' => Yii::t('yee', 'Title'),
             'body' => Yii::t('yee', 'Content'),
             'created_at' => Yii::t('yii', 'Created At'),
+            'reCaptcha' => Yii::t('yee', 'Captcha'),
+            'subscribe' => Yii::t('yee', 'Subscribe'),
             
         ];
+    }
+     /**
+     * Sends an email to the specified email address using the information collected by this model.
+     *
+     * @param  string $email the target email address
+     * @return boolean whether the email was sent
+     */
+    public function sendEmail($email)
+    {
+        return Yii::$app->mailer->compose(
+                Yii::$app->yee->emailTemplates['send-contact'], 
+                [
+                    'body' => $this->body, 
+                    'subject' => $this->subject
+                ])
+            ->setFrom([$this->email => $this->name])
+            ->setTo($email)
+            ->setSubject(Yii::t('yee', 'Message for') . ' ' . Yii::$app->name)          
+            ->send();
     }
     
     public function getCreatedDate()
@@ -86,5 +146,5 @@ class Contact extends ActiveRecord
     {
         return "{$this->createdDate} {$this->createdTime}";
     }
-    
+     
 }

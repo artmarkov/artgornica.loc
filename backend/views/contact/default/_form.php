@@ -1,7 +1,6 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use common\models\Contact;
 use yeesoft\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -58,7 +57,7 @@ use yeesoft\helpers\Html;
                             </div>
 
                         <?php endif; ?>
-                             <?= $form->field($model, 'subscribe')->textInput() ?>
+                            <?= $form->field($model, 'subscribe')->dropDownList(common\models\Contact::getSubscribeList()) ?>
 
                         <div class="form-group">
                             

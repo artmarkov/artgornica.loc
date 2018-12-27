@@ -30,15 +30,15 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            [
-                ['reCaptcha'], ReCaptchaValidator::className(),
-                'secret' => '6LdDI4IUAAAAAGHfEzx7IMbr5TvJPqeqBiivjqmc',
-                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
-            ],
             [['email', 'reCaptcha'], 'required'],
             ['email', 'trim'],
             ['email', 'email'],
             ['email', 'validateEmailConfirmedAndUserActive'],
+            [
+                ['reCaptcha'], ReCaptchaValidator::className(),
+                'secret' => Yii::$app->reCaptcha->secret,
+                'uncheckedMessage' => Yii::t('yee/auth', 'Please confirm that you are not a bot.')
+            ],
         ];
     }
 

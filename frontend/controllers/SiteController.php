@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use frontend\actions\PageAction;
 use frontend\actions\PostAction;
-use frontend\models\ContactForm;
+use common\models\Contact;
 use yeesoft\page\models\Page;
 use backend\modules\post\models\Post;
 use Yii;
@@ -121,22 +121,17 @@ class SiteController extends \yeesoft\controllers\BaseController
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        $model_admin = new \common\models\Contact();
+        $model = new Contact();
+        
+        $model->scenario = 'contact';
         
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
            if ($model->sendEmail(Yii::$app->settings->get('general.email'))) {
                 Yii::$app->session->setFlash('success', '<i class="fa fa-check-circle"></i>' . Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
             } else {
                 Yii::$app->session->setFlash('error', '<i class="fa fa-frown-o"></i>' . Yii::t('yee','Thank you for contacting us. We will respond to you as soon as possible.'));
-            }
-            
-            $model_admin->name = $model->name;
-            $model_admin->email = $model->email;
-            $model_admin->subject = $model->subject;
-            $model_admin->body = $model->body;
-            $model_admin->save(false);
-            
+            }           
+            $model->save();            
             return $this->refresh();
         } else {
             return $this->render('contact', [
