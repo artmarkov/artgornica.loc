@@ -44,6 +44,9 @@ class Post extends ActiveRecord
     const STATUS_PUBLISHED = 1;
     const COMMENT_STATUS_CLOSED = 0;
     const COMMENT_STATUS_OPEN = 1;
+    const COUNT_POST_INDEX = 3;
+    const MAIN_ON = 1;
+    const MAIN_OFF = 0;
 
     /**
      * @inheritdoc
@@ -99,7 +102,7 @@ class Post extends ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['created_by', 'updated_by', 'status', 'comment_status', 'revision', 'category_id'], 'integer'],
+            [['created_by', 'updated_by', 'status', 'comment_status', 'revision', 'category_id', 'main_flag'], 'integer'],
             [['title', 'content', 'view', 'layout'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['slug'], 'string', 'max' => 127],
@@ -133,6 +136,7 @@ class Post extends ActiveRecord
             'updated_at' => Yii::t('yee', 'Updated'),
             'revision' => Yii::t('yee', 'Revision'),
             'tag_list' => Yii::t('yee/post', 'Tags'),
+            'main_flag' => Yii::t('yee', 'Main On'),
         ];
     }
 
@@ -268,20 +272,28 @@ class Post extends ActiveRecord
         $content = explode($delimiter, $this->content);
         return strip_tags($content[0], $allowableTags);
     }
-
-
     /**
      * getTypeList
      * @return array
      */
-    public static function getStatusList()
+    public static function getMainList()
     {
         return [
-            self::STATUS_PENDING => Yii::t('yee', 'Pending'),
-            self::STATUS_PUBLISHED => Yii::t('yee', 'Published'),
+            self::MAIN_ON => Yii::t('yee', 'On'),
+            self::MAIN_OFF => Yii::t('yee', 'Off'),
         ];
     }
-
+ /**
+     * getStatusOptionsList
+     * @return array
+     */
+    public static function getMainOptionsList()
+    {
+        return [
+            [self::MAIN_ON, Yii::t('yee', 'On'), 'default'],
+            [self::MAIN_OFF, Yii::t('yee', 'Off'), 'primary']
+        ];
+    }
     /**
      * getStatusOptionsList
      * @return array
@@ -305,7 +317,17 @@ class Post extends ActiveRecord
             self::COMMENT_STATUS_CLOSED => Yii::t('yee', 'Closed')
         ];
     }
-
+ /**
+     * getTypeList
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_PENDING => Yii::t('yee', 'Pending'),
+            self::STATUS_PUBLISHED => Yii::t('yee', 'Published'),
+        ];
+    }
     /**
      *
      * @inheritdoc

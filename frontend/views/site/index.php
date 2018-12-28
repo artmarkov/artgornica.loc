@@ -178,7 +178,7 @@ use yii\widgets\LinkPager;
     <div class="divider"><!-- divider -->
         <i class="fa fa-leaf"></i>
     </div>
-
+              
     <!-- POST -->
     <section id = "post" class="container padding50 nopadding-top">
         <h2>
@@ -187,80 +187,11 @@ use yii\widgets\LinkPager;
         <p class="lead">Приглашаю Вас посетить мой Блог, где Вы найдете много интересных и занимательных статей.
         </p>
         <div class="row text-center">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <!-- item -->
-                <div class="item-box appear-animation pull-left inner" data-animation="fadeInLeft">
-                    <figure>
+            <?php foreach ($posts as $post) : ?>
 
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_thumb_1.jpg"
-                             width="409" height="271"/>
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>КАК ПЕРЕСТАТЬ КОНТРОЛИРОВАТЬ?</h4>
+                <?= $this->render('/items/post-index.php', ['post' => $post]) ?>
 
-                        <p>Многие из нас привыкли контролировать себя и своих близких, контролировать каждый шаг.
-                            Контроль начинается тогда, когда мы стремимся изменить мир, чтобы он соответствовал
-                            нашим
-                            желаниям. Контроль - это следствие недоверия к жизни и недоверия к людям.
-                            Мы злимся и раздражаемся, испытываем тревогу за ожидаемое событие будущего.
-                        </p>
-                        <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЕЕ...</a>
-                    </div>
-                </div>
-                <!-- /item -->
-
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-
-                <!-- item -->
-                <div class="item-box appear-animation pull-left inner" data-animation="fadeInDown">
-                    <figure>
-
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_thumb_2.jpg"
-                             width="409" height="271"/>
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>ХОЧЕШЬ БЫТЬ ХОРОШИМ?</h4>
-
-                        <p>В жизни возникают ситуации, когда мы почему-то соглашаемся помочь,
-                            но при этом в душе мы не хотим выполнить просьбу или просьба расходится с нашими
-                            интересами. Почему нам так сложно сказать слово «нет»?
-                            Почему мы не ценим свое время? Почему, выполнив просьбу, мы задумываемся о том,
-                            насколько нас уважают и ценят другие люди? Почему для нас важно чувствовать себя
-                            востребованным и ценным?</p>
-                        <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЕЕ...</a>
-                    </div>
-                </div>
-                <!-- /item -->
-
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-
-                <!-- item -->
-                <div class="item-box appear-animation pull-left inner" data-animation="fadeInRight">
-                    <figure>
-
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_thumb_3.jpg"
-                             width="409" height="271"/>
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Я СЧАСТЛИВ НА СВОЕЙ РАБОТЕ!</h4>
-
-                        <p>Многие ли из нас могут так сказать? Часто люди жалуются, что работать тяжело, что их
-                            не ценят и не повышают в должности! Но кто из этих людей регулярно занимается
-                            самообразованием? Учеными установлено, что образование и обучение чему-то новому,
-                            физическая и умственная активность являются инструментом восстановления нервных клеток
-                            или «нейрогенезом», что способствует сохранению качества жизни.
-                        </p>
-                        <a href="#" class="btn btn-primary btn-xs">ЧИТАТЬ ДАЛЕЕ...</a>
-                    </div>
-                </div>
-                <!-- /item -->
-
-            </div>
-
+            <?php endforeach; ?>
         </div>
     </section>
     <!-- /POST -->

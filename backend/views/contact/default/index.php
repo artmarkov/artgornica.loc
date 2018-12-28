@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yeesoft\grid\columns\StatusColumn',
                 'attribute' => 'subscribe',
-                'optionsArray' => [                    
+                'optionsArray' => [
                     [Contact::SUBSCRIBE, Yii::t('yee', 'Subscribe On'), 'primary'],
                     [Contact::UNSUBSCRIBE, Yii::t('yee', 'Subscribe Off'), 'info'],
                 ],

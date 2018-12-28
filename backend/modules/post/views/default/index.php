@@ -90,6 +90,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
+                        'attribute' => 'main_flag',
+                        'optionsArray' => Post::getMainOptionsList(),
+                        'options' => ['style' => 'width:60px'],
+                    ],
+                    [
+                        'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',
                         'optionsArray' => Post::getStatusOptionsList(),
                         'options' => ['style' => 'width:60px'],

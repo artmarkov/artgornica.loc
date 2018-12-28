@@ -40,7 +40,27 @@ class SiteController extends \yeesoft\controllers\BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Post::find()->where(
+                [
+                    'status' => Post::STATUS_PUBLISHED, 
+                    'main_flag' => Post::MAIN_ON
+                ]);
+        $countQuery = clone $query;
+        
+        if($countQuery->count() < Post::COUNT_POST_INDEX) {
+        $posts = Post::find()->where(['status' => Post::STATUS_PUBLISHED])
+                ->orderBy('published_at DESC')
+                ->limit(Post::COUNT_POST_INDEX)
+                ->all();
+        }
+        else {
+            $posts = $query->orderBy('published_at DESC')
+                ->limit(Post::COUNT_POST_INDEX)
+                ->all();
+        }
+        return $this->render('index', [
+                'posts' => $posts,
+            ]);
     }
 
     /**

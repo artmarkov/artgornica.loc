@@ -6,6 +6,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use Yii;
 use himiklab\yii2\recaptcha\ReCaptchaValidator;
+use common\components\behaviors\PurifyBehavior;
 
 /**
  * This is the model class for table "{{%contact}}".
@@ -46,9 +47,14 @@ class Contact extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
                 ],
             ],
-            
+            'purify' => [
+                'class' => PurifyBehavior::className(),
+                'attributes' => ['subject','body'],
+                
+            ],
         ];
     }
+   
     /**
      * {@inheritdoc}
      */
@@ -146,5 +152,8 @@ class Contact extends ActiveRecord
     {
         return "{$this->createdDate} {$this->createdTime}";
     }
-     
+      public function getContent($content, $allowableTags = '<p>')
+    {
+        return strip_tags($content, $allowableTags);
+    }
 }

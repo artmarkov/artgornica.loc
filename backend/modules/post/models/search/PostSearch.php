@@ -21,7 +21,7 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['id', 'created_by', 'updated_by', 'status', 'comment_status', 'revision'], 'integer'],
+            [['id', 'created_by', 'updated_by', 'status', 'comment_status', 'revision', 'main_flag'], 'integer'],
             [['published_at_operand', 'slug', 'title', 'content', 'published_at', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -73,6 +73,7 @@ class PostSearch extends Post
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'revision' => $this->revision,
+            'main_flag' => $this->main_flag,
         ]);
 
         $query->andFilterWhere([($this->published_at_operand) ? $this->published_at_operand : '=', 'published_at', ($this->published_at) ? strtotime($this->published_at) : null]);

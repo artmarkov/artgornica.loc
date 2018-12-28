@@ -157,6 +157,8 @@ use yii\helpers\Url;
                         <?php endif; ?>
 
                         <?= $form->field($model, 'comment_status')->dropDownList(Post::getCommentStatusList()) ?>
+                        
+                        <?= $form->field($model, 'main_flag')->dropDownList(Post::getMainList()) ?>
 
                         <?= $form->field($model, 'view')->dropDownList($this->context->module->viewList) ?>
 
