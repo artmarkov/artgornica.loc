@@ -45,10 +45,10 @@ $col3 = (int) ($col12 / 4);
                         <?= Html::submitButton(Yii::t('yee/auth', 'Login'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
 
                         <div class="row registration-block">
-<!--                            <div class="col-sm-<?//= $col6 ?>">
-                                <?//= Html::a(Yii::t('yee/auth', "Registration"), ['default/signup']) ?>
-                            </div>-->
-                            <div class="col-sm-<?= $col12 ?> text-right">
+                            <div class="col-sm-<?= $col6 ?>">
+                                <?= Html::a(Yii::t('yee/auth', "Registration"), ['default/signup']) ?>
+                            </div>
+                            <div class="col-sm-<?= $col6 ?> text-right">
                                 <?= Html::a(Yii::t('yee/auth', "Forgot password?"), ['default/reset-password']) ?>
                             </div>
                         </div>

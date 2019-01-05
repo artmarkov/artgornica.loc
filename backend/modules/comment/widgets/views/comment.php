@@ -13,6 +13,7 @@ Comments::getInstance()->commentsAssetUrl = $commentsAsset->baseUrl;
 <div class="clearfix recent-comment">
     <div class="pull-left">
         <small class="fsize13">
+            <img class="avatar" src="<?= Comments::getInstance()->renderUserAvatar($comment->user_id) ?>"/>
             <span class="scrollTo label label-success light"><i class="fa fa-comment-o" aria-hidden="true"></i>
                 <?= Html::encode($comment->getAuthor()); ?> <?= "{$comment->createdDate} {$comment->createdTime}" ?>
             </span>

@@ -1,7 +1,8 @@
 <?php
 /* @var $this \yii\web\View */
 /* @var $content string */
-
+use yeesoft\auth\assets\AvatarAsset;
+use yeesoft\assets\YeeAsset;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yeesoft\models\Menu;
@@ -12,6 +13,8 @@ use yii\widgets\Breadcrumbs;
 
 Yii::$app->assetManager->forceCopy = true;
 $assetBundle = AppAsset::register($this);
+AvatarAsset::register($this);
+YeeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,6 +27,7 @@ $assetBundle = AppAsset::register($this);
         <?= $this->renderMetaTags() ?>
         <?php $this->head() ?>
         <?php $this->registerJsFile('plugins/modernizr.min.js', ['position' => \yii\web\View::POS_HEAD]) ?>
+       
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -40,6 +44,45 @@ $assetBundle = AppAsset::register($this);
                        %D0%93%D0%BE%D1%80%D0%BD%D0%B8%D1%86%D0%B0-554783454950098/" class="pull-left social fa fa-facebook"></a>
                     <a href="https://www.instagram.com/elenaishanova/" class="pull-left social fa fa-linkedin"></a>
                 </div>
+                <!-- LINKS -->
+                <div class="pull-right nav hidden-xs">
+
+                    <?php
+                    $menuItems = [
+                        ['label' => '<i class="fa fa-home" style="margin: 5px;"></i>' . Yii::t('yee', 'Home'), 'url' => Yii::$app->urlManager->hostInfo],
+                    ];
+                    // $menuItems = Menu::getMenuItems('main-menu');
+                    if (Yii::$app->user->isGuest) {
+                        $menuItems[] = [
+                            'label' => '<i class="fa fa-user-plus" style="margin: 5px;"></i>' . Yii::t('yee/auth', 'Signup'),
+                            'url' => \yii\helpers\Url::to(['/auth/default/signup'])
+                        ];
+                        $menuItems[] = [
+                            'label' => '<i class="fa fa-sign-in" style="margin: 5px;"></i>' . Yii::t('yee/auth', 'Enter'),
+                            'url' => \yii\helpers\Url::to(['/auth/default/login'])
+                        ];
+                    } else {
+                        $avatar = ($userAvatar = Yii::$app->user->identity->getAvatar('small')) ? $userAvatar : AvatarAsset::getDefaultAvatar('small');
+                        $menuItems[] = [
+                            'label' => '<img src="' . $avatar . '" class="user-image" alt="User Image"/>' . Yii::$app->user->identity->username,
+                            'url' => ['/auth/default/profile'],
+                        ];
+
+                        $menuItems[] = [
+                            'label' => '<i class="fa fa-sign-out" style="margin: 5px;"></i>' . Yii::t('yee/auth', 'Logout'),
+                            'url' => ['/auth/default/logout', 'language' => false],
+                            'template' => '<a href="{url}" data-method = "post">{label}</a>'                           
+                        ];
+                    }
+
+                    echo yii\widgets\Menu::widget([
+                        'encodeLabels' => false,
+                        'options' => ['class' => 'menu-top nav-main'],
+                        'items' => $menuItems,
+                    ]);
+                    ?>
+                </div>
+                <!-- /LINKS -->
             </div>
         </header>
         <!-- /Top Bar -->
@@ -61,17 +104,9 @@ $assetBundle = AppAsset::register($this);
                     <nav class="nav-main mega-menu">
 
                         <?php
-                        $menuItems = Menu::getMenuItems('main-menu');
-                        if (Yii::$app->user->isGuest) {
-                            $menuItems[] = ['label' => Yii::t('yee/auth', 'Login'), 'url' => ['/auth/default/login']];
-                        } else {
-                            $menuItems[] = [
-                                'label' => Yii::t('yee/auth', 'Logout'),
-                                'url' => ['/auth/default/logout', 'language' => false],
-                                'linkOptions' => ['data-method' => 'post']
-                            ];
-                        }
-                        $menuItems[] = [
+                        $navItems = Menu::getMenuItems('main-menu');
+                       
+                        $navItems[] = [
                             'label' => '<form method="get" action="#" class="input-group pull-right">
                                     <input type="text" class="form-control" name="k" id="k" value="" placeholder="Поиск...">
                                     <span class="input-group-btn">
@@ -81,12 +116,14 @@ $assetBundle = AppAsset::register($this);
                                 </form>',
                             'options' => ['class' => 'search'],
                         ];
+                         
                         echo Nav::widget([
                             'id' => 'topMain',
                             'encodeLabels' => false,
                             'options' => ['class' => 'nav nav-pills nav-main scroll-menu'],
-                            'items' => $menuItems,
+                            'items' => $navItems,
                         ]);
+                     
                         ?>
                     </nav>
                 </div>

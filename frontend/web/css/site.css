@@ -13,3 +13,15 @@ a.label.label-primary.light:focus {
 #portfolio ul.isotope-filter li.active a:hover {
     background-color: #ee3939 !important;
 }
+ul.menu-top.nav-main > li {
+		display: inline !important;	
+		list-style: none !important;	
+}
+img.user-image {
+     width: 25px;
+     height: 25px;
+     border-radius: 50%;
+     margin-right: 4px;
+     margin-top: -4px;
+ }
+       
