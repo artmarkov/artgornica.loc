@@ -1,0 +1,169 @@
+<?php
+
+namespace backend\modules\event\models;
+use yii\behaviors\TimestampBehavior;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%event_item}}".
+ *
+ * @property int $id
+ * @property int $vid_id
+ * @property string $name
+ * @property string $description
+ * @property int $created_at
+ * @property int $updated_at
+ *
+ * @property EventVid $vid
+ * @property EventItemPractice[] $eventItemPractices
+ * @property EventItemProgramm[] $eventItemProgramms
+ * @property EventSchedule[] $eventSchedules
+ */
+class EventItem extends \yeesoft\db\ActiveRecord
+{
+     public $gridPracticeSearch;
+     
+     /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return '{{%event_item}}';
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+            ],
+            [
+                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
+                'relations' => [
+                    'eventPractices' => 'practice_list',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['name', 'description', 'vid_id'], 'required'],
+            [['vid_id'], 'integer'],
+            [['description'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['practice_list'], 'safe'],
+            [['name'], 'string', 'max' => 127],
+            [['vid_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventVid::className(), 'targetAttribute' => ['vid_id' => 'id']],
+       
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('yee', 'ID'),
+            'vid_id' => Yii::t('yee/event', 'Vid ID'),
+            'name' => Yii::t('yee', 'Name'),
+            'description' => Yii::t('yee', 'Description'),
+            'created_at' => Yii::t('yee', 'Created At'),
+            'updated_at' => Yii::t('yee', 'Updated At'),
+            'practice_list' => Yii::t('yee/event', 'Practice List'),
+            'gridPracticeSearch' => Yii::t('yee/event', 'Practice List'),
+            'timeVolume' => Yii::t('yee/event', 'Time Volume'),
+        ];
+    }
+    
+    public function getCreatedDate()
+    {
+        return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->created_at);
+    }
+
+    public function getUpdatedDate()
+    {
+        return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->updated_at);
+    }
+
+    public function getCreatedTime()
+    {
+        return Yii::$app->formatter->asTime(($this->isNewRecord) ? time() : $this->created_at);
+    }
+
+    public function getUpdatedTime()
+    {
+        return Yii::$app->formatter->asTime(($this->isNewRecord) ? time() : $this->updated_at);
+    }
+
+    public function getCreatedDatetime()
+    {
+        return "{$this->createdDate} {$this->createdTime}";
+    }
+
+    public function getUpdatedDatetime()
+    {
+        return "{$this->updatedDate} {$this->updatedTime}";
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVid()
+    {
+        return $this->hasOne(EventVid::className(), ['id' => 'vid_id']);
+    }
+    
+    /* Геттер для названия вида */
+    public function getVidName()
+    {
+        return $this->vid->name;
+    }
+    
+    /* Геттер для времени проведения */
+    public function getTimeVolume()
+    {
+        return EventPractice::getEventPracticeTime($this->id);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventPractices()
+    {
+        return $this->hasMany(EventPractice::className(), ['id' => 'practice_id'])
+                    ->viaTable('{{%event_item_practice}}', ['item_id' => 'id']);        
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventItemProgramms()
+    {
+        return $this->hasMany(EventItemProgramm::className(), ['item_id' => 'id']);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventSchedules()
+    {
+        return $this->hasMany(EventSchedule::className(), ['event_id' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return \backend\modules\event\models\query\EventItemQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \backend\modules\event\models\query\EventItemQuery(get_called_class());
+    }
+}

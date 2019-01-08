@@ -13,6 +13,9 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'event' => [
+            'class' => 'backend\modules\event\EventModule',
+        ],
         'db' => [
             'class' => 'backend\modules\db\Module',
         ], 
@@ -34,7 +37,7 @@ return [
             ],
         ],
         'settings' => [
-            'class' => 'yeesoft\settings\SettingsModule',
+            'class' => 'backend\modules\settings\Module',
         ],
         'menu' => [
             'class' => 'yeesoft\menu\MenuModule',

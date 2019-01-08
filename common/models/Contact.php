@@ -112,7 +112,7 @@ class Contact extends ActiveRecord
             'email' => Yii::t('yee', 'E-mail'),
             'subject' => Yii::t('yee', 'Title'),
             'body' => Yii::t('yee', 'Content'),
-            'created_at' => Yii::t('yii', 'Created At'),
+            'created_at' => Yii::t('yee', 'Created At'),
             'reCaptcha' => Yii::t('yee', 'Captcha'),
             'subscribe' => Yii::t('yee', 'Subscribe'),
             

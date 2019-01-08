@@ -1,0 +1,116 @@
+<?php
+
+use yii\helpers\Url;
+use yii\widgets\Pjax;
+use yeesoft\grid\GridView;
+use yeesoft\grid\GridQuickLinks;
+use backend\modules\event\models\EventItem;
+use backend\modules\event\models\EventPractice;
+use yeesoft\helpers\Html;
+use yeesoft\grid\GridPageSize;
+use yii\helpers\ArrayHelper;
+
+/* @var $this yii\web\View */
+/* @var $searchModel backend\modules\event\models\search\EventItemSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = Yii::t('yee/event', 'Event Items');
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="event-item-index">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/event/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php 
+                    /* Uncomment this to activate GridQuickLinks */
+                    /* echo GridQuickLinks::widget([
+                        'model' => EventItem::className(),
+                        'searchModel' => $searchModel,
+                    ])*/
+                    ?>
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    <?=  GridPageSize::widget(['pjaxId' => 'event-item-grid-pjax']) ?>
+                </div>
+            </div>
+
+            <?php 
+            Pjax::begin([
+                'id' => 'event-item-grid-pjax',
+            ])
+            ?>
+
+            <?= 
+            GridView::widget([
+                'id' => 'event-item-grid',
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'bulkActionOptions' => [
+                    'gridId' => 'event-item-grid',
+                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+                ],
+                'columns' => [
+                    ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    [
+                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'controller' => '/event/default',
+                        'attribute' => 'name',
+                        'title' => function(EventItem $model) {
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                        },
+                        'buttonsTemplate' => '{update} {delete}',
+                    ],
+                    [
+                        'attribute' => 'vid_id',
+                        'value' => 'vidName',
+                        'label' => Yii::t('yee/event', 'Event Vid'),
+                        'filter' => backend\modules\event\models\EventVid::getVidList(),
+                        'options' => ['style' => 'width:300px'],
+                    ],
+                    [
+                        'attribute' => 'gridPracticeSearch',
+                        'filter' => EventPractice::getEventPracticeList(),
+                        'value' => function (EventItem $model) {
+                            return implode(', ',
+                                ArrayHelper::map($model->eventPractices, 'id', 'name'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
+                    ],
+                    [
+                        'attribute' => 'timeVolume',
+                        'value' => function (EventItem $model) {
+                            return $model->timeVolume . ' ' . Yii::t('yee/event', 'min');
+                        },
+//                        'label' => Yii::t('yee/event', 'Event Vid'),
+//                        'filter' => backend\modules\event\models\EventVid::getVidList(),
+//                        'options' => ['style' => 'width:300px'],
+                    ],
+//              'timeVolume',
+//            'id',
+//            'name',
+//            'description:ntext',
+//            'created_at',
+//            'updated_at',
+
+                ],
+            ]);
+            ?>
+
+            <?php Pjax::end() ?>
+        </div>
+    </div>
+</div>
+
+
