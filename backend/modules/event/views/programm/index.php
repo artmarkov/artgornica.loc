@@ -7,6 +7,7 @@ use yeesoft\grid\GridQuickLinks;
 use backend\modules\event\models\EventProgramm;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\event\models\search\EventProgrammSearch */
@@ -64,16 +65,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'attribute' => 'name',
                         'controller' => '/event/programm',
                         'title' => function(EventProgramm $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}'
+                    ],
+                    [
+                        'attribute' => 'vid_id',
+                        'value' => 'vidName',
+                        'label' => Yii::t('yee/event', 'Vid Name'),
+                        'filter' => backend\modules\event\models\EventVid::getVidList(),
+                        'options' => ['style' => 'width:300px'],
+                    ],
+                    [
+                        'attribute' => 'gridItemsSearch',
+                        'filter' => backend\modules\event\models\EventItem::getEventItemList(),
+                        'value' => function (EventProgramm $model) {
+                            return implode(',<br>',
+                                ArrayHelper::map($model->eventItems, 'id', 'name'));
+                        },
+                        'options' => ['style' => 'width:600px'],
+                        'format' => 'raw',
                     ],
 
-            'id',
-            'vid_id',
-            'name',
-            'description:ntext',
+//            'id',
+//            'vid_id',
+//            'name',
+//            'description:ntext',
 
                 ],
             ]);

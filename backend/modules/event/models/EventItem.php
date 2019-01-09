@@ -142,7 +142,17 @@ class EventItem extends \yeesoft\db\ActiveRecord
         return $this->hasMany(EventPractice::className(), ['id' => 'practice_id'])
                     ->viaTable('{{%event_item_practice}}', ['item_id' => 'id']);        
     }
-    
+     /**
+     * 
+     * @return type array
+     */
+    public static function getEventItemList()
+    {
+        return \yii\helpers\ArrayHelper::map(static::find()
+                ->innerJoin('event_vid', 'event_vid.id = event_item.vid_id')
+                ->select('event_item.id as id, event_item.name as name, event_vid.name as name_category')
+                ->asArray()->all(), 'id', 'name', 'name_category');
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

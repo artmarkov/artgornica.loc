@@ -12,6 +12,8 @@ use backend\modules\event\models\EventGroup;
  */
 class EventGroupSearch extends EventGroup
 {
+    public $programmName;
+    
     /**
      * @inheritdoc
      */
@@ -20,6 +22,7 @@ class EventGroupSearch extends EventGroup
         return [
             [['id', 'number'], 'integer'],
             [['programm_id', 'name', 'description'], 'safe'],
+            ['programmName', 'string'],
         ];
     }
 

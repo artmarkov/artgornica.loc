@@ -85,8 +85,8 @@ class EventItemSearch extends EventItem
             'event_item_practice.practice_id' => $this->gridPracticeSearch,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'event_item.name', $this->name])
+            ->andFilterWhere(['like', 'event_item.description', $this->description]);
         
         return $dataProvider;
     }

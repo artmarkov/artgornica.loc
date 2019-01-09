@@ -24,10 +24,6 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     
-                    <?= $form->field($model, 'number')->textInput() ?>
-
-                    <?= $form->field($model, 'programm_id')->textInput() ?>
-
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
@@ -42,6 +38,31 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
+                        <?php if (!$model->isNewRecord): ?>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+                             <?= $model->attributeLabels()['created_at'] ?> :
+                                </label>
+                                <span><?= $model->createdDatetime ?></span>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+                            <?= $model->attributeLabels()['updated_at'] ?> :
+                                </label>
+                                <span><?= $model->updatedDatetime ?></span>
+                            </div>
+                            
+                        <?php endif; ?>
+                        
+                        <?= $form->field($model, 'number')->textInput() ?>
+                    
+                        <?= $form->field($model, 'programm_id')
+                            ->dropDownList(backend\modules\event\models\EventProgramm::getProgrammList(), [
+                                'prompt' => Yii::t('yee/event', 'Select Programm...')
+                            ])->label(Yii::t('yee/event', 'Programm Name'));
+                        ?>
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>

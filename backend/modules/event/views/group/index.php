@@ -64,17 +64,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'attribute' => 'name',
                         'controller' => '/event/group',
                         'title' => function(EventGroup $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
+                    ],
+                    [
+                        'attribute' => 'number',
+                        'options' => ['style' => 'width:100px']
+                    ],
+                    [
+                        'attribute' => 'programm_id',
+                        'value' => 'programmName',
+                        'label' => Yii::t('yee/event', 'Programm Name'),
+                        'filter' => \backend\modules\event\models\EventProgramm::getProgrammList(),
+                        'options' => ['style' => 'width:300px'],
                     ],
 
-            'id',
-            'number',
-            'programm_id',
-            'name',
-            'description:ntext',
+//            'id',
+//            'programm_id',
+//            'name',
+//            'description:ntext',
 
                 ],
             ]);

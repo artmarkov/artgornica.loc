@@ -24,12 +24,16 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     
-                    <?= $form->field($model, 'vid_id')->textInput() ?>
-
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
+                    <?= $form->field($model, 'items_list')->widget(nex\chosen\Chosen::className(), [
+                            'items' => backend\modules\event\models\EventItem::getEventItemList(),
+                            'multiple' => true,
+                            'placeholder' => Yii::t('yee/event', 'Select Events...'),
+                        ])
+                    ?>
                 </div>
 
             </div>
@@ -40,6 +44,30 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
+                         <?php if (!$model->isNewRecord): ?>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+                             <?= $model->attributeLabels()['created_at'] ?> :
+                                </label>
+                                <span><?= $model->createdDatetime ?></span>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+                            <?= $model->attributeLabels()['updated_at'] ?> :
+                                </label>
+                                <span><?= $model->updatedDatetime ?></span>
+                            </div>
+                            
+                        <?php endif; ?>
+                        
+                        <?= $form->field($model, 'vid_id')
+                            ->dropDownList(backend\modules\event\models\EventVid::getVidList(), [
+                                'prompt' => Yii::t('yee/event', 'Select Vid...')
+                            ])->label(Yii::t('yee/event', 'Event Vid'));
+                        ?>
+                        
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>

@@ -12,14 +12,18 @@ use backend\modules\event\models\EventProgramm;
  */
 class EventProgrammSearch extends EventProgramm
 {
+     public $vidName;
+     
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'name', 'description'], 'safe'],
-            [['vid_id'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'vid_id'], 'integer'],
+            [['name', 'description'], 'safe'],            
+            ['vidName', 'string'],
+            ['gridItemsSearch', 'string'],
         ];
     }
 
@@ -63,13 +67,25 @@ class EventProgrammSearch extends EventProgramm
             return $dataProvider;
         }
 
+       //жадная загрузка       
+        $query->with(['vid']);
+        $query->with(['eventItems']);
+       
+        
+        if ($this->gridItemsSearch) {
+            $query->joinWith(['eventItems']);
+        }
+        
         $query->andFilterWhere([
-            'vid_id' => $this->vid_id,
+            'id' => $this->id,
+            'event_programm.vid_id' => $this->vid_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'event_item_programm.item_id' => $this->gridItemsSearch,
         ]);
 
-        $query->andFilterWhere(['like', 'id', $this->id])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'event_programm.name', $this->name])
+            ->andFilterWhere(['like', 'event_programm.description', $this->description]);
 
         return $dataProvider;
     }
