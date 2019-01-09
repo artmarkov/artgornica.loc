@@ -23,6 +23,7 @@ class EventGroupSearch extends EventGroup
             [['id', 'number'], 'integer'],
             [['programm_id', 'name', 'description'], 'safe'],
             ['programmName', 'string'],
+            ['gridUsersSearch', 'string'],
         ];
     }
 
@@ -66,9 +67,21 @@ class EventGroupSearch extends EventGroup
             return $dataProvider;
         }
 
+        //жадная загрузка       
+        $query->with(['programm']);
+        $query->with(['groupUsers']);
+       
+        
+        if ($this->gridUsersSearch) {
+            $query->joinWith(['groupUsers']);
+        }
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'number' => $this->number,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'event_group_users.user_id' => $this->gridUsersSearch,
         ]);
 
         $query->andFilterWhere(['like', 'programm_id', $this->programm_id])

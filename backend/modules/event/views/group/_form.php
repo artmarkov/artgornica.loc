@@ -28,6 +28,13 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
+                     <?= $form->field($model, 'users_list')->widget(nex\chosen\Chosen::className(), [
+                            'items' => backend\modules\event\models\EventGroup::getEventUsersList(),
+                            'multiple' => true,
+                            'placeholder' => Yii::t('yee/event', 'Select Users...'),
+                        ])
+                    ?>
+                    
                 </div>
 
             </div>

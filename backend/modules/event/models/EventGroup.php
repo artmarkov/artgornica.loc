@@ -4,6 +4,7 @@ namespace backend\modules\event\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use backend\components\models\User;
 
 /**
  * This is the model class for table "{{%event_group}}".
@@ -21,6 +22,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class EventGroup extends \yeesoft\db\ActiveRecord
 {
+    public $gridUsersSearch;
     /**
      * {@inheritdoc}
      */
@@ -36,7 +38,13 @@ class EventGroup extends \yeesoft\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-            ],            
+            ],     
+            [
+                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
+                'relations' => [
+                    'groupUsers' => 'users_list',
+                ],
+            ],
         ];
     }
     /**
@@ -49,6 +57,7 @@ class EventGroup extends \yeesoft\db\ActiveRecord
             [['number', 'programm_id'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
+            [['users_list'], 'safe'],
             [['name'], 'string', 'max' => 127],
             [['programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventProgramm::className(), 'targetAttribute' => ['programm_id' => 'id']],
         ];
@@ -67,6 +76,8 @@ class EventGroup extends \yeesoft\db\ActiveRecord
             'description' => Yii::t('yee', 'Description'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
+            'users_list' => Yii::t('yee/event', 'Users List'),
+            'gridUsersSearch' => Yii::t('yee/event', 'Users List'),
         ];
     }
 
@@ -117,8 +128,24 @@ class EventGroup extends \yeesoft\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEventGroupUsers()
+    public function getGroupUsers()
     {
-        return $this->hasMany(EventGroupUsers::className(), ['group_id' => 'id']);
+        return $this->hasMany(User::className(), ['id' => 'user_id'])
+                ->viaTable('{{%event_group_users}}', ['group_id' => 'id']);
+                             
+    }
+    /**
+     * etEventUsersList
+     *
+     * @return array
+     */
+    public static function getEventUsersList()
+    {
+        $users = User::find()
+                ->andWhere(['in', 'user.status', User::STATUS_ACTIVE]) // заблокированных не добавляем в список
+                ->select(['user.id as id', "CONCAT(user.last_name,' ',user.first_name,' [',user.username,']') AS name"])
+                ->orderBy('user.last_name')
+                ->asArray()->all();
+        return \yii\helpers\ArrayHelper::map($users, 'id', 'name');
     }
 }

@@ -82,6 +82,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'filter' => \backend\modules\event\models\EventProgramm::getProgrammList(),
                         'options' => ['style' => 'width:300px'],
                     ],
+                    [
+                        'attribute' => 'gridUsersSearch',
+                        'filter' => backend\modules\event\models\EventGroup::getEventUsersList(),
+                        'value' => function (EventGroup $model) {
+                            return implode(',<br>',
+                                yii\helpers\ArrayHelper::map($model->groupUsers, 'id', 'fullName'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
+                    ],
 
 //            'id',
 //            'programm_id',

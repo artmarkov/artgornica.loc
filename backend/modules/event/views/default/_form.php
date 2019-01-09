@@ -34,7 +34,7 @@ use yeesoft\helpers\Html;
                             'multiple' => true,
                             'placeholder' => Yii::t('yee/event', 'Select Practice...'),
                         ])
-                        ?>
+                    ?>
                     
                 </div>
 
