@@ -26,8 +26,6 @@ use yeesoft\helpers\Html;
                     
                     <?= $form->field($model, 'item_programm_id')->textInput() ?>
 
-                    <?= $form->field($model, 'place_id')->textInput() ?>
-                    
                     <?php  if($model->start_timestamp) $model->start_timestamp = Yii::$app->formatter->asDatetime($model->start_timestamp);  ?>
                     <?= $form->field($model, 'start_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
                     
@@ -50,6 +48,11 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
+                        <?= $form->field($model, 'place_id')
+                            ->dropDownList(backend\modules\event\models\EventPlace::getPlacesList(), [
+                                'prompt' => Yii::t('yee/event', 'Select Places...')
+                            ])->label(Yii::t('yee/event', 'Place Name'));
+                        ?>
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>

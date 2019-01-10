@@ -66,7 +66,7 @@ class EventSchedule extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee/event', 'ID'),
-            'item_programm_id' => Yii::t('yee/event', 'Programm ID'),
+            'item_programm_id' => Yii::t('yee/event', 'Item Programm ID'),
             'place_id' => Yii::t('yee/event', 'Place ID'),
             'start_timestamp' => Yii::t('yee/event', 'Start Time'),
             'end_timestamp' => Yii::t('yee/event', 'End Time'),
@@ -84,12 +84,42 @@ class EventSchedule extends \yii\db\ActiveRecord
         return $this->hasOne(EventPlace::className(), ['id' => 'place_id']);
     }
 
+    /* Геттер для названия места */
+    public function getPlaceName()
+    {
+        return $this->place->name;
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+//    public function getEventItemProgramm()
+//    {
+//        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_programm_id']);
+//        
+//    }
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getItemProgramm()
     {
-        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_programm_id']);
+        return $this->hasOne(EventProgramm::className(), ['id' => 'programm_id'])
+                ->viaTable('{{%event_item_programm}}', ['id' => 'item_programm_id']);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItemGroup()
+    {
+        return $this->hasOne(EventGroup::className(), ['id' => 'programm_id'])
+                ->viaTable('{{%event_item_programm}}', ['id' => 'item_programm_id']);
+    }
+/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventItem()
+    {
+        return $this->hasOne(EventItem::className(), ['id' => 'item_id'])
+                ->viaTable('{{%event_item_programm}}', ['id' => 'item_programm_id']);
     }
 
     /**

@@ -65,17 +65,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/event/schedule',
                         'title' => function(EventSchedule $model) {
-                            return Html::a($model->id, ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->id, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
-
-            'id',
-            'item_programm_id',
-            'place_id',
+              'itemProgramm.name',                 
+              'itemGroup.name',                 
+              'eventItem.name',                 
+//            'item_programm_id',
+                                [
+                        'attribute' => 'place_id',
+                        'value' => 'placeName',
+                        'label' => Yii::t('yee/event', 'Place Name'),
+                        'filter' => backend\modules\event\models\EventPlace::getPlacesList(),
+                    ],
             'start_timestamp:datetime',
             'end_timestamp:datetime',
             // 'description:ntext',
-            // 'price',
+            'price',
             // 'all_day',
 
                 ],

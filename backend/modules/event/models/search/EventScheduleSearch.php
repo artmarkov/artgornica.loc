@@ -12,6 +12,8 @@ use backend\modules\event\models\EventSchedule;
  */
 class EventScheduleSearch extends EventSchedule
 {
+     public $placeName;
+     
     /**
      * @inheritdoc
      */
@@ -20,6 +22,7 @@ class EventScheduleSearch extends EventSchedule
         return [
             [['id', 'item_programm_id', 'place_id'], 'integer'],
             [['description', 'price', 'all_day'], 'safe'],
+            ['placeName', 'string'],
         ];
     }
 
@@ -63,6 +66,9 @@ class EventScheduleSearch extends EventSchedule
             return $dataProvider;
         }
 
+         //    жадная загрузка
+//        $query->joinWith(['eventItemProgramm']);
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'item_programm_id' => $this->item_programm_id,

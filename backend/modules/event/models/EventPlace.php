@@ -120,6 +120,14 @@ class EventPlace extends \yeesoft\db\ActiveRecord
     }
 
     /**
+     * 
+     * @return type array
+     */
+    public static function getPlacesList()
+    {
+        return \yii\helpers\ArrayHelper::map(static::find()->all(), 'id', 'name');
+    }
+    /**
      * {@inheritdoc}
      * @return \backend\modules\event\models\query\EventPlaceQuery the active query used by this AR class.
      */
