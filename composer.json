@@ -43,7 +43,11 @@
     "nex/yii2-chosen": "*",
     "himiklab/yii2-recaptcha-widget": "*",
     "kartik-v/yii2-widget-fileinput": "dev-master",
-    "yeesoft/yii2-yee-generator": "~0.1.0"
+    "yeesoft/yii2-yee-generator": "~0.1.0",
+    "edofre/yii2-fullcalendar-scheduler": "*",
+    "edofre/yii2-fullcalendar": "*",
+    "kartik-v/yii2-widget-datepicker": "dev-master",
+    "kartik-v/yii2-widget-datetimepicker": "dev-master"
         
   },
   "require-dev": {
@@ -55,7 +59,7 @@
   "config": {
     "process-timeout": 1800,
     "github-oauth": {
-
+"github.com": "083d46421b3313f8b583c185332e579f62ffc0d8"
     }
   },
   "extra": {

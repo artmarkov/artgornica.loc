@@ -24,19 +24,21 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     
-                    <?= $form->field($model, 'event_id')->textInput() ?>
+                    <?= $form->field($model, 'item_programm_id')->textInput() ?>
 
                     <?= $form->field($model, 'place_id')->textInput() ?>
-
-                    <?= $form->field($model, 'timestamp_in')->textInput() ?>
-
-                    <?= $form->field($model, 'timestamp_out')->textInput() ?>
-
+                    
+                    <?php  if($model->start_timestamp) $model->start_timestamp = Yii::$app->formatter->asDatetime($model->start_timestamp);  ?>
+                    <?= $form->field($model, 'start_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
+                    
+                    <?php  if($model->end_timestamp) $model->end_timestamp = Yii::$app->formatter->asDatetime($model->end_timestamp);  ?>
+                    <?= $form->field($model, 'end_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
+                    
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
                     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'status')->textInput() ?>
+                    <?= $form->field($model, 'all_day')->textInput() ?>
 
                 </div>
 

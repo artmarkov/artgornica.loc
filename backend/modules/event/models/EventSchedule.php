@@ -8,18 +8,18 @@ use Yii;
  * This is the model class for table "{{%event_schedule}}".
  *
  * @property int $id
- * @property int $event_id
+ * @property int $item_programm_id
  * @property int $place_id
- * @property int $timestamp_in
- * @property int $timestamp_out
+ * @property int $start_timestamp
+ * @property int $end_timestamp
  * @property string $description
  * @property string $price стоимость занятия
- * @property int $status
+ * @property int $all_day
  *
- * @property EventItem $event
- * @property EvantPlace $place
+ * @property EventPlace $place
+ * @property EventItemProgramm $itemProgramm
  */
-class EventSchedule extends \yeesoft\db\ActiveRecord
+class EventSchedule extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -35,13 +35,28 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['event_id', 'place_id', 'timestamp_in', 'timestamp_out', 'description', 'price', 'status'], 'required'],
-            [['event_id', 'place_id', 'timestamp_in', 'timestamp_out', 'status'], 'integer'],
+            [['item_programm_id', 'place_id', 'start_timestamp'], 'required'],
+            [['item_programm_id', 'place_id'], 'integer'],
+            [['start_timestamp', 'end_timestamp', 'all_day'], 'safe'],
+            ['all_day', 'default', 'value' => 0],
             [['description'], 'string'],
             [['price'], 'string', 'max' => 15],
-            [['event_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['event_id' => 'id']],
             [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventPlace::className(), 'targetAttribute' => ['place_id' => 'id']],
-        ];
+            [['item_programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItemProgramm::className(), 'targetAttribute' => ['item_programm_id' => 'id']],
+            ['start_timestamp', 'compareTimestamp'],
+          ];
+    }
+    /**
+     * сравнение даты начала и окончания/ дата окончания должна быть меньше даты начала
+     */
+    public function compareTimestamp()
+    {
+        if (!$this->hasErrors()) {
+
+            if ($this->end_timestamp < $this->start_timestamp) {
+                $this->addError('start_timestamp', Yii::t('yee/event', 'The event start date must be greater than the end date.'));
+            }
+        }
     }
 
     /**
@@ -50,23 +65,15 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee', 'ID'),
-            'event_id' => Yii::t('yee', 'Event ID'),
+            'id' => Yii::t('yee/event', 'ID'),
+            'item_programm_id' => Yii::t('yee/event', 'Programm ID'),
             'place_id' => Yii::t('yee/event', 'Place ID'),
-            'timestamp_in' => Yii::t('yee/event', 'Time In'),
-            'timestamp_out' => Yii::t('yee/event', 'Time Out'),
-            'description' => Yii::t('yee', 'Description'),
+            'start_timestamp' => Yii::t('yee/event', 'Start Time'),
+            'end_timestamp' => Yii::t('yee/event', 'End Time'),
+            'description' => Yii::t('yee/event', 'Description'),
             'price' => Yii::t('yee/event', 'Price'),
-            'status' => Yii::t('yee', 'Status'),
+            'all_day' => Yii::t('yee/event', 'All Day'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEvent()
-    {
-        return $this->hasOne(EventItem::className(), ['id' => 'event_id']);
     }
 
     /**
@@ -78,11 +85,28 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItemProgramm()
+    {
+        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_programm_id']);
+    }
+
+    /**
      * {@inheritdoc}
      * @return \backend\modules\event\models\query\EventScheduleQuery the active query used by this AR class.
      */
     public static function find()
     {
         return new \backend\modules\event\models\query\EventScheduleQuery(get_called_class());
+    }
+    /**
+     * 
+     * @return type
+     */
+    public function beforeValidate() {
+        $this->start_timestamp = Yii::$app->formatter->asTimestamp($this->start_timestamp);
+        $this->end_timestamp = Yii::$app->formatter->asTimestamp($this->end_timestamp);
+       return parent::beforeValidate();
     }
 }

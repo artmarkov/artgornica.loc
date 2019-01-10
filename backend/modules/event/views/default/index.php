@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel backend\modules\event\models\search\EventItemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/event', 'Event Items');
+$this->title = Yii::t('yee/event', 'Event');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-item-index">

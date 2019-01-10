@@ -18,8 +18,8 @@ class EventScheduleSearch extends EventSchedule
     public function rules()
     {
         return [
-            [['id', 'event_id', 'place_id', 'timestamp_in', 'timestamp_out'], 'integer'],
-            [['description', 'price', 'status'], 'safe'],
+            [['id', 'item_programm_id', 'place_id'], 'integer'],
+            [['description', 'price', 'all_day'], 'safe'],
         ];
     }
 
@@ -65,15 +65,15 @@ class EventScheduleSearch extends EventSchedule
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'event_id' => $this->event_id,
+            'item_programm_id' => $this->item_programm_id,
             'place_id' => $this->place_id,
-            'timestamp_in' => $this->timestamp_in,
-            'timestamp_out' => $this->timestamp_out,
+//            'start_timestamp' => $this->start_timestamp,
+//            'end_timestamp' => $this->end_timestamp,
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'price', $this->price])
-            ->andFilterWhere(['like', 'status', $this->status]);
+            ->andFilterWhere(['like', 'all_day', $this->all_day]);
 
         return $dataProvider;
     }

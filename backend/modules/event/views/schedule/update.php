@@ -5,11 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventSchedule */
 
-$this->title = Yii::t('yee','Update'). ': ' . ' ' . $model->name;
+$this->title = Yii::t('yee','Update'). ': ' . ' ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event Schedules'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('yee','Update');
-
 ?>
 <div class="event-schedule-update">
     <h3 class="lte-hide-title"><?= Html::encode($this->title) ?></h3>

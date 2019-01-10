@@ -15,7 +15,6 @@ use yeesoft\grid\GridPageSize;
 $this->title = Yii::t('yee/event','Event Schedules');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="event-schedule-index">
 
@@ -71,13 +70,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
 
             'id',
-            'event_id',
+            'item_programm_id',
             'place_id',
-            'timestamp_in:datetime',
-            'timestamp_out:datetime',
+            'start_timestamp:datetime',
+            'end_timestamp:datetime',
             // 'description:ntext',
             // 'price',
-            // 'status',
+            // 'all_day',
 
                 ],
             ]);
