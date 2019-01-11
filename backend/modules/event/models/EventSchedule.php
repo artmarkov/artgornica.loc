@@ -21,6 +21,10 @@ use Yii;
  */
 class EventSchedule extends \yii\db\ActiveRecord
 {
+     public $programmId;
+     public $groupId;
+     public $eventItemId;
+     
     /**
      * {@inheritdoc}
      */
@@ -37,6 +41,7 @@ class EventSchedule extends \yii\db\ActiveRecord
         return [
             [['item_programm_id', 'place_id', 'start_timestamp'], 'required'],
             [['item_programm_id', 'place_id'], 'integer'],
+//            [['item_programm_id'], 'unique'],
             [['start_timestamp', 'end_timestamp', 'all_day'], 'safe'],
             ['all_day', 'default', 'value' => 0],
             [['description'], 'string'],
@@ -70,7 +75,7 @@ class EventSchedule extends \yii\db\ActiveRecord
             'place_id' => Yii::t('yee/event', 'Place ID'),
             'start_timestamp' => Yii::t('yee/event', 'Start Time'),
             'end_timestamp' => Yii::t('yee/event', 'End Time'),
-            'description' => Yii::t('yee/event', 'Description'),
+            'description' => Yii::t('yee', 'Description'),
             'price' => Yii::t('yee/event', 'Price'),
             'all_day' => Yii::t('yee/event', 'All Day'),
         ];
@@ -92,11 +97,11 @@ class EventSchedule extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-//    public function getEventItemProgramm()
-//    {
-//        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_programm_id']);
-//        
-//    }
+    public function getEventItemProgramm()
+    {
+        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_programm_id']);
+        
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -104,6 +109,16 @@ class EventSchedule extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EventProgramm::className(), ['id' => 'programm_id'])
                 ->viaTable('{{%event_item_programm}}', ['id' => 'item_programm_id']);
+    }
+    /* Геттер для Id программы */
+    public function getProgrammId()
+    {
+        return $this->itemProgramm->programm_id;
+    }
+    /* Геттер для названия программы */
+    public function getProgrammName()
+    {
+        return $this->itemProgramm->name;
     }
     /**
      * @return \yii\db\ActiveQuery
@@ -113,7 +128,17 @@ class EventSchedule extends \yii\db\ActiveRecord
         return $this->hasOne(EventGroup::className(), ['id' => 'programm_id'])
                 ->viaTable('{{%event_item_programm}}', ['id' => 'item_programm_id']);
     }
-/**
+    /* Геттер для Id группы */
+    public function getGroupId()
+    {
+        return $this->itemGroup->id;
+    } 
+    /* Геттер для названия группы */
+    public function getGroupName()
+    {
+        return $this->itemGroup->name;
+    }
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getEventItem()
@@ -121,7 +146,16 @@ class EventSchedule extends \yii\db\ActiveRecord
         return $this->hasOne(EventItem::className(), ['id' => 'item_id'])
                 ->viaTable('{{%event_item_programm}}', ['id' => 'item_programm_id']);
     }
-
+     /* Геттер для Id события */
+    public function getEventItemId()
+    {
+        return $this->eventItem->item_id;
+    } 
+    /* Геттер для названия события */
+    public function getEventItemName()
+    {
+        return $this->eventItem->name;
+    }
     /**
      * {@inheritdoc}
      * @return \backend\modules\event\models\query\EventScheduleQuery the active query used by this AR class.
@@ -139,4 +173,5 @@ class EventSchedule extends \yii\db\ActiveRecord
         $this->end_timestamp = Yii::$app->formatter->asTimestamp($this->end_timestamp);
        return parent::beforeValidate();
     }
+    
 }

@@ -1,8 +1,14 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
+use backend\modules\event\models\EventProgramm;
 use backend\modules\event\models\EventSchedule;
+use backend\modules\event\models\EventGroup;
+use backend\modules\event\models\EventItem;
+use backend\modules\event\models\EventItemProgramm;
 use yeesoft\helpers\Html;
+use kartik\depdrop\DepDrop;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventSchedule */
@@ -23,8 +29,35 @@ use yeesoft\helpers\Html;
 
             <div class="panel panel-default">
                 <div class="panel-body">
+                     <?php
+//                     echo '<pre>' . print_r($model, true) . '</pre>';
+                    echo $form->field($model, 'programmId')->dropDownList(EventProgramm::getProgrammList(), [
+                        'prompt' => Yii::t('yee/event', 'Select Programm...'), 
+                        'value' => EventItemProgramm::getProgrammId($model->item_programm_id),
+                        'id' => 'programmId'
+                    ])->label(Yii::t('yee/event', 'Programm Name'));
                     
-                    <?= $form->field($model, 'item_programm_id')->textInput() ?>
+                    echo $form->field($model, 'groupId')->widget(DepDrop::classname(), [
+                        'data' => EventGroup::getGroupByName($model->programmId),                        
+                        'options' => ['prompt' => Yii::t('yee/event', 'Select Group...'), 'id' => 'groupId'],
+                        'pluginOptions' => [
+                            'depends' => ['programmId'],                            
+                            'placeholder' => Yii::t('yee/event', 'Select Group...'),
+                            'url' => Url::to(['/event/schedule/group'])
+                        ]
+                    ])->label(Yii::t('yee/event', 'Group Name'));
+                    
+                    echo $form->field($model, 'eventItemId')->widget(DepDrop::classname(), [
+                        'data' => EventItem::getItemByName($model->programmId),
+                        'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'eventItemId'],
+                        'pluginOptions' => [
+                            'depends' => ['programmId'],
+                            'placeholder' => Yii::t('yee/event', 'Select Event...'),
+                            'url' => Url::to(['/event/schedule/item'])
+                        ]
+                    ])->label(Yii::t('yee/event', 'Event Name'));
+                    ?>
+                    <?//= $form->field($model, 'item_programm_id')->textInput() ?>
 
                     <?php  if($model->start_timestamp) $model->start_timestamp = Yii::$app->formatter->asDatetime($model->start_timestamp);  ?>
                     <?= $form->field($model, 'start_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>

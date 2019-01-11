@@ -65,6 +65,20 @@ class EventItemProgramm extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EventProgramm::className(), ['id' => 'programm_id']);
     }
+   
+    /**
+     * 
+     * @param type $id
+     * @return type integer
+     */
+    public function getProgrammId($id) {
+        $data = self::find()
+                ->select(['programm_id'])
+                ->where(['id' => $id])
+                ->one();
+
+        return $data->programm_id;
+    }
 
     /**
      * @return \yii\db\ActiveQuery

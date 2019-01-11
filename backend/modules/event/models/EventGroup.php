@@ -148,4 +148,36 @@ class EventGroup extends \yeesoft\db\ActiveRecord
                 ->asArray()->all();
         return \yii\helpers\ArrayHelper::map($users, 'id', 'name');
     }
+     /**
+     * 
+     * @return type array
+     */
+    public static function getGroupList()
+    {
+        return \yii\helpers\ArrayHelper::map(static::find()->all(), 'id', 'name');
+    }
+     /**
+     * @return \yii\db\ActiveQuery
+     * Полный список групп по programm_id
+     */
+    public static function getGroupByProgrammId($programm_id) {
+        $data = self::find()->select(['id', 'name'])
+                        ->where(['programm_id' => $programm_id])
+                        ->asArray()->all();
+
+        return $data;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список групп по name
+     */
+    public static function getGroupByName($programm_id) {
+        $data = self::find()->select(['name', 'id'])
+                        ->where(['programm_id' => $programm_id])
+                        ->indexBy('id')->column();
+
+        return $data;
+    }
+
 }

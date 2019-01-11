@@ -12,9 +12,14 @@ use backend\modules\event\models\EventSchedule;
  */
 class EventScheduleSearch extends EventSchedule
 {
+    
      public $placeName;
-     
-    /**
+     public $programmName;
+     public $groupName;
+     public $eventItemName;
+
+
+     /**
      * @inheritdoc
      */
     public function rules()
@@ -22,7 +27,8 @@ class EventScheduleSearch extends EventSchedule
         return [
             [['id', 'item_programm_id', 'place_id'], 'integer'],
             [['description', 'price', 'all_day'], 'safe'],
-            ['placeName', 'string'],
+            [['programmId', 'groupId', 'eventItemId'], 'integer'],
+            [['placeName','programmName','groupName','eventItemName'], 'string'],
         ];
     }
 
@@ -67,11 +73,24 @@ class EventScheduleSearch extends EventSchedule
         }
 
          //    жадная загрузка
-//        $query->joinWith(['eventItemProgramm']);
+        $query->joinWith(['itemProgramm']);
+        $query->joinWith(['itemGroup']);
+        $query->joinWith(['eventItem']);
         
+        if ($this->programmId) {
+            $query->joinWith(['itemProgramm']);
+        } 
+        if ($this->groupId) {
+            $query->joinWith(['itemGroup']);
+        }
+        if ($this->eventItemId) {
+            $query->joinWith(['eventItem']);
+        }
         $query->andFilterWhere([
             'id' => $this->id,
-            'item_programm_id' => $this->item_programm_id,
+            'event_item_programm.programm_id' => $this->programmId,
+            'event_group.id' => $this->groupId,
+            'event_item_programm.item_id' => $this->eventItemId,
             'place_id' => $this->place_id,
 //            'start_timestamp' => $this->start_timestamp,
 //            'end_timestamp' => $this->end_timestamp,

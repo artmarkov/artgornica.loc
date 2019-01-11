@@ -64,16 +64,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/event/schedule',
+                        'attribute' => 'eventItemId',
+                        'label' => Yii::t('yee/event', 'Event Name'),
+                        'filter' => backend\modules\event\models\EventItem::getEventItemList(),
                         'title' => function(EventSchedule $model) {
-                            return Html::a($model->id, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->eventItemName, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-              'itemProgramm.name',                 
-              'itemGroup.name',                 
-              'eventItem.name',                 
-//            'item_programm_id',
-                                [
+                    [
+                        'attribute' => 'programmId',
+                        'value' => 'programmName',
+                        'label' => Yii::t('yee/event', 'Programm Name'),
+                        'filter' => backend\modules\event\models\EventProgramm::getProgrammList(),
+                    ],
+                    [
+                        'attribute' => 'groupId',
+                        'value' => 'groupName',
+                        'label' => Yii::t('yee/event', 'Group Name'),
+                        'filter' => backend\modules\event\models\EventGroup::getGroupList(),
+                    ],
+//              'itemProgramm.name',                 
+//              'itemGroup.name',                 
+//              'eventItem.name',                 
+//              'item_programm_id',
+                    [
                         'attribute' => 'place_id',
                         'value' => 'placeName',
                         'label' => Yii::t('yee/event', 'Place Name'),
