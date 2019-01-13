@@ -2,10 +2,8 @@
 
 use yeesoft\widgets\ActiveForm;
 use backend\modules\event\models\EventProgramm;
-use backend\modules\event\models\EventSchedule;
 use backend\modules\event\models\EventGroup;
 use backend\modules\event\models\EventItem;
-use backend\modules\event\models\EventItemProgramm;
 use yeesoft\helpers\Html;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
@@ -17,11 +15,11 @@ use yii\helpers\Url;
 
 <div class="event-schedule-form">
 
-    <?php 
+    <?php
     $form = ActiveForm::begin([
-            'id' => 'event-schedule-form',
-            'validateOnBlur' => false,
-        ])
+                'id' => 'event-schedule-form',
+                'validateOnBlur' => false,
+            ])
     ?>
 
     <div class="row">
@@ -29,48 +27,22 @@ use yii\helpers\Url;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                     <?php
-//                     echo '<pre>' . print_r($model, true) . '</pre>';
-                    echo $form->field($model, 'programmId')->dropDownList(EventProgramm::getProgrammList(), [
-                        'prompt' => Yii::t('yee/event', 'Select Programm...'), 
-                        'value' => EventItemProgramm::getProgrammId($model->item_programm_id),
-                        'id' => 'programmId'
-                    ])->label(Yii::t('yee/event', 'Programm Name'));
-                    
-                    echo $form->field($model, 'groupId')->widget(DepDrop::classname(), [
-                        'data' => EventGroup::getGroupByName($model->programmId),                        
-                        'options' => ['prompt' => Yii::t('yee/event', 'Select Group...'), 'id' => 'groupId'],
-                        'pluginOptions' => [
-                            'depends' => ['programmId'],                            
-                            'placeholder' => Yii::t('yee/event', 'Select Group...'),
-                            'url' => Url::to(['/event/schedule/group'])
-                        ]
-                    ])->label(Yii::t('yee/event', 'Group Name'));
-                    
-                    echo $form->field($model, 'eventItemId')->widget(DepDrop::classname(), [
-                        'data' => EventItem::getItemByName($model->programmId),
-                        'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'eventItemId'],
-                        'pluginOptions' => [
-                            'depends' => ['programmId'],
-                            'placeholder' => Yii::t('yee/event', 'Select Event...'),
-                            'url' => Url::to(['/event/schedule/item'])
-                        ]
-                    ])->label(Yii::t('yee/event', 'Event Name'));
-                    ?>
-                    <?//= $form->field($model, 'item_programm_id')->textInput() ?>
 
-                    <?php  if($model->start_timestamp) $model->start_timestamp = Yii::$app->formatter->asDatetime($model->start_timestamp);  ?>
-                    <?= $form->field($model, 'start_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
-                    
-                    <?php  if($model->end_timestamp) $model->end_timestamp = Yii::$app->formatter->asDatetime($model->end_timestamp);  ?>
-                    <?= $form->field($model, 'end_timestamp')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(),['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
-                    
+                    <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
+
+                    <?= $form->field($model, 'end_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
+
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-                    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+                    <?//= $form->field($model, 'all_day')->textInput() ?>
 
-                    <?= $form->field($model, 'all_day')->textInput() ?>
-
+                    <?=
+                    $form->field($model, 'users_list')->widget(nex\chosen\Chosen::className(), [
+                        'items' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),
+                        'multiple' => true,
+                        'placeholder' => Yii::t('yee/event', 'Select Users...'),
+                    ])
+                    ?>
                 </div>
 
             </div>
@@ -81,31 +53,69 @@ use yii\helpers\Url;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-                        <?= $form->field($model, 'place_id')
+<?php if (!$model->isNewRecord): ?>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+    <?= $model->attributeLabels()['created_at'] ?> :
+                                </label>
+                                <span><?= $model->createdDatetime ?></span>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+    <?= $model->attributeLabels()['updated_at'] ?> :
+                                </label>
+                                <span><?= $model->updatedDatetime ?></span>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>: </label>
+                                <span><?= $model->id ?></span>
+                            </div>
+                        <?php endif; ?>
+                        <?php
+
+                        echo $form->field($model, 'programm_id')->dropDownList(EventProgramm::getProgrammList(), [
+                            'prompt' => Yii::t('yee/event', 'Select Programm...'),
+                            'id' => 'programm_id'
+                        ])->label(Yii::t('yee/event', 'Programm Name'));
+
+                        echo $form->field($model, 'item_id')->widget(DepDrop::classname(), [
+                            'data' => EventItem::getItemByName($model->programm_id),
+                            'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'item_id'],
+                            'pluginOptions' => [
+                                'depends' => ['programm_id'],
+                                'placeholder' => Yii::t('yee/event', 'Select Event...'),
+                                'url' => Url::to(['/event/schedule/item'])
+                            ]
+                        ])->label(Yii::t('yee/event', 'Event Name'));
+                        ?>
+
+                        <?=  $form->field($model, 'place_id')
                             ->dropDownList(backend\modules\event\models\EventPlace::getPlacesList(), [
                                 'prompt' => Yii::t('yee/event', 'Select Places...')
                             ])->label(Yii::t('yee/event', 'Place Name'));
                         ?>
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
-                        </div>
 
+                        <?= $form->field($model, 'price')->textInput() ?>
+                        
                         <div class="form-group">
-                            <?php  if ($model->isNewRecord): ?>
+                            <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Cancel'), ['/event/schedule/index'], ['class' => 'btn btn-default']) ?>
-                            <?php  else: ?>
+                            <?php else: ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/event/schedule/delete', 'id' => $model->id], [
+                                <?=
+                                Html::a(Yii::t('yee', 'Delete'), ['/event/schedule/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                         'method' => 'post',
                                     ],
-                                ]) ?>
-                            <?php endif; ?>
+                                ])
+                                ?>
+<?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -114,6 +124,6 @@ use yii\helpers\Url;
         </div>
     </div>
 
-    <?php  ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>

@@ -198,8 +198,8 @@ class EventItem extends \yeesoft\db\ActiveRecord
         $data = self::find()
                         ->innerJoin('event_item_programm', 'event_item_programm.item_id = event_item.id')
                         ->where(['event_item_programm.programm_id' => $programm_id])
-                        ->select(['event_item.name', 'event_item.id'])
-                        ->indexBy('event_item.id')->column();
+                        ->select(['event_item.name as name', 'event_item.id as id'])
+                        ->indexBy('id')->column();
 
         return $data;
     }

@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 08, 2019 at 11:27 PM
--- Server version: 5.7.23
--- PHP Version: 5.6.37
+-- Хост: localhost:3306
+-- Время создания: Янв 13 2019 г., 21:46
+-- Версия сервера: 5.7.23
+-- Версия PHP: 5.6.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `artgornica_loc`
+-- База данных: `artgornica_loc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth`
+-- Структура таблицы `auth`
 --
 
 CREATE TABLE `auth` (
@@ -36,7 +36,7 @@ CREATE TABLE `auth` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_assignment`
+-- Структура таблицы `auth_assignment`
 --
 
 CREATE TABLE `auth_assignment` (
@@ -46,7 +46,7 @@ CREATE TABLE `auth_assignment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `auth_assignment`
+-- Дамп данных таблицы `auth_assignment`
 --
 
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
@@ -61,7 +61,7 @@ INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_item`
+-- Структура таблицы `auth_item`
 --
 
 CREATE TABLE `auth_item` (
@@ -76,7 +76,7 @@ CREATE TABLE `auth_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `auth_item`
+-- Дамп данных таблицы `auth_item`
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `group_code`, `data`, `created_at`, `updated_at`) VALUES
@@ -385,7 +385,7 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `group_code
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_item_child`
+-- Структура таблицы `auth_item_child`
 --
 
 CREATE TABLE `auth_item_child` (
@@ -394,7 +394,7 @@ CREATE TABLE `auth_item_child` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `auth_item_child`
+-- Дамп данных таблицы `auth_item_child`
 --
 
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
@@ -728,7 +728,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_item_group`
+-- Структура таблицы `auth_item_group`
 --
 
 CREATE TABLE `auth_item_group` (
@@ -739,7 +739,7 @@ CREATE TABLE `auth_item_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `auth_item_group`
+-- Дамп данных таблицы `auth_item_group`
 --
 
 INSERT INTO `auth_item_group` (`code`, `name`, `created_at`, `updated_at`) VALUES
@@ -758,7 +758,7 @@ INSERT INTO `auth_item_group` (`code`, `name`, `created_at`, `updated_at`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_rule`
+-- Структура таблицы `auth_rule`
 --
 
 CREATE TABLE `auth_rule` (
@@ -771,7 +771,7 @@ CREATE TABLE `auth_rule` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Структура таблицы `comment`
 --
 
 CREATE TABLE `comment` (
@@ -793,7 +793,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `comment`
+-- Дамп данных таблицы `comment`
 --
 
 INSERT INTO `comment` (`id`, `model`, `model_id`, `user_id`, `username`, `email`, `parent_id`, `content`, `status`, `created_at`, `updated_at`, `updated_by`, `user_ip`, `super_parent_id`, `url`) VALUES
@@ -805,7 +805,7 @@ INSERT INTO `comment` (`id`, `model`, `model_id`, `user_id`, `username`, `email`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact`
+-- Структура таблицы `contact`
 --
 
 CREATE TABLE `contact` (
@@ -819,7 +819,7 @@ CREATE TABLE `contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `contact`
+-- Дамп данных таблицы `contact`
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `subject`, `body`, `subscribe`, `created_at`) VALUES
@@ -828,33 +828,7 @@ INSERT INTO `contact` (`id`, `name`, `email`, `subject`, `body`, `subscribe`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_group`
---
-
-CREATE TABLE `event_group` (
-  `id` int(8) NOT NULL,
-  `number` int(2) NOT NULL,
-  `programm_id` tinyint(1) NOT NULL,
-  `name` varchar(127) NOT NULL,
-  `description` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Группы арттерапии';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `event_group_users`
---
-
-CREATE TABLE `event_group_users` (
-  `id` int(8) NOT NULL,
-  `group_id` int(8) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `event_item`
+-- Структура таблицы `event_item`
 --
 
 CREATE TABLE `event_item` (
@@ -867,19 +841,19 @@ CREATE TABLE `event_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Состав программы';
 
 --
--- Dumping data for table `event_item`
+-- Дамп данных таблицы `event_item`
 --
 
 INSERT INTO `event_item` (`id`, `vid_id`, `name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 2, 'ОБЩЕСТВО В МИНИАТЮРЕ или \"Как выстраивать доверительные отношения!\"', 'Курс  направлен на раскрытие себя через рисунок, за счет познания своего внутреннего мира и внутреннего мира других участников встреч, с помощью методов арт-терапии.', 1546696357, 1546895768),
 (2, 2, 'МИР ДЕТСКИХ ВОСПОМИНАНИЙ', '111', 1546898212, 1546898212),
 (3, 1, 'КРЕАТИВНОСТЬ или \"Мой творческий потенциал!\"', '222', 1546898549, 1546898549),
-(4, 2, 'УНИКАЛЬНЫЙ ВНУТРЕННИЙ МИР', '333', 1546898785, 1546956516);
+(4, 2, 'УНИКАЛЬНЫЙ ВНУТРЕННИЙ МИР', '333', 1546898785, 1547063884);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_item_practice`
+-- Структура таблицы `event_item_practice`
 --
 
 CREATE TABLE `event_item_practice` (
@@ -889,7 +863,7 @@ CREATE TABLE `event_item_practice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='связь n:n событий и практик';
 
 --
--- Dumping data for table `event_item_practice`
+-- Дамп данных таблицы `event_item_practice`
 --
 
 INSERT INTO `event_item_practice` (`id`, `item_id`, `practice_id`) VALUES
@@ -900,24 +874,38 @@ INSERT INTO `event_item_practice` (`id`, `item_id`, `practice_id`) VALUES
 (5, 3, 3),
 (6, 3, 4),
 (10, 4, 6),
-(12, 4, 5);
+(12, 4, 5),
+(13, 4, 2),
+(14, 4, 4),
+(15, 4, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_item_programm`
+-- Структура таблицы `event_item_programm`
 --
 
 CREATE TABLE `event_item_programm` (
   `id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `programm_id` tinyint(1) NOT NULL
+  `programm_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Связь n:n программы с занятиями';
+
+--
+-- Дамп данных таблицы `event_item_programm`
+--
+
+INSERT INTO `event_item_programm` (`id`, `item_id`, `programm_id`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 3, 2),
+(5, 4, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_methods`
+-- Структура таблицы `event_methods`
 --
 
 CREATE TABLE `event_methods` (
@@ -928,7 +916,7 @@ CREATE TABLE `event_methods` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Методы арттерапии';
 
 --
--- Dumping data for table `event_methods`
+-- Дамп данных таблицы `event_methods`
 --
 
 INSERT INTO `event_methods` (`id`, `name`, `description`, `created_at`) VALUES
@@ -949,7 +937,7 @@ INSERT INTO `event_methods` (`id`, `name`, `description`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_place`
+-- Структура таблицы `event_place`
 --
 
 CREATE TABLE `event_place` (
@@ -968,7 +956,7 @@ CREATE TABLE `event_place` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Место проведения';
 
 --
--- Dumping data for table `event_place`
+-- Дамп данных таблицы `event_place`
 --
 
 INSERT INTO `event_place` (`id`, `name`, `address`, `phone`, `phone_optional`, `email`, `сontact_person`, `coords`, `map_zoom`, `description`, `created_at`, `updated_at`) VALUES
@@ -977,7 +965,7 @@ INSERT INTO `event_place` (`id`, `name`, `address`, `phone`, `phone_optional`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_practice`
+-- Структура таблицы `event_practice`
 --
 
 CREATE TABLE `event_practice` (
@@ -990,7 +978,7 @@ CREATE TABLE `event_practice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Практики арттерапии';
 
 --
--- Dumping data for table `event_practice`
+-- Дамп данных таблицы `event_practice`
 --
 
 INSERT INTO `event_practice` (`id`, `methods_id`, `name`, `description`, `time_volume`, `created_at`) VALUES
@@ -1005,37 +993,83 @@ INSERT INTO `event_practice` (`id`, `methods_id`, `name`, `description`, `time_v
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_programm`
+-- Структура таблицы `event_programm`
 --
 
 CREATE TABLE `event_programm` (
-  `id` tinyint(1) NOT NULL,
+  `id` int(8) NOT NULL,
   `vid_id` int(8) NOT NULL,
   `name` varchar(127) NOT NULL,
-  `description` mediumtext NOT NULL
+  `description` mediumtext NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Программа занятий';
+
+--
+-- Дамп данных таблицы `event_programm`
+--
+
+INSERT INTO `event_programm` (`id`, `vid_id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Программа 30 встреч', '', 1547040720, 1547148919),
+(2, 1, 'Инд Программа', '', 1547153697, 1547153697),
+(3, 2, 'Программа 10 встреч', '', 1547292997, 1547292997);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_schedule`
+-- Структура таблицы `event_schedule`
 --
 
 CREATE TABLE `event_schedule` (
   `id` int(8) NOT NULL,
-  `event_id` int(8) NOT NULL,
+  `programm_id` int(8) NOT NULL,
+  `item_id` int(8) NOT NULL,
   `place_id` int(8) NOT NULL,
-  `timestamp_in` int(11) NOT NULL,
-  `timestamp_out` int(11) NOT NULL,
-  `description` mediumtext NOT NULL,
-  `price` varchar(15) NOT NULL COMMENT 'стоимость занятия',
-  `status` tinyint(1) NOT NULL
+  `start_timestamp` int(11) NOT NULL,
+  `end_timestamp` int(11) DEFAULT NULL,
+  `description` mediumtext,
+  `price` mediumint(5) NOT NULL DEFAULT '0' COMMENT 'стоимость занятия',
+  `all_day` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Расписание занятий';
+
+--
+-- Дамп данных таблицы `event_schedule`
+--
+
+INSERT INTO `event_schedule` (`id`, `programm_id`, `item_id`, `place_id`, `start_timestamp`, `end_timestamp`, `description`, `price`, `all_day`, `created_at`, `updated_at`) VALUES
+(1, 3, 4, 1, 1547116200, 1547119800, '', 1500, 0, 1547116200, 1547294816),
+(2, 1, 2, 1, 1547246700, 1547263800, '', 1000, 0, 1547214300, 1547313335),
+(3, 2, 3, 1, 1547322900, 1547326200, '', 5, 0, 1547313715, 1547328712);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_vid`
+-- Структура таблицы `event_schedule_users`
+--
+
+CREATE TABLE `event_schedule_users` (
+  `id` int(8) NOT NULL,
+  `schedule_id` int(8) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `event_schedule_users`
+--
+
+INSERT INTO `event_schedule_users` (`id`, `schedule_id`, `user_id`) VALUES
+(1, 1, 2),
+(4, 1, 1),
+(5, 2, 1),
+(6, 3, 2),
+(7, 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `event_vid`
 --
 
 CREATE TABLE `event_vid` (
@@ -1046,7 +1080,7 @@ CREATE TABLE `event_vid` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Вид занятий';
 
 --
--- Dumping data for table `event_vid`
+-- Дамп данных таблицы `event_vid`
 --
 
 INSERT INTO `event_vid` (`id`, `name`, `description`, `created_at`) VALUES
@@ -1056,7 +1090,7 @@ INSERT INTO `event_vid` (`id`, `name`, `description`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image_manager`
+-- Структура таблицы `image_manager`
 --
 
 CREATE TABLE `image_manager` (
@@ -1073,7 +1107,7 @@ CREATE TABLE `image_manager` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `image_manager`
+-- Дамп данных таблицы `image_manager`
 --
 
 INSERT INTO `image_manager` (`id`, `name`, `class`, `item_id`, `alt`, `sort`, `type`, `filetype`, `url`, `size`) VALUES
@@ -1083,7 +1117,7 @@ INSERT INTO `image_manager` (`id`, `name`, `class`, `item_id`, `alt`, `sort`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media`
+-- Структура таблицы `media`
 --
 
 CREATE TABLE `media` (
@@ -1101,7 +1135,7 @@ CREATE TABLE `media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `media`
+-- Дамп данных таблицы `media`
 --
 
 INSERT INTO `media` (`id`, `album_id`, `filename`, `type`, `url`, `size`, `thumbs`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
@@ -1111,7 +1145,7 @@ INSERT INTO `media` (`id`, `album_id`, `filename`, `type`, `url`, `size`, `thumb
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media_album`
+-- Структура таблицы `media_album`
 --
 
 CREATE TABLE `media_album` (
@@ -1130,7 +1164,7 @@ CREATE TABLE `media_album` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media_album_lang`
+-- Структура таблицы `media_album_lang`
 --
 
 CREATE TABLE `media_album_lang` (
@@ -1144,7 +1178,7 @@ CREATE TABLE `media_album_lang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media_category`
+-- Структура таблицы `media_category`
 --
 
 CREATE TABLE `media_category` (
@@ -1162,7 +1196,7 @@ CREATE TABLE `media_category` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media_category_lang`
+-- Структура таблицы `media_category_lang`
 --
 
 CREATE TABLE `media_category_lang` (
@@ -1176,7 +1210,7 @@ CREATE TABLE `media_category_lang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media_lang`
+-- Структура таблицы `media_lang`
 --
 
 CREATE TABLE `media_lang` (
@@ -1189,7 +1223,7 @@ CREATE TABLE `media_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `media_lang`
+-- Дамп данных таблицы `media_lang`
 --
 
 INSERT INTO `media_lang` (`id`, `media_id`, `language`, `title`, `alt`, `description`) VALUES
@@ -1199,7 +1233,7 @@ INSERT INTO `media_lang` (`id`, `media_id`, `language`, `title`, `alt`, `descrip
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media_upload`
+-- Структура таблицы `media_upload`
 --
 
 CREATE TABLE `media_upload` (
@@ -1212,7 +1246,7 @@ CREATE TABLE `media_upload` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
+-- Структура таблицы `menu`
 --
 
 CREATE TABLE `menu` (
@@ -1224,7 +1258,7 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `menu`
+-- Дамп данных таблицы `menu`
 --
 
 INSERT INTO `menu` (`id`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
@@ -1234,7 +1268,7 @@ INSERT INTO `menu` (`id`, `created_at`, `updated_at`, `created_by`, `updated_by`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_lang`
+-- Структура таблицы `menu_lang`
 --
 
 CREATE TABLE `menu_lang` (
@@ -1245,7 +1279,7 @@ CREATE TABLE `menu_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `menu_lang`
+-- Дамп данных таблицы `menu_lang`
 --
 
 INSERT INTO `menu_lang` (`id`, `menu_id`, `language`, `title`) VALUES
@@ -1257,7 +1291,7 @@ INSERT INTO `menu_lang` (`id`, `menu_id`, `language`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_link`
+-- Структура таблицы `menu_link`
 --
 
 CREATE TABLE `menu_link` (
@@ -1275,13 +1309,14 @@ CREATE TABLE `menu_link` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `menu_link`
+-- Дамп данных таблицы `menu_link`
 --
 
 INSERT INTO `menu_link` (`id`, `menu_id`, `link`, `parent_id`, `image`, `alwaysVisible`, `order`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
 ('about', 'main-menu', '/site/about', '', '', 1, 1, NULL, 1544698568, 1, 1),
 ('bd', 'admin-menu', '/db', 'settings', '', 0, 25, 1544790630, 1544790676, 1, 1),
 ('blog', 'main-menu', '/site/blog', '', '', 0, 4, 1544699051, 1544699051, 1, 1),
+('calendar', 'admin-menu', '/event/schedule/fullcalendar', 'event', '', 0, 29, 1547119882, 1547328215, 1, 1),
 ('comment', 'admin-menu', '/comment/default/index', '', 'comment', 0, 10, NULL, NULL, 1, NULL),
 ('consult', 'main-menu', '/consult', '', '', 0, 3, 1545151400, 1545151452, 1, 1),
 ('contact', 'main-menu', '/site/contact', '', NULL, 1, 6, NULL, NULL, 1, NULL),
@@ -1293,13 +1328,12 @@ INSERT INTO `menu_link` (`id`, `menu_id`, `link`, `parent_id`, `image`, `alwaysV
 ('eav-option', 'admin-menu', '/eav/attribute-option/index', 'eav', NULL, 0, 19, NULL, NULL, 1, NULL),
 ('eav-type', 'admin-menu', '/eav/attribute-type/index', 'eav', NULL, 0, 21, NULL, NULL, 1, NULL),
 ('event', 'admin-menu', '', '', 'calendar', 0, 27, 1546691552, 1546807186, 1, 1),
-('event-group', 'admin-menu', '/event/group/index', 'event', '', 0, 29, 1546692303, 1546692303, 1, 1),
-('event-item', 'admin-menu', '/event/default/index', 'event', '', 0, 31, 1546691606, 1546807316, 1, 1),
+('event-item', 'admin-menu', '/event/default/index', 'event', '', 0, 30, 1546691606, 1546807316, 1, 1),
 ('event-methods', 'admin-menu', '/event/methods/index', 'event', '', 0, 35, 1546691818, 1546806941, 1, 1),
 ('event-place', 'admin-menu', '/event/place/index', 'event', '', 0, 32, 1546691945, 1546807290, 1, 1),
 ('event-practice', 'admin-menu', '/event/practice/index', 'event', '', 0, 34, 1546691867, 1546806955, 1, 1),
-('event-programm', 'admin-menu', '/event/programm/index', 'event', '', 0, 28, 1546691999, 1546691999, 1, 1),
-('event-schedule', 'admin-menu', '/event/schedule/index', 'event', '', 0, 30, 1546692074, 1546807163, 1, 1),
+('event-programm', 'admin-menu', '/event/programm/index', 'event', '', 0, 31, 1546691999, 1546691999, 1, 1),
+('event-schedule', 'admin-menu', '/event/schedule/index', 'event', '', 0, 28, 1546692074, 1546807163, 1, 1),
 ('event-vid', 'admin-menu', '/event/vid/index', 'event', '', 0, 33, 1546691902, 1546691902, 1, 1),
 ('image-settings', 'admin-menu', '/media/default/settings', 'settings', NULL, 0, 23, NULL, NULL, 1, NULL),
 ('media', 'admin-menu', NULL, '', 'image', 0, 6, NULL, NULL, 1, NULL),
@@ -1329,7 +1363,7 @@ INSERT INTO `menu_link` (`id`, `menu_id`, `link`, `parent_id`, `image`, `alwaysV
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_link_lang`
+-- Структура таблицы `menu_link_lang`
 --
 
 CREATE TABLE `menu_link_lang` (
@@ -1340,7 +1374,7 @@ CREATE TABLE `menu_link_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `menu_link_lang`
+-- Дамп данных таблицы `menu_link_lang`
 --
 
 INSERT INTO `menu_link_lang` (`id`, `link_id`, `language`, `label`) VALUES
@@ -1417,12 +1451,12 @@ INSERT INTO `menu_link_lang` (`id`, `link_id`, `language`, `label`) VALUES
 (80, 'event-place', 'ru', 'Места проведения'),
 (81, 'event-programm', 'ru', 'Программы занятий'),
 (82, 'event-schedule', 'ru', 'Расписание занятий'),
-(83, 'event-group', 'ru', 'Группы');
+(84, 'calendar', 'ru', 'Календарь мероприятий');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Структура таблицы `message`
 --
 
 CREATE TABLE `message` (
@@ -1433,7 +1467,7 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `message`
+-- Дамп данных таблицы `message`
 --
 
 INSERT INTO `message` (`id`, `source_id`, `language`, `translation`) VALUES
@@ -1789,7 +1823,7 @@ INSERT INTO `message` (`id`, `source_id`, `language`, `translation`) VALUES
 (497, 351, 'ru', 'E-mail {email} подтвержден'),
 (498, 352, 'ru', 'Главная'),
 (499, 353, 'ru', 'Вход'),
-(502, 356, 'ru', 'Номер программы'),
+(502, 356, 'ru', 'Номер группы'),
 (503, 357, 'ru', 'ID программы'),
 (504, 358, 'ru', 'ID места'),
 (505, 359, 'ru', 'Время начала'),
@@ -1803,7 +1837,6 @@ INSERT INTO `message` (`id`, `source_id`, `language`, `translation`) VALUES
 (513, 367, 'ru', 'Методы занятий'),
 (514, 368, 'ru', 'Места занятий'),
 (515, 369, 'ru', 'Программа занятий'),
-(516, 370, 'ru', 'Группы'),
 (517, 371, 'ru', 'Расписание занятий'),
 (518, 372, 'ru', 'Занятие'),
 (519, 373, 'ru', 'Занятия'),
@@ -1826,12 +1859,23 @@ INSERT INTO `message` (`id`, `source_id`, `language`, `translation`) VALUES
 (537, 385, 'ru', 'Маска даты'),
 (538, 386, 'ru', 'Маска времени'),
 (539, 387, 'ru', 'Маска даты и времени'),
-(540, 394, 'ru', 'Маска телефона');
+(540, 394, 'ru', 'Маска телефона'),
+(541, 395, 'ru', 'Виды занятий'),
+(543, 397, 'ru', 'Выберите событие...'),
+(544, 398, 'ru', 'Список событий'),
+(545, 399, 'ru', 'Выберите программу...'),
+(546, 400, 'ru', 'Программа'),
+(547, 401, 'ru', 'Участники'),
+(548, 402, 'ru', 'Выберите участников...'),
+(549, 403, 'ru', 'Календарь расписаний'),
+(550, 404, 'ru', 'Дата начала события должна быть больше даты окончания.'),
+(551, 405, 'ru', 'Место'),
+(553, 407, 'ru', 'Занятие');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message_source`
+-- Структура таблицы `message_source`
 --
 
 CREATE TABLE `message_source` (
@@ -1842,7 +1886,7 @@ CREATE TABLE `message_source` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `message_source`
+-- Дамп данных таблицы `message_source`
 --
 
 INSERT INTO `message_source` (`id`, `category`, `message`, `immutable`) VALUES
@@ -2198,11 +2242,11 @@ INSERT INTO `message_source` (`id`, `category`, `message`, `immutable`) VALUES
 (351, 'yee/auth', 'E-mail {email} confirmed', 0),
 (352, 'yee', 'Home', 0),
 (353, 'yee/auth', 'Enter', 0),
-(356, 'yee/event', 'Programm Number', 0),
+(356, 'yee/event', 'Group Number', 0),
 (357, 'yee/event', 'Programm ID', 0),
 (358, 'yee/event', 'Place ID', 0),
-(359, 'yee/event', 'Time In', 0),
-(360, 'yee/event', 'Time Out', 0),
+(359, 'yee/event', 'Start Time', 0),
+(360, 'yee/event', 'End Time', 0),
 (361, 'yee/event', 'Price', 0),
 (362, 'yee', 'Created At', 0),
 (363, 'yee', 'Updated At', 0),
@@ -2212,7 +2256,6 @@ INSERT INTO `message_source` (`id`, `category`, `message`, `immutable`) VALUES
 (367, 'yee/event', 'Event Methods', 0),
 (368, 'yee/event', 'Event Places', 0),
 (369, 'yee/event', 'Event Programms', 0),
-(370, 'yee/event', 'Event Groups', 0),
 (371, 'yee/event', 'Event Schedules', 0),
 (372, 'yee/event', 'Event', 0),
 (373, 'yee/event', 'Event Items', 0),
@@ -2235,12 +2278,23 @@ INSERT INTO `message_source` (`id`, `category`, `message`, `immutable`) VALUES
 (391, 'yee', 'Address', 0),
 (392, 'yee', 'Map Zoom', 0),
 (393, 'yee', 'Click on the map to get the address and coordinates, then click the button to insert the address into the form', 0),
-(394, 'yee/settings', 'Phone Mask', 0);
+(394, 'yee/settings', 'Phone Mask', 0),
+(395, 'yee/event', 'Vid Name', 0),
+(397, 'yee/event', 'Select Events...', 0),
+(398, 'yee/event', 'Events List', 0),
+(399, 'yee/event', 'Select Programm...', 0),
+(400, 'yee/event', 'Programm Name', 0),
+(401, 'yee/event', 'Users List', 0),
+(402, 'yee/event', 'Select Users...', 0),
+(403, 'yee/event', 'Schedule Calendar', 0),
+(404, 'yee/event', 'The event start date must be greater than the end date.', 0),
+(405, 'yee/event', 'Place Name', 0),
+(407, 'yee/event', 'Event Name', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migration`
+-- Структура таблицы `migration`
 --
 
 CREATE TABLE `migration` (
@@ -2250,7 +2304,7 @@ CREATE TABLE `migration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `migration`
+-- Дамп данных таблицы `migration`
 --
 
 INSERT INTO `migration` (`version`, `alias`, `apply_time`) VALUES
@@ -2334,7 +2388,7 @@ INSERT INTO `migration` (`version`, `alias`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page`
+-- Структура таблицы `page`
 --
 
 CREATE TABLE `page` (
@@ -2353,7 +2407,7 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `page`
+-- Дамп данных таблицы `page`
 --
 
 INSERT INTO `page` (`id`, `slug`, `status`, `comment_status`, `published_at`, `created_at`, `updated_at`, `created_by`, `updated_by`, `revision`, `view`, `layout`) VALUES
@@ -2363,7 +2417,7 @@ INSERT INTO `page` (`id`, `slug`, `status`, `comment_status`, `published_at`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_lang`
+-- Структура таблицы `page_lang`
 --
 
 CREATE TABLE `page_lang` (
@@ -2375,7 +2429,7 @@ CREATE TABLE `page_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `page_lang`
+-- Дамп данных таблицы `page_lang`
 --
 
 INSERT INTO `page_lang` (`id`, `page_id`, `language`, `title`, `content`) VALUES
@@ -2386,7 +2440,7 @@ INSERT INTO `page_lang` (`id`, `page_id`, `language`, `title`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post`
+-- Структура таблицы `post`
 --
 
 CREATE TABLE `post` (
@@ -2408,7 +2462,7 @@ CREATE TABLE `post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `post`
+-- Дамп данных таблицы `post`
 --
 
 INSERT INTO `post` (`id`, `slug`, `category_id`, `status`, `comment_status`, `thumbnail`, `published_at`, `created_at`, `updated_at`, `created_by`, `updated_by`, `revision`, `view`, `layout`, `main_flag`) VALUES
@@ -2424,13 +2478,13 @@ INSERT INTO `post` (`id`, `slug`, `category_id`, `status`, `comment_status`, `th
 (11, 'post_11', 3, 1, 1, '/uploads/2018/12/fishermen-1-400x300.jpg', 1533859200, 1544889352, 1545036451, 1, 1, 2, 'post', 'main', 0),
 (12, 'post_12', 2, 1, 1, '/uploads/2018/12/bridge-1-400x300.jpg', 1533945600, 1440763228, 1545036460, 1, 1, 1, 'post', 'main', 0),
 (13, 'post_13', 2, 1, 1, '/uploads/2018/12/bridge-1-400x300.jpg', 1534118400, 1440763228, 1545036475, 1, 1, 11, 'post', 'main', 0),
-(14, 'post_14', 2, 1, 1, '/uploads/2018/12/bridge-1-400x300.jpg', 1534204800, 1440763228, 1545043839, 1, 1, 23, 'post', 'main', 0),
+(14, 'post_14', 2, 1, 1, '/uploads/2018/12/bridge-1-400x300.jpg', 1534204800, 1440763228, 1545043839, 1, 1, 24, 'post', 'main', 0),
 (15, 'post_15', 4, 1, 1, '/uploads/2018/12/bridge-1-400x300.jpg', 1534291200, 1440763228, 1546002758, 1, 1, 114, 'post', 'main', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_category`
+-- Структура таблицы `post_category`
 --
 
 CREATE TABLE `post_category` (
@@ -2447,7 +2501,7 @@ CREATE TABLE `post_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `post_category`
+-- Дамп данных таблицы `post_category`
 --
 
 INSERT INTO `post_category` (`id`, `slug`, `visible`, `created_at`, `updated_at`, `created_by`, `updated_by`, `left_border`, `right_border`, `depth`) VALUES
@@ -2459,7 +2513,7 @@ INSERT INTO `post_category` (`id`, `slug`, `visible`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_category_lang`
+-- Структура таблицы `post_category_lang`
 --
 
 CREATE TABLE `post_category_lang` (
@@ -2471,7 +2525,7 @@ CREATE TABLE `post_category_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `post_category_lang`
+-- Дамп данных таблицы `post_category_lang`
 --
 
 INSERT INTO `post_category_lang` (`id`, `post_category_id`, `language`, `title`, `description`) VALUES
@@ -2483,7 +2537,7 @@ INSERT INTO `post_category_lang` (`id`, `post_category_id`, `language`, `title`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_lang`
+-- Структура таблицы `post_lang`
 --
 
 CREATE TABLE `post_lang` (
@@ -2495,7 +2549,7 @@ CREATE TABLE `post_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `post_lang`
+-- Дамп данных таблицы `post_lang`
 --
 
 INSERT INTO `post_lang` (`id`, `post_id`, `language`, `title`, `content`) VALUES
@@ -2517,7 +2571,7 @@ INSERT INTO `post_lang` (`id`, `post_id`, `language`, `title`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_tag`
+-- Структура таблицы `post_tag`
 --
 
 CREATE TABLE `post_tag` (
@@ -2530,7 +2584,7 @@ CREATE TABLE `post_tag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `post_tag`
+-- Дамп данных таблицы `post_tag`
 --
 
 INSERT INTO `post_tag` (`id`, `slug`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
@@ -2540,7 +2594,7 @@ INSERT INTO `post_tag` (`id`, `slug`, `created_at`, `updated_at`, `created_by`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_tag_lang`
+-- Структура таблицы `post_tag_lang`
 --
 
 CREATE TABLE `post_tag_lang` (
@@ -2551,7 +2605,7 @@ CREATE TABLE `post_tag_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `post_tag_lang`
+-- Дамп данных таблицы `post_tag_lang`
 --
 
 INSERT INTO `post_tag_lang` (`id`, `post_tag_id`, `language`, `title`) VALUES
@@ -2561,7 +2615,7 @@ INSERT INTO `post_tag_lang` (`id`, `post_tag_id`, `language`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_tag_post`
+-- Структура таблицы `post_tag_post`
 --
 
 CREATE TABLE `post_tag_post` (
@@ -2571,7 +2625,7 @@ CREATE TABLE `post_tag_post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `post_tag_post`
+-- Дамп данных таблицы `post_tag_post`
 --
 
 INSERT INTO `post_tag_post` (`id`, `post_id`, `tag_id`) VALUES
@@ -2585,7 +2639,7 @@ INSERT INTO `post_tag_post` (`id`, `post_id`, `tag_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seo`
+-- Структура таблицы `seo`
 --
 
 CREATE TABLE `seo` (
@@ -2604,7 +2658,7 @@ CREATE TABLE `seo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `seo`
+-- Дамп данных таблицы `seo`
 --
 
 INSERT INTO `seo` (`id`, `url`, `title`, `author`, `keywords`, `description`, `index`, `follow`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
@@ -2614,7 +2668,7 @@ INSERT INTO `seo` (`id`, `url`, `title`, `author`, `keywords`, `description`, `i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `setting`
+-- Структура таблицы `setting`
 --
 
 CREATE TABLE `setting` (
@@ -2627,7 +2681,7 @@ CREATE TABLE `setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `setting`
+-- Дамп данных таблицы `setting`
 --
 
 INSERT INTO `setting` (`id`, `group`, `key`, `language`, `value`, `description`) VALUES
@@ -2635,7 +2689,7 @@ INSERT INTO `setting` (`id`, `group`, `key`, `language`, `value`, `description`)
 (2, 'general', 'description', 'en-US', '', NULL),
 (3, 'general', 'email', NULL, 'artmarkov@mail.ru', NULL),
 (4, 'general', 'timezone', NULL, 'Europe/Moscow', NULL),
-(5, 'general', 'dateformat', NULL, 'dd.MM.yyyy', NULL),
+(5, 'general', 'dateformat', NULL, 'dd-MM-yyyy', NULL),
 (6, 'general', 'timeformat', NULL, 'HH:mm', NULL),
 (7, 'general', 'title', 'ru', 'Artgornica.ru', NULL),
 (8, 'general', 'description', 'ru', '', NULL),
@@ -2648,7 +2702,7 @@ INSERT INTO `setting` (`id`, `group`, `key`, `language`, `value`, `description`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Структура таблицы `tags`
 --
 
 CREATE TABLE `tags` (
@@ -2660,7 +2714,7 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tags`
+-- Дамп данных таблицы `tags`
 --
 
 INSERT INTO `tags` (`id`, `name`, `slug`, `count`, `url`) VALUES
@@ -2672,7 +2726,7 @@ INSERT INTO `tags` (`id`, `name`, `slug`, `count`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Структура таблицы `user`
 --
 
 CREATE TABLE `user` (
@@ -2703,18 +2757,18 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `user`
+-- Дамп данных таблицы `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `superadmin`, `registration_ip`, `bind_to_ip`, `email_confirmed`, `confirmation_token`, `avatar`, `first_name`, `last_name`, `birth_day`, `birth_month`, `birth_year`, `gender`, `phone`, `skype`, `info`) VALUES
 (1, 'admin', '', '$2y$13$1NSOFxrPUco1qxPEklyjUu28hIEfECTTejllHu2PKAxdaXmsBj6Mi', NULL, 'artmarkov@mail.ru', 10, 0, 1546636103, 1, NULL, '', 1, NULL, '{\"small\":\"\\/uploads\\/avatar\\/avatar_1_1546106724-48x48.jpg\",\"medium \":\"\\/uploads\\/avatar\\/avatar_1_1546106724-96x96.jpg\",\"large\":\"\\/uploads\\/avatar\\/avatar_1_1546106724-144x144.jpg\"}', 'Артур', 'Марков', 1, 4, 1971, 1, '+79055400746', 'artmarkov_skype', '1111'),
 (2, 'ishanova', 'yMdSVV0avEq9xO4p7uO4uCuAeAHpizQc', '$2y$13$G.6gfVKDmWhQsEQuvv2QmuiT/8VRRViJsr3AmXgsVzUtR25Wo/oG2', NULL, 'elenaishanova@mail.ru', 10, 1545848489, 1545901921, 0, '::1', '', 1, NULL, NULL, 'Елена', 'Ишанова', 26, 11, 1978, 2, '', '', ''),
-(6, 'markov_av', 'DB6oF4FiE-4ERlXTnclkgwN4xJYuUhNR', '$2y$13$MdRtxjBZYYDPuiblQ37xdug1eCZzGE.d4NbenwWhWJrNCf6TPvgNC', NULL, 'artmarkov-71@yandex.ru', 10, 1546109689, 1546110062, 0, '::1', '', 1, NULL, NULL, '', '', NULL, 1, NULL, 0, '', '', '');
+(6, 'markov_av', 'DB6oF4FiE-4ERlXTnclkgwN4xJYuUhNR', '$2y$13$MdRtxjBZYYDPuiblQ37xdug1eCZzGE.d4NbenwWhWJrNCf6TPvgNC', NULL, 'artmarkov-71@yandex.ru', 0, 1546109689, 1547066520, 0, '::1', '', 1, NULL, NULL, '', '', NULL, 1, NULL, 0, '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_setting`
+-- Структура таблицы `user_setting`
 --
 
 CREATE TABLE `user_setting` (
@@ -2727,7 +2781,7 @@ CREATE TABLE `user_setting` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_visit_log`
+-- Структура таблицы `user_visit_log`
 --
 
 CREATE TABLE `user_visit_log` (
@@ -2743,7 +2797,7 @@ CREATE TABLE `user_visit_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_visit_log`
+-- Дамп данных таблицы `user_visit_log`
 --
 
 INSERT INTO `user_visit_log` (`id`, `token`, `ip`, `language`, `user_agent`, `browser`, `os`, `user_id`, `visit_time`) VALUES
@@ -2832,28 +2886,32 @@ INSERT INTO `user_visit_log` (`id`, `token`, `ip`, `language`, `user_agent`, `br
 (83, '5c2fcb1057377', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'Chrome', 'mac', 1, 1546636048),
 (84, '5c2fcb8f2c0e0', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'Chrome', 'mac', 1, 1546636175),
 (85, '5c3095a5e0827', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'Chrome', 'mac', 1, 1546687909),
-(86, '5c309d3a28e47', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'Chrome', 'mac', 1, 1546689850);
+(86, '5c309d3a28e47', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'Chrome', 'mac', 1, 1546689850),
+(87, '5c359e873da72', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1547017863),
+(88, '5c35ad1b0c266', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1547021595),
+(89, '5c39b91632763', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'Chrome', 'mac', 1, 1547286806),
+(90, '5c39bf978fba8', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'Chrome', 'mac', 1, 1547288471);
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `auth`
+-- Индексы таблицы `auth`
 --
 ALTER TABLE `auth`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_auth_user` (`user_id`);
 
 --
--- Indexes for table `auth_assignment`
+-- Индексы таблицы `auth_assignment`
 --
 ALTER TABLE `auth_assignment`
   ADD PRIMARY KEY (`item_name`,`user_id`),
   ADD KEY `fk_user_id_auth_assignment_table` (`user_id`);
 
 --
--- Indexes for table `auth_item`
+-- Индексы таблицы `auth_item`
 --
 ALTER TABLE `auth_item`
   ADD PRIMARY KEY (`name`),
@@ -2862,26 +2920,26 @@ ALTER TABLE `auth_item`
   ADD KEY `fk_auth_item_table_group_code` (`group_code`);
 
 --
--- Indexes for table `auth_item_child`
+-- Индексы таблицы `auth_item_child`
 --
 ALTER TABLE `auth_item_child`
   ADD PRIMARY KEY (`parent`,`child`),
   ADD KEY `fk_child_auth_item_child_table` (`child`);
 
 --
--- Indexes for table `auth_item_group`
+-- Индексы таблицы `auth_item_group`
 --
 ALTER TABLE `auth_item_group`
   ADD PRIMARY KEY (`code`);
 
 --
--- Indexes for table `auth_rule`
+-- Индексы таблицы `auth_rule`
 --
 ALTER TABLE `auth_rule`
   ADD PRIMARY KEY (`name`);
 
 --
--- Indexes for table `comment`
+-- Индексы таблицы `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
@@ -2892,35 +2950,20 @@ ALTER TABLE `comment`
   ADD KEY `comment_super_parent_id` (`super_parent_id`);
 
 --
--- Indexes for table `contact`
+-- Индексы таблицы `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `event_group`
---
-ALTER TABLE `event_group`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `programm_id` (`programm_id`);
-
---
--- Indexes for table `event_group_users`
---
-ALTER TABLE `event_group_users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `group_id` (`group_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `event_item`
+-- Индексы таблицы `event_item`
 --
 ALTER TABLE `event_item`
   ADD PRIMARY KEY (`id`),
   ADD KEY `vid_id` (`vid_id`);
 
 --
--- Indexes for table `event_item_practice`
+-- Индексы таблицы `event_item_practice`
 --
 ALTER TABLE `event_item_practice`
   ADD PRIMARY KEY (`id`),
@@ -2928,7 +2971,7 @@ ALTER TABLE `event_item_practice`
   ADD KEY `practice_id` (`practice_id`);
 
 --
--- Indexes for table `event_item_programm`
+-- Индексы таблицы `event_item_programm`
 --
 ALTER TABLE `event_item_programm`
   ADD PRIMARY KEY (`id`),
@@ -2936,53 +2979,62 @@ ALTER TABLE `event_item_programm`
   ADD KEY `prigramm_id` (`programm_id`);
 
 --
--- Indexes for table `event_methods`
+-- Индексы таблицы `event_methods`
 --
 ALTER TABLE `event_methods`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `event_place`
+-- Индексы таблицы `event_place`
 --
 ALTER TABLE `event_place`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `event_practice`
+-- Индексы таблицы `event_practice`
 --
 ALTER TABLE `event_practice`
   ADD PRIMARY KEY (`id`),
   ADD KEY `methods_id` (`methods_id`);
 
 --
--- Indexes for table `event_programm`
+-- Индексы таблицы `event_programm`
 --
 ALTER TABLE `event_programm`
   ADD PRIMARY KEY (`id`),
   ADD KEY `vid_id` (`vid_id`);
 
 --
--- Indexes for table `event_schedule`
+-- Индексы таблицы `event_schedule`
 --
 ALTER TABLE `event_schedule`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `event_id` (`event_id`),
-  ADD KEY `place_id` (`place_id`);
+  ADD KEY `event_id` (`programm_id`),
+  ADD KEY `place_id` (`place_id`),
+  ADD KEY `item_id` (`item_id`);
 
 --
--- Indexes for table `event_vid`
+-- Индексы таблицы `event_schedule_users`
+--
+ALTER TABLE `event_schedule_users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `group_id` (`schedule_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Индексы таблицы `event_vid`
 --
 ALTER TABLE `event_vid`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `image_manager`
+-- Индексы таблицы `image_manager`
 --
 ALTER TABLE `image_manager`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `media`
+-- Индексы таблицы `media`
 --
 ALTER TABLE `media`
   ADD PRIMARY KEY (`id`),
@@ -2991,7 +3043,7 @@ ALTER TABLE `media`
   ADD KEY `fk_media_updated_by` (`updated_by`);
 
 --
--- Indexes for table `media_album`
+-- Индексы таблицы `media_album`
 --
 ALTER TABLE `media_album`
   ADD PRIMARY KEY (`id`),
@@ -3002,7 +3054,7 @@ ALTER TABLE `media_album`
   ADD KEY `fk_media_album_updated_by` (`updated_by`);
 
 --
--- Indexes for table `media_album_lang`
+-- Индексы таблицы `media_album_lang`
 --
 ALTER TABLE `media_album_lang`
   ADD PRIMARY KEY (`id`),
@@ -3010,7 +3062,7 @@ ALTER TABLE `media_album_lang`
   ADD KEY `fk_media_album_lang` (`media_album_id`);
 
 --
--- Indexes for table `media_category`
+-- Индексы таблицы `media_category`
 --
 ALTER TABLE `media_category`
   ADD PRIMARY KEY (`id`),
@@ -3020,7 +3072,7 @@ ALTER TABLE `media_category`
   ADD KEY `fk_media_category_updated_by` (`updated_by`);
 
 --
--- Indexes for table `media_category_lang`
+-- Индексы таблицы `media_category_lang`
 --
 ALTER TABLE `media_category_lang`
   ADD PRIMARY KEY (`id`),
@@ -3028,7 +3080,7 @@ ALTER TABLE `media_category_lang`
   ADD KEY `fk_media_category_lang` (`media_category_id`);
 
 --
--- Indexes for table `media_lang`
+-- Индексы таблицы `media_lang`
 --
 ALTER TABLE `media_lang`
   ADD PRIMARY KEY (`id`),
@@ -3036,7 +3088,7 @@ ALTER TABLE `media_lang`
   ADD KEY `fk_media_lang` (`media_id`);
 
 --
--- Indexes for table `media_upload`
+-- Индексы таблицы `media_upload`
 --
 ALTER TABLE `media_upload`
   ADD PRIMARY KEY (`id`),
@@ -3045,7 +3097,7 @@ ALTER TABLE `media_upload`
   ADD KEY `fk_media_upload_media_id` (`media_id`);
 
 --
--- Indexes for table `menu`
+-- Индексы таблицы `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`),
@@ -3053,7 +3105,7 @@ ALTER TABLE `menu`
   ADD KEY `fk_menu_updated_by` (`updated_by`);
 
 --
--- Indexes for table `menu_lang`
+-- Индексы таблицы `menu_lang`
 --
 ALTER TABLE `menu_lang`
   ADD PRIMARY KEY (`id`),
@@ -3061,7 +3113,7 @@ ALTER TABLE `menu_lang`
   ADD KEY `menu_lang_language` (`language`);
 
 --
--- Indexes for table `menu_link`
+-- Индексы таблицы `menu_link`
 --
 ALTER TABLE `menu_link`
   ADD PRIMARY KEY (`id`),
@@ -3071,7 +3123,7 @@ ALTER TABLE `menu_link`
   ADD KEY `fk_menu_link_updated_by` (`updated_by`);
 
 --
--- Indexes for table `menu_link_lang`
+-- Индексы таблицы `menu_link_lang`
 --
 ALTER TABLE `menu_link_lang`
   ADD PRIMARY KEY (`id`),
@@ -3079,26 +3131,26 @@ ALTER TABLE `menu_link_lang`
   ADD KEY `menu_link_lang_language` (`language`);
 
 --
--- Indexes for table `message`
+-- Индексы таблицы `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
   ADD KEY `message_index` (`source_id`,`language`);
 
 --
--- Indexes for table `message_source`
+-- Индексы таблицы `message_source`
 --
 ALTER TABLE `message_source`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migration`
+-- Индексы таблицы `migration`
 --
 ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
--- Indexes for table `page`
+-- Индексы таблицы `page`
 --
 ALTER TABLE `page`
   ADD PRIMARY KEY (`id`),
@@ -3106,7 +3158,7 @@ ALTER TABLE `page`
   ADD KEY `page_status` (`status`);
 
 --
--- Indexes for table `page_lang`
+-- Индексы таблицы `page_lang`
 --
 ALTER TABLE `page_lang`
   ADD PRIMARY KEY (`id`),
@@ -3114,7 +3166,7 @@ ALTER TABLE `page_lang`
   ADD KEY `page_lang_language` (`language`);
 
 --
--- Indexes for table `post`
+-- Индексы таблицы `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id`),
@@ -3125,7 +3177,7 @@ ALTER TABLE `post`
   ADD KEY `fk_page_updated_by` (`updated_by`);
 
 --
--- Indexes for table `post_category`
+-- Индексы таблицы `post_category`
 --
 ALTER TABLE `post_category`
   ADD PRIMARY KEY (`id`),
@@ -3137,7 +3189,7 @@ ALTER TABLE `post_category`
   ADD KEY `fk_post_category_updated_by` (`updated_by`);
 
 --
--- Indexes for table `post_category_lang`
+-- Индексы таблицы `post_category_lang`
 --
 ALTER TABLE `post_category_lang`
   ADD PRIMARY KEY (`id`),
@@ -3145,7 +3197,7 @@ ALTER TABLE `post_category_lang`
   ADD KEY `post_category_lang_language` (`language`);
 
 --
--- Indexes for table `post_lang`
+-- Индексы таблицы `post_lang`
 --
 ALTER TABLE `post_lang`
   ADD PRIMARY KEY (`id`),
@@ -3153,7 +3205,7 @@ ALTER TABLE `post_lang`
   ADD KEY `post_lang_language` (`language`);
 
 --
--- Indexes for table `post_tag`
+-- Индексы таблицы `post_tag`
 --
 ALTER TABLE `post_tag`
   ADD PRIMARY KEY (`id`),
@@ -3162,7 +3214,7 @@ ALTER TABLE `post_tag`
   ADD KEY `fk_post_tag_updated_by` (`updated_by`);
 
 --
--- Indexes for table `post_tag_lang`
+-- Индексы таблицы `post_tag_lang`
 --
 ALTER TABLE `post_tag_lang`
   ADD PRIMARY KEY (`id`),
@@ -3170,7 +3222,7 @@ ALTER TABLE `post_tag_lang`
   ADD KEY `post_tag_lang_language` (`language`);
 
 --
--- Indexes for table `post_tag_post`
+-- Индексы таблицы `post_tag_post`
 --
 ALTER TABLE `post_tag_post`
   ADD PRIMARY KEY (`id`),
@@ -3178,7 +3230,7 @@ ALTER TABLE `post_tag_post`
   ADD KEY `fk_post_tag_tag_id` (`tag_id`);
 
 --
--- Indexes for table `seo`
+-- Индексы таблицы `seo`
 --
 ALTER TABLE `seo`
   ADD PRIMARY KEY (`id`),
@@ -3189,20 +3241,20 @@ ALTER TABLE `seo`
   ADD KEY `fk_seo_updated_by` (`updated_by`);
 
 --
--- Indexes for table `setting`
+-- Индексы таблицы `setting`
 --
 ALTER TABLE `setting`
   ADD PRIMARY KEY (`id`),
   ADD KEY `setting_group_lang` (`group`,`key`,`language`);
 
 --
--- Indexes for table `tags`
+-- Индексы таблицы `tags`
 --
 ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Индексы таблицы `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
@@ -3211,354 +3263,345 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `password_reset_token` (`password_reset_token`);
 
 --
--- Indexes for table `user_setting`
+-- Индексы таблицы `user_setting`
 --
 ALTER TABLE `user_setting`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_setting_user_key` (`user_id`,`key`);
 
 --
--- Indexes for table `user_visit_log`
+-- Индексы таблицы `user_visit_log`
 --
 ALTER TABLE `user_visit_log`
   ADD PRIMARY KEY (`id`),
   ADD KEY `visit_log_user_id` (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `auth`
+-- AUTO_INCREMENT для таблицы `auth`
 --
 ALTER TABLE `auth`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `comment`
+-- AUTO_INCREMENT для таблицы `comment`
 --
 ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `contact`
+-- AUTO_INCREMENT для таблицы `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `event_group`
---
-ALTER TABLE `event_group`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `event_group_users`
---
-ALTER TABLE `event_group_users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `event_item`
+-- AUTO_INCREMENT для таблицы `event_item`
 --
 ALTER TABLE `event_item`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `event_item_practice`
+-- AUTO_INCREMENT для таблицы `event_item_practice`
 --
 ALTER TABLE `event_item_practice`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `event_item_programm`
+-- AUTO_INCREMENT для таблицы `event_item_programm`
 --
 ALTER TABLE `event_item_programm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `event_methods`
+-- AUTO_INCREMENT для таблицы `event_methods`
 --
 ALTER TABLE `event_methods`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `event_place`
+-- AUTO_INCREMENT для таблицы `event_place`
 --
 ALTER TABLE `event_place`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `event_practice`
+-- AUTO_INCREMENT для таблицы `event_practice`
 --
 ALTER TABLE `event_practice`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `event_programm`
+-- AUTO_INCREMENT для таблицы `event_programm`
 --
 ALTER TABLE `event_programm`
-  MODIFY `id` tinyint(1) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `event_schedule`
+-- AUTO_INCREMENT для таблицы `event_schedule`
 --
 ALTER TABLE `event_schedule`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `event_vid`
+-- AUTO_INCREMENT для таблицы `event_schedule_users`
+--
+ALTER TABLE `event_schedule_users`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `event_vid`
 --
 ALTER TABLE `event_vid`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `image_manager`
+-- AUTO_INCREMENT для таблицы `image_manager`
 --
 ALTER TABLE `image_manager`
   MODIFY `id` mediumint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `media`
+-- AUTO_INCREMENT для таблицы `media`
 --
 ALTER TABLE `media`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `media_album`
+-- AUTO_INCREMENT для таблицы `media_album`
 --
 ALTER TABLE `media_album`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `media_album_lang`
+-- AUTO_INCREMENT для таблицы `media_album_lang`
 --
 ALTER TABLE `media_album_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `media_category`
+-- AUTO_INCREMENT для таблицы `media_category`
 --
 ALTER TABLE `media_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `media_category_lang`
+-- AUTO_INCREMENT для таблицы `media_category_lang`
 --
 ALTER TABLE `media_category_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `media_lang`
+-- AUTO_INCREMENT для таблицы `media_lang`
 --
 ALTER TABLE `media_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `media_upload`
+-- AUTO_INCREMENT для таблицы `media_upload`
 --
 ALTER TABLE `media_upload`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `menu_lang`
+-- AUTO_INCREMENT для таблицы `menu_lang`
 --
 ALTER TABLE `menu_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `menu_link_lang`
+-- AUTO_INCREMENT для таблицы `menu_link_lang`
 --
 ALTER TABLE `menu_link_lang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
--- AUTO_INCREMENT for table `message`
+-- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=541;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=554;
 
 --
--- AUTO_INCREMENT for table `message_source`
+-- AUTO_INCREMENT для таблицы `message_source`
 --
 ALTER TABLE `message_source`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=395;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=408;
 
 --
--- AUTO_INCREMENT for table `page`
+-- AUTO_INCREMENT для таблицы `page`
 --
 ALTER TABLE `page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `page_lang`
+-- AUTO_INCREMENT для таблицы `page_lang`
 --
 ALTER TABLE `page_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `post`
+-- AUTO_INCREMENT для таблицы `post`
 --
 ALTER TABLE `post`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `post_category`
+-- AUTO_INCREMENT для таблицы `post_category`
 --
 ALTER TABLE `post_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `post_category_lang`
+-- AUTO_INCREMENT для таблицы `post_category_lang`
 --
 ALTER TABLE `post_category_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `post_lang`
+-- AUTO_INCREMENT для таблицы `post_lang`
 --
 ALTER TABLE `post_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `post_tag`
+-- AUTO_INCREMENT для таблицы `post_tag`
 --
 ALTER TABLE `post_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `post_tag_lang`
+-- AUTO_INCREMENT для таблицы `post_tag_lang`
 --
 ALTER TABLE `post_tag_lang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `post_tag_post`
+-- AUTO_INCREMENT для таблицы `post_tag_post`
 --
 ALTER TABLE `post_tag_post`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `seo`
+-- AUTO_INCREMENT для таблицы `seo`
 --
 ALTER TABLE `seo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `setting`
+-- AUTO_INCREMENT для таблицы `setting`
 --
 ALTER TABLE `setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `tags`
+-- AUTO_INCREMENT для таблицы `tags`
 --
 ALTER TABLE `tags`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `user_setting`
+-- AUTO_INCREMENT для таблицы `user_setting`
 --
 ALTER TABLE `user_setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user_visit_log`
+-- AUTO_INCREMENT для таблицы `user_visit_log`
 --
 ALTER TABLE `user_visit_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
--- Constraints for dumped tables
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `auth`
+-- Ограничения внешнего ключа таблицы `auth`
 --
 ALTER TABLE `auth`
   ADD CONSTRAINT `fk_auth_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `auth_assignment`
+-- Ограничения внешнего ключа таблицы `auth_assignment`
 --
 ALTER TABLE `auth_assignment`
   ADD CONSTRAINT `fk_item_name_auth_assignment_table` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_id_auth_assignment_table` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `auth_item`
+-- Ограничения внешнего ключа таблицы `auth_item`
 --
 ALTER TABLE `auth_item`
   ADD CONSTRAINT `fk_auth_item_table_group_code` FOREIGN KEY (`group_code`) REFERENCES `auth_item_group` (`code`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_auth_item_table_rule_name` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `auth_item_child`
+-- Ограничения внешнего ключа таблицы `auth_item_child`
 --
 ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `fk_child_auth_item_child_table` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_parent_auth_item_child_table` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `event_group`
---
-ALTER TABLE `event_group`
-  ADD CONSTRAINT `event_group_ibfk_1` FOREIGN KEY (`programm_id`) REFERENCES `event_programm` (`id`);
-
---
--- Constraints for table `event_group_users`
---
-ALTER TABLE `event_group_users`
-  ADD CONSTRAINT `event_group_users_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `event_group` (`id`),
-  ADD CONSTRAINT `event_group_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `event_item`
+-- Ограничения внешнего ключа таблицы `event_item`
 --
 ALTER TABLE `event_item`
   ADD CONSTRAINT `event_item_ibfk_1` FOREIGN KEY (`vid_id`) REFERENCES `event_vid` (`id`);
 
 --
--- Constraints for table `event_item_practice`
+-- Ограничения внешнего ключа таблицы `event_item_practice`
 --
 ALTER TABLE `event_item_practice`
   ADD CONSTRAINT `event_item_practice_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `event_item` (`id`),
   ADD CONSTRAINT `event_item_practice_ibfk_2` FOREIGN KEY (`practice_id`) REFERENCES `event_practice` (`id`);
 
 --
--- Constraints for table `event_item_programm`
+-- Ограничения внешнего ключа таблицы `event_item_programm`
 --
 ALTER TABLE `event_item_programm`
   ADD CONSTRAINT `event_item_programm_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `event_item` (`id`),
   ADD CONSTRAINT `event_item_programm_ibfk_2` FOREIGN KEY (`programm_id`) REFERENCES `event_programm` (`id`);
 
 --
--- Constraints for table `event_practice`
+-- Ограничения внешнего ключа таблицы `event_practice`
 --
 ALTER TABLE `event_practice`
   ADD CONSTRAINT `event_practice_ibfk_1` FOREIGN KEY (`methods_id`) REFERENCES `event_methods` (`id`);
 
 --
--- Constraints for table `event_programm`
+-- Ограничения внешнего ключа таблицы `event_programm`
 --
 ALTER TABLE `event_programm`
   ADD CONSTRAINT `event_programm_ibfk_1` FOREIGN KEY (`vid_id`) REFERENCES `event_vid` (`id`);
 
 --
--- Constraints for table `event_schedule`
+-- Ограничения внешнего ключа таблицы `event_schedule`
 --
 ALTER TABLE `event_schedule`
-  ADD CONSTRAINT `event_schedule_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event_item` (`id`),
-  ADD CONSTRAINT `event_schedule_ibfk_2` FOREIGN KEY (`place_id`) REFERENCES `event_place` (`id`);
+  ADD CONSTRAINT `event_schedule_ibfk_2` FOREIGN KEY (`place_id`) REFERENCES `event_place` (`id`),
+  ADD CONSTRAINT `event_schedule_ibfk_3` FOREIGN KEY (`programm_id`) REFERENCES `event_programm` (`id`),
+  ADD CONSTRAINT `event_schedule_ibfk_5` FOREIGN KEY (`item_id`) REFERENCES `event_item` (`id`),
+  ADD CONSTRAINT `event_schedule_ibfk_6` FOREIGN KEY (`programm_id`) REFERENCES `event_item_programm` (`programm_id`),
+  ADD CONSTRAINT `event_schedule_ibfk_7` FOREIGN KEY (`item_id`) REFERENCES `event_item_programm` (`item_id`);
 
 --
--- Constraints for table `media`
+-- Ограничения внешнего ключа таблицы `event_schedule_users`
+--
+ALTER TABLE `event_schedule_users`
+  ADD CONSTRAINT `event_schedule_users_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `event_schedule` (`id`),
+  ADD CONSTRAINT `event_schedule_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `media`
 --
 ALTER TABLE `media`
   ADD CONSTRAINT `fk_media_album` FOREIGN KEY (`album_id`) REFERENCES `media_album` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -3566,7 +3609,7 @@ ALTER TABLE `media`
   ADD CONSTRAINT `fk_media_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `media_album`
+-- Ограничения внешнего ключа таблицы `media_album`
 --
 ALTER TABLE `media_album`
   ADD CONSTRAINT `fk_album_category` FOREIGN KEY (`category_id`) REFERENCES `media_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -3574,51 +3617,51 @@ ALTER TABLE `media_album`
   ADD CONSTRAINT `fk_media_album_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `media_album_lang`
+-- Ограничения внешнего ключа таблицы `media_album_lang`
 --
 ALTER TABLE `media_album_lang`
   ADD CONSTRAINT `fk_media_album_lang` FOREIGN KEY (`media_album_id`) REFERENCES `media_album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `media_category`
+-- Ограничения внешнего ключа таблицы `media_category`
 --
 ALTER TABLE `media_category`
   ADD CONSTRAINT `fk_media_category_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_media_category_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `media_category_lang`
+-- Ограничения внешнего ключа таблицы `media_category_lang`
 --
 ALTER TABLE `media_category_lang`
   ADD CONSTRAINT `fk_media_category_lang` FOREIGN KEY (`media_category_id`) REFERENCES `media_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `media_lang`
+-- Ограничения внешнего ключа таблицы `media_lang`
 --
 ALTER TABLE `media_lang`
   ADD CONSTRAINT `fk_media_lang` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `media_upload`
+-- Ограничения внешнего ключа таблицы `media_upload`
 --
 ALTER TABLE `media_upload`
   ADD CONSTRAINT `fk_media_upload_media_id` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `menu`
+-- Ограничения внешнего ключа таблицы `menu`
 --
 ALTER TABLE `menu`
   ADD CONSTRAINT `fk_menu_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_menu_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `menu_lang`
+-- Ограничения внешнего ключа таблицы `menu_lang`
 --
 ALTER TABLE `menu_lang`
   ADD CONSTRAINT `fk_menu_lang` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `menu_link`
+-- Ограничения внешнего ключа таблицы `menu_link`
 --
 ALTER TABLE `menu_link`
   ADD CONSTRAINT `fk_menu_link` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE,
@@ -3626,25 +3669,25 @@ ALTER TABLE `menu_link`
   ADD CONSTRAINT `fk_menu_link_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `menu_link_lang`
+-- Ограничения внешнего ключа таблицы `menu_link_lang`
 --
 ALTER TABLE `menu_link_lang`
   ADD CONSTRAINT `fk_menu_link_lang` FOREIGN KEY (`link_id`) REFERENCES `menu_link` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `message`
+-- Ограничения внешнего ключа таблицы `message`
 --
 ALTER TABLE `message`
   ADD CONSTRAINT `fk_message_source_message` FOREIGN KEY (`source_id`) REFERENCES `message_source` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `page_lang`
+-- Ограничения внешнего ключа таблицы `page_lang`
 --
 ALTER TABLE `page_lang`
   ADD CONSTRAINT `fk_page_lang` FOREIGN KEY (`page_id`) REFERENCES `page` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `post`
+-- Ограничения внешнего ключа таблицы `post`
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `fk_page_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -3652,59 +3695,59 @@ ALTER TABLE `post`
   ADD CONSTRAINT `fk_post_category_id` FOREIGN KEY (`category_id`) REFERENCES `post_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `post_category`
+-- Ограничения внешнего ключа таблицы `post_category`
 --
 ALTER TABLE `post_category`
   ADD CONSTRAINT `fk_post_category_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_post_category_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `post_category_lang`
+-- Ограничения внешнего ключа таблицы `post_category_lang`
 --
 ALTER TABLE `post_category_lang`
   ADD CONSTRAINT `fk_post_category_lang` FOREIGN KEY (`post_category_id`) REFERENCES `post_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `post_lang`
+-- Ограничения внешнего ключа таблицы `post_lang`
 --
 ALTER TABLE `post_lang`
   ADD CONSTRAINT `fk_post_lang` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `post_tag`
+-- Ограничения внешнего ключа таблицы `post_tag`
 --
 ALTER TABLE `post_tag`
   ADD CONSTRAINT `fk_post_tag_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_post_tag_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `post_tag_lang`
+-- Ограничения внешнего ключа таблицы `post_tag_lang`
 --
 ALTER TABLE `post_tag_lang`
   ADD CONSTRAINT `fk_post_tag_lang` FOREIGN KEY (`post_tag_id`) REFERENCES `post_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `post_tag_post`
+-- Ограничения внешнего ключа таблицы `post_tag_post`
 --
 ALTER TABLE `post_tag_post`
   ADD CONSTRAINT `fk_post_tag_post_id` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_post_tag_tag_id` FOREIGN KEY (`tag_id`) REFERENCES `post_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `seo`
+-- Ограничения внешнего ключа таблицы `seo`
 --
 ALTER TABLE `seo`
   ADD CONSTRAINT `fk_seo_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_seo_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `user_setting`
+-- Ограничения внешнего ключа таблицы `user_setting`
 --
 ALTER TABLE `user_setting`
   ADD CONSTRAINT `fk_user_id_user_setting_table` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `user_visit_log`
+-- Ограничения внешнего ключа таблицы `user_visit_log`
 --
 ALTER TABLE `user_visit_log`
   ADD CONSTRAINT `fk_user_id_user_visit_log_table` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;

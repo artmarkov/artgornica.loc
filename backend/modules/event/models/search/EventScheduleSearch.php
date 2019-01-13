@@ -15,8 +15,7 @@ class EventScheduleSearch extends EventSchedule
     
      public $placeName;
      public $programmName;
-     public $groupName;
-     public $eventItemName;
+     public $itemName;
 
 
      /**
@@ -25,10 +24,10 @@ class EventScheduleSearch extends EventSchedule
     public function rules()
     {
         return [
-            [['id', 'item_programm_id', 'place_id'], 'integer'],
+            [['id', 'programm_id', 'item_id', 'place_id',], 'integer'],
             [['description', 'price', 'all_day'], 'safe'],
-            [['programmId', 'groupId', 'eventItemId'], 'integer'],
-            [['placeName','programmName','groupName','eventItemName'], 'string'],
+            [['placeName','programmName','itemName'], 'string'],
+            ['gridUsersSearch', 'string'],
         ];
     }
 
@@ -72,32 +71,26 @@ class EventScheduleSearch extends EventSchedule
             return $dataProvider;
         }
 
-         //    жадная загрузка
-        $query->joinWith(['itemProgramm']);
-        $query->joinWith(['itemGroup']);
-        $query->joinWith(['eventItem']);
+        //жадная загрузка       
+        $query->with(['scheduleUsers']);
+       
         
-        if ($this->programmId) {
-            $query->joinWith(['itemProgramm']);
-        } 
-        if ($this->groupId) {
-            $query->joinWith(['itemGroup']);
+        if ($this->gridUsersSearch) {
+            $query->joinWith(['scheduleUsers']);
         }
-        if ($this->eventItemId) {
-            $query->joinWith(['eventItem']);
-        }
+         
         $query->andFilterWhere([
             'id' => $this->id,
-            'event_item_programm.programm_id' => $this->programmId,
-            'event_group.id' => $this->groupId,
-            'event_item_programm.item_id' => $this->eventItemId,
             'place_id' => $this->place_id,
+            'item_id' => $this->item_id,
+            'programm_id' => $this->programm_id,
+            'event_schedule_users.user_id' => $this->gridUsersSearch,
+            'price' => $this->price,
 //            'start_timestamp' => $this->start_timestamp,
 //            'end_timestamp' => $this->end_timestamp,
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'price', $this->price])
             ->andFilterWhere(['like', 'all_day', $this->all_day]);
 
         return $dataProvider;

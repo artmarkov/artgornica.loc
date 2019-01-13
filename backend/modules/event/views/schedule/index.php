@@ -64,42 +64,55 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/event/schedule',
-                        'attribute' => 'eventItemId',
+                        'attribute' => 'item_id',
                         'label' => Yii::t('yee/event', 'Event Name'),
                         'filter' => backend\modules\event\models\EventItem::getEventItemList(),
                         'title' => function(EventSchedule $model) {
-                            return Html::a($model->eventItemName, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a($model->itemName, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
                     [
-                        'attribute' => 'programmId',
+                        'attribute' => 'programm_id',
                         'value' => 'programmName',
                         'label' => Yii::t('yee/event', 'Programm Name'),
                         'filter' => backend\modules\event\models\EventProgramm::getProgrammList(),
                     ],
                     [
-                        'attribute' => 'groupId',
-                        'value' => 'groupName',
-                        'label' => Yii::t('yee/event', 'Group Name'),
-                        'filter' => backend\modules\event\models\EventGroup::getGroupList(),
+                        'attribute' => 'gridUsersSearch',
+                        'filter' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),
+                        'value' => function (EventSchedule $model) {
+                            return implode(',<br>',
+                                yii\helpers\ArrayHelper::map($model->scheduleUsers, 'id', 'fullName'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
                     ],
-//              'itemProgramm.name',                 
-//              'itemGroup.name',                 
-//              'eventItem.name',                 
-//              'item_programm_id',
                     [
                         'attribute' => 'place_id',
                         'value' => 'placeName',
                         'label' => Yii::t('yee/event', 'Place Name'),
                         'filter' => backend\modules\event\models\EventPlace::getPlacesList(),
+                        'options' => ['style' => 'width:100px'],
                     ],
-            'start_timestamp:datetime',
-            'end_timestamp:datetime',
-            // 'description:ntext',
-            'price',
-            // 'all_day',
-
+                    [
+                        'attribute' => 'start_timestamp',
+                        'options' => ['style' => 'width:150px'],
+                        'format' => 'datetime',
+                        
+                    ],
+                    [
+                        'attribute' => 'end_timestamp',
+                        'options' => ['style' => 'width:150px'],
+                        'format' => 'datetime',
+                        
+                    ],
+                    [
+                        'attribute' => 'price',
+                        'value' => function (EventSchedule $model) {
+                            return $model->price . ' ' . Yii::t('yee/event', 'руб');
+                        },
+                    ],
                 ],
             ]);
             ?>

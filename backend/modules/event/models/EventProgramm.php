@@ -15,9 +15,9 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  *
- * @property EventGroup[] $eventGroups
  * @property EventItemProgramm[] $eventItemProgramms
  * @property EventVid $vid
+ * @property EventSchedule[] $eventSchedules
  */
 class EventProgramm extends \yeesoft\db\ActiveRecord
 {
@@ -113,13 +113,6 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEventGroups()
-    {
-        return $this->hasMany(EventGroup::className(), ['programm_id' => 'id']);
-    }
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getEventItems()
     {
         return $this->hasMany(EventItem::className(), ['id' => 'item_id'])
@@ -153,9 +146,20 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
      */
     public static function getProgrammList()
     {
-        return \yii\helpers\ArrayHelper::map(static::find()->all(), 'id', 'name');
+        return \yii\helpers\ArrayHelper::map(static::find()
+                ->innerJoin('event_vid', 'event_vid.id = event_programm.vid_id')
+                ->select('event_programm.id as id, event_programm.name as name, event_vid.name as name_category')
+                ->asArray()->all(), 'id', 'name', 'name_category');
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventSchedules()
+    {
+        return $this->hasMany(EventSchedule::className(), ['programm_id' => 'id']);
+    }
+
     /**
      * {@inheritdoc}
      * @return \backend\modules\event\models\query\EventProgrammQuery the active query used by this AR class.

@@ -9,4 +9,5 @@ class User extends \yeesoft\models\User
     public function getFullName() {
         return $this->last_name . ' ' . $this->first_name . ' [' . $this->username . ']';
     }
+    
 }
