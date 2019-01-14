@@ -48,7 +48,8 @@
     "edofre/yii2-fullcalendar": "*",
     "kartik-v/yii2-widget-datepicker": "dev-master",
     "kartik-v/yii2-widget-datetimepicker": "dev-master",
-    "kartik-v/yii2-widget-depdrop": "@dev"
+    "kartik-v/yii2-widget-depdrop": "@dev",
+    "kartik-v/yii2-widget-colorinput": "*"
         
   },
   "require-dev": {

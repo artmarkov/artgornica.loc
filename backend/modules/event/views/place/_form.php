@@ -4,6 +4,7 @@ use yeesoft\widgets\ActiveForm;
 use backend\modules\event\models\EventPlace;
 use yeesoft\helpers\Html;
 use yii\widgets\MaskedInput;
+use kartik\color\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventPlace */
@@ -77,6 +78,25 @@ use yii\widgets\MaskedInput;
         </div>
         <div class="col-md-3">
 
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="record-info">
+                        <?=
+                        $form->field($model, 'event_color')->widget(ColorInput::classname(), [
+                            'options' => ['placeholder' => 'Select color ...'],
+                            'pluginOptions' => ['preferredFormat' => 'rgb']
+                        ]);
+                        ?>
+
+                        <?=
+                        $form->field($model, 'event_text_color')->widget(ColorInput::classname(), [
+                            'options' => ['placeholder' => 'Select color ...'],
+                            'pluginOptions' => ['preferredFormat' => 'rgb']
+                        ]);
+                        ?>
+                    </div>
+                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">

@@ -8,8 +8,6 @@ use Yii;
 use backend\controllers\DefaultController;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
-use yii\helpers\Url;
 use edofre\fullcalendarscheduler\models\Resource;
 /**
  * ScheduleController implements the CRUD actions for backend\modules\event\models\EventSchedule model.
@@ -70,13 +68,17 @@ class ScheduleController extends DefaultController
         if ($id == 0) {
             $model = new EventSchedule();
             $model->place_id = $eventData['resourceId'];
+            
+            Yii::$app->formatter->timeZone = 'UTC';
+            $model->start_time = \Yii::$app->formatter->asDatetime($eventData['start']);
+            $model->end_time = \Yii::$app->formatter->asDatetime($eventData['end']);
+            
             return $this->renderAjax('event-modal', [
                 'model' => $model
             ]);
 
         } else {
             $model = EventSchedule::findOne($id);
-
             return $this->renderAjax('event-modal', [
                 'model' => $model, 'id' => $id
             ]);
@@ -120,30 +122,13 @@ class ScheduleController extends DefaultController
             $event->id = $item->id;
             $event->title = $item->itemName;
             $event->resourceId = $item->place_id;
-           // $event->color = $item->categoryColor; 
-           // $event->textColor = $item->categoryTextColor;
-           // $event->borderColor = $item->categoryBorderColor;
-           // if($item->categoryRendering != 0)  $event->rendering = 'background'; // для фоновых событий
             
             // $event->url = Url::to(['/calendar/event/view', 'id' => $item->id]); // ссылка для просмотра события - перебивает событие по клику!!!
             $item->all_day == 1 ? $event->allDay = true : $event->allDay = false;
 
-            $event->start = date("Y-m-d H:i", (integer)mktime(
-                date("H", $item->start_timestamp),
-                date("i", $item->start_timestamp),
-                0,
-                date("m", $item->start_timestamp),
-                date("d", $item->start_timestamp),
-                date("Y", $item->start_timestamp)
-            ));
-            $event->end = date("Y-m-d H:i", (integer)mktime(
-                date("H", $item->end_timestamp),
-                date("i", $item->end_timestamp),
-                0,
-                date("m", $item->end_timestamp),
-                date("d", $item->end_timestamp),
-                date("Y", $item->end_timestamp)
-            ));
+            $event->start = Yii::$app->formatter->asDatetime($item->start_timestamp,"php:Y-m-d H:i");
+            $event->end = Yii::$app->formatter->asDatetime($item->end_timestamp,"php:Y-m-d H:i");
+            
             $tasks[] = $event;
         }
 //         echo '<pre>' . print_r($events, true) . '</pre>';
@@ -162,7 +147,8 @@ class ScheduleController extends DefaultController
 
             $resource = new Resource();
             $resource->id = $item->id;
-            //$resource->building = $item->buildingName;
+            $resource->eventColor = $item->event_color; 
+            $resource->eventTextColor = $item->event_text_color;
             $resource->title = $item->name;
            
             $tasks[] = $resource;
@@ -186,12 +172,13 @@ class ScheduleController extends DefaultController
         $model->end_time = $eventData['end'];
         
         if(!empty($eventData['allDay'])) $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
-        if(!empty($eventData['resourceId'])) $model->place_id = $eventData['resourceId'];
-        if(!empty($eventData['programmId'])) $model->programm_id = $eventData['programmId'];
-        if(!empty($eventData['itemId'])) $model->item_id = $eventData['itemId'];
-        if(!empty($eventData['users'])) $model->users_list = $eventData['users'];
-        if(!empty($eventData['description']))$model->description = $eventData['description'];
-        if(!empty($eventData['price']))$model->price = $eventData['price'];
+        
+        if(!empty($eventData['resourceId']))  $model->place_id = $eventData['resourceId'];
+        if(!empty($eventData['programmId']))  $model->programm_id = $eventData['programmId'];
+        if(!empty($eventData['itemId']))      $model->item_id = $eventData['itemId'];
+        if(!empty($eventData['users']))       $model->users_list = $eventData['users'];
+        if(!empty($eventData['description'])) $model->description = $eventData['description'];
+        if(!empty($eventData['price']))       $model->price = $eventData['price'];
 
         if($model->save()) {
             return true;

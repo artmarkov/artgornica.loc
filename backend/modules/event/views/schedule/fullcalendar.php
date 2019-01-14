@@ -13,25 +13,6 @@ $this->title = Yii::t('yee/event','Schedule Calendar');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$DragJS = <<<EOF
-    /* initialize the external events
-    -----------------------------------------------------------------*/
-    $('#external-events .fc-event').each(function() {
-        // store data so the calendar knows to render an event upon drop
-        $(this).data('event', {
-            title: $.trim($(this).text()), // use the element's text as the event title
-            stick: true // maintain when user navigates (see docs on the renderEvent method)
-        });
-        // make the event draggable using jQuery UI
-        $(this).draggable({
-            zIndex: 999,
-            revert: true,      // will cause the event to go back to its
-            revertDuration: 0  // original position after the drag
-        });
-    });
-
-EOF;
-$this->registerJs($DragJS);
 ?>
 
 <div class="event-index">
@@ -60,8 +41,8 @@ $JSSelect = <<<EOF
                 resourceId: resource ? resource.id : null
             };
       
-        console.log('выбираем мышкой область или кликаем в пустое поле');
-        console.log(eventData);
+//        console.log('выбираем мышкой область или кликаем в пустое поле');
+//        console.log(eventData);
       $.ajax({
             url: '/admin/event/schedule/init-event',
             type: 'POST',
@@ -84,8 +65,8 @@ $JSEventClick = <<<EOF
             eventData = {
                 id: calEvent.id,
             };
-        console.log('кликаем по событию');
-        console.log(eventData);
+//        console.log('кликаем по событию');
+//        console.log(eventData);
       $.ajax({
             url: '/admin/event/schedule/init-event',
             type: 'POST',
@@ -112,8 +93,8 @@ $JSEventResize = <<<EOF
                 allDay: event.allDay,
                 resourceId: event.resourceId
             };
-        console.log('растягиваем/сжимаем событие мышкой');
-        console.log(eventData);
+//        console.log('растягиваем/сжимаем событие мышкой');
+//        console.log(eventData);
          $.ajax({
             url: '/admin/event/schedule/refactor-event',
             type: 'POST',
@@ -140,8 +121,8 @@ $JSEventDrop = <<<EOF
                 resourceId: event.resourceId
             };
 
-     console.log('перетаскиваем событие, удерживая мышкой');
-     console.log(eventData);
+//     console.log('перетаскиваем событие, удерживая мышкой');
+//     console.log(eventData);
       $.ajax({
             url: '/admin/event/schedule/refactor-event',
             type: 'POST',
@@ -158,38 +139,6 @@ $JSEventDrop = <<<EOF
 EOF;
 
 
-// бросаем событие извне
-$JSDrop = <<<EOF
-    function(date, jsEvent, ui, resource) {
-      if ($('#drop-remove').is(':checked')) {
-             $(this).remove();
-             }
-        var eventData;
-            eventData = {
-                id: 0,
-                title:  ui.helper[0].innerText,
-                start: date.format(),
-                end: date.format(),
-                resourceId: null
-            };
-            console.log('бросаем событие извне', eventData);
-      
-      $.ajax({
-            url: '/admin/event/schedule/init-event',
-            type: 'POST',
-            data: {eventData : eventData},
-            success: function (res) {
-            showDay(res);
-         
-                 // console.log(res);
-            },
-            error: function () {
-                alert('Error!!!');
-
-            }
-        });
-    }
-EOF;
 ?>
              <div class="row">
                 <div class="col-md-10">
@@ -201,7 +150,7 @@ EOF;
                                 'header' => [
                                     'left'   => 'today prev,next',
                                     'center' => 'title',
-                                    'right'  => 'timelineDay,timelineThreeDays,agendaWeek,month,listMonth',
+                                    'right'  => 'agendaDay,agendaTwoDay,agendaWeek,month,listMonth',
                                 ],
                                 'clientOptions' => [
                                     'schedulerLicenseKey' => 'GPL-My-Project-Is-Open-Source',
@@ -217,11 +166,10 @@ EOF;
                                     'eventDurationEditable' => true, // разрешить изменение размера
                                     'eventOverlap' => false, // разрешить перекрытие событий
                                     'eventLimit' => true,
-                                    'drop' => new JsExpression($JSDrop),
                                     'select' => new JsExpression($JSSelect),
                                     'eventClick' => new JsExpression($JSEventClick),
                                     'eventResize'=> new JsExpression($JSEventResize),
-//                                    'eventDrop'=> new JsExpression($JSEventDrop),
+                                    'eventDrop'=> new JsExpression($JSEventDrop),
                                     'defaultDate' => date('Y-m-d H:i'),
                                     'defaultTimedEventDuration' => '02:00:00', // при перетаскивании события в календарь задается длительность события
                                     'defaultAllDayEventDuration' => [
@@ -230,14 +178,12 @@ EOF;
                                     'aspectRatio'       => 1.8,
                                     'scrollTime'        => '00:00', // undo default 6am scrollTime
                                     'defaultView' => 'agendaWeek',
-
-                                    'views'             => [
-                                        'timelineThreeDays' => [
-                                            'type'     => 'timeline',
-                                            'duration' => [
-                                                'days' => 3,
+                                    'views'  => [
+                                            'agendaTwoDay' => [
+                                                'type' => 'agenda',
+                                                'duration' => ['days' => 3],
+                                                'groupByResource' => true,
                                             ],
-                                        ],
                                     ],
                                     'resourceLabelText' => Yii::t('yee/event','Event Places'),
                                            // 'resourceGroupField' => 'building',
@@ -255,21 +201,17 @@ EOF;
 </div>
                 <div class="col-md-2">
 
-<!--                          <div id="external-events">
-                                <h4>Draggable Events</h4>
-                            <?php // $data = EventCategory::getEventCategoryList();?>
-                            <?php // foreach ($data as $field) : ?>
-                               <div class="fc-event ui-draggable ui-draggable-handle"
-                                    style="background-color: <?//= $field['color']; ?>;
-                                            border-color: <?//= $field['border_color']; ?>;
-                                            color: <?//= $field['text_color']; ?>;">
-                                    <?//= $field['name']; ?></div>
-                            <?php //  endforeach;?>
-                                <p>
-                                    <input type="checkbox" id="drop-remove">
-                                    <label for="drop-remove">remove after drop</label>
-                                </p>
-                    </div>-->
+                          <div id="color-places">
+                                <h4><?= Yii::t('yee/event','Event Places');?></h4>
+                            <?php $data = backend\modules\event\models\EventPlace::getEventPlacesList();?>
+                            <?php foreach ($data as $field) : ?>
+                               <div class="fc-event"
+                                    style="background-color: <?= $field['event_color']; ?>;
+                                            border-color: <?= $field['event_color']; ?>;
+                                            color: <?= $field['event_text_color']; ?>;">
+                                    <?= $field['name']; ?></div>
+                            <?php   endforeach;?>
+                    </div>
 
                 </div>
             </div>
@@ -288,15 +230,6 @@ EOF;
 
 <?php
 $js = <<<JS
-//var event = $('<div />')
-//      event.css({
-//        'background-color': currColor,
-//        'border-color'    : currColor,
-//        'color'           : currColor,
-//      }).addClass('external-event')
-//      event.html(val)
-//      $('#external-events').prepend(event)
-//
 function showDay(res) {
 
     $('#event-modal .modal-body').html(res);
@@ -309,15 +242,15 @@ $this->registerJs($js);
 
 <?php $this->registerCss('
 
-	#external-events {
+	#color-places {
 		float: left;
 		padding: 0 10px;
 		text-align: left;
 	}
 
-	#external-events .fc-event {
+	#color-places .fc-event {
 		margin: 10px 0;
-		cursor: pointer;
+		//cursor: pointer;
 	}
 ');
 ?>

@@ -20,6 +20,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $description
  * @property int $created_at
  * @property int $updated_at
+ * @property string $event_color
+ * @property string $event_text_color
  *
  * @property EventSchedule[] $eventSchedules
  */
@@ -58,6 +60,7 @@ class EventPlace extends \yeesoft\db\ActiveRecord
             [['address', 'email', 'description'], 'string', 'max' => 255],
             [['phone', 'phone_optional'], 'string', 'max' => 24],
             ['coords', 'string', 'max' => 64],
+            [['event_color', 'event_text_color'], 'string', 'max' => 32],
         ];
     }
 
@@ -79,6 +82,8 @@ class EventPlace extends \yeesoft\db\ActiveRecord
             'description' => Yii::t('yee', 'Description'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
+            'event_color' => Yii::t('yee/event', 'Event Color'),
+            'event_text_color' => Yii::t('yee/event', 'Event Text Color'),
         ];
     }
 
@@ -126,6 +131,15 @@ class EventPlace extends \yeesoft\db\ActiveRecord
     public static function getPlacesList()
     {
         return \yii\helpers\ArrayHelper::map(static::find()->all(), 'id', 'name');
+    }
+    /**
+     * event/views/schedule/fullcalendar
+     * 
+     * @return type array
+     */
+     public static function getEventPlacesList()
+    {
+      return self::find()->select(['name', 'event_color', 'event_text_color'])->asArray()->all();
     }
     /**
      * {@inheritdoc}
