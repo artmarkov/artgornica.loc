@@ -213,14 +213,15 @@ EOF;
                                     'slotDuration' => '00:15:00', // Частота отображения временных интервалов.
                                     'droppable' => true,
                                     'editable' => true,
-                                    //'eventDurationEditable' => true, // разрешить изменение размера
-                                    'eventOverlap' => true, // разрешить перекрытие событий
+                                    'allDaySlot' => false, // запрет на слот "весь день"
+                                    'eventDurationEditable' => true, // разрешить изменение размера
+                                    'eventOverlap' => false, // разрешить перекрытие событий
                                     'eventLimit' => true,
                                     'drop' => new JsExpression($JSDrop),
                                     'select' => new JsExpression($JSSelect),
                                     'eventClick' => new JsExpression($JSEventClick),
                                     'eventResize'=> new JsExpression($JSEventResize),
-                                    'eventDrop'=> new JsExpression($JSEventDrop),
+//                                    'eventDrop'=> new JsExpression($JSEventDrop),
                                     'defaultDate' => date('Y-m-d H:i'),
                                     'defaultTimedEventDuration' => '02:00:00', // при перетаскивании события в календарь задается длительность события
                                     'defaultAllDayEventDuration' => [
@@ -251,7 +252,6 @@ EOF;
 ]);
 ?>
 
-
 </div>
                 <div class="col-md-2">
 
@@ -278,7 +278,7 @@ EOF;
 </div>
 
 <?php \yii\bootstrap\Modal::begin([
-    'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/calendar', 'Event') . '</h3>',
+    'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/event', 'Event') . '</h3>',
     'size' => 'modal-lg',
     'id' => 'event-modal',
     //'footer' => 'footer',

@@ -60,7 +60,7 @@
   "config": {
     "process-timeout": 1800,
     "github-oauth": {
-"github.com": "083d46421b3313f8b583c185332e579f62ffc0d8"
+        "github.com": "083d46421b3313f8b583c185332e579f62ffc0d8"
     }
   },
   "extra": {

@@ -69,8 +69,6 @@ class ScheduleController extends DefaultController
 
         if ($id == 0) {
             $model = new EventSchedule();
-            $model->start_timestamp = \Yii::$app->formatter->asDatetime($eventData['start']);
-            $model->end_timestamp = \Yii::$app->formatter->asDatetime($eventData['end']);
             $model->place_id = $eventData['resourceId'];
             return $this->renderAjax('event-modal', [
                 'model' => $model
@@ -78,8 +76,6 @@ class ScheduleController extends DefaultController
 
         } else {
             $model = EventSchedule::findOne($id);
-            $model->start_timestamp = \Yii::$app->formatter->asDatetime($model->start_timestamp);
-            $model->end_timestamp = \Yii::$app->formatter->asDatetime($model->end_timestamp);
 
             return $this->renderAjax('event-modal', [
                 'model' => $model, 'id' => $id
@@ -122,12 +118,12 @@ class ScheduleController extends DefaultController
 
             $event = new BaseEvent();
             $event->id = $item->id;
-            $event->title = $item->title;
+            $event->title = $item->itemName;
             $event->resourceId = $item->place_id;
-            $event->color = $item->categoryColor; 
-            $event->textColor = $item->categoryTextColor;
-            $event->borderColor = $item->categoryBorderColor;
-            if($item->categoryRendering != 0)  $event->rendering = 'background'; // для фоновых событий
+           // $event->color = $item->categoryColor; 
+           // $event->textColor = $item->categoryTextColor;
+           // $event->borderColor = $item->categoryBorderColor;
+           // if($item->categoryRendering != 0)  $event->rendering = 'background'; // для фоновых событий
             
             // $event->url = Url::to(['/calendar/event/view', 'id' => $item->id]); // ссылка для просмотра события - перебивает событие по клику!!!
             $item->all_day == 1 ? $event->allDay = true : $event->allDay = false;
@@ -150,7 +146,7 @@ class ScheduleController extends DefaultController
             ));
             $tasks[] = $event;
         }
-        // echo '<pre>' . print_r($events, true) . '</pre>';
+//         echo '<pre>' . print_r($events, true) . '</pre>';
 
         return $tasks;
     }
@@ -160,9 +156,7 @@ class ScheduleController extends DefaultController
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         
-        $events = \backend\modules\event\models\EventPlace::find()
-               
-                ->all();
+        $events = \backend\modules\event\models\EventPlace::find()->all();
         $tasks = [];
         foreach ($events as $item) {
 
@@ -180,22 +174,49 @@ class ScheduleController extends DefaultController
     /**
      * @return bool
      */
-    public function actionRefactorEvent()
+    public function actionUpdateEvent()
     {
         $eventData = Yii::$app->request->post('eventData');
+       // echo '<pre>' . print_r($eventData, true) . '</pre>';       
         $id = $eventData['id'];
 
        $id == 0 ?  $model = new EventSchedule() : $model = EventSchedule::findOne($id);
-
-        $model->title = $eventData['title'];
-        $model->start_timestamp = \Yii::$app->formatter->asTimestamp($eventData['start']);
-
-        if(!empty($eventData['end'])) $model->end_timestamp = \Yii::$app->formatter->asTimestamp($eventData['end']);
+                   
+        $model->start_time = $eventData['start'];
+        $model->end_time = $eventData['end'];
+        
         if(!empty($eventData['allDay'])) $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
         if(!empty($eventData['resourceId'])) $model->place_id = $eventData['resourceId'];
-        if(!empty($eventData['category_id'])) $model->category_id = $eventData['category_id'];
+        if(!empty($eventData['programmId'])) $model->programm_id = $eventData['programmId'];
+        if(!empty($eventData['itemId'])) $model->item_id = $eventData['itemId'];
+        if(!empty($eventData['users'])) $model->users_list = $eventData['users'];
         if(!empty($eventData['description']))$model->description = $eventData['description'];
-       // echo '<pre>' . print_r($model, true) . '</pre>';
+        if(!empty($eventData['price']))$model->price = $eventData['price'];
+
+        if($model->save()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    } 
+    /**
+     * @return bool
+     */
+    public function actionRefactorEvent()
+    {
+        $eventData = Yii::$app->request->post('eventData');
+       // echo '<pre>' . print_r($eventData, true) . '</pre>';       
+        $id = $eventData['id'];
+
+        $model = \backend\modules\event\models\EventCalendar::findOne($id);
+                   
+        $model->start_time = $eventData['start'];
+        $model->end_time = $eventData['end'];
+        
+        if(!empty($eventData['allDay'])) $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
+        if(!empty($eventData['resourceId'])) $model->place_id = $eventData['resourceId'];
+       
 
         if($model->save()) {
             return true;
