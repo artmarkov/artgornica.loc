@@ -80,7 +80,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['programm_id', 'item_id', 'place_id', 'start_timestamp', 'end_timestamp'], 'required'],
+            [['programm_id', 'item_id', 'place_id', 'start_time', 'end_time'], 'required'],
             [['programm_id', 'item_id', 'place_id', 'all_day', 'price'], 'integer'],
             [['start_timestamp', 'end_timestamp'], 'safe'],
             [['all_day', 'price'], 'default', 'value' => 0],
