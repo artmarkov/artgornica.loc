@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/event','Event Programms');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event'), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Events'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -89,7 +89,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:600px'],
                         'format' => 'raw',
                     ],
-
+                    'qtyVolume',
+                    [
+                        'attribute' => 'priceVolume',
+                        'value' => function (EventProgramm $model) {
+                            return $model->priceVolume . ' ' . Yii::t('yee/event', 'руб');
+                        },
+                    ],
 //            'id',
 //            'vid_id',
 //            'name',

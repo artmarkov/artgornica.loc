@@ -77,6 +77,8 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             'updated_at' => Yii::t('yee', 'Updated At'),
             'items_list' => Yii::t('yee/event', 'Events List'),
             'gridItemsSearch' => Yii::t('yee/event', 'Events List'),
+            'priceVolume' => Yii::t('yee/event', 'Price'),
+            'qtyVolume' => Yii::t('yee/event', 'Qty Meetings'),
         ];
     }
      
@@ -126,6 +128,18 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
         return $this->hasMany(EventItemProgramm::className(), ['prigramm_id' => 'id']);
     }
 
+     /* Геттер для полной стоимости программы = сумма стоимостей событий */
+    public function getPriceVolume()
+    {
+        return EventItem::getEventProgrammPrice($this->id);
+    }
+    
+     /* Геттер встреч программы = сумма встреч событий */
+    public function getQtyVolume()
+    {
+        return EventItem::getEventProgrammQtyMeetings($this->id);
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */

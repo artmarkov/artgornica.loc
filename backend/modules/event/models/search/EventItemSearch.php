@@ -13,17 +13,16 @@ use backend\modules\event\models\EventItem;
 class EventItemSearch extends EventItem
 {
     public $vidName;
-    public $timeVolume;
+   
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'vid_id'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'vid_id', 'qty_meetings', 'price'], 'integer'],
             [['name', 'description'], 'safe'],            
             ['vidName', 'string'],
-           // ['timeVolume', 'integer'],
             ['gridPracticeSearch', 'string'],
         ];
     }
@@ -80,6 +79,8 @@ class EventItemSearch extends EventItem
         $query->andFilterWhere([
             'id' => $this->id,
             'vid_id' => $this->vid_id,
+            'qty_meetings' => $this->qty_meetings,
+            'price' => $this->price,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'event_item_practice.practice_id' => $this->gridPracticeSearch,

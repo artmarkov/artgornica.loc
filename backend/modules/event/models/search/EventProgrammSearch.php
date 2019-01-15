@@ -14,7 +14,7 @@ class EventProgrammSearch extends EventProgramm
 {
      public $vidName;
      
-    /**
+     /**
      * @inheritdoc
      */
     public function rules()

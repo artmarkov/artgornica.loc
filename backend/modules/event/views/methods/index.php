@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('yee/event','Event Methods');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event'), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Events'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-methods-index">

@@ -59,7 +59,12 @@ use yeesoft\helpers\Html;
                                 </label>
                                 <span><?= $model->updatedDatetime ?></span>
                             </div>
-                            
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+                                    <?= $model->attributeLabels()['priceVolume'] ?> :
+                                </label>
+                                <span><?= $model->priceVolume . ' ' . Yii::t('yee/event', 'руб'); ?></span>
+                            </div>
                         <?php endif; ?>
                         
                         <?= $form->field($model, 'vid_id')

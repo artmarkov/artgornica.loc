@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model backend\modules\event\models\EventSchedule */
 
 $this->title = Yii::t('yee','Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event'), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Events'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event Schedules'), 'url' => ['index']];
 ?>
 

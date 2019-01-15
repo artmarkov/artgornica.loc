@@ -10,7 +10,7 @@ use yii\web\JsExpression;
 
 //echo '<pre>' . print_r($events, true) . '</pre>';
 $this->title = Yii::t('yee/event','Schedule Calendar');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Event'), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event','Events'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

@@ -14,9 +14,13 @@ use yii\helpers\Url;
 
 <div class="event-form">
 
-    <?php
-    $form = ActiveForm::begin();
+     <?php $form = ActiveForm::begin([
+        'id' => 'event-form',
+        'validateOnBlur' => false,
+        'enableAjaxValidation' => true,
+    ]);
     ?>
+
 
     <div class="row">
         <div class="col-md-12">
