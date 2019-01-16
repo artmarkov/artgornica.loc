@@ -76,10 +76,6 @@ use yeesoft\helpers\Html;
                             ])->label(Yii::t('yee/event', 'Event Vid'));
                         ?>
                         
-                        <?= $form->field($model, 'qty_meetings')->textInput() ?>
-                        
-                        <?= $form->field($model, 'price')->textInput() ?>
-                        
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>

@@ -20,7 +20,7 @@ class EventItemSearch extends EventItem
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'vid_id', 'qty_meetings', 'price'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'vid_id'], 'integer'],
             [['name', 'description'], 'safe'],            
             ['vidName', 'string'],
             ['gridPracticeSearch', 'string'],
@@ -79,8 +79,6 @@ class EventItemSearch extends EventItem
         $query->andFilterWhere([
             'id' => $this->id,
             'vid_id' => $this->vid_id,
-            'qty_meetings' => $this->qty_meetings,
-            'price' => $this->price,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'event_item_practice.practice_id' => $this->gridPracticeSearch,

@@ -112,6 +112,33 @@ class EventPractice extends \yeesoft\db\ActiveRecord
                 ->asArray()->all(), 'id', 'name', 'name_category');
     }
     /**
+     * @return \yii\db\ActiveQuery
+     * Полный список практик по item_id
+     */
+    public static function getEventPracticeByItemId($item_id) {
+        $data = self::find()
+                        ->innerJoin('event_item_practice', 'event_item_practice.practice_id = event_practice.id')                       
+                        ->where(['event_item_practice.item_id' => $item_id])
+                        ->select(['event_practice.name', 'event_practice.id'])
+                        ->asArray()->all();
+
+        return $data;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список практик по name
+     */
+    public static function getEventPracticeByName($item_id) {
+        $data = self::find()
+                        ->innerJoin('event_item_practice', 'event_item_practice.practice_id = event_practice.id')                       
+                        ->where(['event_item_practice.item_id' => $item_id])
+                        ->select(['event_practice.name as name', 'event_practice.id as id'])
+                        ->indexBy('id')->column();
+
+        return $data;
+    }
+    /**
      * метод считает сумму минут включенных практик выбранного занятия $id
      * @param type $id model EventItem
      * @return type integer

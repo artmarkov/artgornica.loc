@@ -87,14 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'options' => ['style' => 'width:350px'],
                         'format' => 'raw',
-                    ],
-                         'qty_meetings',
-                    [
-                        'attribute' => 'price',
-                        'value' => function (EventItem $model) {
-                            return $model->price . ' ' . Yii::t('yee/event', 'руб');
-                        },
-                    ],
+                    ],                  
                     [
                         'attribute' => 'timeVolume',
                         'value' => function (EventItem $model) {

@@ -89,6 +89,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw',
                     ],
                     [
+                        'attribute' => 'gridPracticeSearch',
+                        'filter' => backend\modules\event\models\EventPractice::getEventPracticeList(),
+                        'value' => function (EventSchedule $model) {
+                            return implode(', ',
+                                yii\helpers\ArrayHelper::map($model->schedulePractices, 'id', 'name'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
+                    ],
+                    [
                         'attribute' => 'place_id',
                         'value' => 'placeName',
                         'label' => Yii::t('yee/event', 'Place Name'),

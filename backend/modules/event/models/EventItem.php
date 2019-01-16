@@ -14,8 +14,6 @@ use Yii;
  * @property string $description
  * @property int $created_at
  * @property int $updated_at
- * @property int $qty_meetings 
- * @property int $price
  * 
  * @property EventVid $vid
  * @property EventItemPractice[] $eventItemPractices
@@ -58,10 +56,8 @@ class EventItem extends \yeesoft\db\ActiveRecord
     {
         return [
             [['name', 'description', 'vid_id'], 'required'],
-            [['vid_id', 'qty_meetings', 'price'], 'integer'],
-            [['description'], 'string'],
-            ['price', 'default', 'value' => 0],
-            ['qty_meetings', 'default', 'value' => 1],
+            [['vid_id'], 'integer'],
+            [['description'], 'string'],           
             [['created_at', 'updated_at'], 'safe'],
             [['practice_list'], 'safe'],
             [['name'], 'string', 'max' => 127],
@@ -80,13 +76,11 @@ class EventItem extends \yeesoft\db\ActiveRecord
             'vid_id' => Yii::t('yee/event', 'Vid ID'),
             'name' => Yii::t('yee', 'Name'),
             'description' => Yii::t('yee', 'Description'),
-            'qty_meetings' => Yii::t('yee/event', 'Qty Meetings'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
             'practice_list' => Yii::t('yee/event', 'Practice List'),
             'gridPracticeSearch' => Yii::t('yee/event', 'Practice List'),
-            'timeVolume' => Yii::t('yee/event', 'Time Volume'),
-            'price' => Yii::t('yee/event', 'Price'),
+            'timeVolume' => Yii::t('yee/event', 'Time Volume'),           
         ];
     }
     
@@ -210,40 +204,4 @@ class EventItem extends \yeesoft\db\ActiveRecord
         return $data;
     }
 
-     /**
-     * метод считает сумму в рублях включенных занятий выбранной программы $id
-     * @param type $id model EventProgramm
-     * @return type integer
-     */
-    public static function getEventProgrammPrice($id) {
-        $result = 0;
-        $data = static::find()
-                        ->innerJoin('event_item_programm', 'event_item_programm.item_id = event_item.id')
-                        ->where(['event_item_programm.programm_id' => $id])
-                        ->select('event_item.price')
-                        ->asArray()->all();
-        foreach ($data as $items) {
-            $result += $items['price'];
-        }
-        // echo '<pre>' . print_r($result, true) . '</pre>';
-        return $result;
-    }
-     /**
-     * метод считает сумму в рублях включенных занятий выбранной программы $id
-     * @param type $id model EventProgramm
-     * @return type integer
-     */
-    public static function getEventProgrammQtyMeetings($id) {
-        $result = 0;
-        $data = static::find()
-                        ->innerJoin('event_item_programm', 'event_item_programm.item_id = event_item.id')
-                        ->where(['event_item_programm.programm_id' => $id])
-                        ->select('event_item.qty_meetings')
-                        ->asArray()->all();
-        foreach ($data as $items) {
-            $result += $items['qty_meetings'];
-        }
-        // echo '<pre>' . print_r($result, true) . '</pre>';
-        return $result;
-    }
 }

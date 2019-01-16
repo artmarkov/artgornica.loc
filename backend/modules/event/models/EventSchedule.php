@@ -33,6 +33,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public $end_time;
     
     public $gridUsersSearch;
+    public $gridPracticeSearch;
     
     /**
      * {@inheritdoc}
@@ -54,6 +55,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
                 'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
                 'relations' => [
                     'scheduleUsers' => 'users_list',
+                    'schedulePractices' => 'practice_list',
                 ],
             ],
             [
@@ -80,7 +82,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['programm_id', 'item_id', 'place_id', 'start_time', 'end_time'], 'required'],
+            [['programm_id', 'item_id', 'place_id', 'start_time', 'end_time', 'practice_list'], 'required'],
             [['programm_id', 'item_id', 'place_id', 'all_day', 'price'], 'integer'],
             [['start_timestamp', 'end_timestamp'], 'safe'],
             [['all_day', 'price'], 'default', 'value' => 0],
@@ -92,7 +94,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             ['start_time', 'date', 'format' => 'php:d-m-Y H:i'],
             ['end_time', 'date', 'format' => 'php:d-m-Y H:i'],
-            [['users_list'], 'safe'],
+            [['users_list', 'practice_list'], 'safe'],
           ];
     }
     /**
@@ -128,6 +130,8 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
             'updated_at' => Yii::t('yee', 'Updated At'),
             'users_list' => Yii::t('yee/event', 'Users List'),
             'gridUsersSearch' => Yii::t('yee/event', 'Users List'),
+            'practice_list' => Yii::t('yee/event', 'Practice List'),
+            'gridPracticeSearch' => Yii::t('yee/event', 'Practice List'),
         ];
     }
 
@@ -229,6 +233,17 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
                 ->asArray()->all();
         return \yii\helpers\ArrayHelper::map($users, 'id', 'name');
     }
+    
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchedulePractices()
+    {
+        return $this->hasMany(EventPractice::className(), ['id' => 'practice_id'])
+                ->viaTable('{{%event_schedule_practice}}', ['schedule_id' => 'id']);
+                             
+    }
+     
     /**
      * {@inheritdoc}
      * @return \backend\modules\event\models\query\EventScheduleQuery the active query used by this AR class.
