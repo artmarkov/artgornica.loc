@@ -22,8 +22,10 @@ use Yii;
 class EventProgramm extends \yeesoft\db\ActiveRecord
 {
      public $gridItemsSearch;
-     
-    /**
+     public $item_id;
+
+
+     /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -39,12 +41,12 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ],
-            [
-                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
-                'relations' => [
-                    'eventItems' => 'items_list',
-                ],
-            ],
+//            [
+//                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
+//                'relations' => [
+//                    'eventItems' => 'items_list',
+//                ],
+//            ],
         ];
     }
     /**
@@ -57,9 +59,9 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             [['vid_id'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['items_list'], 'safe'],
             [['name'], 'string', 'max' => 127],
             [['vid_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventVid::className(), 'targetAttribute' => ['vid_id' => 'id']],
+            [['item_id'], 'integer'],
         ];
     }
 
@@ -75,8 +77,8 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             'description' => Yii::t('yee', 'Description'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
-            'items_list' => Yii::t('yee/event', 'Events List'),
             'gridItemsSearch' => Yii::t('yee/event', 'Events List'),
+            'item_id' => Yii::t('yee/event', 'Events List'),
         ];
     }
      

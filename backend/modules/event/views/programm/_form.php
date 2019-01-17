@@ -1,7 +1,6 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use backend\modules\event\models\EventProgramm;
 use yeesoft\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -28,23 +27,24 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-                    <?= $form->field($model, 'items_list')->widget(nex\chosen\Chosen::className(), [
-                            'items' => backend\modules\event\models\EventItem::getEventItemList(),
-                            'multiple' => true,
-                            'placeholder' => Yii::t('yee/event', 'Select Events...'),
-                        ])
-                    ?>
+                </div>
+
+            </div>
+        <div class="row">
+                <div class="col-md-12">
+                    <?php if (!$model->isNewRecord) : ?>
+                        <?= backend\modules\event\widgets\ItemProgrammWidget::widget(['model' => $model]); ?>
+                    <?php endif; ?>
                 </div>
 
             </div>
         </div>
-
         <div class="col-md-3">
 
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-                         <?php if (!$model->isNewRecord): ?>
+                        <?php if (!$model->isNewRecord): ?>
 
                             <div class="form-group clearfix">
                                 <label class="control-label" style="float: left; padding-right: 5px;">
@@ -61,12 +61,6 @@ use yeesoft\helpers\Html;
                             </div>
                             
                         <?php endif; ?>
-                        
-                        <?= $form->field($model, 'vid_id')
-                            ->dropDownList(backend\modules\event\models\EventVid::getVidList(), [
-                                'prompt' => Yii::t('yee/event', 'Select Vid...')
-                            ])->label(Yii::t('yee/event', 'Event Vid'));
-                        ?>
                         
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
@@ -99,3 +93,12 @@ use yeesoft\helpers\Html;
     <?php  ActiveForm::end(); ?>
 
 </div>
+<!--        модал добавления занятия в программу-->
+        <?php \yii\bootstrap\Modal::begin([
+            'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/event', 'Add Events') . '</h3>',
+           // 'size' => 'modal-sm',
+            'id' => 'item-programm-modal',
+            //'footer' => 'footer',
+        ]);
+
+        \yii\bootstrap\Modal::end(); ?>

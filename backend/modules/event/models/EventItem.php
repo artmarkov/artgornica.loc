@@ -153,6 +153,7 @@ class EventItem extends \yeesoft\db\ActiveRecord
                 ->select('event_item.id as id, event_item.name as name, event_vid.name as name_category')
                 ->asArray()->all(), 'id', 'name', 'name_category');
     }
+   
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -199,6 +200,34 @@ class EventItem extends \yeesoft\db\ActiveRecord
                         ->innerJoin('event_item_programm', 'event_item_programm.item_id = event_item.id')
                         ->where(['event_item_programm.programm_id' => $programm_id])
                         ->select(['event_item.name as name', 'event_item.id as id'])
+                        ->indexBy('id')->column();
+
+        return $data;
+    }
+    
+     /**
+     * @return \yii\db\ActiveQuery
+     * Полный список занятий по programm_id
+     */
+    public static function getEventItemByVidId($vid_id) {
+        $data = self::find()
+                        ->innerJoin('event_vid', 'event_vid.id = event_item.vid_id')
+                        ->where(['event_item.vid_id' => $vid_id])
+                        ->select(['event_item.name', 'event_item.id'])
+                        ->asArray()->all();
+
+        return $data;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список занятий по name
+     */
+    public static function getEventItemByName($vid_id) {
+        $data = self::find()
+                        ->innerJoin('event_vid', 'event_vid.id = event_item.vid_id')
+                        ->where(['event_item.vid_id' => $vid_id])
+                        ->select(['event_item.name', 'event_item.id'])
                         ->indexBy('id')->column();
 
         return $data;
