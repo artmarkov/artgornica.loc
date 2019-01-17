@@ -26,8 +26,12 @@ use yeesoft\helpers\Html;
     <div class="row">
         <div class="col-md-12">
             <div class="form-group clearfix">
-              <h4><?= $model->itemName ?></h4>
+                <label class="control-label" style="float: left; padding-right: 5px;">
+                    <?= $model->attributeLabels()['itemName'] ?> :
+                </label>
+                <span><?= $model->itemName ?></span>
             </div>
+            
             <div class="row">
                 <div class="col-md-6">
                     <?= $form->field($model, 'qty_items')->textInput() ?>

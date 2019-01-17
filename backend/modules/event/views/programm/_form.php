@@ -61,7 +61,12 @@ use yeesoft\helpers\Html;
                             </div>
                             
                         <?php endif; ?>
-                        
+                        <?= $form->field($model, 'vid_id')
+                                ->dropDownList(backend\modules\event\models\EventVid::getVidList(), [
+                                    'prompt' => Yii::t('yee/event', 'Select Vid...'),
+                                    'id' => 'vid_id'
+                                ])->label(Yii::t('yee/event', 'Event Vid'));
+                            ?>
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>

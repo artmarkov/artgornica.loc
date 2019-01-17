@@ -119,22 +119,5 @@ class ItemProgrammController extends DefaultController
         Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been deleted.'));
         return $this->redirect(Yii::$app->request->referrer); 
     }
-     /**
-     * 
-     *  формируем список занятий для widget DepDrop::classname()
-     */
-    public function actionItem() {
-        $out = [];
-        if (isset($_POST['depdrop_parents'])) {
-            $parents = $_POST['depdrop_parents'];
-
-            if (!empty($parents)) {
-                $cat_id = $parents[0];
-                $out = \backend\modules\event\models\EventItem::getEventItemByVidId($cat_id);
-
-                return json_encode(['output' => $out, 'selected' => '']);
-            }
-        }
-        return json_encode(['output' => '', 'selected' => '']);
-    }
+     
 }

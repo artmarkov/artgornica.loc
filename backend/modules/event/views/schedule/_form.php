@@ -81,25 +81,28 @@ use yii\helpers\Url;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-<?php if (!$model->isNewRecord): ?>
+                        <?php if (!$model->isNewRecord): ?>
 
                             <div class="form-group clearfix">
                                 <label class="control-label" style="float: left; padding-right: 5px;">
-    <?= $model->attributeLabels()['created_at'] ?> :
+                             <?= $model->attributeLabels()['created_at'] ?> :
                                 </label>
                                 <span><?= $model->createdDatetime ?></span>
+                                <span><?= $model->itemProgramm->price ?></span>
                             </div>
 
                             <div class="form-group clearfix">
                                 <label class="control-label" style="float: left; padding-right: 5px;">
-    <?= $model->attributeLabels()['updated_at'] ?> :
+                             <?= $model->attributeLabels()['updated_at'] ?> :
                                 </label>
                                 <span><?= $model->updatedDatetime ?></span>
                             </div>
-
+                        
                             <div class="form-group clearfix">
-                                <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>: </label>
-                                <span><?= $model->id ?></span>
+                                <label class="control-label" style="float: left; padding-right: 5px;">Расчет: </label>
+                                <span><?= $model->itemProgramm->price ?></span> / 
+                                <span><?= $model->itemProgramm->qty_items ?></span> = 
+                                <span><?= round($model->itemProgramm->price/$model->itemProgramm->qty_items, 2); ?> руб.</span>
                             </div>
                         <?php endif; ?>
                     
@@ -116,7 +119,12 @@ use yii\helpers\Url;
                             <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Cancel'), ['/event/schedule/index'], ['class' => 'btn btn-default']) ?>
-                            <?php else: ?>
+                            <?php else: ?>                            
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>: </label>
+                                <span><?= $model->id ?></span>
+                            </div>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?=
                                 Html::a(Yii::t('yee', 'Delete'), ['/event/schedule/delete', 'id' => $model->id], [

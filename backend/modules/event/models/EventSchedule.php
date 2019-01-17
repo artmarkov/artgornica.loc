@@ -205,11 +205,19 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
         return $this->hasOne(EventItem::className(), ['id' => 'item_id']);
     }
 
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItemProgramm()
+    {
+        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_id']);
+    }
     /* Геттер для названия события */
     public function getItemName()
     {
         return $this->item->name;
     }
+    
     /**
      * @return \yii\db\ActiveQuery
      */

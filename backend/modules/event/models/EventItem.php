@@ -204,20 +204,6 @@ class EventItem extends \yeesoft\db\ActiveRecord
 
         return $data;
     }
-    
-     /**
-     * @return \yii\db\ActiveQuery
-     * Полный список занятий по programm_id
-     */
-    public static function getEventItemByVidId($vid_id) {
-        $data = self::find()
-                        ->innerJoin('event_vid', 'event_vid.id = event_item.vid_id')
-                        ->where(['event_item.vid_id' => $vid_id])
-                        ->select(['event_item.name', 'event_item.id'])
-                        ->asArray()->all();
-
-        return $data;
-    }
 
     /**
      * @return \yii\db\ActiveQuery

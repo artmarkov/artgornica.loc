@@ -53,6 +53,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
             'item_id' => Yii::t('yee/event', 'Item ID'),
             'qty_items' => Yii::t('yee/event', 'Qty Items'),
             'price' => Yii::t('yee/event', 'Price'),
+            'itemName' => Yii::t('yee', 'Name'),
         ];
     }
 

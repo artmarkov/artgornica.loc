@@ -2,8 +2,7 @@
 
 use yeesoft\widgets\ActiveForm;
 use yeesoft\helpers\Html;
-use kartik\depdrop\DepDrop;
-use yii\helpers\Url;
+use kartik\select2\Select2;
 
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -16,34 +15,27 @@ use yii\helpers\Url;
                     <div class="row">
                         <div class="col-md-6">
 
-                            <?= $form->field($model, 'vid_id')
-                                ->dropDownList(backend\modules\event\models\EventVid::getVidList(), [
-                                    'prompt' => Yii::t('yee/event', 'Select Vid...'),
-                                    'id' => 'vid_id'
-                                ])->label(Yii::t('yee/event', 'Event Vid'));
-                            ?>
-                            <?= $form->field($model, 'item_id')->widget(DepDrop::classname(), [
-                                'type' => DepDrop::TYPE_SELECT2,
-                                'data' => backend\modules\event\models\EventItem::getEventItemByName($model->vid_id),                                
+                             <?=
+                            $form->field($model, 'item_id')->widget(Select2::classname(), [
+
+                                'data' => backend\modules\event\models\EventItem::getEventItemByName($model->vid_id),  
+                                'theme' => Select2::THEME_KRAJEE,
                                 'options' => ['placeholder' => Yii::t('yee/event', 'Select Events...')],
                                 'pluginOptions' => [
-                                     'depends' => ['vid_id'],
-                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
-                                'url' => Url::to(['/event/item-programm/item']),
-                                
+                                    'allowClear' => true,
                                 ],
-                                    'addon' => $addon,
-                            ])->label(Yii::t('yee/event', 'Events List'));
-                            ?>
-                            <?php $addon = [
-                                            'append' => [
-                                                'content' => Html::a(Yii::t('yee', 'Add'), ['#'], [
+                                'addon' => [
+                                    'append' => [
+                                        'content' => Html::a(Yii::t('yee', 'Add'), ['#'], [
                                                 'class' => 'btn btn-primary add-to-item-programm',
-                                                'data-id' => $model->id,
-                                                    ]),
-                                                'asButton' => true
-                                            ]
-                                        ];?>
+                                           'data-id' => $model->id,
+                                        ]),
+                                        'asButton' => true,
+                                    ],
+                                ],
+                             ])->label(Yii::t('yee/event', 'Events List'));
+                            ?>
+                           
                         </div>
                     </div>
                     <div class="row">
@@ -63,7 +55,13 @@ use yii\helpers\Url;
                                             </tr>
                                         </thead>
                                         <tbody>
+    <?php $qty_summ = $price_summ = 0; ?>
+                                            
     <?php foreach ($data as $id => $item): ?>
+                                            
+    <?php $qty_summ += $item['qty'];
+          $price_summ += $item['price'];
+    ?>
                                                 <tr>
                                                     <td><?= ++$id ?></td>
                                                     <td><?= $item['name'] ?></td>
@@ -82,6 +80,13 @@ use yii\helpers\Url;
                                                     </td>
                                                 </tr>
     <?php endforeach ?>
+                                                <tr>
+                                                    <td></td>
+                                                    <td><b class = 'pull-right'>ИТОГО:</b></td>
+                                                    <td><b><?= $qty_summ ?></b></td>
+                                                    <td><b><?= $price_summ ?></b></td>
+                                                    <td></td>
+                                                </tr>
                                         </tbody>
                                     </table>
                                 </div>
