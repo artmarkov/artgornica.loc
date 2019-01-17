@@ -73,7 +73,7 @@ class EventScheduleSearch extends EventSchedule
 
         //жадная загрузка       
         $query->with(['scheduleUsers']);
-       $query->with(['schedulePractices']);
+        $query->with(['schedulePractices']);
         
         if ($this->gridUsersSearch) {
             $query->joinWith(['scheduleUsers']);

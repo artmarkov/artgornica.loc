@@ -29,10 +29,12 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-                    <?= $form->field($model, 'practice_list')->widget(nex\chosen\Chosen::className(), [
-                            'items' => backend\modules\event\models\EventPractice::getEventPracticeList(),
-                            'multiple' => true,
-                            'placeholder' => Yii::t('yee/event', 'Select Practice...'),
+                    <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [
+                            'data' => backend\modules\event\models\EventPractice::getEventPracticeList(),
+                            'options' => [
+                                'placeholder' => Yii::t('yee/event', 'Select Practice...'), 
+                                'multiple' => true
+                            ],                              
                         ])
                     ?>
                     

@@ -27,6 +27,34 @@ use yii\helpers\Url;
 
             <div class="panel panel-default">
                 <div class="panel-body">
+                        <?php
+
+                        echo $form->field($model, 'programm_id')->dropDownList(EventProgramm::getProgrammList(), [
+                            'prompt' => Yii::t('yee/event', 'Select Programm...'),
+                            'id' => 'programm_id'
+                        ])->label(Yii::t('yee/event', 'Programm Name'));
+
+                        echo $form->field($model, 'item_id')->widget(DepDrop::classname(), [
+                            'data' => EventItem::getItemByName($model->programm_id),
+                            'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'item_id'],
+                            'pluginOptions' => [
+                                'depends' => ['programm_id'],
+                                'placeholder' => Yii::t('yee/event', 'Select Event...'),
+                                'url' => Url::to(['/event/schedule/item'])
+                            ]
+                        ])->label(Yii::t('yee/event', 'Event Name'));
+                        
+                         echo $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
+                            'type' => DepDrop::TYPE_SELECT2,
+                            'data' => EventPractice::getEventPracticeByName($model->item_id),
+                            'options' => ['multiple' => true, 'prompt' => Yii::t('yee/event', 'Select Practice...'), 'id' => 'practice_list'],
+                            'pluginOptions' => [
+                                'depends' => ['item_id'],
+                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
+                                'url' => Url::to(['/event/schedule/practice'])
+                            ]
+                        ])->label(Yii::t('yee/event', 'Practice List'));
+                        ?>
 
                     <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
 
@@ -37,10 +65,9 @@ use yii\helpers\Url;
                     <?//= $form->field($model, 'all_day')->textInput() ?>
 
                     <?=
-                    $form->field($model, 'users_list')->widget(nex\chosen\Chosen::className(), [
-                        'items' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),
-                        'multiple' => true,
-                        'placeholder' => Yii::t('yee/event', 'Select Users...'),
+                    $form->field($model, 'users_list')->widget(kartik\select2\Select2::className(), [
+                        'data' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),
+                        'options' => ['placeholder' => Yii::t('yee/event', 'Select Users...'), 'multiple' => true],                        
                     ])
                     ?>
                    
@@ -75,34 +102,7 @@ use yii\helpers\Url;
                                 <span><?= $model->id ?></span>
                             </div>
                         <?php endif; ?>
-                        <?php
-
-                        echo $form->field($model, 'programm_id')->dropDownList(EventProgramm::getProgrammList(), [
-                            'prompt' => Yii::t('yee/event', 'Select Programm...'),
-                            'id' => 'programm_id'
-                        ])->label(Yii::t('yee/event', 'Programm Name'));
-
-                        echo $form->field($model, 'item_id')->widget(DepDrop::classname(), [
-                            'data' => EventItem::getItemByName($model->programm_id),
-                            'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'item_id'],
-                            'pluginOptions' => [
-                                'depends' => ['programm_id'],
-                                'placeholder' => Yii::t('yee/event', 'Select Event...'),
-                                'url' => Url::to(['/event/schedule/item'])
-                            ]
-                        ])->label(Yii::t('yee/event', 'Event Name'));
-                        
-                         echo $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
-                            'type' => DepDrop::TYPE_SELECT2,
-                            'data' => EventPractice::getEventPracticeByName($model->item_id),
-                            'options' => ['multiple' => true, 'prompt' => Yii::t('yee/event', 'Select Practice...'), 'id' => 'practice_list'],
-                            'pluginOptions' => [
-                                'depends' => ['item_id'],
-                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
-                                'url' => Url::to(['/event/schedule/practice'])
-                            ]
-                        ])->label(Yii::t('yee/event', 'Practice List'));
-                        ?>
+                    
                    
                         <?=  $form->field($model, 'place_id')
                             ->dropDownList(backend\modules\event\models\EventPlace::getPlacesList(), [

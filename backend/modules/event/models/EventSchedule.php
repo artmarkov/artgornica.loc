@@ -123,7 +123,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
             'end_timestamp' => Yii::t('yee/event', 'End Time'),
             'start_time' => Yii::t('yee/event', 'Start Time'),
             'end_time' => Yii::t('yee/event', 'End Time'),
-            'description' => Yii::t('yee/event', 'Description'),
+            'description' => Yii::t('yee', 'Description'),
             'price' => Yii::t('yee/event', 'Price'),
             'all_day' => Yii::t('yee/event', 'All Day'),
             'created_at' => Yii::t('yee', 'Created At'),

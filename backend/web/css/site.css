@@ -80,3 +80,10 @@ a.desc:after {
 .dd3-content .actionColumn a:hover {
    text-decoration: none !important;
 }
+/**
+ * Multi Selection Remove
+ */
+.select2-container--krajee .select2-selection--multiple .select2-selection__choice__remove {
+   
+    margin: -1px 0 0 3px !important;
+}

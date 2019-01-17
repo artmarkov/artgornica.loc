@@ -65,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/event/schedule',
                         'attribute' => 'item_id',
+                        'options' => ['style' => 'width:350px'],
                         'label' => Yii::t('yee/event', 'Event Name'),
                         'filter' => backend\modules\event\models\EventItem::getEventItemList(),
                         'title' => function(EventSchedule $model) {
@@ -76,6 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'programm_id',
                         'value' => 'programmName',
                         'label' => Yii::t('yee/event', 'Programm Name'),
+                        'options' => ['style' => 'width:150px'],
                         'filter' => backend\modules\event\models\EventProgramm::getProgrammList(),
                     ],
                     [
@@ -85,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return implode(',<br>',
                                 yii\helpers\ArrayHelper::map($model->scheduleUsers, 'id', 'fullName'));
                         },
-                        'options' => ['style' => 'width:350px'],
+                        'options' => ['style' => 'width:250px'],
                         'format' => 'raw',
                     ],
                     [
@@ -95,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return implode(', ',
                                 yii\helpers\ArrayHelper::map($model->schedulePractices, 'id', 'name'));
                         },
-                        'options' => ['style' => 'width:350px'],
+                        'options' => ['style' => 'width:250px'],
                         'format' => 'raw',
                     ],
                     [
