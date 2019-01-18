@@ -153,7 +153,7 @@ YeeAsset::register($this);
             <div class="footer-bar">
                 <div class="container">
                     <span class="copyright">Copyright &copy; artgornica.ru,  Все права защищены.</span>
-                   
+                    <a class="toTop" href="#topNav">НАВЕРХ <i class="fa fa-arrow-circle-up"></i></a>
                 </div>
             </div>
             <!-- copyright , scrollTo Top -->
@@ -186,8 +186,7 @@ YeeAsset::register($this);
             <!-- footer content -->
         </footer>
         <!-- /FOOTER -->
-        <!--кнопка вверх-->
-        <?= common\widgets\ScrollupWidget::widget() ?>
+       
         <?php $this->endBody() ?>
     </body>
 </html>

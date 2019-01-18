@@ -160,33 +160,48 @@ class ScheduleController extends DefaultController
     /**
      * @return bool
      */
-    public function actionUpdateEvent()
+    public function actionCreateEvent()
     {
-        $eventData = Yii::$app->request->post('eventData');
-       // echo '<pre>' . print_r($eventData, true) . '</pre>';       
-        $id = $eventData['id'];
+      $model = new EventSchedule();
+          
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-       $id == 0 ?  $model = new EventSchedule() : $model = EventSchedule::findOne($id);
-                   
-        $model->start_time = $eventData['start'];
-        $model->end_time = $eventData['end'];
-        
-        if(!empty($eventData['allDay'])) $eventData['allDay'] == 'false' ? $model->all_day = 0 : $model->all_day = 1;
-        
-        if(!empty($eventData['resourceId']))  $model->place_id = $eventData['resourceId'];
-        if(!empty($eventData['programmId']))  $model->programm_id = $eventData['programmId'];
-        if(!empty($eventData['itemId']))      $model->item_id = $eventData['itemId'];
-        if(!empty($eventData['practiceList']))$model->practice_list = $eventData['practiceList'];
-        if(!empty($eventData['users']))       $model->users_list = $eventData['users'];
-        if(!empty($eventData['description'])) $model->description = $eventData['description'];
-        if(!empty($eventData['price']))       $model->price = $eventData['price'];
+            return \yii\widgets\ActiveForm::validate($model);
+        } elseif ($model->load(Yii::$app->request->post())) {
+            
+            if ($model->save()) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been created.'));
+                return $this->redirect(Yii::$app->request->referrer);
+            }
 
-        if($model->save()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    } else {
+        $this->layout = false;
+        return $this->renderIsAjax('event-modal',  ['model' => $model]);
+    } 
+    }
+    /**
+     * @return bool
+     */
+    public function actionUpdateEvent($id)
+    {
+        $model = EventSchedule::findOne($id);
+          
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            return \yii\widgets\ActiveForm::validate($model);
+        } elseif ($model->load(Yii::$app->request->post())) {
+            
+            if ($model->save()) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been updated.'));
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+    } else {
+        $this->layout = false;
+        return $this->renderIsAjax('event-modal',  ['model' => $model]);
+    }       
     } 
     /**
      * @return bool

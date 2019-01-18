@@ -11,6 +11,8 @@ namespace backend\controllers;
 
 class DefaultController  extends \yeesoft\controllers\admin\BaseController {
 
+    public $layout = '@backend/views/layouts/main.php';
+     
     public function debug($arr){
         echo '<pre>' . print_r($arr, true) . '</pre>';
     }

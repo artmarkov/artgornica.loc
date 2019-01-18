@@ -15,11 +15,18 @@ use yii\helpers\Url;
 
 <div class="event-form">
 
-     <?php $form = ActiveForm::begin([
-        'id' => 'event-form',
-        'validateOnBlur' => false,
-        'enableAjaxValidation' => true,
-    ]);
+     <?php if ($model->isNewRecord) {
+        $action = 'create-event';
+    } else {
+        $action = 'update-event';
+    }
+    ?>
+    <?php $form = ActiveForm::begin([
+    'id' => 'item-programm-form',
+        
+    'enableAjaxValidation' => true,
+    'action' => ['schedule/' . $action , 'id' => $model->id]
+]);
     ?>
 
 
@@ -43,20 +50,16 @@ use yii\helpers\Url;
                         ]
                     ])->label(Yii::t('yee/event', 'Event Name'));
                     
-                    echo $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
-                        'type' => DepDrop::TYPE_SELECT2,
-                        'data' => EventPractice::getEventPracticeByName($model->item_id),
-                        'options' => [
-                            'multiple' => true, 
-                            'prompt' => Yii::t('yee/event', 'Select Practice...'), 
-                            'id' => 'practice_list'
-                            ],
-                        'pluginOptions' => [
-                            'depends' => ['item_id'],
-                            'placeholder' => Yii::t('yee/event', 'Select Practice...'),
-                            'url' => Url::to(['/event/schedule/practice'])
-                        ]
-                    ])->label(Yii::t('yee/event', 'Practice List'));
+                     echo $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
+                            'type' => DepDrop::TYPE_SELECT2,
+                            'data' => EventPractice::getEventPracticeByName($model->item_id),
+                            'options' => ['multiple' => true, 'prompt' => Yii::t('yee/event', 'Select Practice...'), 'id' => 'practice_list'],
+                            'pluginOptions' => [
+                                'depends' => ['item_id'],
+                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
+                                'url' => Url::to(['/event/schedule/practice'])
+                            ]
+                        ])->label(Yii::t('yee/event', 'Practice List'));
                     ?>
 
                     <?=
@@ -67,7 +70,6 @@ use yii\helpers\Url;
                     ?>
 
                     <?= $form->field($model, 'price')->textInput() ?>
-                    
                     <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
 
                     <?= $form->field($model, 'end_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
@@ -89,14 +91,16 @@ use yii\helpers\Url;
 
             </div>
             <div class="form-group">
-                <?php if ($model->isNewRecord): ?>
-                    <?= Html::a(Yii::t('yee', 'Create'), ['#'], ['class' => 'btn btn-primary create-event']) ?>
-                    <?= Html::a(Yii::t('yee', 'Cancel'), ['#'], ['class' => 'btn btn-default cancel-event']) ?>
+                 <?php if ($model->isNewRecord): ?>
+                <?=  Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('yee', 'Cancel'), ['#'], ['class' => 'btn btn-default cancel-event']) ?>
                 <?php else: ?>
-
-                    <?= Html::a(Yii::t('yee', 'Save'), ['#'], ['class' => 'btn btn-primary create-event']) ?>
-                    <?= Html::a(Yii::t('yee', 'Delete'), ['#'], ['class' => 'btn btn-default remove-event']) ?>
+                <?= Html::submitButton(Yii::t('yee', 'Update'), ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('yee', 'Delete'), ['#'], ['class' => 'btn btn-default remove-event']) ?>
                 <?php endif; ?>
+            
+                
+                 
             </div>
         </div>
     </div>
@@ -106,38 +110,6 @@ use yii\helpers\Url;
 </div>
 <?php
 $js = <<<JS
-
-$('.create-event').on('click', function (e) {
-
-    e.preventDefault();
-
-    var eventData;
-            eventData = {
-                id : $('#eventschedule-id').val(),
-                programmId : $('#programm_id').val(),
-                itemId : $('#item_id').val(),
-                practiceList : $('#practice_list').val(),
-                resourceId : $('#eventschedule-place_id').val(),
-                description : $('#eventschedule-description').val(),
-                users : $('#eventschedule-users_list').val(),
-                price : $('#eventschedule-price').val(),
-                start : $('#eventschedule-start_time').val(),
-                end : $('#eventschedule-end_time').val(),
-            };
-    $.ajax({
-        url: '/admin/event/schedule/update-event',
-        data: {eventData : eventData},
-        type: 'POST',
-    success: function (res) {
-                $('#w0').fullCalendar('refetchEvents', JSON);
-                closeModal();
-                console.log(eventData);
-            },
-            error: function () {
-                alert('Error!!!');
-            }
-        });
-});
 
 $('.cancel-event').on('click', function (e) {
          e.preventDefault();        
