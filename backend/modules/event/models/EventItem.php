@@ -219,4 +219,39 @@ class EventItem extends \yeesoft\db\ActiveRecord
         return $data;
     }
 
+    /**
+     * 
+     * @return boolean
+     */
+     public function beforeDelete()
+     {             
+         
+        if (parent::beforeDelete()) {
+            
+            $link = false;
+            $message = NULL;
+            
+            $countProgramm = EventItemProgramm::find()->where(['item_id' => $this->id])->count();
+                if($countProgramm != 0) {
+                $link = true;
+                $message .= Yii::t('yee/event', 'Event Programms') . ' ';            
+            }
+            $countSchedule = EventSchedule::find()->where(['item_id' => $this->id])->count();
+            if($countSchedule != 0) {
+                $link = true;
+                $message .= Yii::t('yee/event', 'Event Schedules') . ' ';             
+            }
+            
+            if($link) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Integrity violation. Delete the associated data in the models first:') . ' ' . $message);
+                return false;            
+            }
+            else {                
+                return true;
+            }       
+        }           
+         else {
+            return false;
+        }
+    }
 }

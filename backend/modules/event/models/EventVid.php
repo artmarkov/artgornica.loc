@@ -100,4 +100,39 @@ class EventVid extends \yeesoft\db\ActiveRecord
     {
         return \yii\helpers\ArrayHelper::map(static::find()->all(), 'id', 'name');
     }
+    /**
+     * 
+     * @return boolean
+     */
+     public function beforeDelete()
+     {             
+         
+        if (parent::beforeDelete()) {
+            
+            $link = false;
+            $message = NULL;
+            
+            $countProgramm = EventProgramm::find()->where(['vid_id' => $this->id])->count();
+                if($countProgramm != 0) {
+                $link = true;
+                $message .= Yii::t('yee/event', 'Event Programms') . ' ';            
+            }
+            $countItem = EventItem::find()->where(['vid_id' => $this->id])->count();
+            if($countItem != 0) {
+                $link = true;
+                $message .= Yii::t('yee/event', 'Events') . ' ';             
+            }
+            
+            if($link) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Integrity violation. Delete the associated data in the models first:') . ' ' . $message);
+                return false;            
+            }
+            else {                
+                return true;
+            }       
+        }           
+         else {
+            return false;
+        }
+    }
 }

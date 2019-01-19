@@ -149,4 +149,34 @@ class EventPlace extends \yeesoft\db\ActiveRecord
     {
         return new \backend\modules\event\models\query\EventPlaceQuery(get_called_class());
     }
+    /**
+     * 
+     * @return boolean
+     */
+     public function beforeDelete()
+     {             
+         
+        if (parent::beforeDelete()) {
+            
+            $link = false;
+            $message = NULL;
+            
+             $countSchedule = EventSchedule::find()->where(['place_id' => $this->id])->count();
+            if($countSchedule != 0) {
+                $link = true;
+                $message .= Yii::t('yee/event', 'Event Schedules') . ' ';             
+            }
+                        
+            if($link) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Integrity violation. Delete the associated data in the models first:') . ' ' . $message);
+                return false;            
+            }
+            else {                
+                return true;
+            }       
+        }           
+         else {
+            return false;
+        }
+    }
 }

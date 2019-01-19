@@ -101,4 +101,35 @@ class EventMethods extends \yeesoft\db\ActiveRecord
     {
         return \yii\helpers\ArrayHelper::map(static::find()->all(), 'id', 'name');
     }
+    
+    /**
+     * 
+     * @return boolean
+     */
+     public function beforeDelete()
+     {             
+         
+        if (parent::beforeDelete()) {
+            
+            $link = false;
+            $message = NULL;
+            
+            $countPractice = EventPractice::find()->where(['methods_id' => $this->id])->count();
+                if($countPractice != 0) {
+                $link = true;
+                $message .= Yii::t('yee/event', 'Event Practices') . ' ';            
+            }
+                        
+            if($link) {
+                Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Integrity violation. Delete the associated data in the models first:') . ' ' . $message);
+                return false;            
+            }
+            else {                
+                return true;
+            }       
+        }           
+         else {
+            return false;
+        }
+    }
 }
