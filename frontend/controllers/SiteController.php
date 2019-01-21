@@ -9,6 +9,7 @@ use yeesoft\page\models\Page;
 use backend\modules\post\models\Post;
 use Yii;
 use yii\data\Pagination;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller
@@ -168,6 +169,18 @@ class SiteController extends \yeesoft\controllers\BaseController
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    
+    public function actionPrivate()
+    {
+        if (Yii::$app->user->isGuest) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+        
+        $model = \backend\modules\event\models\EventSchedule::getScheduleUsersById(Yii::$app->user->id);
+        //echo '<pre>' . print_r($model, true) . '</pre>';
+        
+        return $this->render('private', compact('model'));
     }
 
 }

@@ -5,6 +5,7 @@ use yeesoft\auth\assets\AvatarAsset;
 use yeesoft\assets\YeeAsset;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
+use frontend\assets\ThemeAsset;
 use yeesoft\models\Menu;
 use yii\bootstrap\Nav;
 use yii\helpers\Url;
@@ -12,6 +13,8 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 Yii::$app->assetManager->forceCopy = true;
+
+if ((Url::to() != '/contact') && (Url::to() != '/auth/profile')) ThemeAsset::register($this);
 $assetBundle = AppAsset::register($this);
 AvatarAsset::register($this);
 YeeAsset::register($this);
@@ -26,7 +29,7 @@ YeeAsset::register($this);
         <?= Html::csrfMetaTags() ?>
         <?= $this->renderMetaTags() ?>
         <?php $this->head() ?>
-        <?php $this->registerJsFile('plugins/modernizr.min.js', ['position' => \yii\web\View::POS_HEAD]) ?>
+        <?php $this->registerJsFile('/plugins/modernizr.min.js', ['position' => \yii\web\View::POS_HEAD]) ?>
        
     </head>
     <body>
@@ -69,6 +72,11 @@ YeeAsset::register($this);
                         ];
 
                         $menuItems[] = [
+                            'label' => '<i class="fa fa-ticket" style="margin: 5px;"></i>' . Yii::t('yee/event', 'Private'),
+                            'url' => \yii\helpers\Url::to(['/site/private'])
+                        ];
+
+                        $menuItems[] = [
                             'label' => '<i class="fa fa-sign-out" style="margin: 5px;"></i>' . Yii::t('yee/auth', 'Logout'),
                             'url' => ['/auth/default/logout', 'language' => false],
                             'template' => '<a href="{url}" data-method = "post">{label}</a>'                           
@@ -106,17 +114,17 @@ YeeAsset::register($this);
                         <?php
                         $navItems = Menu::getMenuItems('main-menu');
                        
-                        $navItems[] = [
-                            'label' => '<form method="get" action="#" class="input-group pull-right">
-                                    <input type="text" class="form-control" name="k" id="k" value="" placeholder="Поиск...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary "><i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </form>',
-                            'options' => ['class' => 'search'],
-                        ];
-                         
+//                        $navItems[] = [
+//                            'label' => '<form method="get" action="#" class="input-group pull-right">
+//                                    <input type="text" class="form-control" name="k" id="k" value="" placeholder="Поиск...">
+//                                    <span class="input-group-btn">
+//                                        <button class="btn btn-primary "><i class="fa fa-search"></i>
+//                                        </button>
+//                                    </span>
+//                                </form>',
+//                            'options' => ['class' => 'search'],
+//                        ];
+//                         
                         echo Nav::widget([
                             'id' => 'topMain',
                             'encodeLabels' => false,

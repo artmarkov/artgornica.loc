@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-       // 'plugins/bootstrap/css/bootstrap.min.css',
+//        'plugins/bootstrap/css/bootstrap.min.css',
 
         'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800',
         'css/font-awesome.css',
@@ -46,8 +46,8 @@ class AppAsset extends AssetBundle
     ];
 
     public $js = [
-        //'plugins/jquery-2.0.3.min.js',
-       // 'plugins/bootstrap/js/bootstrap.min.js',
+//        'plugins/jquery-2.0.3.min.js',
+//        'plugins/bootstrap/js/bootstrap.min.js',
 
         'plugins/jquery.easing.1.3.js',
         'plugins/jquery.cookie.js',

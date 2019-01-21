@@ -227,7 +227,20 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
                 ->viaTable('{{%event_schedule_users}}', ['schedule_id' => 'id']);
                              
     }
-     /**
+    /**
+     * 
+     * @param type $user_id
+     * @return type array
+     */
+    public function getScheduleUsersById($user_id)
+    {
+         return self::find()
+                 ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
+                 ->where(['event_schedule_users.user_id' => $user_id])
+                  ->asArray()->all();
+    }
+
+    /**
      * getScheduleUsersList
      *
      * @return array

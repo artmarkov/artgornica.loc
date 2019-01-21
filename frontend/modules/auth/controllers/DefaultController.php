@@ -546,7 +546,7 @@ class DefaultController extends \yeesoft\controllers\BaseController
         $model = User::findIdentity(Yii::$app->user->id);
 
         if ($model->load(Yii::$app->request->post()) AND $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('yii', 'Your item has been updated.'));
+            Yii::$app->session->setFlash('success', Yii::t('yee', 'Your item has been updated.'));
         }
 
         return $this->renderIsAjax('profile', compact('model'));
