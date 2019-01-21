@@ -27,4 +27,9 @@ img.user-image {
  #profile .btn i.fa {
      padding-right: 0px !important;	
 }
+
+  .modal-dialog {   
+    margin: 80px auto !important;
+  }
+
        
