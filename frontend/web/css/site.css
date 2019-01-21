@@ -24,4 +24,7 @@ img.user-image {
      margin-right: 4px;
      margin-top: -4px;
  }
+ #profile .btn i.fa {
+     padding-right: 0px !important;	
+}
        
