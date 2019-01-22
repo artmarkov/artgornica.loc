@@ -41,8 +41,10 @@ use kartik\select2\Select2;
                                         'data-id' => $item['id'],
                                     ]);
                                     ?>
-
-                                </td>
+                                <?= Html::a('<span class="glyphicon glyphicon-eye-open text-color-default" aria-hidden="true"></span>', 
+                                        ['/site/view', 'id' => $item['id']]); ?>
+                                    
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

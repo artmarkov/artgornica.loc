@@ -191,6 +191,12 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     {
         return $this->programm->name;
     }
+    
+    /* Геттер для содержания программы */
+    public function getProgrammDescription()
+    {
+        return $this->programm->description;
+    }
     /* Геттер для вида программы (инд или групп) */
     public function getProgrammVid()
     {
@@ -217,7 +223,11 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     {
         return $this->item->name;
     }
-    
+    /* Геттер для содержания события */
+    public function getItemDescription()
+    {
+        return $this->programm->description;
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

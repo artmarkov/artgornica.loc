@@ -5,21 +5,16 @@
  * Date: 24.05.2016
  * Time: 12:56
  */
-
 namespace common\widgets;
-
-
 use yii\base\Widget;
 use yii\bootstrap\Html;
 use yii\helpers\Json;
-
 class YandexDisplayMapWidget extends Widget
 {
   public $json;
   public $center = '55.753994, 37.622093';
   public $zoom = 15;
   public $js_auto_init = true;
-
   public function init(){
     return parent::init();
   }
@@ -39,9 +34,9 @@ class YandexDisplayMapWidget extends Widget
     $this->view->registerJsFile('https://api-maps.yandex.ru/2.1/?lang=ru',['position'=>1,'type'=>'text/javascript'],'yandex_map');
     $init = ($this->js_auto_init)?"ymaps.ready(init$this->id)":"";
     $this->view->registerJs($init."
-var myMap".$this->id.";
-function init$this->id () {
-    myMap".$this->id." = new ymaps.Map('".$this->id."', {
+        var myMap".$this->id.";
+        function init$this->id () {
+        myMap".$this->id." = new ymaps.Map('".$this->id."', {
             center: [".$this->center."],
             zoom: ".$this->zoom."
         }, {

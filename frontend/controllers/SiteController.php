@@ -204,5 +204,28 @@ class SiteController extends \yeesoft\controllers\BaseController
          $this->layout = false;
         return $this->renderIsAjax('event-user-modal');
     }
+    
+    /**
+     * 
+     */
+    public function actionView() {
+         
+        if (Yii::$app->user->isGuest) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+       
+       $id = Yii::$app->request->get('id');
+       
+         $model = EventSchedule::find()
+                ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
+                ->where(['event_schedule_users.user_id' => Yii::$app->user->id])
+                ->andWhere(['event_schedule.id' => $id])
+                ->one();
+         
+         if(empty($model)) throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+             
+         
+        return $this->render('event-user-view', compact('model'));
+    }
 
 }

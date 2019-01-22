@@ -14,7 +14,7 @@ use yii\widgets\Breadcrumbs;
 
 Yii::$app->assetManager->forceCopy = true;
 
-if ((Url::to() != '/contact') && (Url::to() != '/auth/profile') && (Url::to() != '/private')) ThemeAsset::register($this);
+if ((Url::to() != '/contact') && (Url::to() != '/auth/profile') && (Url::to() != '/private') && (Url::to() != '/view?id=6')) ThemeAsset::register($this);
 $assetBundle = AppAsset::register($this);
 AvatarAsset::register($this);
 YeeAsset::register($this);
