@@ -42,12 +42,12 @@ class SiteController extends \yeesoft\controllers\BaseController
      */
     public function actionIndex()
     {
-        $query = Post::find()->where(
+        $queryPost = Post::find()->where(
                 [
                     'status' => Post::STATUS_PUBLISHED, 
                     'main_flag' => Post::MAIN_ON
                 ]);
-        $countQuery = clone $query;
+        $countQuery = clone $queryPost;
         
         if($countQuery->count() < Post::COUNT_POST_INDEX) {
         $posts = Post::find()->where(['status' => Post::STATUS_PUBLISHED])
@@ -56,12 +56,19 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->all();
         }
         else {
-            $posts = $query->orderBy('published_at DESC')
+            $posts = $queryPost->orderBy('published_at DESC')
                 ->limit(Post::COUNT_POST_INDEX)
                 ->all();
         }
+        
+        $events = EventSchedule::find()
+                //->where([''])
+                ->orderBy('start_timestamp DESC')
+                ->limit(EventSchedule::COUNT_EVENT_INDEX)
+                ->all();
         return $this->render('index', [
                 'posts' => $posts,
+                'events' => $events,
             ]);
     }
 
@@ -171,61 +178,5 @@ class SiteController extends \yeesoft\controllers\BaseController
     {
         return $this->render('about');
     }
-    /**
-     * 
-     * @return type
-     * @throws NotFoundHttpException
-     */
-    public function actionPrivate() {
-        
-        if (Yii::$app->user->isGuest) {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-        }
-
-        $query = EventSchedule::find()
-                ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
-                ->where(['event_schedule_users.user_id' => Yii::$app->user->id]);
-
-        $pagination = new Pagination([
-            'totalCount' => $query->count(), 
-            'defaultPageSize' => Yii::$app->settings->get('reading.page_size', 10)
-            ]);
-        $model = $query->orderBy('start_timestamp DESC')->offset($pagination->offset)
-                ->limit($pagination->limit)
-                ->all();
-                //echo '<pre>' . print_r($model, true) . '</pre>';
-        return $this->render('private', compact('model', 'pagination'));
-    }
-    /**
-     * 
-     */
-    public function actionViewEvent() {
-        
-         $this->layout = false;
-        return $this->renderIsAjax('event-user-modal');
-    }
     
-    /**
-     * 
-     */
-    public function actionView() {
-         
-        if (Yii::$app->user->isGuest) {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-        }
-       
-       $id = Yii::$app->request->get('id');
-       
-         $model = EventSchedule::find()
-                ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
-                ->where(['event_schedule_users.user_id' => Yii::$app->user->id])
-                ->andWhere(['event_schedule.id' => $id])
-                ->one();
-         
-         if(empty($model)) throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-             
-         
-        return $this->render('event-user-view', compact('model'));
-    }
-
 }

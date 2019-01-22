@@ -6,7 +6,7 @@ use kartik\select2\Select2;
 ?>
 <?php $form = ActiveForm::begin(); ?>
 
-<div class="schedule-user-widget">
+<div class="schedule-widget">
     <div class="row">
 
         <?php //echo '<pre>' . print_r($model, true) . '</pre>';  ?>
@@ -42,7 +42,7 @@ use kartik\select2\Select2;
                                     ]);
                                     ?>
                                 <?= Html::a('<span class="glyphicon glyphicon-eye-open text-color-default" aria-hidden="true"></span>', 
-                                        ['/site/view', 'id' => $item['id']]); ?>
+                                        ['/event/view', 'id' => $item['id']]); ?>
                                     
                             </td>
                         </tr>
@@ -65,9 +65,9 @@ use kartik\select2\Select2;
 <?php
 $js = <<<JS
 
-function showEventUser(author) {
-    $('#event-user-modal .modal-body').html(author);
-    $('#event-user-modal').modal();
+function showEvent(author) {
+    $('#event-modal .modal-body').html(author);
+    $('#event-modal').modal();
 }
 
 $('.view-event').on('click', function (e) {
@@ -77,13 +77,13 @@ $('.view-event').on('click', function (e) {
     var id = $(this).data('id');
 
     $.ajax({
-        url: '/site/view-event',
+        url: '/event/view-event',
         data: {id: id},
         type: 'GET',
         success: function (res) {
             if (!res)  alert('Error!');
            // console.log(res);
-           else showEventUser(res);
+           else showEvent(res);
         },
         error: function () {
             alert('Error!');

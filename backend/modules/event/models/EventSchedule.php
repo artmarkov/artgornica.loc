@@ -29,6 +29,8 @@ use Yii;
  */
 class EventSchedule extends \yeesoft\db\ActiveRecord
 {
+    const COUNT_EVENT_INDEX = 4;
+    
     public $start_time;
     public $end_time;
     

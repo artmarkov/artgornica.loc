@@ -12,10 +12,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
-Yii::$app->assetManager->forceCopy = true;
-
-if ((Url::to() != '/contact') && (Url::to() != '/auth/profile') && (Url::to() != '/private') && (Url::to() != '/view?id=6')) ThemeAsset::register($this);
-$assetBundle = AppAsset::register($this);
+Yii::$app->assetManager->forceCopy = true;$assetBundle = AppAsset::register($this);
 AvatarAsset::register($this);
 YeeAsset::register($this);
 ?>
@@ -73,7 +70,7 @@ YeeAsset::register($this);
 
                         $menuItems[] = [
                             'label' => '<i class="fa fa-ticket" style="margin: 5px;"></i>' . Yii::t('yee/event', 'Private'),
-                            'url' => \yii\helpers\Url::to(['/site/private'])
+                            'url' => \yii\helpers\Url::to(['/event/index'])
                         ];
 
                         $menuItems[] = [

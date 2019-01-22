@@ -3,6 +3,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+use frontend\assets\ThemeAsset;
+
+ThemeAsset::register($this);
 
 $this->title = Yii::t('yee', 'About');
 $this->params['breadcrumbs'][] = $this->title;

@@ -3,6 +3,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use frontend\assets\ThemeAsset;
+
+ThemeAsset::register($this);
+
 ?>
 <div class="site-index">
     <!-- REVOLUTION SLIDER -->
@@ -239,10 +243,11 @@ use yii\widgets\LinkPager;
         <div class="container">
             <h2><strong>Ближайшие</strong> Занятия</h2>
             <div class="row">
-
+                <?php foreach ($events as $event): ?>
+                     
                 <div class="col-md-3"><!-- item 1 -->
 
-                    <div class="item-box appear-animation pull-left inner" data-animation="fadeInLeft">
+                    <div class="item-box appear-animation pull-left inner" data-animation="fadeInUp">
                         <figure>
                             <a class="item-hover" href="">
                                 <span class="overlay color2"></span>
@@ -254,68 +259,13 @@ use yii\widgets\LinkPager;
                             <img class="img-responsive" src="../frontend/web/images/demo/portfolio/scouter-600x403.jpg" width="260" height="260" alt="">
                         </figure>
                         <div class="item-box-desc">
-                            <h4>Как стать счастливее?</h4>
-                            <small class="styleColor">29 June, 2014</small>
+                            <h4><?= $event->itemName ?></h4>
+                            <small class="styleColor"><?= $event->start_time ?></small>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3"><!-- item 2 -->
-                    <div class="item-box appear-animation pull-left inner" data-animation="fadeInUp">
-                        <figure>
-                            <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
-                                <span class="overlay color2"></span>
-                                <span class="inner">
-                                    <span class="block fa fa-plus fsize20"></span>
-                                    <strong>ДЕТАЛИ</strong> ЗАНЯТИЯ
-                                </span>
-                            </a>
-                            <img class="img-responsive" src="../frontend/web/images/demo/portfolio/black-kitty-600x403.jpg" width="260" height="260" alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4>Как Вы относитесь к деньгам?</h4>
-                            <small class="styleColor">29 June, 2014</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3"><!-- item 3 -->
-                    <div class="item-box appear-animation pull-left inner" data-animation="fadeInDown">
-                        <figure>
-                            <a class="item-hover lightbox" href="../frontend/web/images/demo/portfolio/merchant2-600x403.jpg" data-plugin-options='{"type":"image"}'>
-                                <span class="overlay color2"></span>
-                                <span class="inner">
-                                    <span class="block fa fa-plus fsize20"></span>
-                                    <strong>ДЕТАЛИ</strong> ЗАНЯТИЯ
-                                </span>
-                            </a>
-                            <img class="img-responsive" src="../frontend/web/images/demo/portfolio/merchant2-600x403.jpg" width="260" height="260" alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4>Творим благополучие!</h4>
-                            <small class="styleColor">29 June, 2014</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3"><!-- item 4 -->
-                    <div class="item-box appear-animation pull-left inner" data-animation="fadeInRight">
-                        <figure>
-                            <a class="item-hover" href="">
-                                <span class="overlay color2"></span>
-                                <span class="inner">
-                                    <span class="block fa fa-plus fsize20"></span>
-                                    <strong>ДЕТАЛИ</strong> ЗАНЯТИЯ
-                                </span>
-                            </a>
-                            <img class="img-responsive" src="../frontend/web/images/demo/portfolio/flippin-the-bird1-600x403.jpg" width="260" height="260" alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4>Очищение пространства.</h4>
-                            <small class="styleColor">29 June, 2014</small>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach ?>
+                
 
             </div>
           
