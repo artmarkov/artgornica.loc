@@ -13,104 +13,12 @@ ThemeAsset::register($this);
     <div class="fullwidthbanner-container roundedcorners">
         <div class="fullwidthbanner">
             <ul>
-                <!-- SLIDER -->
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="300">
-                    <img src="../frontend/web/images/dummy.png" alt="church3"
-                         data-lazyload="../frontend/web/images/forest-3119826_1920.jpg" data-fullwidthcentering="on">
+                <?php foreach ($sliders as $slider) : ?>
 
-                    <div class="tp-caption medium_text lft"
-                         data-x="90"
-                         data-y="180"
-                         data-speed="300"
-                         data-start="500"
-                         data-easing="easeOutExpo">Жизнь - это счастье!
-                    </div>
+                <?= $this->render('/landing/slider-item.php', ['slider' => $slider]) ?>
 
-                    <div class="tp-caption large_text lfb"
-                         data-x="90"
-                         data-y="222"
-                         data-speed="300"
-                         data-start="800"
-                         data-easing="easeOutExpo">Любовь к жизни, осознанная жизнь <br/> дают ощущение счастья!
-                    </div>
-
-                    <div class="tp-caption lfb"
-                         data-x="90"
-                         data-y="330"
-                         data-speed="300"
-                         data-start="1100"
-                         data-easing="easeOutExpo">
-                        
-                        <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
-              
-                    </div>
-                </li>
-
-                <!-- SLIDER -->
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="300">
-                    <img src="../frontend/web/images/dummy.png" alt="church1"
-                         data-lazyload="../frontend/web/images/wallpaper-1492818_1920.jpg" data-fullwidthcentering="on">
-
-                    <div class="tp-caption medium_text lft"
-                         data-x="90"
-                         data-y="180"
-                         data-speed="300"
-                         data-start="500"
-                         data-easing="easeOutExpo">Позитивный мир начинается с себя!
-                    </div>
-
-                    <div class="tp-caption large_text lfb"
-                         data-x="90"
-                         data-y="222"
-                         data-speed="300"
-                         data-start="800"
-                         data-easing="easeOutExpo">В нашем подсознании скрыта сила,<br/>способная перевернуть мир.
-                    </div>
-
-                    <div class="tp-caption lfb"
-                         data-x="90"
-                         data-y="330"
-                         data-speed="300"
-                         data-start="1100"
-                         data-easing="easeOutExpo">
-                        <?= Html::a(Yii::t('yee', 'Make an appointment') . '</span>', ["/site/contact"], ['class' => 'btn btn-default btn-lg']) ?>
-                  
-                    </div>
-                </li>
-
-                <!-- SLIDER -->
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="300">
-                    <img src="../frontend/web/images/dummy.png" alt="church2"
-                         data-lazyload="../frontend/web/images/sunset-silhouette-2081796_1920.jpg" data-fullwidthcentering="on">
-
-                    <div class="tp-caption medium_text lft"
-                         data-x="90"
-                         data-y="180"
-                         data-speed="300"
-                         data-start="500"
-                         data-easing="easeOutExpo">Станьте творцом своей жизни!
-                    </div>
-
-                    <div class="tp-caption large_text lfb"
-                         data-x="90"
-                         data-y="222"
-                         data-speed="300"
-                         data-start="800"
-                         data-easing="easeOutExpo">Любите и проявляйте себя. <br/> Сделайте это прямо сейчас!
-                    </div>
-
-                    <div class="tp-caption lfb"
-                         data-x="90"
-                         data-y="330"
-                         data-speed="300"
-                         data-start="1100"
-                         data-easing="easeOutExpo">
-                        
-                        <?= Html::a(Yii::t('yee', 'Learn more...') . '</span>', ["/site/blog"], ['class' => 'btn btn-info btn-lg']) ?>
-                  
-                    </div>
-                </li>
-
+                <?php endforeach; ?>
+                
             </ul>
             <div class="tp-bannertimer"></div>
         </div>

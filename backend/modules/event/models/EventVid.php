@@ -80,6 +80,7 @@ class EventVid extends \yeesoft\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee', 'ID'),
+            'status_vid' => Yii::t('yee', 'Status'),
             'name' => Yii::t('yee', 'Name'),
             'description' => Yii::t('yee', 'Description'),
             'created_at' => Yii::t('yee', 'Created At'),

@@ -42,7 +42,7 @@ use kartik\select2\Select2;
                                     ]);
                                     ?>
                                 <?= Html::a('<span class="glyphicon glyphicon-eye-open text-color-default" aria-hidden="true"></span>', 
-                                        ['/event/view', 'id' => $item['id']]); ?>
+                                        ['/event/private', 'id' => $item['id']]); ?>
                                     
                             </td>
                         </tr>

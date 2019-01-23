@@ -6,6 +6,7 @@ use Yii;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 use backend\modules\event\models\EventSchedule;
+use backend\modules\event\models\EventVid;
 
 /**
  * Description of EventUserController
@@ -14,7 +15,7 @@ use backend\modules\event\models\EventSchedule;
  */
 class EventController extends \yeesoft\controllers\BaseController 
 {
-    
+    public $freeAccess = true;
     /**
      * 
      * @return type
@@ -54,7 +55,7 @@ class EventController extends \yeesoft\controllers\BaseController
     /**
      * 
      */
-    public function actionView() {
+    public function actionPrivate() {
          
         if (Yii::$app->user->isGuest) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
@@ -71,7 +72,25 @@ class EventController extends \yeesoft\controllers\BaseController
          if(empty($model)) throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
              
          
-        return $this->render('event-view', compact('model'));
+        return $this->render('view-private', compact('model'));
+    }
+ /**
+     * 
+     */
+    public function actionView() {
+                
+       $id = Yii::$app->request->get('id');
+       
+       $model = EventSchedule::find()
+                ->innerJoin('event_programm', 'event_programm.id = event_schedule.programm_id')
+                ->innerJoin('event_vid', 'event_vid.id = event_programm.vid_id')
+                ->where(['event_vid.status_vid' => EventVid::STATUS_VID_GROUP])
+                ->andWhere(['event_schedule.id' => $id])
+                ->one();         
+         
+         if(empty($model)) throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));             
+         
+        return $this->render('view-private', compact('model'));
     }
 
 }

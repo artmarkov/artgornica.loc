@@ -12,6 +12,7 @@ use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 use backend\modules\event\models\EventSchedule;
 use backend\modules\event\models\EventVid;
+use common\models\RevolutionSlider;
 
 /**
  * Site controller
@@ -70,9 +71,15 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->limit(EventSchedule::COUNT_EVENT_INDEX)
                 ->all();
         
+         $sliders = RevolutionSlider::find()
+                ->where(['status' => RevolutionSlider::STATUS_ACTIVE])
+                ->orderBy('sort')
+                ->all();
+         
         return $this->render('index', [
                 'posts' => $posts,
                 'events' => $events,
+                'sliders' => $sliders,
             ]);
     }
 
