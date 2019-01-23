@@ -244,31 +244,11 @@ ThemeAsset::register($this);
             <h2><strong>Ближайшие</strong> Занятия</h2>
             <div class="row">
                 <?php foreach ($events as $event): ?>
-                     
-                <div class="col-md-3"><!-- item 1 -->
-
-                    <div class="item-box appear-animation pull-left inner" data-animation="fadeInUp">
-                        <figure>
-                            <a class="item-hover" href="">
-                                <span class="overlay color2"></span>
-                                <span class="inner">
-                                    <span class="block fa fa-plus fsize20"></span>
-                                    <strong>ДЕТАЛИ</strong> ЗАНЯТИЯ
-                                </span>
-                            </a>
-                            <img class="img-responsive" src="../frontend/web/images/demo/portfolio/scouter-600x403.jpg" width="260" height="260" alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4><?= $event->itemName ?></h4>
-                            <small class="styleColor"><?= $event->start_time ?></small>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach ?>
                 
-
-            </div>
-          
+                      <?= $this->render('/event/event-index.php', ['event' => $event]) ?>
+                
+                <?php endforeach ?>
+            </div>          
         </div>
     </section>
     <!-- /PORTFOLIO -->    
