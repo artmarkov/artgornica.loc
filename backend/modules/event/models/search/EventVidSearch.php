@@ -18,7 +18,7 @@ class EventVidSearch extends EventVid
     public function rules()
     {
         return [
-            [['id', 'created_at'], 'integer'],
+            [['id', 'created_at', 'status_vid'], 'integer'],
             [['name', 'description'], 'safe'],
         ];
     }
@@ -65,6 +65,7 @@ class EventVidSearch extends EventVid
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'status_vid' => $this->status_vid,
             'created_at' => $this->created_at,
         ]);
 

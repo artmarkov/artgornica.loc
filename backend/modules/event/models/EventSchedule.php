@@ -228,7 +228,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     /* Геттер для содержания события */
     public function getItemDescription()
     {
-        return $this->programm->description;
+        return $this->item->description;
     }
     /**
      * @return \yii\db\ActiveQuery

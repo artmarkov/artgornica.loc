@@ -14,8 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="event-view">
     <section id="about" class="container">
     
-<?php  //echo '<pre>' . print_r($model->schedulePractices, true) . '</pre>'; ?>
-    
 <?php //echo '<pre>' . print_r($model->place, true) . '</pre>'; ?>
     
     <article class="row">
@@ -35,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
              <div class="col-md-6">
                  <h4><i class="fa fa-heart-o"></i> <?= Yii::t('yee/event', 'Event Name'); ?>:</h4>
                  <p><?= $model->itemName ?></p>
-                 <h4><i class="fa fa-heart-o"></i> <?= Yii::t('yee/event', 'Description'); ?>:</h4>
+                 <h4><i class="fa fa-heart-o"></i> <?= Yii::t('yee/event', 'Schedule Description'); ?>:</h4>
                  <p><?= $model->description ?></p>
                  <h4><i class="fa fa-heart-o"></i> <?= Yii::t('yee/event', 'Event Description'); ?>:</h4>
                  <p><?= $model->itemDescription ?></p>

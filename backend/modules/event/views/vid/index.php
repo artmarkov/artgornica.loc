@@ -69,6 +69,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
+                    [
+                        'class' => 'yeesoft\grid\columns\StatusColumn',
+                        'attribute' => 'status_vid',
+                        'optionsArray' => [
+                            [EventVid::STATUS_VID_INDIV, Yii::t('yee/event', 'Individual'), 'info'],
+                            [EventVid::STATUS_VID_GROUP, Yii::t('yee/event', 'Group'), 'info'],
+                        ],
+                        'options' => ['style' => 'width:150px']
+                    ],
 
 //            'id',
 //            'name',

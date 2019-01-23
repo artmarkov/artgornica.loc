@@ -14,11 +14,14 @@ use yeesoft\db\ActiveRecord;
  * @property string $name
  * @property string $description
  * @property int $created_at
+ * @property int $status_vid
  *
  * @property EventProgramm[] $eventProgramms
  */
 class EventVid extends \yeesoft\db\ActiveRecord
 {
+    const STATUS_VID_INDIV = 0;
+    const STATUS_VID_GROUP = 1;
     /**
      * {@inheritdoc}
      */
@@ -51,13 +54,25 @@ class EventVid extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            ['status_vid', 'integer'],
+            [['name', 'status_vid'], 'required'],
             [['description'], 'string'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 127],
         ];
     }
 
+    /**
+     * getStatusList
+     * @return array
+     */
+    public static function getStatusVidList()
+    {
+        return array(
+            self::STATUS_VID_INDIV => Yii::t('yee/event', 'Individual'),
+            self::STATUS_VID_GROUP => Yii::t('yee/event', 'Group'),           
+        );
+    }
     /**
      * {@inheritdoc}
      */

@@ -11,6 +11,7 @@ use Yii;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 use backend\modules\event\models\EventSchedule;
+use backend\modules\event\models\EventVid;
 
 /**
  * Site controller
@@ -62,10 +63,13 @@ class SiteController extends \yeesoft\controllers\BaseController
         }
         
         $events = EventSchedule::find()
-                //->where([''])
+                ->innerJoin('event_programm', 'event_programm.id = event_schedule.programm_id')
+                ->innerJoin('event_vid', 'event_vid.id = event_programm.vid_id')
+                ->where(['event_vid.status_vid' => EventVid::STATUS_VID_GROUP])
                 ->orderBy('start_timestamp DESC')
                 ->limit(EventSchedule::COUNT_EVENT_INDEX)
                 ->all();
+        
         return $this->render('index', [
                 'posts' => $posts,
                 'events' => $events,

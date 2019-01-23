@@ -47,7 +47,7 @@ use yeesoft\helpers\Html;
                              <?= $model->attributeLabels()['created_at'] ?> :
                                 </label>
                                 <span><?= $model->createdDatetime ?></span>
-                            </div>
+                            </div>                        
                         
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
@@ -56,6 +56,8 @@ use yeesoft\helpers\Html;
                         
                         <?php endif; ?> 
 
+                        <?= $form->field($model->loadDefaultValues(), 'status_vid')->dropDownList(EventVid::getStatusVidList()) ?>
+                        
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
