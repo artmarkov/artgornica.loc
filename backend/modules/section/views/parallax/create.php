@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\section\models\Parallax */
 
-$this->title = 'Create Parallax';
-$this->params['breadcrumbs'][] = ['label' => 'Parallaxes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('yii', 'Create');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/section', 'Parallaxes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('yii', 'Update');
 ?>
 
 <div class="parallax-create">

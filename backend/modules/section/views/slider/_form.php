@@ -30,15 +30,6 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'slide_image')->textInput(['maxlength' => true]) ?>
                     
-                    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'btn_icon')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'btn_name')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'btn_class')->textInput(['maxlength' => true]) ?>
-
-
                 </div>
 
             </div>
@@ -49,10 +40,23 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
-                        </div>
+                        <?php if (!$model->isNewRecord): ?>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+                             <?= $model->attributeLabels()['created_at'] ?> :
+                                </label>
+                                <span><?= $model->createdDatetime ?></span>                                
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label class="control-label" style="float: left; padding-right: 5px;">
+                             <?= $model->attributeLabels()['updated_at'] ?> :
+                                </label>
+                                <span><?= $model->updatedDatetime ?></span>
+                            </div>
+                        
+                        <?php endif; ?>
 
                     <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Slider::getStatusList()) ?>
 
@@ -63,6 +67,10 @@ use yeesoft\helpers\Html;
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Cancel'), ['/section/slider/index'], ['class' => 'btn btn-default']) ?>
                             <?php  else: ?>
+                                <div class="form-group clearfix">
+                                    <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['id'] ?>: </label>
+                                    <span><?= $model->id ?></span>
+                                </div>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
                                     ['/section/slider/delete', 'id' => $model->id], [
@@ -77,7 +85,21 @@ use yeesoft\helpers\Html;
                     </div>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="record-info">
+                        <div class="form-group clearfix">
+                            <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
+                            <?= $form->field($model, 'btn_icon')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'btn_name')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'btn_class')->textInput(['maxlength' => true]) ?>  
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

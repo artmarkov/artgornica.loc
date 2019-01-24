@@ -61,7 +61,7 @@ ThemeAsset::register($this);
                     <li>Создайте намерение, цель, свою мечту!</li>
                     <li>Зажгите в себе энергию и направьте ее на что-то важное, следуйте за своей мечтой!</li>
                 </ul>
-                <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
+                <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee/section', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
                   
             </div>
 
@@ -69,7 +69,7 @@ ThemeAsset::register($this);
 
                 <!-- carousel -->
                 <div class="owl-carousel controlls-over"
-                     data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                     data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
                     <div>
                         <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
                     </div>
@@ -120,15 +120,21 @@ ThemeAsset::register($this);
                     <!-- left content -->
                     <div class="col-md-7 animation_fade_in">
                         <?= $parallax->content ?>
+                        
                         <!-- Countdown -->
-                        <div id="countdown" class="nopadding">
-                                <h3 class="nopadding nomargin">До начала занятия осталось:</h3>
-                                <div class="countdown-widget nopadding" id="countdown-widget" data-time="<?= $parallax->countdown_date ?>"><!-- data-time example: 31 December 2015 12:00:00 GMT --></div>
-                        </div>
+                        <?php if($parallax->countdown != 0 && $parallax->start_timestamp > time()): ?>
+                            <div id="countdown" class="nopadding">
+                                    <h3 class="nopadding nomargin"><?= $parallax->countdown_prompt ?></h3>
+                                    <div class="countdown-widget nopadding" 
+                                         id="countdown-widget" 
+                                         data-time="<?= \Yii::$app->formatter->asDatetime($parallax->start_timestamp , "php:Y-m-d H:i:s");?>">
+                                    </div>
+                            </div>
+                        <?php endif;?>
                         <!-- /Countdown -->
                        
                         <div class="padding50">
-                            <?= Html::a('<i class="' . $parallax->btn_icon . '"></i>' . Yii::t('yee', $parallax->btn_name) . '</span>', [$parallax->url], ['class' => $parallax->btn_class]) ?>
+                            <?= Html::a('<i class="' . $parallax->btn_icon . '"></i>' . Yii::t('yee/section', '' . $parallax->btn_name . '') . '</span>', [$parallax->url], ['class' => $parallax->btn_class]) ?>
                         </div> 
                     </div>
 

@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel backend\modules\section\models\search\ParallaxSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Parallaxes';
+$this->title = $this->title = Yii::t('yee/section', 'Parallaxes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="parallax-index">
@@ -56,13 +56,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
                     'gridId' => 'parallax-grid',
-                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+                   // 'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'options' => ['style' => 'width:250px'],
+                        'options' => ['style' => 'width:350px'],
                         'attribute' => 'name',
                         'controller' => '/section/parallax',
                         'title' => function(Parallax $model) {
@@ -73,12 +73,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 
             'bg_image',
             'content_image',
-            'content:ntext',
-            // 'countdown_date',
-            // 'url:url',
-            // 'btn_icon',
-            // 'btn_name',
-            // 'btn_class',
             [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',

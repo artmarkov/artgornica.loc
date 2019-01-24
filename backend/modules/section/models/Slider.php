@@ -3,6 +3,7 @@
 namespace backend\modules\section\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%section_slider}}".
@@ -32,6 +33,16 @@ class Slider extends \yeesoft\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+            ],            
+        ];
+    }
+    /**
      * {@inheritdoc}
      */
     public function rules()
@@ -42,6 +53,7 @@ class Slider extends \yeesoft\db\ActiveRecord
             ['sort', 'default', 'value' => 0],
             [['slide_image'], 'string', 'max' => 127],
             [['banner_top', 'banner_middle', 'url', 'btn_name', 'btn_class', 'btn_icon'], 'string', 'max' => 127],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -51,17 +63,50 @@ class Slider extends \yeesoft\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/block', 'ID'),
-            'slide_image' => Yii::t('yee/block', 'Slide Image'),
-            'banner_top' => Yii::t('yee/block', 'Banner Top'),
-            'banner_middle' => Yii::t('yee/block', 'Banner Middle'),
-            'url' => Yii::t('yee/block', 'Banner Url'),
-            'btn_icon' => Yii::t('yee/block', 'Btn Icon'),
-            'btn_name' => Yii::t('yee/block', 'Btn Name'),
-            'btn_class' => Yii::t('yee/block', 'Btn Class'),
+            'id' => Yii::t('yee/section', 'ID'),
+            'slide_image' => Yii::t('yee/section', 'Slide Image'),
+            'banner_top' => Yii::t('yee/section', 'Banner Top'),
+            'banner_middle' => Yii::t('yee/section', 'Banner Middle'),
+            'url' => Yii::t('yee/section', 'Banner Url'),
+            'btn_icon' => Yii::t('yee/section', 'Btn Icon'),
+            'btn_name' => Yii::t('yee/section', 'Btn Name'),
+            'btn_class' => Yii::t('yee/section', 'Btn Class'),
             'status' => Yii::t('yee', 'Status'),
             'sort' => Yii::t('yee', 'Sort'),
+            'created_at' => Yii::t('yee', 'Created At'),
+            'updated_at' => Yii::t('yee', 'Updated At'),
         ];
+    }
+    
+    
+     public function getCreatedDate()
+    {
+        return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->created_at);
+    }
+
+    public function getUpdatedDate()
+    {
+        return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->updated_at);
+    }
+
+    public function getCreatedTime()
+    {
+        return Yii::$app->formatter->asTime(($this->isNewRecord) ? time() : $this->created_at);
+    }
+
+    public function getUpdatedTime()
+    {
+        return Yii::$app->formatter->asTime(($this->isNewRecord) ? time() : $this->updated_at);
+    }
+
+    public function getCreatedDatetime()
+    {
+        return "{$this->createdDate} {$this->createdTime}";
+    }
+
+    public function getUpdatedDatetime()
+    {
+        return "{$this->updatedDate} {$this->updatedTime}";
     }
     
      /**

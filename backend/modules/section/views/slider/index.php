@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel backend\models\search\RevolutionSliderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $this->title = Yii::t('yee/block', 'Revolution Sliders');
+$this->title = $this->title = Yii::t('yee/section', 'Revolution Sliders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="slider-index">

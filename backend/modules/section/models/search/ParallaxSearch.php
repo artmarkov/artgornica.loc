@@ -19,7 +19,7 @@ class ParallaxSearch extends Parallax
     {
         return [
             [['id'], 'integer'],
-            [['name', 'bg_color', 'bg_image', 'content_image', 'content', 'countdown_date', 'url', 'btn_icon', 'btn_name', 'btn_class', 'status'], 'safe'],
+            [['name', 'bg_color', 'bg_image', 'content_image', 'content', 'url', 'btn_icon', 'btn_name', 'btn_class', 'status'], 'safe'],
         ];
     }
 
@@ -65,7 +65,6 @@ class ParallaxSearch extends Parallax
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'countdown_date' => $this->countdown_date,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
