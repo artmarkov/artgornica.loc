@@ -32,7 +32,7 @@ use yii\helpers\Html;
          data-start="1100"
          data-easing="easeOutExpo">
 
-        <?= Html::a('<i class="' . $slider->btn_icon . '"></i>' . Yii::t('yee/landing', '' . $slider->btn_name . '') . '</span>', [$slider->url], ['class' => '' . $slider->btn_class . '']) ?>
+        <?= Html::a('<i class="' . $slider->btn_icon . '"></i>' . Yii::t('yee/block', '' . $slider->btn_name . '') . '</span>', [$slider->url], ['class' => '' . $slider->btn_class . '']) ?>
 
     </div>
 </li>

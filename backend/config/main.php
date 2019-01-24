@@ -43,6 +43,9 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'section' => [
+            'class' => 'backend\modules\section\SectionModule',
+        ],
         'event' => [
             'class' => 'backend\modules\event\EventModule',
         ],

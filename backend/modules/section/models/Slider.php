@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models;
+namespace backend\modules\section\models;
 
 use Yii;
 
 /**
- * This is the model class for table "{{%revolution_slider}}".
+ * This is the model class for table "{{%section_slider}}".
  *
  * @property int $id
  * @property string $slide_image
@@ -18,7 +18,7 @@ use Yii;
  * @property int $status
  * @property int $sort
  */
-class RevolutionSlider extends \yeesoft\db\ActiveRecord
+class Slider extends \yeesoft\db\ActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
@@ -28,7 +28,7 @@ class RevolutionSlider extends \yeesoft\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%revolution_slider}}';
+        return '{{%section_slider}}';
     }
 
     /**
@@ -51,14 +51,14 @@ class RevolutionSlider extends \yeesoft\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/landing', 'ID'),
-            'slide_image' => Yii::t('yee/landing', 'Slide Image'),
-            'banner_top' => Yii::t('yee/landing', 'Banner Top'),
-            'banner_middle' => Yii::t('yee/landing', 'Banner Middle'),
-            'url' => Yii::t('yee/landing', 'Banner Url'),
-            'btn_icon' => Yii::t('yee/landing', 'Btn Icon'),
-            'btn_name' => Yii::t('yee/landing', 'Btn Name'),
-            'btn_class' => Yii::t('yee/landing', 'Btn Class'),
+            'id' => Yii::t('yee/block', 'ID'),
+            'slide_image' => Yii::t('yee/block', 'Slide Image'),
+            'banner_top' => Yii::t('yee/block', 'Banner Top'),
+            'banner_middle' => Yii::t('yee/block', 'Banner Middle'),
+            'url' => Yii::t('yee/block', 'Banner Url'),
+            'btn_icon' => Yii::t('yee/block', 'Btn Icon'),
+            'btn_name' => Yii::t('yee/block', 'Btn Name'),
+            'btn_class' => Yii::t('yee/block', 'Btn Class'),
             'status' => Yii::t('yee', 'Status'),
             'sort' => Yii::t('yee', 'Sort'),
         ];

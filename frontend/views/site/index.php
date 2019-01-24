@@ -15,7 +15,7 @@ ThemeAsset::register($this);
             <ul>
                 <?php foreach ($sliders as $slider) : ?>
 
-                <?= $this->render('/landing/slider-item.php', ['slider' => $slider]) ?>
+                <?= $this->render('/section/slider-item.php', ['slider' => $slider]) ?>
 
                 <?php endforeach; ?>
                 
@@ -109,9 +109,9 @@ ThemeAsset::register($this);
     <!-- /POST -->
 
     <!-- PARALLAX -->
-    <div style="background: #000;" >
+    <div style="background: <?= $parallax->bg_color ?>;" >
         <section id="paralax" class="parallax delayed" data-stellar-background-ratio="0.8"
-                 style="background-image: url('../frontend/web/images/tree-736877_1280-1.jpg');">
+                 style="background-image: url('<?= $parallax->bg_image ?>');">
             <!--<span class="overlay"></span>-->
 
             <div class="container">
@@ -119,25 +119,22 @@ ThemeAsset::register($this);
                 <div class="row">
                     <!-- left content -->
                     <div class="col-md-7 animation_fade_in">
-                        <h2>Позитивный мир  <strong>Начинается с себя!</strong></h2>
-
-                        <p class="lead">
-                            Сделайте шаг к переменам в своей жизни прямо сейчас!
-                        </p>
-
-                        <p>
-                            Почувствовать вкус к жизни и найти дорогу к Вашим целям поможет мой авторский курс<br />«30 встреч» -
-                            Путь к Поиску Себя! Благодаря взаимодействию с арт-терапией Вы осознаете, что можно жить без
-                            лишних переживаний! Вы узнаете, как сохранить жизненные силы и где найти ресурсы!
-                        </p>
-                        
-                        <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
-                  
+                        <?= $parallax->content ?>
+                        <!-- Countdown -->
+                        <div id="countdown" class="nopadding">
+                                <h3 class="nopadding nomargin">До начала занятия осталось:</h3>
+                                <div class="countdown-widget nopadding" id="countdown-widget" data-time="<?= $parallax->countdown_date ?>"><!-- data-time example: 31 December 2015 12:00:00 GMT --></div>
                         </div>
+                        <!-- /Countdown -->
+                       
+                        <div class="padding50">
+                            <?= Html::a('<i class="' . $parallax->btn_icon . '"></i>' . Yii::t('yee', $parallax->btn_name) . '</span>', [$parallax->url], ['class' => $parallax->btn_class]) ?>
+                        </div> 
+                    </div>
 
                     <!-- right image -->
                     <div class="col-md-5 animation_fade_in">
-                        <img class="visible-md visible-lg img-responsive pull-right" src="">
+                        <img class="visible-md visible-lg img-responsive pull-right" src="<?= $parallax->content_image ?>">
                     </div>
                 </div>
             </div>

@@ -1,16 +1,17 @@
 <?php
 
-namespace backend\controllers\slider;
+namespace backend\modules\section\controllers;
 
 use Yii;
+use backend\controllers\DefaultController;
 
 /**
- * DefaultController implements the CRUD actions for common\models\RevolutionSlider model.
+ * ParallaxController implements the CRUD actions for backend\modules\section\models\Parallax model.
  */
-class DefaultController extends \backend\controllers\DefaultController
+class ParallaxController extends DefaultController 
 {
-    public $modelClass       = 'common\models\RevolutionSlider';
-    public $modelSearchClass = 'backend\models\search\RevolutionSliderSearch';
+    public $modelClass       = 'backend\modules\section\models\Parallax';
+    public $modelSearchClass = 'backend\modules\section\models\search\ParallaxSearch';
 
     protected function getRedirectPage($action, $model = null)
     {

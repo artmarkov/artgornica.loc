@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\RevolutionSlider */
 
 $this->title = Yii::t('yii', 'Update') . ': ' . $model->banner_top;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/landing', 'Revolution Sliders'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/block', 'Revolution Sliders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('yii', 'Update');
 ?>
 <div class="slider-update">

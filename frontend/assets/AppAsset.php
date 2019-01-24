@@ -41,8 +41,9 @@ class AppAsset extends AssetBundle
         'css/layout.css',
         'css/layout-responsive.css',
         'css/color_scheme/red.css',
+        'css/site.css',
         
-        'css/site.css'
+        'css/countdown.css',
     ];
 
     public $js = [
@@ -65,6 +66,9 @@ class AppAsset extends AssetBundle
         
         'js/slider_revolution.js',
         'js/scripts.js',
+        
+        'plugins/jquery-countdown/jquery.countdown.min.js',
+        'js/countdown.js'
     ];
 
     public $depends = [

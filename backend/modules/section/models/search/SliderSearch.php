@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\models\search;
+namespace backend\modules\section\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\RevolutionSlider;
+use backend\modules\section\models\Slider;
 
 /**
  * RevolutionSliderSearch represents the model behind the search form about `common\models\RevolutionSlider`.
  */
-class RevolutionSliderSearch extends RevolutionSlider
+class SliderSearch extends Slider
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class RevolutionSliderSearch extends RevolutionSlider
      */
     public function search($params)
     {
-        $query = RevolutionSlider::find();
+        $query =  Slider::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

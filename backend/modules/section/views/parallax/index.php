@@ -4,23 +4,23 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yeesoft\grid\GridView;
 use yeesoft\grid\GridQuickLinks;
-use common\models\RevolutionSlider;
+use backend\modules\section\models\Parallax;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\RevolutionSliderSearch */
+/* @var $searchModel backend\modules\section\models\search\ParallaxSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $this->title = Yii::t('yee/landing', 'Revolution Sliders');
+$this->title = 'Parallaxes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="slider-index">
+<div class="parallax-index">
 
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/slider/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/section/parallax/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -32,62 +32,62 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php 
                     /* Uncomment this to activate GridQuickLinks */
                      echo GridQuickLinks::widget([
-                        'model' => RevolutionSlider::className(),
+                        'model' => Parallax::className(),
                         'searchModel' => $searchModel,
                     ])
                     ?>
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'slider-grid-pjax']) ?>
+                    <?=  GridPageSize::widget(['pjaxId' => 'parallax-grid-pjax']) ?>
                 </div>
             </div>
 
             <?php 
             Pjax::begin([
-                'id' => 'slider-grid-pjax',
+                'id' => 'parallax-grid-pjax',
             ])
             ?>
 
             <?= 
             GridView::widget([
-                'id' => 'slider-grid',
+                'id' => 'parallax-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
-                    'gridId' => 'slider-grid',
-                    //'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
+                    'gridId' => 'parallax-grid',
+                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
-                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                       'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'options' => ['style' => 'width:250px'],
-                        'attribute' => 'banner_top',
-                        'controller' => '/slider/default',
-                        'title' => function(RevolutionSlider $model) {
-                            return Html::a($model->banner_top, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                        'attribute' => 'name',
+                        'controller' => '/section/parallax',
+                        'title' => function(Parallax $model) {
+                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-
-            'banner_middle',
-            'slide_image',
-            'url:url',
+                                
+            'bg_image',
+            'content_image',
+            'content:ntext',
+            // 'countdown_date',
+            // 'url:url',
+            // 'btn_icon',
+            // 'btn_name',
+            // 'btn_class',
             [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',
                         'optionsArray' => [
-                            [RevolutionSlider::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
-                            [RevolutionSlider::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
+                            [Parallax::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
+                            [Parallax::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
                         ],
                         'options' => ['style' => 'width:100px']
             ],
-//            'id',
-//            'banner_top',
-            // 'btn_name',
-            // 'btn_class',
-            // 'sort',
 
                 ],
             ]);
