@@ -63,14 +63,14 @@ class Slider extends \yeesoft\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/section', 'ID'),
-            'slide_image' => Yii::t('yee/section', 'Slide Image'),
+            'id' => Yii::t('yee', 'ID'),
+            'slide_image' => Yii::t('yee', 'Image'),
             'banner_top' => Yii::t('yee/section', 'Banner Top'),
             'banner_middle' => Yii::t('yee/section', 'Banner Middle'),
-            'url' => Yii::t('yee/section', 'Banner Url'),
-            'btn_icon' => Yii::t('yee/section', 'Btn Icon'),
-            'btn_name' => Yii::t('yee/section', 'Btn Name'),
-            'btn_class' => Yii::t('yee/section', 'Btn Class'),
+            'url' => Yii::t('yee', 'Url'),
+            'btn_icon' => Yii::t('yee', 'Btn Icon'),
+            'btn_name' => Yii::t('yee', 'Btn Name'),
+            'btn_class' => Yii::t('yee', 'Btn Class'),
             'status' => Yii::t('yee', 'Status'),
             'sort' => Yii::t('yee', 'Sort'),
             'created_at' => Yii::t('yee', 'Created At'),

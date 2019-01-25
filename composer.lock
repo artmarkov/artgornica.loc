@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c194faef2a6ec1a96998a49adf8084e",
+    "content-hash": "7509762c21f9e8f4542f2ca69e9d96af",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -2343,6 +2343,50 @@
             "time": "2018-08-03T12:00:41+00:00"
         },
         {
+            "name": "wadeshuler/yii2-sliderrevolution",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WadeShuler/yii2-sliderrevolution.git",
+                "reference": "e11f6d472ae0573d6926b567e5fa2af697cd0162"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WadeShuler/yii2-sliderrevolution/zipball/e11f6d472ae0573d6926b567e5fa2af697cd0162",
+                "reference": "e11f6d472ae0573d6926b567e5fa2af697cd0162",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "wadeshuler\\sliderrevolution\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wade Shuler",
+                    "email": "wadeshuler@users.noreply.github.com"
+                }
+            ],
+            "description": "Yii2 Slider Revolution jQuery Wrapper Extension",
+            "keywords": [
+                "extension",
+                "revolution",
+                "slider",
+                "sliderrevolution",
+                "wadeshuler",
+                "yii2"
+            ],
+            "time": "2015-09-26T03:11:15+00:00"
+        },
+        {
             "name": "webvimark/date-range-picker",
             "version": "1.0.2",
             "source": {
@@ -3661,7 +3705,8 @@
         "kartik-v/yii2-widget-datetimepicker": 20,
         "kartik-v/yii2-widget-depdrop": 20,
         "kartik-v/yii2-widget-select2": 20,
-        "kartik-v/yii2-widget-switchinput": 20
+        "kartik-v/yii2-widget-switchinput": 20,
+        "wadeshuler/yii2-sliderrevolution": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

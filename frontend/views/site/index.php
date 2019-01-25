@@ -4,25 +4,62 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\assets\ThemeAsset;
-
+use wadeshuler\sliderrevolution\SliderRevolution;
 ThemeAsset::register($this);
 
 ?>
 <div class="site-index">
     <!-- REVOLUTION SLIDER -->
-    <div class="fullwidthbanner-container roundedcorners">
-        <div class="fullwidthbanner">
-            <ul>
-                <?php foreach ($sliders as $slider) : ?>
+     <?//= \frontend\widgets\RevolutionSliderWidget::widget(['sliders' => $sliders]); ?>
+     
+    
+     <?php
+    $config = ['delay' => 9000, 'startwidth' => 1170, 'startheight' => 500, 'hideThumbs' => 10, 'fullWidth' => '"on"', 'forceFullWidth' => '"on"'];
+    $container = ['class' => 'fullwidthbanner-container roundedcorners'];
+    $wrapper = ['class' => 'fullwidthbanner'];
+    $ulOptions = [];
 
-                <?= $this->render('/section/slider-item.php', ['slider' => $slider]) ?>
+$slides = [
+    [
+        'options' => ['data' => ['transition' => 'fade', 'slotamount' => '7', 'masterspeed' => '300']],
+        'image' => ['src' => '../frontend/web/images/dummy.png', 'options' => ['alt' => '', 'data' => ['lazyload' => '../frontend/web/images/sunset-silhouette-2081796_1920.jpg', 'fullwidthcentering'=> 'on']]],
+        'layers' => [
+            [
+                'options' => ['class' => 'tp-caption medium_text lft', 'data' => ['x' => '90', 'y' => '180', 'hoffset' => '0', 'voffset' => '50', 'speed' => '300', 'start' => '500', 'easing' => 'easeOutExpo']],
+                'content' => 'My Slide'
+            ],
+            [
+                'options' => ['class' => 'tp-caption large_text lfb', 'data' => ['x' => '90', 'y' => '222', 'hoffset' => '0', 'voffset' => '-50', 'speed' => '300', 'start' => '800', 'easing' => 'easeOutExpo']],
+                'content' => 'My Text'
+            ],
+        ],
+    ],
+    [
+        'options' => ['data' => ['transition' => 'fade', 'slotamount' => '7', 'masterspeed' => '300']],
+        'image' => ['src' => '../frontend/web/images/dummy.png', 'options' => ['alt' => '', 'data' => ['lazyload' => '../frontend/web/images/sunset-silhouette-2081796_1920.jpg', 'fullwidthcentering'=> 'on']]],
+        'layers' => [
+            [
+                'options' => ['class' => 'tp-caption medium_text lft', 'data' => ['x' => '90', 'y' => '180', 'hoffset' => '0', 'voffset' => '50', 'speed' => '300', 'start' => '500', 'easing' => 'easeOutExpo']],
+                'content' => 'My Slide'
+            ],
+            [
+                'options' => ['class' => 'tp-caption large_text lfb', 'data' => ['x' => '90', 'y' => '222', 'hoffset' => '0', 'voffset' => '-50', 'speed' => '300', 'start' => '800', 'easing' => 'easeOutExpo']],
+                'content' => 'My Text'
+            ],
+        ],
+    ]
+];
 
-                <?php endforeach; ?>
-                
-            </ul>
-            <div class="tp-bannertimer"></div>
-        </div>
-    </div>
+
+echo SliderRevolution::widget([
+    'config' => $config,
+    'container' => $container,
+    'wrapper' => $wrapper,
+    'ulOptions' => $ulOptions,
+    'slides' => $slides
+]);
+?>
+   
     <!-- /REVOLUTION SLIDER -->
     <!-- WELCEOME -->
     <section id = "welcome" class="container">
@@ -109,44 +146,7 @@ ThemeAsset::register($this);
     <!-- /POST -->
 
     <!-- PARALLAX -->
-    <div style="background: <?= $parallax->bg_color ?>;" >
-        <section id="paralax" class="parallax delayed" data-stellar-background-ratio="0.8"
-                 style="background-image: url('<?= $parallax->bg_image ?>');">
-            <!--<span class="overlay"></span>-->
-
-            <div class="container">
-
-                <div class="row">
-                    <!-- left content -->
-                    <div class="col-md-7 animation_fade_in">
-                        <?= $parallax->content ?>
-                        
-                        <!-- Countdown -->
-                        <?php if($parallax->countdown != 0 && $parallax->start_timestamp > time()): ?>
-                            <div id="countdown" class="nopadding">
-                                    <h3 class="nopadding nomargin"><?= $parallax->countdown_prompt ?></h3>
-                                    <div class="countdown-widget nopadding" 
-                                         id="countdown-widget" 
-                                         data-time="<?= \Yii::$app->formatter->asDatetime($parallax->start_timestamp , "php:Y-m-d H:i:s");?>">
-                                    </div>
-                            </div>
-                        <?php endif;?>
-                        <!-- /Countdown -->
-                       
-                        <div class="padding50">
-                            <?= Html::a('<i class="' . $parallax->btn_icon . '"></i>' . Yii::t('yee/section', '' . $parallax->btn_name . '') . '</span>', [$parallax->url], ['class' => $parallax->btn_class]) ?>
-                        </div> 
-                    </div>
-
-                    <!-- right image -->
-                    <div class="col-md-5 animation_fade_in">
-                        <img class="visible-md visible-lg img-responsive pull-right" src="<?= $parallax->content_image ?>">
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    </div>
+     <?= \frontend\widgets\ParallaxWidget::widget(['parallax' => $parallax]); ?>
     <!-- PARALLAX -->
 
     <!-- PORTFOLIO -->

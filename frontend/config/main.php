@@ -13,6 +13,10 @@ return [
         'auth' => [
             'class' => 'frontend\modules\auth\AuthModule',
         ],
+        'sliderrevolution' => [
+        'class' => 'wadeshuler\sliderrevolution\SliderModule',
+        'pluginLocation' => '@frontend/views/private/rs-plugin',    // <-- path to your rs-plugin directory
+    ],
     ],
     'components' => [
         'view' => [

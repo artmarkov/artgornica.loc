@@ -36,3 +36,10 @@ use yii\helpers\Html;
 
     </div>
 </li>
+
+<div class="fullwidthbanner-container roundedcorners">
+    <div class="fullwidthbanner">
+     <div class="tp-banner-container"><div class="tp-banner"><ul>
+                 
+                 <li data-transition="fade" data-slotamount="7" data-masterspeed="300"><img src="../frontend/web/images/dummy.png" alt="" data-lazyload="../frontend/web/images/sunset-silhouette-2081796_1920.jpg" data-fullwidthcentering="on"><div class="tp-caption medium_text lft" data-x="90" data-y="180" data-hoffset="0" data-voffset="50" data-speed="300" data-start="500" data-easing="easeOutExpo">My Slide</div><div class="tp-caption large_text lfb" data-x="90" data-y="222" data-hoffset="0" data-voffset="-50" data-speed="300" data-start="800" data-easing="easeOutExpo">My Text</div></li></ul></div></div>    </div></div>
+    
