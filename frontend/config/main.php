@@ -14,9 +14,9 @@ return [
             'class' => 'frontend\modules\auth\AuthModule',
         ],
         'sliderrevolution' => [
-        'class' => 'wadeshuler\sliderrevolution\SliderModule',
-        'pluginLocation' => '@frontend/views/private/rs-plugin',    // <-- path to your rs-plugin directory
-    ],
+        'class' => 'frontend\modules\sliderrevolution\SliderModule',
+        'pluginLocation' => '@frontend/web/plugins/revolution-slider',
+        ],
     ],
     'components' => [
         'view' => [

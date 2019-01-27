@@ -4,62 +4,24 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\assets\ThemeAsset;
-use wadeshuler\sliderrevolution\SliderRevolution;
+use frontend\modules\sliderrevolution\SliderRevolution;
 ThemeAsset::register($this);
 
 ?>
 <div class="site-index">
     <!-- REVOLUTION SLIDER -->
-     <?//= \frontend\widgets\RevolutionSliderWidget::widget(['sliders' => $sliders]); ?>
-     
+     <?//= \frontend\widgets\RevolutionSliderWidget::widget(['sliders' => $sliders]); ?>     
+<?php
     
-     <?php
-    $config = ['delay' => 9000, 'startwidth' => 1170, 'startheight' => 500, 'hideThumbs' => 10, 'fullWidth' => '"on"', 'forceFullWidth' => '"on"'];
-    $container = ['class' => 'fullwidthbanner-container roundedcorners'];
-    $wrapper = ['class' => 'fullwidthbanner'];
-    $ulOptions = [];
-
-$slides = [
-    [
-        'options' => ['data' => ['transition' => 'fade', 'slotamount' => '7', 'masterspeed' => '300']],
-        'image' => ['src' => '../frontend/web/images/dummy.png', 'options' => ['alt' => '', 'data' => ['lazyload' => '../frontend/web/images/sunset-silhouette-2081796_1920.jpg', 'fullwidthcentering'=> 'on']]],
-        'layers' => [
-            [
-                'options' => ['class' => 'tp-caption medium_text lft', 'data' => ['x' => '90', 'y' => '180', 'hoffset' => '0', 'voffset' => '50', 'speed' => '300', 'start' => '500', 'easing' => 'easeOutExpo']],
-                'content' => 'My Slide'
-            ],
-            [
-                'options' => ['class' => 'tp-caption large_text lfb', 'data' => ['x' => '90', 'y' => '222', 'hoffset' => '0', 'voffset' => '-50', 'speed' => '300', 'start' => '800', 'easing' => 'easeOutExpo']],
-                'content' => 'My Text'
-            ],
-        ],
-    ],
-    [
-        'options' => ['data' => ['transition' => 'fade', 'slotamount' => '7', 'masterspeed' => '300']],
-        'image' => ['src' => '../frontend/web/images/dummy.png', 'options' => ['alt' => '', 'data' => ['lazyload' => '../frontend/web/images/sunset-silhouette-2081796_1920.jpg', 'fullwidthcentering'=> 'on']]],
-        'layers' => [
-            [
-                'options' => ['class' => 'tp-caption medium_text lft', 'data' => ['x' => '90', 'y' => '180', 'hoffset' => '0', 'voffset' => '50', 'speed' => '300', 'start' => '500', 'easing' => 'easeOutExpo']],
-                'content' => 'My Slide'
-            ],
-            [
-                'options' => ['class' => 'tp-caption large_text lfb', 'data' => ['x' => '90', 'y' => '222', 'hoffset' => '0', 'voffset' => '-50', 'speed' => '300', 'start' => '800', 'easing' => 'easeOutExpo']],
-                'content' => 'My Text'
-            ],
-        ],
-    ]
-];
-
-
 echo SliderRevolution::widget([
-    'config' => $config,
-    'container' => $container,
-    'wrapper' => $wrapper,
-    'ulOptions' => $ulOptions,
-    'slides' => $slides
+    'config' => ['delay' => 9000, 'startwidth' => 1170, 'startheight' => 500, 'hideThumbs' => 200, 'fullWidth' => '"on"', 'forceFullWidth' => '"on"'],
+    'container' => ['class' => 'fullwidthbanner-container roundedcorners'],
+    'wrapper' => ['class' => 'fullwidthbanner'],
+    'ulOptions' => [],
+    'slides' => \backend\modules\section\models\Slides::getSlidesData(),
 ]);
+//echo '<pre>' . print_r(\backend\modules\section\models\Slides::getSlidesData(), true) . '</pre>';
 ?>
-   
     <!-- /REVOLUTION SLIDER -->
     <!-- WELCEOME -->
     <section id = "welcome" class="container">

@@ -30,11 +30,11 @@ class AppAsset extends AssetBundle
         'plugins/magnific-popup/magnific-popup.css',        
         
         'css/animate.css',
-        'css/superslides.css',
+       // 'css/superslides.css',
         
         'css/blog.css',
         
-        'plugins/revolution-slider/css/settings.css',
+        //'plugins/revolution-slider/css/settings.css',
         
         'css/portfolio.css',
         'css/essentials.css',
@@ -61,10 +61,10 @@ class AppAsset extends AssetBundle
         'plugins/knob/js/jquery.knob.js',
         'plugins/jquery.backstretch.min.js',
         'plugins/superslides/dist/jquery.superslides.min.js',
-        'plugins/revolution-slider/js/jquery.themepunch.plugins.min.js',
-        'plugins/revolution-slider/js/jquery.themepunch.revolution.min.js',
+        //'plugins/revolution-slider/js/jquery.themepunch.plugins.min.js',
+        //'plugins/revolution-slider/js/jquery.themepunch.revolution.min.js',
         
-        'js/slider_revolution.js',
+       // 'js/slider_revolution.js',
         'js/scripts.js',
         
         'plugins/jquery-countdown/jquery.countdown.min.js',
