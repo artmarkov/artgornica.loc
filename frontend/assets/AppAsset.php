@@ -19,7 +19,6 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-//        'plugins/bootstrap/css/bootstrap.min.css',
 
         'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800',
         'css/font-awesome.css',
@@ -29,12 +28,8 @@ class AppAsset extends AssetBundle
         'plugins/owl-carousel/owl.transitions.css',
         'plugins/magnific-popup/magnific-popup.css',        
         
-        'css/animate.css',
-       // 'css/superslides.css',
-        
+        'css/animate.css',        
         'css/blog.css',
-        
-        //'plugins/revolution-slider/css/settings.css',
         
         'css/portfolio.css',
         'css/essentials.css',
@@ -47,8 +42,6 @@ class AppAsset extends AssetBundle
     ];
 
     public $js = [
-//        'plugins/jquery-2.0.3.min.js',
-//        'plugins/bootstrap/js/bootstrap.min.js',
 
         'plugins/jquery.easing.1.3.js',
         'plugins/jquery.cookie.js',
@@ -61,10 +54,7 @@ class AppAsset extends AssetBundle
         'plugins/knob/js/jquery.knob.js',
         'plugins/jquery.backstretch.min.js',
         'plugins/superslides/dist/jquery.superslides.min.js',
-        //'plugins/revolution-slider/js/jquery.themepunch.plugins.min.js',
-        //'plugins/revolution-slider/js/jquery.themepunch.revolution.min.js',
         
-       // 'js/slider_revolution.js',
         'js/scripts.js',
         
         'plugins/jquery-countdown/jquery.countdown.min.js',

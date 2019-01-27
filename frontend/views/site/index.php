@@ -10,17 +10,15 @@ ThemeAsset::register($this);
 ?>
 <div class="site-index">
     <!-- REVOLUTION SLIDER -->
-     <?//= \frontend\widgets\RevolutionSliderWidget::widget(['sliders' => $sliders]); ?>     
-<?php
-    
-echo SliderRevolution::widget([
+     
+<?= SliderRevolution::widget([
     'config' => ['delay' => 9000, 'startwidth' => 1170, 'startheight' => 500, 'hideThumbs' => 200, 'fullWidth' => '"on"', 'forceFullWidth' => '"on"'],
     'container' => ['class' => 'fullwidthbanner-container roundedcorners'],
     'wrapper' => ['class' => 'fullwidthbanner'],
     'ulOptions' => [],
     'slides' => \backend\modules\section\models\Slides::getSlidesData(),
 ]);
-//echo '<pre>' . print_r(\backend\modules\section\models\Slides::getSlidesData(), true) . '</pre>';
+
 ?>
     <!-- /REVOLUTION SLIDER -->
     <!-- WELCEOME -->

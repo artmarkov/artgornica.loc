@@ -12,7 +12,6 @@ use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 use backend\modules\event\models\EventSchedule;
 use backend\modules\event\models\EventVid;
-use backend\modules\section\models\Slider;
 use backend\modules\section\models\Parallax;
 
 /**
@@ -72,11 +71,7 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->limit(EventSchedule::COUNT_EVENT_INDEX)
                 ->all();
         
-         $sliders = Slider::find()
-                ->where(['status' => Slider::STATUS_ACTIVE])
-                ->orderBy('sort')
-                ->all();
-         
+       
          $parallax = Parallax::find()
                 ->where(['status' => Parallax::STATUS_ACTIVE])
                 ->one();
@@ -84,7 +79,6 @@ class SiteController extends \yeesoft\controllers\BaseController
         return $this->render('index', [
                 'posts' => $posts,
                 'events' => $events,
-                'sliders' => $sliders,
                 'parallax' => $parallax,
             ]);
     }
