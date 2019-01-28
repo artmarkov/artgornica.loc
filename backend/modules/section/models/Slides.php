@@ -61,6 +61,7 @@ class Slides extends \yeesoft\db\ActiveRecord
         return [
             [['name', 'img_src'], 'required'],
             [['status', 'sort'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['data_slotamount', 'data_masterspeed'], 'integer'],
             [['data_transition', 'data_bgfit', 'data_bgposition', 'data_bgrepeat'], 'string', 'max' => 32],
             [['img_src', 'img_alt', 'data_lazyload', 'data_fullwidthcentering', 'data_delay'], 'string', 'max' => 127],

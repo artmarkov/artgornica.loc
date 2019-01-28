@@ -65,8 +65,8 @@ ThemeAsset::register($this);
             <div class="col-md-6">
 
                 <!-- carousel -->
-                <div class="owl-carousel controlls-over"
-                     data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
+<!--                <div class="owl-carousel controlls-over"
+                     data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'> transitionStyle: fade, backSlide, goDown, fadeUp,  
                     <div>
                         <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
                     </div>
@@ -76,7 +76,51 @@ ThemeAsset::register($this);
                     <div>
                         <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
                     </div>
-                </div>
+                </div>-->
+                
+                <?php
+                        use frontend\widgets\owlcarousel\OwlCarouselWidget;
+
+                        OwlCarouselWidget::begin([
+                            'container' => 'div',
+                            'containerOptions' => [
+                               // 'id' => '',
+                                'class' => 'owl-carousel controlls-over'
+                            ],
+                            'pluginOptions'    => [
+                                
+                               // 'items' => 1, 
+                                'singleItem' => true, 
+                                'navigation' => true, 
+                                'pagination' => true, 
+                                'transitionStyle' => 'fadeUp',
+                            
+                                'autoPlay'          => 9000,
+                                //'autoplayTimeout'   => 3000,
+//                                'items'             => 3,
+//                                'loop'              => true,
+//                                'itemsDesktop'      => [1199, 3],
+//                                'itemsDesktopSmall' => [979, 3]
+                            ]
+                        ]);
+                        ?>
+                    <div>
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
+                    </div>
+                    <div>
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_3.jpg">
+                    </div>
+                    <div>
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
+                    </div>
+<!--                        <div class="item-class"><img src="/img/1.jpg" alt="Image 1"></div>
+                        <div class="item-class"><img src="/img/2.jpg" alt="Image 2"></div>
+                        <div class="item-class"><img src="/img/3.jpg" alt="Image 3"></div>
+                        <div class="item-class"><img src="/img/4.jpg" alt="Image 4"></div>-->
+
+
+                        <?php OwlCarouselWidget::end(); ?>
+                
                 <!-- /carousel -->
 
             </div>

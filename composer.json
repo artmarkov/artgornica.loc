@@ -53,7 +53,9 @@
     "kartik-v/yii2-widget-select2": "dev-master",
     "kartik-v/yii2-widget-switchinput": "dev-master",
     "wadeshuler/yii2-sliderrevolution": "@dev",
-    "kartik-v/yii2-sortable-input": "dev-master"
+    "kartik-v/yii2-sortable-input": "dev-master",
+    "lanselot/yii2-parallax-widget": "*",
+    "kv4nt/yii2-owl-carousel2": "*"
         
   },
   "require-dev": {

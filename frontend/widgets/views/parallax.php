@@ -2,9 +2,9 @@
 
 use yeesoft\helpers\Html;
 ?> 
-<!-- PARALLAX -->
+<!-- PARALLAX  parallax margin-top80 parallax-init, parallax delayed-->
 <div style="background: <?= $parallax->bg_color ?>;" >
-    <section id="paralax" class="parallax delayed" data-stellar-background-ratio="0.8"
+    <section id="paralax" class="<?= $parallax->parallax_class ?>" data-stellar-background-ratio="<?= $parallax->background_ratio ?>"
              style="background-image: url('<?= $parallax->bg_image ?>');">
         <!--<span class="overlay"></span>-->
 
@@ -41,4 +41,3 @@ use yeesoft\helpers\Html;
 
     </section>
 </div>
-<!-- PARALLAX -->

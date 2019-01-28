@@ -5,12 +5,12 @@ namespace backend\modules\section\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\section\models\Parallax;
+use backend\modules\section\models\Carousel;
 
 /**
- * ParallaxSearch represents the model behind the search form about `backend\modules\section\models\Parallax`.
+ * CarouselSearch represents the model behind the search form about `backend\modules\section\models\Carousel`.
  */
-class ParallaxSearch extends Parallax
+class CarouselSearch extends Carousel
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class ParallaxSearch extends Parallax
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'bg_color', 'bg_image', 'parallax_class', 'background_ratio', 'content_image', 'content', 'url', 'btn_icon', 'btn_name', 'btn_class', 'status'], 'safe'],
+            [['id', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'slug', 'plugin_class', 'plugin_options', 'img_class', 'img_width', 'img_height', 'status'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ParallaxSearch extends Parallax
      */
     public function search($params)
     {
-        $query = Parallax::find();
+        $query = Carousel::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -65,19 +65,17 @@ class ParallaxSearch extends Parallax
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'bg_color', $this->bg_color])
-            ->andFilterWhere(['like', 'bg_image', $this->bg_image])
-            ->andFilterWhere(['like', 'parallax_class', $this->bg_image])
-            ->andFilterWhere(['like', 'content_image', $this->parallax_class])
-            ->andFilterWhere(['like', 'background_ratio', $this->background_ratio])               
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'btn_icon', $this->btn_icon])
-            ->andFilterWhere(['like', 'btn_name', $this->btn_name])
-            ->andFilterWhere(['like', 'btn_class', $this->btn_class])
+            ->andFilterWhere(['like', 'slug', $this->slug])
+            ->andFilterWhere(['like', 'plugin_class', $this->plugin_class])
+            ->andFilterWhere(['like', 'plugin_options', $this->plugin_options])
+            ->andFilterWhere(['like', 'img_class', $this->img_class])
+            ->andFilterWhere(['like', 'img_width', $this->img_width])
+            ->andFilterWhere(['like', 'img_height', $this->img_height])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

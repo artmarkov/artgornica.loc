@@ -17,10 +17,6 @@ return [
         'class' => 'frontend\modules\sliderrevolution\SliderModule',
         'pluginLocation' => '@frontend/web/plugins/revolution-slider',
         ],
-        'parallax' => [
-        'class' => 'frontend\modules\parallax\SliderModule',
-        'pluginLocation' => '@frontend/web/plugins',
-        ],
     ],
     'components' => [
         'view' => [

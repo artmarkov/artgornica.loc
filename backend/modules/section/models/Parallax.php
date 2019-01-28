@@ -14,6 +14,8 @@ use Yii;
  * @property string $name
  * @property string $bg_color
  * @property string $bg_image
+ * @property string $parallax_class
+ * @property string $background_ratio
  * @property string $content_image
  * @property string $content
  * @property string $countdown
@@ -67,13 +69,13 @@ class Parallax extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'bg_image', 'content', 'url', 'btn_name', 'btn_class'], 'required'],
+            [['name', 'bg_image', 'parallax_class', 'background_ratio', 'content', 'url', 'btn_name', 'btn_class'], 'required'],
             [['content', 'countdown_prompt'], 'string'],
             [['content'], 'trim'],
             [['start_timestamp'], 'safe'],
             [['status', 'countdown'], 'integer'],
             ['countdown', 'default', 'value' => 0],
-            [['bg_color', 'bg_image', 'content_image', 'url', 'btn_icon', 'btn_name', 'btn_class'], 'string', 'max' => 127],
+            [['bg_color', 'bg_image', 'parallax_class', 'background_ratio', 'content_image', 'url', 'btn_icon', 'btn_name', 'btn_class'], 'string', 'max' => 127],
             ['start_time', 'date', 'format' => 'php:d-m-Y H:i'],
             [['created_at', 'updated_at'], 'safe'],
         ];
@@ -89,6 +91,8 @@ class Parallax extends ActiveRecord
             'name' => Yii::t('yee', 'Name'),
             'bg_color' => Yii::t('yee', 'Bg Color'),
             'bg_image' => Yii::t('yee', 'Bg Image'),
+            'parallax_class' => Yii::t('yee/section', 'Parallax Class'),
+            'background_ratio' => Yii::t('yee/section', 'Rackground Ratio'),
             'content_image' => Yii::t('yee', 'Content Image'),
             'content' => Yii::t('yee', 'Content'),
             'countdown' => Yii::t('yee/section', 'Countdown'),

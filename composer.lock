@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "babf9a5c98121852cbe5dd110ae9b9ad",
+    "content-hash": "cc87170615443f1b9e765a36bfa8ac41",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -546,6 +546,34 @@
                 "shasum": ""
             },
             "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/owl.carousel",
+            "version": "2.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OwlCarousel2/OwlCarousel2.git",
+                "reference": "af851f9b567630d115930abd5480ffebccc72372"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OwlCarousel2/OwlCarousel2/zipball/af851f9b567630d115930abd5480ffebccc72372",
+                "reference": "af851f9b567630d115930abd5480ffebccc72372",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8.3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/owl.carousel.js",
+                    "dist/assets/owl.carousel.css",
+                    "dist/assets/owl.theme.default.css"
+                ],
+                "bower-asset-ignore": []
+            },
+            "time": "2018-04-20T13:22:10+00:00"
         },
         {
             "name": "bower-asset/punycode",
@@ -1838,6 +1866,97 @@
                 "yii2"
             ],
             "time": "2018-04-03T13:24:34+00:00"
+        },
+        {
+            "name": "kv4nt/yii2-owl-carousel2",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kv4nt/yii2-owl-carousel2.git",
+                "reference": "63c45c0bfc7bf9a78972bdcf07fff193b4995553"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kv4nt/yii2-owl-carousel2/zipball/63c45c0bfc7bf9a78972bdcf07fff193b4995553",
+                "reference": "63c45c0bfc7bf9a78972bdcf07fff193b4995553",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/owl.carousel": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kv4nt\\owlcarousel\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Shumeyko",
+                    "email": "kvant90@gmail.com"
+                }
+            ],
+            "description": "A Yii2 widget for owl carousel 2",
+            "keywords": [
+                "carousel",
+                "extension",
+                "owl",
+                "owlcarousel",
+                "owlcarousel2",
+                "yii2",
+                "yii2 carousel",
+                "yii2 owl",
+                "yii2 owl carousel",
+                "yii2 owlcarousel",
+                "yii2-owl-carousel"
+            ],
+            "time": "2017-09-15T11:16:39+00:00"
+        },
+        {
+            "name": "lanselot/yii2-parallax-widget",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LANSELOT/yii2-parallax-widget.git",
+                "reference": "4fff870d136658de9dcd57aa1bc50e1fb2892d62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LANSELOT/yii2-parallax-widget/zipball/4fff870d136658de9dcd57aa1bc50e1fb2892d62",
+                "reference": "4fff870d136658de9dcd57aa1bc50e1fb2892d62",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lanselot\\parallax\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Eremin",
+                    "email": "eremin_100_93@mail.ru"
+                }
+            ],
+            "description": "Wrapper for Yii2 from parallax.js by http://pixelcog.github.io",
+            "keywords": [
+                "extension",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-06-05T14:07:33+00:00"
         },
         {
             "name": "nex/yii2-chosen",

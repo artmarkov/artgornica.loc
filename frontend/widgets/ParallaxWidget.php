@@ -5,11 +5,11 @@ namespace frontend\widgets;
 use yii\base\Widget;
 
 /**
- * Description of parallaxWidget
+ * Description of ParallaxWidget
  *
  * @author artmarkov
  */
-class parallaxWidget extends Widget {
+class ParallaxWidget extends Widget {
 
     public $parallax;
 
