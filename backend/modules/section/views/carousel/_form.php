@@ -36,7 +36,7 @@ use yii\helpers\Url;
              <div class="panel panel-default">
                 <div class="panel-body">
                     
-       <?php echo '<pre>' . print_r($model->imagesLinksData, true) . '</pre>'; ?>
+       <?//php echo '<pre>' . print_r($model->imagesLinksData, true) . '</pre>'; ?>
                     <?= \kartik\file\FileInput::widget([
                         'name' => 'ImageManager[attachment]',
                         'options' => [

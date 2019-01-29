@@ -4,6 +4,7 @@
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\ThemeAsset;
+use frontend\widgets\owlcarousel\OwlCarouselWidget;
 
 ThemeAsset::register($this);
 
@@ -15,17 +16,35 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Who Am I -->
         <article class="row">
             <div class="col-md-6">
-                <div class="owl-carousel controlls-over" data-plugin-options='{"autoPlay":9000, "items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                <?php
+
+                OwlCarouselWidget::begin([
+                    'container' => 'div',
+                    'containerOptions' => [
+                        'class' => 'owl-carousel controlls-over'
+                    ],
+                    'pluginOptions' => [
+                        'items' => 1,
+                        'singleItem' => true,
+                        'navigation' => true,
+                        'pagination' => true,
+                        'transitionStyle' => 'fadeUp',
+                        'autoPlay' => 9000,
+                    ]
+                ]);
+                ?>
                     <div>
-                        <img class="img-responsive" src="../frontend/web/images/sunset-1.jpg" width="555" height="311" alt="">
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
                     </div>
                     <div>
-                        <img class="img-responsive" src="../frontend/web/images/fishermen-1.jpg" width="555" height="311" alt="">
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_3.jpg">
                     </div>
                     <div>
-                        <img class="img-responsive" src="../frontend/web/images/sunset-silhouette-2081796_1920.jpg" width="555" height="311" alt="">
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
                     </div>
-                </div>
+
+
+                 <?php OwlCarouselWidget::end(); ?>
             </div>
             <div class="col-md-6">
                 <h4><i class="fa fa-heart-o"></i> Кто Я?</h4>
@@ -78,7 +97,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <h2><strong>Добро пожаловать</strong> в мою фотогалерею</h2>
 
-                <p class="lead">В фотогалерее представлены фотографии моих работ и работ моих клиентов. Также здесь Вы можете познакомиться поближе <a href=""></a>
+                <p class="lead">В фотогалерее представлены фотографии моих работ и работ моих клиентов. 
+                    Также здесь Вы можете познакомиться поближе <a href=""></a>
                     с Арттерапией. Здесь Вы найдете много видео и фото с наших занятий.</p>
 
                 <ul class="nav nav-pills isotope-filter isotope-filter" data-sort-id="isotope-list" data-option-key="filter">

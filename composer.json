@@ -55,7 +55,10 @@
     "wadeshuler/yii2-sliderrevolution": "@dev",
     "kartik-v/yii2-sortable-input": "dev-master",
     "lanselot/yii2-parallax-widget": "*",
-    "kv4nt/yii2-owl-carousel2": "*"
+    "kv4nt/yii2-owl-carousel2": "*",
+    "nerburish/yii2-isotope-view": "dev-master",
+    "yeesoft/yii2-lightbox": "~0.1.0",
+    "mihaildev/yii2-elfinder": "*"
         
   },
   "require-dev": {

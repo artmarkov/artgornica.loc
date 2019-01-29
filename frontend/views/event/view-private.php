@@ -3,6 +3,7 @@
 use yeesoft\widgets\ActiveForm;
 use yeesoft\helpers\Html;
 use backend\modules\event\models\EventSchedule;
+use frontend\widgets\owlcarousel\OwlCarouselWidget;
 
 /* @var $model backend\modules\event\models\EventItemProgramm */
 /* @var $form yeesoft\widgets\ActiveForm */
@@ -18,7 +19,23 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <article class="row">
              <div class="col-md-6">
-                 <div class="owl-carousel controlls-over" data-plugin-options='{"autoPlay":9000, "items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                 <?php
+
+                OwlCarouselWidget::begin([
+                    'container' => 'div',
+                    'containerOptions' => [
+                        'class' => 'owl-carousel controlls-over'
+                    ],
+                    'pluginOptions' => [
+                        'items' => 1,
+                        'singleItem' => true,
+                        'navigation' => true,
+                        'pagination' => true,
+                        'transitionStyle' => 'fadeUp',
+                        'autoPlay' => 9000,
+                    ]
+                ]);
+                ?>
                      <div>
                          <img class="img-responsive" src="../../frontend/web/images/sunset-1.jpg" width="555" height="311" alt="">
                      </div>
@@ -28,7 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
                      <div>
                          <img class="img-responsive" src="../../frontend/web/images/sunset-silhouette-2081796_1920.jpg" width="555" height="311" alt="">
                      </div>
-                 </div>
+
+
+                 <?php OwlCarouselWidget::end(); ?>
+                    
+                 
              </div>
              <div class="col-md-6">
                  <h4><i class="fa fa-heart-o"></i> <?= Yii::t('yee/event', 'Event Name'); ?>:</h4>

@@ -5,6 +5,8 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\assets\ThemeAsset;
 use frontend\modules\sliderrevolution\SliderRevolution;
+use frontend\widgets\owlcarousel\OwlCarouselWidget;
+
 ThemeAsset::register($this);
 
 ?>
@@ -62,48 +64,24 @@ ThemeAsset::register($this);
                   
             </div>
 
-            <div class="col-md-6">
-
-                <!-- carousel -->
-<!--                <div class="owl-carousel controlls-over"
-                     data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'> transitionStyle: fade, backSlide, goDown, fadeUp,  
-                    <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
-                    </div>
-                    <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_3.jpg">
-                    </div>
-                    <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
-                    </div>
-                </div>-->
-                
+            <div class="col-md-6">                
                 <?php
-                        use frontend\widgets\owlcarousel\OwlCarouselWidget;
 
-                        OwlCarouselWidget::begin([
-                            'container' => 'div',
-                            'containerOptions' => [
-                               // 'id' => '',
-                                'class' => 'owl-carousel controlls-over'
-                            ],
-                            'pluginOptions'    => [
-                                
-                               // 'items' => 1, 
-                                'singleItem' => true, 
-                                'navigation' => true, 
-                                'pagination' => true, 
-                                'transitionStyle' => 'fadeUp',
-                            
-                                'autoPlay'          => 9000,
-                                //'autoplayTimeout'   => 3000,
-//                                'items'             => 3,
-//                                'loop'              => true,
-//                                'itemsDesktop'      => [1199, 3],
-//                                'itemsDesktopSmall' => [979, 3]
-                            ]
-                        ]);
-                        ?>
+                OwlCarouselWidget::begin([
+                    'container' => 'div',
+                    'containerOptions' => [
+                        'class' => 'owl-carousel controlls-over'
+                    ],
+                    'pluginOptions' => [
+                        'items' => 1,
+                        'singleItem' => true,
+                        'navigation' => true,
+                        'pagination' => true,
+                        'transitionStyle' => 'fadeUp',
+                        'autoPlay' => 9000,
+                    ]
+                ]);
+                ?>
                     <div>
                         <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
                     </div>
@@ -113,13 +91,9 @@ ThemeAsset::register($this);
                     <div>
                         <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
                     </div>
-<!--                        <div class="item-class"><img src="/img/1.jpg" alt="Image 1"></div>
-                        <div class="item-class"><img src="/img/2.jpg" alt="Image 2"></div>
-                        <div class="item-class"><img src="/img/3.jpg" alt="Image 3"></div>
-                        <div class="item-class"><img src="/img/4.jpg" alt="Image 4"></div>-->
 
 
-                        <?php OwlCarouselWidget::end(); ?>
+                 <?php OwlCarouselWidget::end(); ?>
                 
                 <!-- /carousel -->
 
@@ -254,8 +228,24 @@ ThemeAsset::register($this);
 
                 <div class="col-md-6">
                     <h3>Что о нас говорят <strong>клиенты</strong>?</h3>
-                    <div class="owl-carousel text-center" data-plugin-options='{"items": 1, "singleItem": true, "naviga о нас tion": false, "pagination": true, "autoPlay": true, "transitionStyle":"fadeUp"}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
-                        <div class="testimonial white">
+                <!-- transitionStyle: fade, backSlide, goDown, fadeUp,  --> 
+                     <?php
+                OwlCarouselWidget::begin([
+                    'container' => 'div',
+                    'containerOptions' => [
+                        'class' => 'owl-carousel text-center'
+                    ],
+                    'pluginOptions' => [
+                        'items' => 1,
+                        'singleItem' => true,
+                        'navigation' => false,
+                        'pagination' => true,
+                        'transitionStyle' => 'fade',
+                        'autoPlay' => true,
+                    ]
+                ]);
+                ?>
+                    <div class="testimonial white">
                             <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
                             <cite><strong>John Doe</strong>, Customer</cite>
                         </div>
@@ -275,7 +265,9 @@ ThemeAsset::register($this);
                             <cite><strong>Melissa Doe</strong>, Customer</cite>
                         </div>
 
-                    </div>
+                 <?php OwlCarouselWidget::end(); ?>   
+                        
+                 
                     <div class="row text-center nomargin-bottom">
                         <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Leave a review...') . '</span>', ["/site/contact"], ['class' => 'btn btn-xs pull-right']) ?>
                        

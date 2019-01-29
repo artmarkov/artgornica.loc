@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yeesoft\comments\models\Comment;
+use frontend\widgets\owlcarousel\OwlCarouselWidget;
 
 /* @var $post yeesoft\post\models\Post */
 
@@ -29,14 +30,41 @@ $post->updateRevision();
 
 <?php if ($page === 'post'): ?>
     <!-- carousel -->
-    <div class="owl-carousel text-center controlls-over" data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "autoPlay": true, "transitionStyle":"fadeUp"}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
-        <div class="item">
-            <img src="../frontend/web/images/demo/screens/scr3.jpg" class="img-responsive" alt="img" />
-        </div>
-        <div class="item">
-            <img src="../frontend/web/images/demo/screens/scr4.jpg" class="img-responsive" alt="img" />
-        </div>
-    </div>
+    <?php
+
+                OwlCarouselWidget::begin([
+                    'container' => 'div',
+                    'containerOptions' => [
+                        'class' => 'owl-carousel controlls-over'
+                    ],
+                    'pluginOptions' => [
+                        'items' => 1,
+                        'singleItem' => true,
+                        'navigation' => true,
+                        'pagination' => true,
+                        'transitionStyle' => 'fadeUp',
+                        'autoPlay' => 9000,
+                    ]
+                ]);
+                ?>
+                    <div class="item">
+                        <img src="../frontend/web/images/demo/screens/scr3.jpg" class="img-responsive" alt="img" />
+                    </div>
+                    <div class="item">
+                        <img src="../frontend/web/images/demo/screens/scr4.jpg" class="img-responsive" alt="img" />
+                    </div>
+<!--                <div class="item">
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
+                    </div>
+                    <div class="item">
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_3.jpg">
+                    </div>
+                    <div class="item">
+                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
+                    </div>-->
+
+
+                 <?php OwlCarouselWidget::end(); ?>
     <!-- carousel -->
 <?php else: ?>
     
