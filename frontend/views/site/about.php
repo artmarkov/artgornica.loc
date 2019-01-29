@@ -101,13 +101,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     Также здесь Вы можете познакомиться поближе <a href=""></a>
                     с Арттерапией. Здесь Вы найдете много видео и фото с наших занятий.</p>
 
-                <ul class="nav nav-pills isotope-filter isotope-filter" data-sort-id="isotope-list" data-option-key="filter">
+                <ul class="nav nav-pills isotope-filter" data-sort-id="isotope-list" data-option-key="filter">
                     <li data-option-value="*" class="active"><a href="#">Все материалы</a></li>
                     <li data-option-value=".development"><a href="#">Фото работ</a></li>
                     <li data-option-value=".photography"><a href="#">Видео</a></li>
                     <li data-option-value=".design"><a href="#">Разное</a></li>
                 </ul>
+                    <?php
+                     $menuItems[] = [
+                            'label' =>  Yii::t('yee/section', 'Все материалы'),
+                            'options' => ['class' =>'active','data-option-value' => '*'],
+                            'template' => '<a href="#">{label}</a>'                           
+                        ];
+                     $menuItems[] = [
+                            'label' =>  Yii::t('yee/section', 'Фото работ'),
+                            'options' => ['data-option-value' => '.development'],
+                            'template' => '<a href="#">{label}</a>'                           
+                        ];
+                    
 
+                    echo yii\widgets\Menu::widget([
+                        'encodeLabels' => false,
+                        'options' => [
+                            'class' => 'nav nav-pills isotope-filter isotope-filter', 
+                            'data-sort-id' => 'isotope-list', 
+                            'data-option-key' => 'filter'
+                            ],
+                        'items' => $menuItems,
+                    ]);
+                    ?>
 
                 <div class="row">
 
