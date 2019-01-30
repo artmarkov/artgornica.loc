@@ -1,31 +1,29 @@
 <?php
 
-namespace backend\modules\section\models;
+namespace backend\modules\portfolio\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use yii\behaviors\SluggableBehavior;
-use yii\helpers\ArrayHelper;
-use backend\modules\imagemanager\models\ImageManager;
 
 /**
- * This is the model class for table "{{%section_carousel}}".
+ * This is the model class for table "{{%portfolio_items}}".
  *
  * @property int $id
  * @property string $name
- * @property string $slug
- * @property string $plugin_class
- * @property string $plugin_options
+ * @property string $link_class
+ * @property string $link_href
  * @property string $img_class
- * @property string $img_width
- * @property string $img_height
+ * @property string $img_src
+ * @property string $img_alt
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
+ *
  */
-class Carousel extends \yeesoft\db\ActiveRecord
+class Items extends \yeesoft\db\ActiveRecord
 {
-      
+    public $gridCategorySearch;
+     
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
     
@@ -34,7 +32,7 @@ class Carousel extends \yeesoft\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%section_carousel}}';
+        return '{{%portfolio_items}}';
     }
 
      /**
@@ -44,24 +42,26 @@ class Carousel extends \yeesoft\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-            ], 
-            'sluggable' => [
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
+            ],   
+            [
+                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
+                'relations' => [
+                    'categories' => 'categories_list',
+                ],
             ],
         ];
     }
+        
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['name', 'plugin_class', 'plugin_options'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],            
-            [['status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'slug', 'plugin_class', 'plugin_options', 'img_class'], 'string', 'max' => 127],
-            [['img_width', 'img_height'], 'string', 'max' => 32],
+            [['status', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt'], 'required'],
+            [['status'], 'integer'],
+            [['created_at', 'updated_at', 'categories_list'], 'safe'],
+            [['name', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt'], 'string', 'max' => 127],
         ];
     }
 
@@ -72,16 +72,17 @@ class Carousel extends \yeesoft\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee', 'ID'),
-            'name' => Yii::t('yee/', 'Name'),
-            'slug' => Yii::t('yee', 'Slug'),
-            'plugin_class' => Yii::t('yee/section', 'Plugin Class'),
-            'plugin_options' => Yii::t('yee/section', 'Plugin Options'),
+            'name' => Yii::t('yee', 'Name'),
+            'link_class' => Yii::t('yee', 'Link Class'),
+            'link_href' => Yii::t('yee/section', 'Link Href'),
             'img_class' => Yii::t('yee/section', 'Img Class'),
-            'img_width' => Yii::t('yee/section', 'Img Width'),
-            'img_height' => Yii::t('yee/section', 'Img Height'),
+            'img_src' => Yii::t('yee/section', 'Img Src'),
+            'img_alt' => Yii::t('yee/section', 'Img Alt'),
             'status' => Yii::t('yee', 'Status'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
+            'categories_list' => Yii::t('yee/section', 'Portfolio Categories'),
+            'gridCategorySearch' => Yii::t('yee/section', 'Portfolio Categories'),
         ];
     }
 
@@ -127,34 +128,24 @@ class Carousel extends \yeesoft\db\ActiveRecord
             self::STATUS_INACTIVE => Yii::t('yee', 'Inactive'),
         );
     }
-    
-    public function getImages()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+   /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategories()
     {
-        return $this->hasMany(ImageManager::className(), ['item_id' => 'id'])->orderBy('sort');
+        return $this->hasMany(Category::className(), ['id' => 'category_id'])
+                    ->viaTable('{{%portfolio_items_category}}', ['items_id' => 'id']);
     }
-    public function getImagesLinks()
-    {
-        return ArrayHelper::getColumn($this->images, 'imageUrl');
-    }
-    public function getImagesLinksData()
-    {
-        return ArrayHelper::toArray($this->images,[
-                    ImageManager::className() => [
-                    'type' => 'type',
-                    'filetype' => 'filetype',
-                    'downloadUrl' => 'url',
-                    'caption'=> 'name',
-                    'size'=> 'size',
-                    'key'=> 'id',
-                ]]
-        );
-    }
+
     /**
      * {@inheritdoc}
-     * @return \backend\modules\section\models\query\CarouselQuery the active query used by this AR class.
+     * @return \backend\modules\section\models\query\ItemsQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \backend\modules\section\models\query\CarouselQuery(get_called_class());
+        return new \backend\modules\portfolio\models\query\ItemsQuery(get_called_class());
     }
 }

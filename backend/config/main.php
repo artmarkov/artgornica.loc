@@ -43,6 +43,9 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'portfolio' => [
+            'class' => 'backend\modules\portfolio\PortfolioModule',
+        ],
         'section' => [
             'class' => 'backend\modules\section\SectionModule',
         ],
