@@ -5,6 +5,8 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\ThemeAsset;
 use frontend\widgets\owlcarousel\OwlCarouselWidget;
+use backend\modules\portfolio\models\Menu;
+use backend\modules\portfolio\models\Category;
 
 ThemeAsset::register($this);
 
@@ -101,24 +103,26 @@ $this->params['breadcrumbs'][] = $this->title;
                     Также здесь Вы можете познакомиться поближе <a href=""></a>
                     с Арттерапией. Здесь Вы найдете много видео и фото с наших занятий.</p>
 
-                <ul class="nav nav-pills isotope-filter" data-sort-id="isotope-list" data-option-key="filter">
-                    <li data-option-value="*" class="active"><a href="#">Все материалы</a></li>
-                    <li data-option-value=".development"><a href="#">Фото работ</a></li>
-                    <li data-option-value=".photography"><a href="#">Видео</a></li>
-                    <li data-option-value=".design"><a href="#">Разное</a></li>
-                </ul>
+               
                     <?php
+                                     
                      $menuItems[] = [
                             'label' =>  Yii::t('yee/section', 'Все материалы'),
                             'options' => ['class' =>'active','data-option-value' => '*'],
                             'template' => '<a href="#">{label}</a>'                           
                         ];
+                     
+                     $menu = Menu::getPortfolioMenuList();
+                     
+                     foreach ($menu as $id => $item) : 
+                         
                      $menuItems[] = [
-                            'label' =>  Yii::t('yee/section', 'Фото работ'),
-                            'options' => ['data-option-value' => '.development'],
+                            'label' =>  Yii::t('yee/section', $item['name']),
+                            'options' => ['data-option-value' => Category::getPortfolioMenuOptions($item['id'])],
                             'template' => '<a href="#">{label}</a>'                           
                         ];
-                    
+                     
+                      endforeach; 
 
                     echo yii\widgets\Menu::widget([
                         'encodeLabels' => false,
@@ -135,7 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <ul class="sort-destination isotope fullcenter" data-sort-id="isotope-list">
 
-                        <li class="isotope-item development"><!-- item -->
+                        <li class="isotope-item development photography"><!-- item -->
                             <div class="item-box">
                                 <figure>
                                     <a class="item-hover" href="portfolio-single.html">

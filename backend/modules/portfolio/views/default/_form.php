@@ -25,24 +25,27 @@ use yeesoft\helpers\Html;
                 <div class="panel-body">
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'link_class')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'link_href')->textInput(['maxlength' => true]) ?>
-
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'link_class')->textInput(['maxlength' => true]) ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'link_href')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                   
                     <?= $form->field($model, 'img_class')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'img_src')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'img_alt')->textInput(['maxlength' => true]) ?>
-
-                   <?=
-                        $form->field($model, 'categories_list')->widget(nex\chosen\Chosen::className(), [
-                            'items' => backend\modules\portfolio\models\Category::getCategories(),
-                            'multiple' => true,
-                            'placeholder' => Yii::t('yee/section', 'Select Categories...'),
-                        ])
-                        ?>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'img_src')->textInput(['maxlength' => true]) ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'img_alt')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                    
+                   
                 </div>
 
             </div>
@@ -69,7 +72,15 @@ use yeesoft\helpers\Html;
                                 <span><?= $model->updatedDatetime ?></span>
                             </div>
                         <?php endif; ?>
+                        
                         <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Items::getStatusList()) ?>
+                        
+                        <?= $form->field($model, 'category_id')
+                                ->dropDownList(backend\modules\portfolio\models\Category::getCategories(), [
+                                    'prompt' => Yii::t('yee/section', 'Select Categories...'),
+                                    'id' => 'categories_id'
+                                ])->label(Yii::t('yee/section', 'Portfolio Category'));
+                            ?>
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>

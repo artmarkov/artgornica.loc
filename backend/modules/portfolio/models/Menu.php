@@ -4,36 +4,33 @@ namespace backend\modules\portfolio\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use yii\behaviors\SluggableBehavior;
 
 /**
- * This is the model class for table "{{%portfolio_category}}".
+ * This is the model class for table "{{%portfolio_menu}}".
  *
  * @property int $id
- * @property int $type
  * @property string $name
- * @property string $slug
  * @property string $description
  * @property int $status
+ * @property int $sort
  * @property int $created_at
  * @property int $updated_at
  *
+ * @property PortfolioMenuCategory[] $portfolioMenuCategories
  */
-class Category extends \yeesoft\db\ActiveRecord
+class Menu extends \yii\db\ActiveRecord
 {
+    public $gridCategorySearch;     
+         
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
-    
-    const TYPE_IMAGE = 0;
-    const TYPE_IFRAME = 1;
-    const TYPE_LINK = 2;
     
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%portfolio_category}}';
+        return '{{%portfolio_menu}}';
     }
 
      /**
@@ -43,10 +40,12 @@ class Category extends \yeesoft\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-            ], 
-             'sluggable' => [
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
+            ],   
+            [
+                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
+                'relations' => [
+                    'categories' => 'categories_list',
+                ],
             ],
         ];
     }
@@ -56,15 +55,16 @@ class Category extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'type', 'status'], 'required'],
-            [['name', 'slug'], 'unique'],
-            [['type', 'status'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug', 'description'], 'string', 'max' => 127],
+            [['name', 'status'], 'required'],
+            [['name'], 'unique'],
+            [['created_at', 'updated_at', 'categories_list'], 'safe'],            
+            [['description'], 'string'],
+            [['status', 'sort', 'created_at', 'updated_at'], 'integer'],
+            [['name'], 'string', 'max' => 32],
         ];
     }
 
-     
+    
      public function getCreatedDate()
     {
         return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->created_at);
@@ -105,19 +105,6 @@ class Category extends \yeesoft\db\ActiveRecord
             self::STATUS_ACTIVE => Yii::t('yee', 'Active'),
             self::STATUS_INACTIVE => Yii::t('yee', 'Inactive'),
         );
-    } 
-    
-    /**
-     * getTypeList
-     * @return array
-     */
-    public static function getTypeList()
-    {
-        return array(
-            self::TYPE_IMAGE => Yii::t('yee/section', 'Image'),
-            self::TYPE_IFRAME => Yii::t('yee/section', 'Iframe'),
-            self::TYPE_LINK => Yii::t('yee/section', 'Link'),
-        );
     }
     
     /**
@@ -128,42 +115,46 @@ class Category extends \yeesoft\db\ActiveRecord
         return [
             'id' => Yii::t('yee', 'ID'),
             'name' => Yii::t('yee', 'Name'),
-            'slug' => Yii::t('yee', 'Slug'),
             'description' => Yii::t('yee', 'Description'),
             'status' => Yii::t('yee', 'Status'),
+            'sort' => Yii::t('yee', 'Sort'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
+            'categories_list' => Yii::t('yee/section', 'Portfolio Categories'),
+            'gridCategorySearch' => Yii::t('yee/section', 'Portfolio Categories'),
         ];
     }
-     /**
-     * @inheritdoc
+
+    /**
+     * @return \yii\db\ActiveQuery
      */
-    
-    public static function getCategories()
+    public function getCategories()
     {
-        return \yii\helpers\ArrayHelper::map(static::find()
-                ->andWhere(['in', 'status', self::STATUS_ACTIVE])
-                ->select('id, name')
-                ->asArray()->all(), 'id', 'name');
-        
-    } 
+        return $this->hasMany(Category::className(), ['id' => 'category_id'])
+                    ->viaTable('{{%portfolio_menu_category}}', ['menu_id' => 'id']);
+    }
+
      /**
      * 
-     * @return type string
+     * @return type array 
      */
-     public static function getPortfolioMenuOptions($menu_id)
+     public static function getPortfolioMenuList()
     {
-        $options = array();
-        $items = self::find()
-                ->innerJoin('portfolio_menu_category', 'portfolio_menu_category.category_id = portfolio_category.id')
-                ->where(['portfolio_menu_category.menu_id' => $menu_id])
-                ->asArray()->all();
-        
-            foreach ($items as $id => $item) { 
-                    $options[] = '.' . $item['slug'];
-            } 
-            
-            return implode(",", $options);
+        return self::find()
+                ->where(['in', 'status', self::STATUS_ACTIVE])
+                ->asArray()->all();        
     } 
-
+     public function getCategoriesLinks()
+    {
+        return \yii\helpers\ArrayHelper::getColumn($this->categories, 'id');
+    }
+    
+    /**
+     * {@inheritdoc}
+     * @return \backend\modules\portfolio\models\query\MenuQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \backend\modules\portfolio\models\query\MenuQuery(get_called_class());
+    }
 }

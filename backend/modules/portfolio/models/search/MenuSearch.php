@@ -5,12 +5,12 @@ namespace backend\modules\portfolio\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\portfolio\models\Items;
+use backend\modules\portfolio\models\Menu;
 
 /**
- * ItemsSearch represents the model behind the search form about `backend\modules\portfolio\models\Items`.
+ * MenuSearch represents the model behind the search form about `backend\modules\portfolio\models\Menu`.
  */
-class ItemsSearch extends Items
+class MenuSearch extends Menu
 {
     /**
      * @inheritdoc
@@ -18,9 +18,9 @@ class ItemsSearch extends Items
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'category_id'], 'integer'],
-            [['name', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt', 'status'], 'safe'],
-          
+            [['id', 'sort', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'description', 'status'], 'safe'],
+            ['gridCategorySearch', 'string'],
         ];
     }
 
@@ -42,7 +42,7 @@ class ItemsSearch extends Items
      */
     public function search($params)
     {
-        $query = Items::find();
+        $query = Menu::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -63,20 +63,23 @@ class ItemsSearch extends Items
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        //жадная загрузка             
+        $query->with(['categories']);
+        
+        if ($this->gridCategorySearch) {
+            $query->joinWith(['categories']);
+        }
+        
         $query->andFilterWhere([
             'id' => $this->id,
+            'sort' => $this->sort,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'category_id' => $this->category_id,
+            'portfolio_menu_category.category_id' => $this->gridCategorySearch,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'link_class', $this->link_class])
-            ->andFilterWhere(['like', 'link_href', $this->link_href])
-            ->andFilterWhere(['like', 'img_class', $this->img_class])
-            ->andFilterWhere(['like', 'img_src', $this->img_src])
-            ->andFilterWhere(['like', 'img_alt', $this->img_alt])
+            ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

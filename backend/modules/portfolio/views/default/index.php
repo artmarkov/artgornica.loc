@@ -79,25 +79,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'img_class',
             // 'img_src',
             // 'img_alt',
-             [
-                        'attribute' => 'gridCategorySearch',
-                        'filter' => Category::getCategories(),
-                        'value' => function (Items $model) {
-                            return implode(', ',
-                                ArrayHelper::map($model->categories, 'id', 'name'));
-                        },
-                        'options' => ['style' => 'width:350px'],
-                        'format' => 'raw',
-                    ],                          
-            [
-                        'class' => 'yeesoft\grid\columns\StatusColumn',
-                        'attribute' => 'status',
-                        'optionsArray' => [
-                            [Items::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
-                            [Items::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
-                        ],
-                        'options' => ['style' => 'width:250px']
+                [
+                    'attribute' => 'category_id',
+                    'value' => 'categoryName',
+                    'label' => Yii::t('yee/event', 'Category Name'),
+                    'filter' => Category::getCategories(),
+                    'options' => ['style' => 'width:350px'],
+                ],
+                [
+                    'class' => 'yeesoft\grid\columns\StatusColumn',
+                    'attribute' => 'status',
+                    'optionsArray' => [
+                        [Items::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
+                        [Items::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
                     ],
+                    'options' => ['style' => 'width:250px']
+                ],
             // 'created_at',
             // 'updated_at',
 

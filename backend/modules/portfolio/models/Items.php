@@ -22,8 +22,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class Items extends \yeesoft\db\ActiveRecord
 {
-    public $gridCategorySearch;
-     
+         
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
     
@@ -43,12 +42,6 @@ class Items extends \yeesoft\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ],   
-            [
-                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
-                'relations' => [
-                    'categories' => 'categories_list',
-                ],
-            ],
         ];
     }
         
@@ -58,9 +51,9 @@ class Items extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt'], 'required'],
+            [['name', 'status', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt', 'category_id'], 'required'],
             [['status'], 'integer'],
-            [['created_at', 'updated_at', 'categories_list'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt'], 'string', 'max' => 127],
         ];
     }
@@ -72,6 +65,7 @@ class Items extends \yeesoft\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee', 'ID'),
+            'category_id' => Yii::t('yee', 'Category ID'),
             'name' => Yii::t('yee', 'Name'),
             'link_class' => Yii::t('yee', 'Link Class'),
             'link_href' => Yii::t('yee/section', 'Link Href'),
@@ -81,8 +75,6 @@ class Items extends \yeesoft\db\ActiveRecord
             'status' => Yii::t('yee', 'Status'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
-            'categories_list' => Yii::t('yee/section', 'Portfolio Categories'),
-            'gridCategorySearch' => Yii::t('yee/section', 'Portfolio Categories'),
         ];
     }
 
@@ -131,15 +123,27 @@ class Items extends \yeesoft\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-   /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategories()
+    public function getCategory()
     {
-        return $this->hasMany(Category::className(), ['id' => 'category_id'])
-                    ->viaTable('{{%portfolio_items_category}}', ['items_id' => 'id']);
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+    
+     /* Геттер для названия категории */
+    public function getCategoryName()
+    {
+        return $this->category->name;
     }
 
+    /**
+     * 
+     * @return type array
+     */
+     public static function getPortfolioItems()
+    {
+        return self::find()
+                ->where(['in', 'status', self::STATUS_ACTIVE])
+                ->asArray()->all();        
+    } 
     /**
      * {@inheritdoc}
      * @return \backend\modules\section\models\query\ItemsQuery the active query used by this AR class.

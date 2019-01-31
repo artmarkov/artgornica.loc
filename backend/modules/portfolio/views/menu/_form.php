@@ -1,19 +1,19 @@
 <?php
 
 use yeesoft\widgets\ActiveForm;
-use backend\modules\portfolio\models\Category;
+use backend\modules\portfolio\models\Menu;
 use yeesoft\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\portfolio\models\Category */
+/* @var $model backend\modules\portfolio\models\Menu */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 
-<div class="category-form">
+<div class="menu-form">
 
     <?php 
     $form = ActiveForm::begin([
-            'id' => 'category-form',
+            'id' => 'menu-form',
             'validateOnBlur' => false,
         ])
     ?>
@@ -26,10 +26,14 @@ use yeesoft\helpers\Html;
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
+                    <?= $form->field($model, 'categories_list')->widget(nex\chosen\Chosen::className(), [
+                            'items' => backend\modules\portfolio\models\Category::getCategories(),
+                            'multiple' => true,
+                            'placeholder' => Yii::t('yee/section', 'Select Categories...'),
+                        ])
+                    ?>
                 </div>
 
             </div>
@@ -40,28 +44,15 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-                    <?php if (!$model->isNewRecord): ?>
-
-                            <div class="form-group clearfix">
-                                <label class="control-label" style="float: left; padding-right: 5px;">
-                             <?= $model->attributeLabels()['created_at'] ?> :
-                                </label>
-                                <span><?= $model->createdDatetime ?></span>
-                            </div>
-
-                            <div class="form-group clearfix">
-                                <label class="control-label" style="float: left; padding-right: 5px;">
-                            <?= $model->attributeLabels()['updated_at'] ?> :
-                                </label>
-                                <span><?= $model->updatedDatetime ?></span>
-                            </div>
-                        <?php endif; ?>
-                        <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Category::getStatusList()) ?>
-                        <?= $form->field($model->loadDefaultValues(), 'type')->dropDownList(Category::getTypeList()) ?>
+                            
+                            <?= $form->field($model->loadDefaultValues(), 'status')->dropDownList(Menu::getStatusList()) ?>
+                        
+                            <?= $form->field($model, 'sort')->textInput(['maxlength' => true]) ?>
+                        
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/portfolio/category/index'], ['class' => 'btn btn-default']) ?>
+                                <?= Html::a(Yii::t('yee', 'Cancel'), ['/portfolio/menu/index'], ['class' => 'btn btn-default']) ?>
                             <?php  else: ?>
                                 <div class="form-group clearfix">
                                     <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
@@ -69,7 +60,7 @@ use yeesoft\helpers\Html;
                                 </div>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('yee', 'Delete'),
-                                    ['/portfolio/category/delete', 'id' => $model->id], [
+                                    ['/portfolio/menu/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

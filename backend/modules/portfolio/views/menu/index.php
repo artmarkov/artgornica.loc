@@ -4,23 +4,25 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yeesoft\grid\GridView;
 use yeesoft\grid\GridQuickLinks;
-use backend\modules\portfolio\models\Category;
+use backend\modules\portfolio\models\Menu;
 use yeesoft\helpers\Html;
 use yeesoft\grid\GridPageSize;
+use backend\modules\portfolio\models\Category;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\portfolio\models\search\CategorySearch */
+/* @var $searchModel backend\modules\portfolio\models\search\MenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/section', 'Portfolio Categories');
+$this->title = Yii::t('yee/section', 'Portfolio Menu');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="category-index">
+<div class="menu-index">
 
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/portfolio/category/create'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/portfolio/menu/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -31,31 +33,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-sm-6">
                     <?php 
                     /* Uncomment this to activate GridQuickLinks */
-                    echo GridQuickLinks::widget([
-                        'model' => Category::className(),
+                     echo GridQuickLinks::widget([
+                        'model' => Menu::className(),
                         'searchModel' => $searchModel,
                     ])
                     ?>
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'category-grid-pjax']) ?>
+                    <?=  GridPageSize::widget(['pjaxId' => 'menu-grid-pjax']) ?>
                 </div>
             </div>
 
             <?php 
             Pjax::begin([
-                'id' => 'category-grid-pjax',
+                'id' => 'menu-grid-pjax',
             ])
             ?>
 
             <?= 
             GridView::widget([
-                'id' => 'category-grid',
+                'id' => 'menu-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
-                    'gridId' => 'category-grid',
+                    'gridId' => 'menu-grid',
 //                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
                 ],
                 'columns' => [
@@ -63,33 +65,32 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'attribute' => 'name',
-                        'controller' => '/portfolio/category',
-                        'title' => function(Category $model) {
+                        'controller' => '/portfolio/menu',
+                        'title' => function(Menu $model) {
                             return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-            'slug',
-            //'description',
                     [
-                        'class' => 'yeesoft\grid\columns\StatusColumn',
-                        'attribute' => 'status',
-                        'optionsArray' => [
-                            [Category::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
-                            [Category::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
-                        ],
-                        'options' => ['style' => 'width:250px']
+                        'attribute' => 'gridCategorySearch',
+                        'filter' => Category::getCategories(),
+                        'value' => function (Menu $model) {
+                            return implode(', ',
+                                ArrayHelper::map($model->categories, 'id', 'name'));
+                        },
+                        'options' => ['style' => 'width:350px'],
+                        'format' => 'raw',
+                    ],                          
+                   [
+                    'class' => 'yeesoft\grid\columns\StatusColumn',
+                    'attribute' => 'status',
+                    'optionsArray' => [
+                        [Menu::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
+                        [Menu::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
                     ],
-                    [
-                        'class' => 'yeesoft\grid\columns\StatusColumn',
-                        'attribute' => 'type',
-                        'optionsArray' => [
-                            [Category::TYPE_IMAGE, Yii::t('yee/section', 'Image'), 'primary'],
-                            [Category::TYPE_IFRAME, Yii::t('yee/section', 'Iframe'), 'default'],
-                            [Category::TYPE_LINK, Yii::t('yee/section', 'Link'), 'info'],
-                        ],
-                        'options' => ['style' => 'width:250px']
-                    ],
+                    'options' => ['style' => 'width:250px']
+                    ],         
+//            'sort',
             // 'created_at',
             // 'updated_at',
 
