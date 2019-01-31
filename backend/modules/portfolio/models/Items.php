@@ -144,6 +144,43 @@ class Items extends \yeesoft\db\ActiveRecord
                 ->where(['in', 'status', self::STATUS_ACTIVE])
                 ->asArray()->all();        
     } 
+     /**
+     *  @return type array to about page
+     */
+    public static function getPortfolioMasonryItems() {
+        
+
+        foreach (self::getPortfolioItems() as $id => $item) :
+
+            $data[] = [
+                    'options' => [
+                        'class' => 'isotope-item photography',
+                    ],
+                    'link' => [
+                        'class' => $item['link_class'],
+                        'href' => $item['link_href'],
+                        'data' => [
+                            'plugin-options' => [
+                                'type' => 'image',
+                            ],
+                        ]
+                    ],
+                    'image' => [
+                        'src' => $item['img_src'],
+                        'options' => [
+                            'class' => 'img-responsive',
+                            'width' => '260',
+                            'height' => '260',
+                            'alt' =>  $item['img_alt'],
+                        ],
+                    ],
+                    'content' => '<strong>VIEW</strong> PROJECT',
+            ];
+
+        endforeach;
+
+        return $data;
+    }
     /**
      * {@inheritdoc}
      * @return \backend\modules\section\models\query\ItemsQuery the active query used by this AR class.

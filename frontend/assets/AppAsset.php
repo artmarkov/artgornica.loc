@@ -32,6 +32,7 @@ class AppAsset extends AssetBundle
         'css/blog.css',
         
         'css/portfolio.css',
+        
         'css/essentials.css',
         'css/layout.css',
         'css/layout-responsive.css',

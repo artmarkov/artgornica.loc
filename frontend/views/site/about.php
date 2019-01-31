@@ -6,7 +6,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\ThemeAsset;
 use frontend\widgets\owlcarousel\OwlCarouselWidget;
 use backend\modules\portfolio\models\Menu;
-use backend\modules\portfolio\models\Category;
+use backend\modules\portfolio\models\Items;
 
 ThemeAsset::register($this);
 
@@ -104,25 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     с Арттерапией. Здесь Вы найдете много видео и фото с наших занятий.</p>
 
                
-                    <?php
-                                     
-                     $menuItems[] = [
-                            'label' =>  Yii::t('yee/section', 'Все материалы'),
-                            'options' => ['class' =>'active','data-option-value' => '*'],
-                            'template' => '<a href="#">{label}</a>'                           
-                        ];
-                     
-                     $menu = Menu::getPortfolioMenuList();
-                     
-                     foreach ($menu as $id => $item) : 
-                         
-                     $menuItems[] = [
-                            'label' =>  Yii::t('yee/section', $item['name']),
-                            'options' => ['data-option-value' => Category::getPortfolioMenuOptions($item['id'])],
-                            'template' => '<a href="#">{label}</a>'                           
-                        ];
-                     
-                      endforeach; 
+                    <?php 
 
                     echo yii\widgets\Menu::widget([
                         'encodeLabels' => false,
@@ -131,197 +113,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-sort-id' => 'isotope-list', 
                             'data-option-key' => 'filter'
                             ],
-                        'items' => $menuItems,
+                        'items' => Menu::getPortfolioMenuItems(),
+                    ]);
+                    
+                    echo frontend\widgets\PortfolioWidget::widget([                        
+                        'slides' => Items::getPortfolioMasonryItems(),
                     ]);
                     ?>
-
-                <div class="row">
-
-                    <ul class="sort-destination isotope fullcenter" data-sort-id="isotope-list">
-
-                        <li class="isotope-item development photography"><!-- item -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover" href="portfolio-single.html">
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> PROJECT
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/scouter-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item photography"><!-- item 2 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="../frontend/web/images/demo/portfolio/black-kitty-600x403.jpg" data-plugin-options='{"type":"image"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> IMAGE
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/black-kitty-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item design"><!-- item 3 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> VIDEO
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/merchant2-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item photography"><!-- item 4 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover" href="portfolio-single.html">
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> PROJECT
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/flippin-the-bird1-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item development"><!-- item 5 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="../frontend/web/images/demo/portfolio/night_to_remember1-600x403.jpg" data-plugin-options='{"type":"image"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> IMAGE
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/night_to_remember1-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item design"><!-- item 6 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> VIDEO
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/spacebound-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item photography design"><!-- item 7 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover" href="portfolio-single.html">
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> PROJECT
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/be-my-guest1-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item development"><!-- item 8 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="../frontend/web/images/demo/portfolio/black-box5-600x403.jpg" data-plugin-options='{"type":"image"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> IMAGE
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/black-box5-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item development"><!-- item -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> VIDEO
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/weather-app-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item photography"><!-- item 2 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover" href="portfolio-single.html">
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> PROJECT
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/theMoose-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item design"><!-- item 3 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="../frontend/web/images/demo/portfolio/tumblr_mopqj9QUeq1st5lhmo1_12801-600x403.jpg" data-plugin-options='{"type":"image"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> IMAGE
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/tumblr_mopqj9QUeq1st5lhmo1_12801-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="isotope-item photography"><!-- item 4 -->
-                            <div class="item-box">
-                                <figure>
-                                    <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
-                                        <span class="overlay color2"></span>
-                                        <span class="inner">
-                                            <span class="block fa fa-plus fsize20"></span>
-                                            <strong>VIEW</strong> VIDEO
-                                        </span>
-                                    </a>
-                                    <img class="img-responsive" src="../frontend/web/images/demo/portfolio/scouter-600x403.jpg" width="260" height="260" alt="">
-                                </figure>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </div><!-- /.masonry-container -->
             </div>
 
         </section>

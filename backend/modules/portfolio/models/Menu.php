@@ -144,7 +144,32 @@ class Menu extends \yii\db\ActiveRecord
                 ->where(['in', 'status', self::STATUS_ACTIVE])
                 ->asArray()->all();        
     } 
-     public function getCategoriesLinks()
+    /**
+     *  @return type array to about page
+     */
+    public static function getPortfolioMenuItems() {
+        
+        $menuItems[] = [
+            'label' => Yii::t('yee/section', 'Все материалы'),
+            'options' => ['class' => 'active', 'data-option-value' => '*'],
+            'template' => '<a href="#">{label}</a>'
+        ];
+
+
+        foreach (self::getPortfolioMenuList() as $id => $item) :
+
+            $menuItems[] = [
+                'label' => Yii::t('yee/section', $item['name']),
+                'options' => ['data-option-value' => Category::getPortfolioMenuOptions($item['id'])],
+                'template' => '<a href="#">{label}</a>'
+            ];
+
+        endforeach;
+
+        return $menuItems;
+    }
+
+    public function getCategoriesLinks()
     {
         return \yii\helpers\ArrayHelper::getColumn($this->categories, 'id');
     }
