@@ -4,16 +4,15 @@ namespace backend\modules\portfolio\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yeesoft\helpers\Html;
 
 /**
  * This is the model class for table "{{%portfolio_items}}".
  *
  * @property int $id
  * @property string $name
- * @property string $link_class
  * @property string $link_href
- * @property string $img_class
- * @property string $img_src
+ * @property string $thumbnail
  * @property string $img_alt
  * @property int $status
  * @property int $created_at
@@ -22,7 +21,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class Items extends \yeesoft\db\ActiveRecord
 {
-         
+    
+
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
     
@@ -51,10 +51,11 @@ class Items extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'status', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt', 'category_id'], 'required'],
+            [['name', 'status', 'link_href', 'thumbnail', 'category_id'], 'required'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt'], 'string', 'max' => 127],
+            [['name', 'link_href', 'img_alt'], 'string', 'max' => 127],
+            [['thumbnail'], 'string', 'max' => 255],
         ];
     }
 
@@ -69,8 +70,7 @@ class Items extends \yeesoft\db\ActiveRecord
             'name' => Yii::t('yee', 'Name'),
             'link_class' => Yii::t('yee', 'Link Class'),
             'link_href' => Yii::t('yee/section', 'Link Href'),
-            'img_class' => Yii::t('yee/section', 'Img Class'),
-            'img_src' => Yii::t('yee/section', 'Img Src'),
+            'thumbnail' => Yii::t('yee/section', 'Thumbnail'),
             'img_alt' => Yii::t('yee/section', 'Img Alt'),
             'status' => Yii::t('yee', 'Status'),
             'created_at' => Yii::t('yee', 'Created At'),
@@ -133,6 +133,15 @@ class Items extends \yeesoft\db\ActiveRecord
     {
         return $this->category->name;
     }
+    
+    public function getThumbnail($options = ['class' => 'thumbnail pull-left', 'style' => 'width: 240px'])
+    {
+        if (!empty($this->thumbnail)) {
+            return Html::img($this->thumbnail, $options);
+        }
+
+        return;
+    }
 
     /**
      * 
@@ -148,25 +157,44 @@ class Items extends \yeesoft\db\ActiveRecord
      *  @return type array to about page
      */
     public static function getPortfolioMasonryItems() {
-        
-
+       
         foreach (self::getPortfolioItems() as $id => $item) :
-
+            
+            $data_cat = Category::getCategory($item['category_id']);
+        
+            switch ($data_cat['type']) {
+                case '0': $type = 'image';
+                    $link_class = 'item-hover lightbox';
+                    $content = '<strong>просмотр</strong> фото';
+                    break;
+                case '1': $type = 'iframe';
+                    $link_class = 'item-hover lightbox';
+                    $content = '<strong>просмотр</strong> видео';
+                    break;
+                case '2': $type = '';
+                    $link_class = 'item-hover';
+                    $content = '<strong>просмотр</strong> проекта';
+                    break;
+                default: $type = '';
+                    $link_class = 'item-hover';
+                    $content = '<strong>view</strong> content';
+            }
+            
             $data[] = [
                     'options' => [
-                        'class' => 'isotope-item photography',
+                        'class' => 'isotope-item ' . $data_cat['slug'],
                     ],
                     'link' => [
-                        'class' => $item['link_class'],
+                        'class' => $link_class,
                         'href' => $item['link_href'],
                         'data' => [
                             'plugin-options' => [
-                                'type' => 'image',
+                                'type' => $type,
                             ],
                         ]
                     ],
                     'image' => [
-                        'src' => $item['img_src'],
+                        'src' => $item['thumbnail'],
                         'options' => [
                             'class' => 'img-responsive',
                             'width' => '260',
@@ -174,7 +202,7 @@ class Items extends \yeesoft\db\ActiveRecord
                             'alt' =>  $item['img_alt'],
                         ],
                     ],
-                    'content' => '<strong>VIEW</strong> PROJECT',
+                    'content' => '<span class="uppercase">' . $content . '</span>',
             ];
 
         endforeach;

@@ -19,7 +19,7 @@ class ItemsSearch extends Items
     {
         return [
             [['id', 'created_at', 'updated_at', 'category_id'], 'integer'],
-            [['name', 'link_class', 'link_href', 'img_class', 'img_src', 'img_alt', 'status'], 'safe'],
+            [['name', 'link_href', 'thumbnail', 'img_alt', 'status'], 'safe'],
           
         ];
     }
@@ -72,10 +72,8 @@ class ItemsSearch extends Items
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'link_class', $this->link_class])
             ->andFilterWhere(['like', 'link_href', $this->link_href])
-            ->andFilterWhere(['like', 'img_class', $this->img_class])
-            ->andFilterWhere(['like', 'img_src', $this->img_src])
+            ->andFilterWhere(['like', 'thumbnail', $this->thumbnail])
             ->andFilterWhere(['like', 'img_alt', $this->img_alt])
             ->andFilterWhere(['like', 'status', $this->status]);
 

@@ -164,6 +164,18 @@ class Category extends \yeesoft\db\ActiveRecord
             } 
             
             return implode(",", $options);
-    } 
+    }
+
+    /**
+     * 
+     * @return type string
+     */
+    public static function getCategory($category_id) {
+
+        $data = self::find()
+                        ->where(['id' => $category_id])
+                        ->asArray()->one();
+        return $data;
+    }
 
 }

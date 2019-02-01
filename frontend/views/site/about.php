@@ -119,9 +119,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo frontend\widgets\PortfolioWidget::widget([                        
                         'slides' => Items::getPortfolioMasonryItems(),
                     ]);
+                    
+        echo '<pre>' . print_r(\backend\modules\media\models\Media::findByTypes(\backend\modules\media\models\Media::$imageFileTypes), true) . '</pre>';
                     ?>
             </div>
-
         </section>
         <div class="divider styleColor"><!-- divider -->
             <i class="fa fa-leaf"></i>
