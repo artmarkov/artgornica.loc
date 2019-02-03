@@ -2,6 +2,9 @@
 
 namespace backend\modules\media\controllers;
 
+use Yii;
+use backend\modules\media\models\Media;
+
 class DefaultController extends \backend\controllers\DefaultController
 {
 
@@ -16,6 +19,20 @@ class DefaultController extends \backend\controllers\DefaultController
     public function actionSettings()
     {
         return $this->render('settings');
+    }
+    
+    public function actionPasteLink() {
+
+        $id = Yii::$app->request->post('id');
+      
+        if ($id != 0) {
+            $model = Media::findById($id);
+            // echo '<pre>' . print_r($model, true) . '</pre>';
+            return $model->getThumbs()['large'];
+            
+        } else {
+            return false;
+        }
     }
 
 }

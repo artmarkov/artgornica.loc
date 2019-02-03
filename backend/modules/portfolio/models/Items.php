@@ -10,7 +10,7 @@ use yeesoft\helpers\Html;
  * This is the model class for table "{{%portfolio_items}}".
  *
  * @property int $id
- * @property string $name
+ * @property int $category_id 
  * @property string $link_href
  * @property string $thumbnail
  * @property string $img_alt
@@ -51,10 +51,10 @@ class Items extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'status', 'link_href', 'thumbnail', 'category_id'], 'required'],
+            [['status', 'category_id', 'link_href', 'thumbnail'], 'required'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'link_href', 'img_alt'], 'string', 'max' => 127],
+            [['link_href', 'img_alt'], 'string', 'max' => 127],
             [['thumbnail'], 'string', 'max' => 255],
         ];
     }
@@ -67,7 +67,6 @@ class Items extends \yeesoft\db\ActiveRecord
         return [
             'id' => Yii::t('yee', 'ID'),
             'category_id' => Yii::t('yee', 'Category ID'),
-            'name' => Yii::t('yee', 'Name'),
             'link_class' => Yii::t('yee', 'Link Class'),
             'link_href' => Yii::t('yee/section', 'Link Href'),
             'thumbnail' => Yii::t('yee/section', 'Thumbnail'),
@@ -127,7 +126,7 @@ class Items extends \yeesoft\db\ActiveRecord
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
-    
+        
      /* Геттер для названия категории */
     public function getCategoryName()
     {
@@ -157,21 +156,23 @@ class Items extends \yeesoft\db\ActiveRecord
      *  @return type array to about page
      */
     public static function getPortfolioMasonryItems() {
-       
+        
+      $data = array();
+
         foreach (self::getPortfolioItems() as $id => $item) :
             
             $data_cat = Category::getCategory($item['category_id']);
         
             switch ($data_cat['type']) {
-                case '0': $type = 'image';
+                case Category::TYPE_IMAGE: $type = 'image';
                     $link_class = 'item-hover lightbox';
                     $content = '<strong>просмотр</strong> фото';
                     break;
-                case '1': $type = 'iframe';
+                case Category::TYPE_IFRAME: $type = 'iframe';
                     $link_class = 'item-hover lightbox';
                     $content = '<strong>просмотр</strong> видео';
                     break;
-                case '2': $type = '';
+                case Category::TYPE_LINK: $type = '';
                     $link_class = 'item-hover';
                     $content = '<strong>просмотр</strong> проекта';
                     break;

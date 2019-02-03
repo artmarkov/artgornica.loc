@@ -416,6 +416,11 @@ class Media extends ActiveRecord implements OwnerAccess
     public static function findByUrl($url)
     {
         return self::findOne(['url' => $url]);
+    } 
+    
+    public static function findById($id)
+    {
+        return self::find()->filterWhere(['in','media.id' , $id])->one();
     }
 
     /**

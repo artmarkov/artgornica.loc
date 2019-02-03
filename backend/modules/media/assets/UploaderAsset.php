@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 
 class UploaderAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/yeesoft/yii2-yee-media/assets/source';
+    public $sourcePath = '@backend/modules/media/assets/source';
     public $css = [
         'css/uploader.css',
     ];

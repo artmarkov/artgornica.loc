@@ -62,23 +62,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    ['class' => 'yii\grid\SerialColumn', 'options' => ['style' => 'width:20px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'attribute' => 'name',
+                        'attribute' => 'thumbnail',
+                        'options' => ['style' => 'width:250px'],
                         'controller' => '/portfolio/default',
                         'title' => function(Items $model) {
-                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a(Html::img($model->thumbnail, ['width' => '128']), ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-
-//            'id',
-//            'name',
-//            'link_class',
-            'link_href',
-            'img_class',
-            // 'img_src',
-            // 'img_alt',
                 [
                     'attribute' => 'category_id',
                     'value' => 'categoryName',
@@ -86,6 +80,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filter' => Category::getCategories(),
                     'options' => ['style' => 'width:350px'],
                 ],
+                                
+            'link_href',
+                                
                 [
                     'class' => 'yeesoft\grid\columns\StatusColumn',
                     'attribute' => 'status',

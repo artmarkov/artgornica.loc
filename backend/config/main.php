@@ -71,6 +71,24 @@ return [
                 'basePath' => '@public', // Base web directory url
                 'uploadPath' => 'uploads', // Path for uploaded files in web directory
             ],
+            'thumbs' => [
+            'small' => [
+                'name' => 'Мелкий',
+                'size' => [256, 144],
+            ],
+            'medium' => [
+                'name' => 'Средний',
+                'size' => [640, 360],
+            ],
+            'large' => [
+                'name' => 'Большой',
+                'size' => [1280, 720],
+            ],
+             'great' => [
+                'name' => 'Очень Большой',
+                'size' => [1920, 1080],
+            ],
+        ],
         ],
         'settings' => [
             'class' => 'backend\modules\settings\Module',

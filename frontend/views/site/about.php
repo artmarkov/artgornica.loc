@@ -36,13 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
                     <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
+                        <img alt="" class="img-responsive" src="/uploads/2019/02/forest-31198261920-640x360.jpg">
                     </div>
                     <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_3.jpg">
+                        <img alt="" class="img-responsive" src="/uploads/2019/02/forest-31198261920-640x360.jpg">
                     </div>
                     <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
+                        <img alt="" class="img-responsive" src="/uploads/2019/02/forest-31198261920-640x360.jpg">
                     </div>
 
 
@@ -120,7 +120,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'slides' => Items::getPortfolioMasonryItems(),
                     ]);
                     
-        echo '<pre>' . print_r(\backend\modules\media\models\Media::findByTypes(\backend\modules\media\models\Media::$imageFileTypes), true) . '</pre>';
+        //echo '<pre>' . print_r(\backend\modules\media\models\Media::findByTypes(\backend\modules\media\models\Media::$imageFileTypes), true) . '</pre>';
+//                    $data = \backend\modules\media\models\Media::findByUrl('/uploads/2018/12/fishermen-1.jpg');
+//                    $data = \backend\modules\media\models\Media::find(6)->one();
+//         echo '<pre>' . print_r($data->getThumbs()['great'], true) . '</pre>';
+         
                     ?>
             </div>
         </section>

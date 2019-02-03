@@ -31,7 +31,7 @@ $page = (isset($page)) ? $page : 'post';
             <!-- image -->
             <figure>
 
-                <?= Html::img('../frontend/web/images/demo/screens/scr4.jpg', ['alt' => 'img', 'class' => 'img-responsive']) ?>
+                <?= Html::img('/uploads/2019/02/forest-31198261920-1280x720.jpg', ['alt' => 'img', 'class' => 'img-responsive']) ?>
             </figure>
             <!-- TAGS -->
             <?php $tags = $post->tags; ?>

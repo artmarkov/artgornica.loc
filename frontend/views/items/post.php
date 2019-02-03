@@ -48,10 +48,10 @@ $post->updateRevision();
                 ]);
                 ?>
                     <div class="item">
-                        <img src="../frontend/web/images/demo/screens/scr3.jpg" class="img-responsive" alt="img" />
+                        <img src="/uploads/2019/02/forest-31198261920-768x432.jpg" class="img-responsive" alt="img" />
                     </div>
                     <div class="item">
-                        <img src="../frontend/web/images/demo/screens/scr4.jpg" class="img-responsive" alt="img" />
+                        <img src="/uploads/2019/02/forest-31198261920-768x432.jpg" class="img-responsive" alt="img" />
                     </div>
 <!--                <div class="item">
                         <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">

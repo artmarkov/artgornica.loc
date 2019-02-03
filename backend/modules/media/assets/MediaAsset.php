@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 
 class MediaAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/yeesoft/yii2-yee-media/assets/source';
+    public $sourcePath = '@backend/modules/media/assets/source';
     public $css = [
         'css/media.css',
     ];
