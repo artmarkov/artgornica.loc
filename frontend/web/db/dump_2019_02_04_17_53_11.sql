@@ -553,36 +553,6 @@ INSERT INTO `event_vid` VALUES (1,0,'Индивидуальное консуль
 /*!40000 ALTER TABLE `event_vid` ENABLE KEYS */;
 
 --
--- Table structure for table `image_manager`
---
-
-DROP TABLE IF EXISTS `image_manager`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `image_manager` (
-  `id` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `name` varchar(256) NOT NULL,
-  `class` varchar(256) DEFAULT NULL,
-  `item_id` mediumint(8) DEFAULT NULL,
-  `alt` varchar(256) DEFAULT NULL,
-  `sort` smallint(5) NOT NULL,
-  `type` varchar(32) NOT NULL,
-  `filetype` varchar(32) DEFAULT NULL,
-  `url` varchar(256) DEFAULT NULL,
-  `size` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `image_manager`
---
-
-/*!40000 ALTER TABLE `image_manager` DISABLE KEYS */;
-INSERT INTO `image_manager` VALUES (1,'1545120447_096KGq.jpg','Post',15,NULL,1,'image',NULL,'http://artgornica.loc/uploads/images/Post/1545120447_096KGq.jpg',221353),(2,'1545120480_RLBCs6.jpg','Post',15,NULL,0,'image',NULL,'http://artgornica.loc/uploads/images/Post/1545120480_RLBCs6.jpg',152305);
-/*!40000 ALTER TABLE `image_manager` ENABLE KEYS */;
-
---
 -- Table structure for table `media`
 --
 
@@ -608,7 +578,7 @@ CREATE TABLE `media` (
   CONSTRAINT `fk_media_album` FOREIGN KEY (`album_id`) REFERENCES `media_album` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_media_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_media_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -616,7 +586,7 @@ CREATE TABLE `media` (
 --
 
 /*!40000 ALTER TABLE `media` DISABLE KEYS */;
-INSERT INTO `media` VALUES (2,NULL,'fishermen-1.jpg','image/jpeg','/uploads/2018/12/fishermen-1.jpg','433390','a:3:{s:5:\"small\";s:39:\"/uploads/2018/12/fishermen-1-120x80.jpg\";s:6:\"medium\";s:40:\"/uploads/2018/12/fishermen-1-400x300.jpg\";s:5:\"large\";s:40:\"/uploads/2018/12/fishermen-1-800x600.jpg\";}',1544817133,1547563044,1,1),(3,NULL,'bridge-1.jpg','image/jpeg','/uploads/2018/12/bridge-1.jpg','459618','a:3:{s:5:\"small\";s:36:\"/uploads/2018/12/bridge-1-120x80.jpg\";s:6:\"medium\";s:37:\"/uploads/2018/12/bridge-1-400x300.jpg\";s:5:\"large\";s:37:\"/uploads/2018/12/bridge-1-800x600.jpg\";}',1544817158,1544817159,1,1);
+INSERT INTO `media` VALUES (7,3,'tree-cat.jpg','image/jpeg','/uploads/2019/02/tree-cat.jpg','67693','a:4:{s:5:\"small\";s:37:\"/uploads/2019/02/tree-cat-320x180.jpg\";s:6:\"medium\";s:37:\"/uploads/2019/02/tree-cat-640x360.jpg\";s:5:\"large\";s:38:\"/uploads/2019/02/tree-cat-1280x720.jpg\";s:5:\"great\";s:39:\"/uploads/2019/02/tree-cat-1920x1080.jpg\";}',1549272107,1549291269,1,1),(8,4,'forest.jpg','image/jpeg','/uploads/2019/02/forest.jpg','730310','a:4:{s:5:\"small\";s:35:\"/uploads/2019/02/forest-320x180.jpg\";s:6:\"medium\";s:35:\"/uploads/2019/02/forest-640x360.jpg\";s:5:\"large\";s:36:\"/uploads/2019/02/forest-1280x720.jpg\";s:5:\"great\";s:37:\"/uploads/2019/02/forest-1920x1080.jpg\";}',1549272800,1549272822,1,1),(9,4,'sunset-silhouette.jpg','image/jpeg','/uploads/2019/02/sunset-silhouette.jpg','235595','a:4:{s:5:\"small\";s:46:\"/uploads/2019/02/sunset-silhouette-320x180.jpg\";s:6:\"medium\";s:46:\"/uploads/2019/02/sunset-silhouette-640x360.jpg\";s:5:\"large\";s:47:\"/uploads/2019/02/sunset-silhouette-1280x720.jpg\";s:5:\"great\";s:48:\"/uploads/2019/02/sunset-silhouette-1920x1080.jpg\";}',1549272801,1549272818,1,1),(10,4,'solar-eclipse.jpg','image/jpeg','/uploads/2019/02/solar-eclipse.jpg','531187','a:4:{s:5:\"small\";s:42:\"/uploads/2019/02/solar-eclipse-320x180.jpg\";s:6:\"medium\";s:42:\"/uploads/2019/02/solar-eclipse-640x360.jpg\";s:5:\"large\";s:43:\"/uploads/2019/02/solar-eclipse-1280x720.jpg\";s:5:\"great\";s:44:\"/uploads/2019/02/solar-eclipse-1920x1080.jpg\";}',1549272802,1549272812,1,1),(11,NULL,'textslider.jpg','image/jpeg','/uploads/2019/02/textslider.jpg','33269','a:4:{s:5:\"small\";s:39:\"/uploads/2019/02/textslider-320x180.jpg\";s:6:\"medium\";s:39:\"/uploads/2019/02/textslider-640x360.jpg\";s:5:\"large\";s:40:\"/uploads/2019/02/textslider-1280x720.jpg\";s:5:\"great\";s:41:\"/uploads/2019/02/textslider-1920x1080.jpg\";}',1549275259,1549275260,1,1);
 /*!40000 ALTER TABLE `media` ENABLE KEYS */;
 
 --
@@ -646,7 +616,7 @@ CREATE TABLE `media_album` (
   CONSTRAINT `fk_album_category` FOREIGN KEY (`category_id`) REFERENCES `media_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_media_album_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_media_album_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -654,6 +624,7 @@ CREATE TABLE `media_album` (
 --
 
 /*!40000 ALTER TABLE `media_album` DISABLE KEYS */;
+INSERT INTO `media_album` VALUES (1,2,'Личное фото','licnoe-foto','',1,1549102723,1549102723,1,1),(2,2,'Фото на главной','foto-na-glavnoj','Карусель на главной',1,1549102772,1549102772,1,1),(3,1,'Фоны для УТП','fony-dla-utp','Для параллакса на главной',1,1549102845,1549102845,1,1),(4,1,'Фоны для Revolution Slider','fony-dla-revolution-slider','На главной слайдер',1,1549102911,1549102911,1,1);
 /*!40000 ALTER TABLE `media_album` ENABLE KEYS */;
 
 --
@@ -673,7 +644,7 @@ CREATE TABLE `media_album_lang` (
   KEY `media_album_lang_language` (`language`),
   KEY `fk_media_album_lang` (`media_album_id`),
   CONSTRAINT `fk_media_album_lang` FOREIGN KEY (`media_album_id`) REFERENCES `media_album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -681,6 +652,7 @@ CREATE TABLE `media_album_lang` (
 --
 
 /*!40000 ALTER TABLE `media_album_lang` DISABLE KEYS */;
+INSERT INTO `media_album_lang` VALUES (1,1,'ru','Личное фото',''),(2,2,'ru','Фото на главной','Карусель на главной'),(3,3,'ru','Фоны для УТП','Для параллакса на главной'),(4,4,'ru','Фоны для Revolution Slider','На главной слайдер');
 /*!40000 ALTER TABLE `media_album_lang` ENABLE KEYS */;
 
 --
@@ -707,7 +679,7 @@ CREATE TABLE `media_category` (
   KEY `fk_media_category_updated_by` (`updated_by`),
   CONSTRAINT `fk_media_category_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_media_category_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -715,6 +687,7 @@ CREATE TABLE `media_category` (
 --
 
 /*!40000 ALTER TABLE `media_category` DISABLE KEYS */;
+INSERT INTO `media_category` VALUES (1,'fony-dla-sajta','Фоны для сайта','',1,1549102647,1549102647,1,1),(2,'kartinki-dla-sajta','Картинки для сайта','',1,1549102677,1549102677,1,1);
 /*!40000 ALTER TABLE `media_category` ENABLE KEYS */;
 
 --
@@ -734,7 +707,7 @@ CREATE TABLE `media_category_lang` (
   KEY `media_category_lang_language` (`language`),
   KEY `fk_media_category_lang` (`media_category_id`),
   CONSTRAINT `fk_media_category_lang` FOREIGN KEY (`media_category_id`) REFERENCES `media_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -742,6 +715,7 @@ CREATE TABLE `media_category_lang` (
 --
 
 /*!40000 ALTER TABLE `media_category_lang` DISABLE KEYS */;
+INSERT INTO `media_category_lang` VALUES (1,1,'ru','Фоны для сайта',''),(2,2,'ru','Картинки для сайта','');
 /*!40000 ALTER TABLE `media_category_lang` ENABLE KEYS */;
 
 --
@@ -762,7 +736,7 @@ CREATE TABLE `media_lang` (
   KEY `media_lang_language` (`language`),
   KEY `fk_media_lang` (`media_id`),
   CONSTRAINT `fk_media_lang` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -770,7 +744,7 @@ CREATE TABLE `media_lang` (
 --
 
 /*!40000 ALTER TABLE `media_lang` DISABLE KEYS */;
-INSERT INTO `media_lang` VALUES (2,2,'ru','Лодка','Лодка текст',''),(3,3,'ru','bridge-1.jpg','bridge-1.jpg',NULL);
+INSERT INTO `media_lang` VALUES (7,7,'ru','tree-cat.jpg','tree-cat.jpg',''),(8,8,'ru','forest.jpg','forest.jpg',''),(9,9,'ru','sunset-silhouette.jpg','sunset-silhouette.jpg',''),(10,10,'ru','solar-eclipse.jpg','solar-eclipse.jpg',''),(11,11,'ru','textslider.jpg','textslider.jpg',NULL);
 /*!40000 ALTER TABLE `media_lang` ENABLE KEYS */;
 
 --
@@ -1073,7 +1047,7 @@ CREATE TABLE `portfolio_category` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1081,7 +1055,7 @@ CREATE TABLE `portfolio_category` (
 --
 
 /*!40000 ALTER TABLE `portfolio_category` DISABLE KEYS */;
-INSERT INTO `portfolio_category` VALUES (3,'Фото','photography',0,NULL,1,1548924270,1548925760),(4,'Видео','video',1,'',1,1548925777,1548927422);
+INSERT INTO `portfolio_category` VALUES (3,'Фото','photography',0,'',1,1548924270,1549011981),(4,'Видео','video',1,'',1,1548925777,1548927422),(5,'Посты','posty',2,'',1,1549194125,1549194125),(6,'Арт-терапия изображения','art-terapia-izobrazenia',0,'',1,1549194646,1549194646);
 /*!40000 ALTER TABLE `portfolio_category` ENABLE KEYS */;
 
 --
@@ -1094,19 +1068,16 @@ DROP TABLE IF EXISTS `portfolio_items`;
 CREATE TABLE `portfolio_items` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `category_id` int(8) NOT NULL,
-  `name` varchar(127) DEFAULT NULL,
-  `link_class` varchar(127) DEFAULT NULL,
-  `link_href` varchar(127) DEFAULT NULL,
-  `img_class` varchar(127) DEFAULT NULL,
-  `img_src` varchar(127) DEFAULT NULL,
+  `thumbnail` varchar(127) NOT NULL,
   `img_alt` varchar(127) DEFAULT NULL,
+  `link_href` varchar(127) DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `portfolio_items_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `portfolio_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1114,7 +1085,7 @@ CREATE TABLE `portfolio_items` (
 --
 
 /*!40000 ALTER TABLE `portfolio_items` DISABLE KEYS */;
-INSERT INTO `portfolio_items` VALUES (1,3,'Фотка','item-hover lightbox','../frontend/web/images/demo/portfolio/black-kitty-600x403.jpg','img-responsive','../frontend/web/images/demo/portfolio/black-kitty-600x403.jpg','--',1,1548936267,1548936267);
+INSERT INTO `portfolio_items` VALUES (1,3,'/uploads/2019/02/solar-eclipse-320x180.jpg',NULL,'/uploads/2019/02/solar-eclipse-1280x720.jpg',1,1549222945,1549291862),(2,3,'/uploads/2019/02/sunset-silhouette-320x180.jpg',NULL,'/uploads/2019/02/sunset-silhouette-1280x720.jpg',1,1549226874,1549291851);
 /*!40000 ALTER TABLE `portfolio_items` ENABLE KEYS */;
 
 --
@@ -1133,7 +1104,7 @@ CREATE TABLE `portfolio_menu` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1141,7 +1112,7 @@ CREATE TABLE `portfolio_menu` (
 --
 
 /*!40000 ALTER TABLE `portfolio_menu` DISABLE KEYS */;
-INSERT INTO `portfolio_menu` VALUES (2,'Фотография','',1,0,1548925719,1548925941);
+INSERT INTO `portfolio_menu` VALUES (2,'Фотография','',1,0,1548925719,1549193888),(3,'Видео','',1,0,1549193879,1549193879),(4,'Проекты','',1,0,1549194157,1549194350),(5,'Арт-терапия изображения','',1,0,1549194416,1549194677);
 /*!40000 ALTER TABLE `portfolio_menu` ENABLE KEYS */;
 
 --
@@ -1160,7 +1131,7 @@ CREATE TABLE `portfolio_menu_category` (
   KEY `category_id` (`category_id`),
   CONSTRAINT `portfolio_menu_category_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `portfolio_menu` (`id`),
   CONSTRAINT `portfolio_menu_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `portfolio_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1168,7 +1139,7 @@ CREATE TABLE `portfolio_menu_category` (
 --
 
 /*!40000 ALTER TABLE `portfolio_menu_category` DISABLE KEYS */;
-INSERT INTO `portfolio_menu_category` VALUES (2,2,3),(3,2,4);
+INSERT INTO `portfolio_menu_category` VALUES (2,2,3),(4,3,4),(5,4,5),(6,4,4),(9,5,6);
 /*!40000 ALTER TABLE `portfolio_menu_category` ENABLE KEYS */;
 
 --
@@ -1199,10 +1170,7 @@ CREATE TABLE `post` (
   KEY `post_category_id` (`category_id`),
   KEY `post_status` (`status`),
   KEY `fk_page_created_by` (`created_by`),
-  KEY `fk_page_updated_by` (`updated_by`),
-  CONSTRAINT `fk_page_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_page_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_post_category_id` FOREIGN KEY (`category_id`) REFERENCES `post_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  KEY `fk_page_updated_by` (`updated_by`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1211,7 +1179,7 @@ CREATE TABLE `post` (
 --
 
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (2,'post_2',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533081600,1440763228,1546000094,1,1,3,'post','main',1),(3,'post_3',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533168000,1544889352,1546000655,1,1,8,'post','main',1),(4,'post_4',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533254400,1544889352,1546000671,1,1,3,'post','main',1),(5,'post_5',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533340800,1440763228,1545036386,1,1,1,'post','main',0),(6,'post_6',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533427200,1440763228,1545036397,1,1,1,'post','main',0),(7,'post_7',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533513600,1440763228,1545575251,1,1,1,'post','main',0),(8,'post_8',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533600000,1440763228,1545575244,1,1,1,'post','main',0),(9,'post_9',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533686400,1440763228,1545036435,1,1,7,'post','main',0),(10,'post_10',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533772800,1544889352,1545036444,1,1,2,'post','main',0),(11,'post_11',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533859200,1544889352,1545036451,1,1,2,'post','main',0),(12,'post_12',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533945600,1440763228,1545036460,1,1,1,'post','main',0),(13,'post_13',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1534118400,1440763228,1545036475,1,1,13,'post','main',0),(14,'post_14',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1534204800,1440763228,1545043839,1,1,25,'post','main',0),(15,'post_15',4,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1534291200,1440763228,1546002758,1,1,126,'post','main',1);
+INSERT INTO `post` VALUES (2,'post_2',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533081600,1440763228,1546000094,1,1,3,'post','main',1),(3,'post_3',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533168000,1544889352,1546000655,1,1,8,'post','main',1),(4,'post_4',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533254400,1544889352,1546000671,1,1,3,'post','main',1),(5,'post_5',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533340800,1440763228,1545036386,1,1,5,'post','main',0),(6,'post_6',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533427200,1440763228,1545036397,1,1,1,'post','main',0),(7,'post_7',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533513600,1440763228,1545575251,1,1,6,'post','main',0),(8,'post_8',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533600000,1440763228,1545575244,1,1,1,'post','main',0),(9,'post_9',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533686400,1440763228,1545036435,1,1,7,'post','main',0),(10,'post_10',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533772800,1544889352,1545036444,1,1,2,'post','main',0),(11,'post_11',3,1,1,'/uploads/2018/12/fishermen-1-400x300.jpg',1533859200,1544889352,1545036451,1,1,2,'post','main',0),(12,'post_12',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1533945600,1440763228,1545036460,1,1,1,'post','main',0),(13,'post_13',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1534118400,1440763228,1545036475,1,1,13,'post','main',0),(14,'post_14',2,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1534204800,1440763228,1545043839,1,1,28,'post','main',0),(15,'post_15',4,1,1,'/uploads/2018/12/bridge-1-400x300.jpg',1534291200,1440763228,1549291127,1,1,144,'post','main',1);
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 
 --
@@ -1238,9 +1206,7 @@ CREATE TABLE `post_category` (
   KEY `left_border` (`left_border`,`right_border`),
   KEY `right_border` (`right_border`),
   KEY `fk_post_category_created_by` (`created_by`),
-  KEY `fk_post_category_updated_by` (`updated_by`),
-  CONSTRAINT `fk_post_category_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_post_category_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  KEY `fk_post_category_updated_by` (`updated_by`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1267,8 +1233,7 @@ CREATE TABLE `post_category_lang` (
   `description` text,
   PRIMARY KEY (`id`),
   KEY `post_category_lang_id` (`post_category_id`),
-  KEY `post_category_lang_language` (`language`),
-  CONSTRAINT `fk_post_category_lang` FOREIGN KEY (`post_category_id`) REFERENCES `post_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `post_category_lang_language` (`language`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1295,8 +1260,7 @@ CREATE TABLE `post_lang` (
   `content` text,
   PRIMARY KEY (`id`),
   KEY `post_lang_post_id` (`post_id`),
-  KEY `post_lang_language` (`language`),
-  CONSTRAINT `fk_post_lang` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `post_lang_language` (`language`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1325,9 +1289,7 @@ CREATE TABLE `post_tag` (
   PRIMARY KEY (`id`),
   KEY `post_tag_slug` (`slug`),
   KEY `fk_post_tag_created_by` (`created_by`),
-  KEY `fk_post_tag_updated_by` (`updated_by`),
-  CONSTRAINT `fk_post_tag_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_post_tag_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  KEY `fk_post_tag_updated_by` (`updated_by`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1353,8 +1315,7 @@ CREATE TABLE `post_tag_lang` (
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `post_tag_lang_id` (`post_tag_id`),
-  KEY `post_tag_lang_language` (`language`),
-  CONSTRAINT `fk_post_tag_lang` FOREIGN KEY (`post_tag_id`) REFERENCES `post_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `post_tag_lang_language` (`language`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1379,9 +1340,7 @@ CREATE TABLE `post_tag_post` (
   `tag_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_post_tag_post_id` (`post_id`),
-  KEY `fk_post_tag_tag_id` (`tag_id`),
-  CONSTRAINT `fk_post_tag_post_id` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_post_tag_tag_id` FOREIGN KEY (`tag_id`) REFERENCES `post_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_post_tag_tag_id` (`tag_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1459,7 +1418,7 @@ CREATE TABLE `section_parallax` (
 --
 
 /*!40000 ALTER TABLE `section_parallax` DISABLE KEYS */;
-INSERT INTO `section_parallax` VALUES (1,'Позитивный мир  начинается с себя','rgb(0, 0, 0)','../frontend/web/images/tree-736877_1280-1.jpg','parallax delayed','0.8','','<h2>Позитивный мир  <strong>Начинается с себя!</strong></h2>\r\n<p class=\"lead\">\r\n      Сделайте шаг к переменам в своей жизни прямо сейчас!\r\n</p>\r\n<p>\r\nПочувствовать вкус к жизни и найти дорогу к Вашим целям поможет мой авторский курс<br />«30 встреч» -\r\nПуть к Поиску Себя! Благодаря взаимодействию с арт-терапией Вы осознаете, что можно жить без\r\nлишних переживаний! Вы узнаете, как сохранить жизненные силы и где найти ресурсы!\r\n</p>',1,'До начала занятия осталось:',1548846600,'/site/contact','fa fa-chevron-circle-right','Sign up for class','btn btn-primary btn-lg',1,0,1548701352);
+INSERT INTO `section_parallax` VALUES (1,'Позитивный мир  начинается с себя','rgb(0, 0, 0)','/uploads/2019/02/tree-cat-1920x1080.jpg','parallax delayed','0.8','','<h2>Позитивный мир  <strong>Начинается с себя!</strong></h2>\r\n<p class=\"lead\">\r\n      Сделайте шаг к переменам в своей жизни прямо сейчас!\r\n</p>\r\n<p>\r\nПочувствовать вкус к жизни и найти дорогу к Вашим целям поможет мой авторский курс<br />«30 встреч» -\r\nПуть к Поиску Себя! Благодаря взаимодействию с арт-терапией Вы осознаете, что можно жить без\r\nлишних переживаний! Вы узнаете, как сохранить жизненные силы и где найти ресурсы!\r\n</p>',1,'До начала занятия осталось:',1548846600,'/site/contact','fa fa-chevron-circle-right','Sign up for class','btn btn-primary btn-lg',1,0,1549272164);
 /*!40000 ALTER TABLE `section_parallax` ENABLE KEYS */;
 
 --
@@ -1496,7 +1455,7 @@ CREATE TABLE `section_slides` (
 --
 
 /*!40000 ALTER TABLE `section_slides` DISABLE KEYS */;
-INSERT INTO `section_slides` VALUES (1,'Слайд 1','fade',7,300,'','../frontend/web/images/dummy.png','','../frontend/web/images/sunset-silhouette-2081796_1920.jpg','on','','','',1,3,1548582670,1548613482),(2,'Слайд 2','fade',7,300,'','../frontend/web/images/dummy.png','','../frontend/web/images/wallpaper-1492818_1920.jpg','on','','','',1,2,1548582670,1548613439),(3,'Слайд 3','fade',7,300,'','../frontend/web/images/dummy.png','','../frontend/web/images/forest-3119826_1920.jpg ','on','','','',1,1,1548582670,1548613419),(4,'Слайд 4','fade',7,1000,'13000','../frontend/web/images/text_slider.jpg','','','','cover','center top','no-repeat',1,4,1548582670,1548613792);
+INSERT INTO `section_slides` VALUES (1,'Слайд 1','fade',7,300,'','','','/uploads/2019/02/sunset-silhouette-1920x1080.jpg','on','','','',1,3,1548582670,1549275331),(2,'Слайд 2','fade',7,300,'','','','/uploads/2019/02/solar-eclipse-1920x1080.jpg','on','','','',1,2,1548582670,1549275318),(3,'Слайд 3','fade',7,300,'','','','/uploads/2019/02/forest-1920x1080.jpg','on','','','',1,1,1548582670,1549274809),(4,'Слайд 4','fade',7,1000,'13000','/uploads/2019/02/textslider-1920x1080.jpg','','','','cover','center top','no-repeat',1,4,1548582670,1549114192);
 /*!40000 ALTER TABLE `section_slides` ENABLE KEYS */;
 
 --
@@ -1535,8 +1494,7 @@ CREATE TABLE `section_slides_layers` (
   `btn_name` varchar(127) DEFAULT NULL,
   `btn_class` varchar(127) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `slides_id` (`slides_id`),
-  CONSTRAINT `section_slides_layers_ibfk_1` FOREIGN KEY (`slides_id`) REFERENCES `section_slides` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `slides_id` (`slides_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1573,9 +1531,7 @@ CREATE TABLE `seo` (
   UNIQUE KEY `seo_url` (`url`),
   KEY `seo_created_by` (`created_by`),
   KEY `seo_author` (`created_by`),
-  KEY `fk_seo_updated_by` (`updated_by`),
-  CONSTRAINT `fk_seo_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_seo_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  KEY `fk_seo_updated_by` (`updated_by`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1699,8 +1655,7 @@ CREATE TABLE `user_setting` (
   `key` varchar(64) NOT NULL,
   `value` text,
   PRIMARY KEY (`id`),
-  KEY `user_setting_user_key` (`user_id`,`key`),
-  CONSTRAINT `fk_user_id_user_setting_table` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `user_setting_user_key` (`user_id`,`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1729,9 +1684,8 @@ CREATE TABLE `user_visit_log` (
   `user_id` int(11) DEFAULT NULL,
   `visit_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `visit_log_user_id` (`user_id`),
-  CONSTRAINT `fk_user_id_user_visit_log_table` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
+  KEY `visit_log_user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1739,7 +1693,7 @@ CREATE TABLE `user_visit_log` (
 --
 
 /*!40000 ALTER TABLE `user_visit_log` DISABLE KEYS */;
-INSERT INTO `user_visit_log` VALUES (1,'5bba45e624bc3','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1538934246),(2,'5bba5cea77ec9','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1538940138),(3,'5bbf9584045e8','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1539282308),(4,'5bc26d6c9872d','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1539468652),(5,'5c0d1cf8d2967','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544363256),(6,'5c11469fe4e94','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544636063),(7,'5c1183fe7978a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544651774),(8,'5c118527a3e52','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544652071),(9,'5c12265704e3c','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544693335),(10,'5c1272c431024','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544712900),(11,'5c136467666c7','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544774759),(12,'5c13711e710b5','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544778014),(13,'5c13a4f5bad7f','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544791285),(14,'5c13be043eb7b','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544797700),(15,'5c14216ab001f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544823146),(16,'5c152589a2357','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544889737),(17,'5c153e3156331','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544896049),(18,'5c1549884a59a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544898952),(19,'5c16099576bf7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544948117),(20,'5c1622159a4fb','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544954389),(21,'5c1622fa89f7e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544954618),(22,'5c169e324fd39','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544986162),(23,'5c1760a94fcec','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545035945),(24,'5c177e0493364','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545043460),(25,'5c192a86dae01','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545153158),(26,'5c1a34e01cb01','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545221344),(27,'5c1a78afd4d99','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545238703),(28,'5c1a78b04d324','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545238704),(29,'5c1cbd9aa9d4e','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545387418),(30,'5c1d116f6bcc7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545408879),(31,'5c1d501fd0d17','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545424927),(32,'5c1d50f9f327d','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545425145),(33,'5c20894696e72','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545636166),(34,'5c20ecbbe7896','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545661627),(35,'5c20f053c5f40','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545662547),(36,'5c21f8fbc26be','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545730299),(37,'5c21ff0d95fe1','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545731853),(38,'5c22033d4e3ca','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545732925),(39,'5c2219383a5d0','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545738552),(40,'5c22403c82b9e','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545748540),(41,'5c22862b34893','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545766443),(42,'5c228b4595b8b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545767749),(43,'5c2298cbbe6cf','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545771211),(44,'5c23953d11942','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545835837),(45,'5c23aa699ea24','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545841257),(46,'5c23b5b45d69f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545844148),(47,'5c23c28ef3b09','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545847438),(48,'5c23c2bce1497','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545847484),(49,'5c2493c790b29','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545900999),(50,'5c249a8dc0017','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545902733),(51,'5c249ac60ea3d','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545902790),(52,'5c24c364d35e8','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545913188),(53,'5c24e47d67665','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545921661),(54,'5c272286eaaea','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1546068614),(55,'5c272a6631c30','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1546070630),(56,'5c278138a137a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546092856),(57,'5c2782d2e5d51','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546093266),(58,'5c2786f2a398c','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546094322),(59,'5c2789d411987','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546095060),(60,'5c278d9a6679b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546096026),(61,'5c279c3c03d4e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546099772),(62,'5c27b033b7708','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546104883),(63,'5c27b36701256','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546105703),(64,'5c27b3999a288','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546105753),(65,'5c27b3ab70b9e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546105771),(66,'5c27b4ce89fed','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546106062),(67,'5c27b81716349','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546106903),(68,'5c27be3349b0e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 YaBrowser/18.10.2.172 Yowser/2.5 Safari/537.36','Yandex Browser','mac',NULL,1546108467),(69,'5c27bf301395d','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',NULL,1546108720),(70,'5c27bf4491321','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546108740),(71,'5c27c0085da7b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546108936),(72,'5c27c21214fa7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 YaBrowser/18.10.2.172 Yowser/2.5 Safari/537.36','Yandex Browser','mac',NULL,1546109458),(73,'5c27c3148d280','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 YaBrowser/18.10.2.172 Yowser/2.5 Safari/537.36','Yandex Browser','mac',6,1546109716),(74,'5c27c3b87f969','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546109880),(75,'5c27c4fe9eae2','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110206),(76,'5c27c5c30245a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110403),(77,'5c27c64552969','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110533),(78,'5c27c6788d964','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110584),(79,'5c27c67a2f79f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110586),(80,'5c2fc56f173f6','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 YaBrowser/18.11.1.716 Yowser/2.5 Safari/537.36','Yandex Browser','mac',1,1546634607),(81,'5c2fc5ac58a8e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546634668),(82,'5c2fc70d4251c','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546635021),(83,'5c2fcb1057377','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546636048),(84,'5c2fcb8f2c0e0','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546636175),(85,'5c3095a5e0827','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546687909),(86,'5c309d3a28e47','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546689850),(87,'5c359e873da72','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547017863),(88,'5c35ad1b0c266','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547021595),(89,'5c39b91632763','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547286806),(90,'5c39bf978fba8','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547288471),(91,'5c3dc9aea8783','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547553198),(92,'5c3f8ee1a200b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547669217),(93,'5c40324d9a815','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547711053),(94,'5c4032801b20a','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547711104),(95,'5c4032a6b9e5d','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547711142),(96,'5c444878665da','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547978872),(97,'5c445597be022','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547982231),(98,'5c4455d5120d2','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547982293),(99,'5c459ab20d6e2','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548065458),(100,'5c45b7c3a2fc8','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548072899),(101,'5c45ca1506895','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548077589),(102,'5c45ccfe6d18d','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548078334),(103,'5c4892c56686e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548260037),(104,'5c489344108f3','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548260164),(105,'5c48ca530ba45','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548274259),(106,'5c48cc0d93fbe','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548274701),(107,'5c48cc30ea230','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548274736),(108,'5c48d1c9de7a5','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548276169),(109,'5c49a9e2544da','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548331490),(110,'5c49fb6766255','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548352359),(111,'5c4b71d037927','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548448208),(112,'5c4cabaf3efd2','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548528559),(113,'5c4cd3628b06a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548538722),(114,'5c4d8c02dd158','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548585986),(115,'5c4da04f3916a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548591183),(116,'5c4da37442c7f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548591988),(117,'5c4da690f2ff7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548592784),(118,'5c4f4e6083614','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548701280),(119,'5c4f79c6329dd','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548712390),(120,'5c520b3135596','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548880689);
+INSERT INTO `user_visit_log` VALUES (1,'5bba45e624bc3','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1538934246),(2,'5bba5cea77ec9','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1538940138),(3,'5bbf9584045e8','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1539282308),(4,'5bc26d6c9872d','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','Chrome','mac',1,1539468652),(5,'5c0d1cf8d2967','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544363256),(6,'5c11469fe4e94','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544636063),(7,'5c1183fe7978a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544651774),(8,'5c118527a3e52','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544652071),(9,'5c12265704e3c','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544693335),(10,'5c1272c431024','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544712900),(11,'5c136467666c7','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544774759),(12,'5c13711e710b5','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544778014),(13,'5c13a4f5bad7f','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544791285),(14,'5c13be043eb7b','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1544797700),(15,'5c14216ab001f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36','Chrome','mac',1,1544823146),(16,'5c152589a2357','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544889737),(17,'5c153e3156331','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544896049),(18,'5c1549884a59a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544898952),(19,'5c16099576bf7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544948117),(20,'5c1622159a4fb','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544954389),(21,'5c1622fa89f7e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544954618),(22,'5c169e324fd39','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1544986162),(23,'5c1760a94fcec','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545035945),(24,'5c177e0493364','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545043460),(25,'5c192a86dae01','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545153158),(26,'5c1a34e01cb01','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545221344),(27,'5c1a78afd4d99','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545238703),(28,'5c1a78b04d324','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545238704),(29,'5c1cbd9aa9d4e','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545387418),(30,'5c1d116f6bcc7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545408879),(31,'5c1d501fd0d17','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545424927),(32,'5c1d50f9f327d','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545425145),(33,'5c20894696e72','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545636166),(34,'5c20ecbbe7896','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545661627),(35,'5c20f053c5f40','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545662547),(36,'5c21f8fbc26be','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545730299),(37,'5c21ff0d95fe1','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545731853),(38,'5c22033d4e3ca','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545732925),(39,'5c2219383a5d0','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545738552),(40,'5c22403c82b9e','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545748540),(41,'5c22862b34893','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545766443),(42,'5c228b4595b8b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545767749),(43,'5c2298cbbe6cf','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545771211),(44,'5c23953d11942','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545835837),(45,'5c23aa699ea24','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545841257),(46,'5c23b5b45d69f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545844148),(47,'5c23c28ef3b09','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545847438),(48,'5c23c2bce1497','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1545847484),(49,'5c2493c790b29','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545900999),(50,'5c249a8dc0017','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545902733),(51,'5c249ac60ea3d','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545902790),(52,'5c24c364d35e8','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545913188),(53,'5c24e47d67665','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1545921661),(54,'5c272286eaaea','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1546068614),(55,'5c272a6631c30','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1546070630),(56,'5c278138a137a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546092856),(57,'5c2782d2e5d51','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546093266),(58,'5c2786f2a398c','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546094322),(59,'5c2789d411987','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546095060),(60,'5c278d9a6679b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546096026),(61,'5c279c3c03d4e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546099772),(62,'5c27b033b7708','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546104883),(63,'5c27b36701256','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546105703),(64,'5c27b3999a288','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',2,1546105753),(65,'5c27b3ab70b9e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546105771),(66,'5c27b4ce89fed','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546106062),(67,'5c27b81716349','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546106903),(68,'5c27be3349b0e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 YaBrowser/18.10.2.172 Yowser/2.5 Safari/537.36','Yandex Browser','mac',NULL,1546108467),(69,'5c27bf301395d','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',NULL,1546108720),(70,'5c27bf4491321','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546108740),(71,'5c27c0085da7b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546108936),(72,'5c27c21214fa7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 YaBrowser/18.10.2.172 Yowser/2.5 Safari/537.36','Yandex Browser','mac',NULL,1546109458),(73,'5c27c3148d280','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 YaBrowser/18.10.2.172 Yowser/2.5 Safari/537.36','Yandex Browser','mac',6,1546109716),(74,'5c27c3b87f969','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546109880),(75,'5c27c4fe9eae2','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110206),(76,'5c27c5c30245a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110403),(77,'5c27c64552969','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110533),(78,'5c27c6788d964','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110584),(79,'5c27c67a2f79f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546110586),(80,'5c2fc56f173f6','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 YaBrowser/18.11.1.716 Yowser/2.5 Safari/537.36','Yandex Browser','mac',1,1546634607),(81,'5c2fc5ac58a8e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546634668),(82,'5c2fc70d4251c','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546635021),(83,'5c2fcb1057377','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546636048),(84,'5c2fcb8f2c0e0','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546636175),(85,'5c3095a5e0827','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546687909),(86,'5c309d3a28e47','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1546689850),(87,'5c359e873da72','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547017863),(88,'5c35ad1b0c266','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547021595),(89,'5c39b91632763','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547286806),(90,'5c39bf978fba8','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547288471),(91,'5c3dc9aea8783','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547553198),(92,'5c3f8ee1a200b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547669217),(93,'5c40324d9a815','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547711053),(94,'5c4032801b20a','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547711104),(95,'5c4032a6b9e5d','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1547711142),(96,'5c444878665da','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547978872),(97,'5c445597be022','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547982231),(98,'5c4455d5120d2','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1547982293),(99,'5c459ab20d6e2','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548065458),(100,'5c45b7c3a2fc8','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548072899),(101,'5c45ca1506895','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548077589),(102,'5c45ccfe6d18d','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548078334),(103,'5c4892c56686e','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548260037),(104,'5c489344108f3','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548260164),(105,'5c48ca530ba45','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548274259),(106,'5c48cc0d93fbe','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548274701),(107,'5c48cc30ea230','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548274736),(108,'5c48d1c9de7a5','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548276169),(109,'5c49a9e2544da','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1548331490),(110,'5c49fb6766255','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548352359),(111,'5c4b71d037927','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548448208),(112,'5c4cabaf3efd2','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548528559),(113,'5c4cd3628b06a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548538722),(114,'5c4d8c02dd158','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548585986),(115,'5c4da04f3916a','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548591183),(116,'5c4da37442c7f','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548591988),(117,'5c4da690f2ff7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548592784),(118,'5c4f4e6083614','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548701280),(119,'5c4f79c6329dd','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548712390),(120,'5c520b3135596','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1548880689),(121,'5c5599d92bb5b','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1549113817),(122,'5c55cd8226cd7','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1549127042),(123,'5c55ce7dbfe46','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1549127293),(124,'5c57432417a47','::1','ru','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36','Chrome','mac',1,1549222692),(125,'5c57eabe53730','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1549265598),(126,'5c584fd9d1446','127.0.0.1','ru','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36','Chrome','Windows',1,1549291481);
 /*!40000 ALTER TABLE `user_visit_log` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1751,4 +1705,4 @@ INSERT INTO `user_visit_log` VALUES (1,'5bba45e624bc3','::1','ru','Mozilla/5.0 (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-31 18:20:15
+-- Dump completed on 2019-02-04 17:53:13

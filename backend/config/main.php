@@ -55,9 +55,6 @@ return [
         'db' => [
             'class' => 'backend\modules\db\Module',
         ], 
-        'imagemanager' => [
-            'class' => 'backend\modules\imagemanager\Module',
-        ],
         'post' => [
             'class' => 'backend\modules\post\Module',
         ],
@@ -74,7 +71,7 @@ return [
             'thumbs' => [
             'small' => [
                 'name' => 'Мелкий',
-                'size' => [256, 144],
+                'size' => [320, 180],
             ],
             'medium' => [
                 'name' => 'Средний',

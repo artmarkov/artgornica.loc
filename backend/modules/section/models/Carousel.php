@@ -6,7 +6,6 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\helpers\ArrayHelper;
-use backend\modules\imagemanager\models\ImageManager;
 
 /**
  * This is the model class for table "{{%section_carousel}}".
@@ -128,27 +127,6 @@ class Carousel extends \yeesoft\db\ActiveRecord
         );
     }
     
-    public function getImages()
-    {
-        return $this->hasMany(ImageManager::className(), ['item_id' => 'id'])->orderBy('sort');
-    }
-    public function getImagesLinks()
-    {
-        return ArrayHelper::getColumn($this->images, 'imageUrl');
-    }
-    public function getImagesLinksData()
-    {
-        return ArrayHelper::toArray($this->images,[
-                    ImageManager::className() => [
-                    'type' => 'type',
-                    'filetype' => 'filetype',
-                    'downloadUrl' => 'url',
-                    'caption'=> 'name',
-                    'size'=> 'size',
-                    'key'=> 'id',
-                ]]
-        );
-    }
     /**
      * {@inheritdoc}
      * @return \backend\modules\section\models\query\CarouselQuery the active query used by this AR class.

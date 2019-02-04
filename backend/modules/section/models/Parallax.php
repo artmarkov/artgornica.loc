@@ -69,7 +69,7 @@ class Parallax extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'bg_image', 'parallax_class', 'background_ratio', 'content', 'url', 'btn_name', 'btn_class'], 'required'],
+            [['bg_image', 'parallax_class', 'background_ratio', 'content'], 'required'],
             [['content', 'countdown_prompt'], 'string'],
             [['content'], 'trim'],
             [['start_timestamp'], 'safe'],

@@ -20,7 +20,7 @@ class SlidesSearch extends Slides
         return [
             [['id'], 'integer'],
             ['name' , 'string'],
-            [['img_src', 'data_lazyload', 'status'], 'safe'],
+            [['status'], 'safe'],
         ];
     }
 
@@ -70,7 +70,7 @@ class SlidesSearch extends Slides
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'img_src', $this->img_src])
+//            ->andFilterWhere(['like', 'img_src', $this->img_src])
             ->andFilterWhere(['like', 'img_alt', $this->img_alt])
             ->andFilterWhere(['like', 'status', $this->status]);           
 

@@ -67,17 +67,17 @@ class ParallaxSearch extends Parallax
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'bg_color', $this->bg_color])
-            ->andFilterWhere(['like', 'bg_image', $this->bg_image])
-            ->andFilterWhere(['like', 'parallax_class', $this->bg_image])
-            ->andFilterWhere(['like', 'content_image', $this->parallax_class])
-            ->andFilterWhere(['like', 'background_ratio', $this->background_ratio])               
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'btn_icon', $this->btn_icon])
-            ->andFilterWhere(['like', 'btn_name', $this->btn_name])
-            ->andFilterWhere(['like', 'btn_class', $this->btn_class])
+        $query->andFilterWhere(['like', 'parallax_class', $this->bg_image])
+//            ->andFilterWhere(['like', 'name', $this->name])
+//            ->andFilterWhere(['like', 'bg_color', $this->bg_color])
+//            ->andFilterWhere(['like', 'bg_image', $this->bg_image])
+//            ->andFilterWhere(['like', 'content_image', $this->parallax_class])
+//            ->andFilterWhere(['like', 'background_ratio', $this->background_ratio])               
+//            ->andFilterWhere(['like', 'content', $this->content])
+//            ->andFilterWhere(['like', 'url', $this->url])
+//            ->andFilterWhere(['like', 'btn_icon', $this->btn_icon])
+//            ->andFilterWhere(['like', 'btn_name', $this->btn_name])
+//            ->andFilterWhere(['like', 'btn_class', $this->btn_class])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

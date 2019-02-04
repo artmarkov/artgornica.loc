@@ -60,28 +60,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    ['class' => 'yii\grid\SerialColumn', 'options' => ['style' => 'width:20px']],
                     [
-                       'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'options' => ['style' => 'width:350px'],
-                        'attribute' => 'name',
+                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'attribute' => 'bg_image',
+                        'options' => ['style' => 'width:250px'],
                         'controller' => '/section/parallax',
                         'title' => function(Parallax $model) {
-                            return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a(Html::img($model->bg_image, ['width' => '128']), ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-                                
-            'bg_image',
-            'content_image',
-            [
+                    [
+                    'attribute' => 'content_image',
+                    'options' => ['style' => 'width:250px'],
+                    'value' => function(Parallax $model) {
+                             !empty($model->content_image) ? $img = $model->content_image : $img = '/images/noimg.png';
+                            return Html::img($img, ['width' => '128']);
+                    },
+                            'format' => 'html',
+                    ],
+                    'parallax_class',
+                    [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',
                         'optionsArray' => [
                             [Parallax::STATUS_ACTIVE, Yii::t('yee', 'Active'), 'primary'],
                             [Parallax::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
                         ],
-                        'options' => ['style' => 'width:100px']
-            ],
+                        'options' => ['style' => 'width:250px']
+                     ],
 
                 ],
             ]);

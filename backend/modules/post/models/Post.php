@@ -10,7 +10,6 @@ use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yeesoft\db\ActiveRecord;
 use yii\helpers\Html;
-use backend\modules\imagemanager\models\ImageManager;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -344,27 +343,5 @@ class Post extends ActiveRecord
     public static function getOwnerField()
     {
         return 'created_by';
-    }
-    
-    public function getImages()
-    {
-        return $this->hasMany(ImageManager::className(), ['item_id' => 'id'])->orderBy('sort');
-    }
-    public function getImagesLinks()
-    {
-        return ArrayHelper::getColumn($this->images, 'imageUrl');
-    }
-    public function getImagesLinksData()
-    {
-        return ArrayHelper::toArray($this->images,[
-                    ImageManager::className() => [
-                    'type' => 'type',
-                    'filetype' => 'filetype',
-                    'downloadUrl' => 'url',
-                    'caption'=> 'name',
-                    'size'=> 'size',
-                    'key'=> 'id',
-                ]]
-        );
     }
 }

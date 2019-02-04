@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'options' => ['style' => 'width:250px'],
+                        'options' => ['style' => 'width:200px'],
                         'attribute' => 'name',                       
                         'controller' => '/section/slides',
                         'title' => function(Slides $model) {
@@ -70,10 +70,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
-
-           
-            'img_src',
-            'data_lazyload',
+                    [
+                    'attribute' => 'img_src',
+                    'options' => ['style' => 'width:200px'],
+                    'value' => function(Slides $model) {
+                            !empty($model->img_src) ? $img = $model->img_src : $img = '/images/noimg.png';
+                            return Html::img($img, ['width' => '128']);
+                    },
+                            'format' => 'html',
+                    ],
+                    [
+                    'attribute' => 'data_lazyload',
+                    'options' => ['style' => 'width:200px'],
+                    'value' => function(Slides $model) {
+                         !empty($model->data_lazyload) ? $img = $model->data_lazyload : $img = '/images/noimg.png';
+                            return Html::img($img, ['width' => '128']);
+                    },
+                            'format' => 'html',
+                    ],
                     [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',

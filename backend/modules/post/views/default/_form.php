@@ -43,35 +43,10 @@ use yii\helpers\Url;
             
             <div class="panel panel-default">
                 <div class="panel-body">
+                     
                     
-       <!--<?//php echo '<pre>' . print_r($model->imagesLinksData, true) . '</pre>'; ?>-->
-                    <?= \kartik\file\FileInput::widget([
-                        'name' => 'ImageManager[attachment]',
-                        'options' => [
-                            'multiple' => true
-                        ],
-                        'pluginOptions' => [
-                            'deleteUrl' => Url::toRoute(['/imagemanager/image-manager/delete-image']),
-                            'initialPreview' => $model->imagesLinks,
-                            'initialPreviewAsData' => true,
-                            'initialPreviewFileType' => 'image',
-                            'overwriteInitial' => false,
-                            'initialPreviewConfig' => $model->imagesLinksData,
-                            'allowedFileExtensions' => ["jpg"], //, "png", "mp4", "pdf"
-                            'uploadUrl' => Url::to(['/imagemanager/image-manager/file-upload']),
-                            'uploadExtraData' => [
-                                'ImageManager[class]' => $model->formName(),
-                                'ImageManager[item_id]' => $model->id
-                            ],
-                            'maxFileCount' => 10,
-                        ],
-                        'pluginEvents' => [
-                            'filesorted' => new \yii\web\JsExpression('function(event, params){
-                                              $.post("' . Url::toRoute(["/imagemanager/image-manager/sort-image", "id" => $model->id]) . '", {sort: params});
-                                        }')
-                        ],
-                    ]);
-                    ?>
+                    
+                    
 
                 </div> 
             </div>

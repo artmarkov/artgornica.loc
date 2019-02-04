@@ -69,7 +69,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:250px'],
                         'controller' => '/portfolio/default',
                         'title' => function(Items $model) {
-                            return Html::a(Html::img($model->thumbnail, ['width' => '128']), ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            !empty($model->thumbnail) ? $img = $model->thumbnail : $img = '/images/noimg.png';
+                            return Html::a(Html::img($img, ['width' => '128']), ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],

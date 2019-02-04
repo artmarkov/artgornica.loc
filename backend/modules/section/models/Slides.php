@@ -59,7 +59,7 @@ class Slides extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'img_src'], 'required'],
+            [['data_transition', 'data_slotamount', 'data_masterspeed', 'data_fullwidthcentering', 'name'], 'required'],
             [['status', 'sort'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['data_slotamount', 'data_masterspeed'], 'integer'],
@@ -186,7 +186,6 @@ class Slides extends \yeesoft\db\ActiveRecord
                     ],
                 ],
                 'image' => [
-                    'src' => $item['img_src'],
                     'options' =>
                     [
                         'alt' => $item['img_alt'],                        
@@ -194,7 +193,7 @@ class Slides extends \yeesoft\db\ActiveRecord
                 ],
                 'layers' => \backend\modules\section\models\SlidesLayers::getSlidesLayersData($item['id']),
             ];
-            
+            !empty($item['img_src']) ? $data[$i]['image']['src'] = $item['img_src'] : $data[$i]['image']['src'] = '/images/dummy.png';
             !empty($item['data_delay']) ? $data[$i]['options']['data']['delay'] = $item['data_delay'] : NULL;
             !empty($item['data_lazyload']) ? $data[$i]['image']['options']['data']['lazyload'] = $item['data_lazyload'] : NULL;
             !empty($item['data_fullwidthcentering']) ? $data[$i]['image']['options']['data']['fullwidthcentering'] = $item['data_fullwidthcentering'] : NULL;
