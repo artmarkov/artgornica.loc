@@ -4,10 +4,15 @@ use yeesoft\widgets\ActiveForm;
 use backend\modules\section\models\Carousel;
 use yeesoft\helpers\Html;
 use yii\helpers\Url;
+use kartik\sortable\Sortable;
+use kartik\sortinput\SortableInput;
+use yii\web\JsExpression;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\section\models\Carousel */
 /* @var $form yeesoft\widgets\ActiveForm */
+//https://toster.ru/q/569522
 ?>
 
 <div class="carousel-form">
@@ -18,7 +23,31 @@ use yii\helpers\Url;
             'validateOnBlur' => false,
         ])
     ?>
+<?php
+    $JSInsertLink = <<<EOF
+        function(e, data) {
+                      
+             console.log(data);
 
+//        $.ajax({
+//               url: '/admin/media/default/paste-link',
+//               type: 'POST',
+//               data: {id : data.id},
+//               success: function (link) {
+//                  // console.log(link);
+//
+//              document.getElementById("items-link_href").value = link; 
+//               },
+//               error: function () {
+//                   alert('Error!!!');
+//               }
+//           });
+//
+//            $(".items-thumbnail").show();
+
+       }
+EOF;
+    ?>
     <div class="row">
         <div class="col-md-9">
 
@@ -35,9 +64,40 @@ use yii\helpers\Url;
             
              <div class="panel panel-default">
                 <div class="panel-body">
+                <?php Pjax::begin(); ?>
                     
-      
-
+                <?php
+                    echo $form->field($model, 'sort_list')->widget(SortableInput::classname(), [
+                        'sortableOptions' => ['type' => Sortable::TYPE_GRID],
+                        
+                        'items' => [
+                            1 => ['content' => '<div class="grid-item">' . Html::img('/uploads/2019/02/forest-128x128.jpg') . '</div> '
+                                . '<div>' . Html::a('<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true" style="padding-top: 10px;"></span>', 
+                                        ['#']) . '</div>'
+                                ],
+                            2 => ['content' => Html::img('/uploads/2019/02/solar-eclipse-128x128.jpg')],
+                            3 => ['content' => Html::img('/uploads/2019/02/sunset-silhouette-128x128.jpg')],
+                           
+                        ],
+                        'hideInput' => true,
+                        'options' => ['id' => 'carousel', 'class' => 'form-control', 'readonly' => true]
+                    ]);
+                ?>
+                <?php Pjax::end(); ?>
+                    
+                     <?= backend\modules\media\widgets\FileInput::widget([
+                            'name' => 'image',
+                            'buttonTag' => 'button',
+                            'buttonName' => Yii::t('yee', 'Create'),
+                            'buttonOptions' => ['class' => 'btn btn-primary btn-file-input'],
+                            'options' => ['class' => 'hidden', 'id' => 'carousel-input'],
+                            'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+                            'thumb' => 'medium',
+                           // 'imageContainer' => '.sortable-placeholder',
+                           // 'pasteData' => backend\modules\media\widgets\FileInput::DATA_ID,
+                            'callbackBeforeInsert' => new JsExpression($JSInsertLink), 
+                        ])
+                        ?>
                 </div> 
             </div>
         </div>

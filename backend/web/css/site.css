@@ -87,3 +87,12 @@ a.desc:after {
    
     margin: -1px 0 0 3px !important;
 }
+/**
+ * Carousel Kartik SortableInput
+ */
+#carousel .sortable.grid li {
+   
+    min-width: 146px !important;
+    min-height: 146px !important;
+    
+}

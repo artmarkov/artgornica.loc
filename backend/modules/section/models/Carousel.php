@@ -24,8 +24,10 @@ use yii\helpers\ArrayHelper;
  */
 class Carousel extends \yeesoft\db\ActiveRecord
 {
-      
-    const STATUS_ACTIVE = 1;
+    public $sort_list;
+    public $thumbnail;
+
+        const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
     
     /**
