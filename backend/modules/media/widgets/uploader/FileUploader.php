@@ -83,21 +83,21 @@ class FileUploader extends FileUploadUI
      *
      * @var string
      */
-    public $formView = '@vendor/yeesoft/yii2-yee-media/widgets/uploader/views/form';
+    public $formView = '@backend\modules\media/widgets/uploader/views/form';
 
     /**
      * Download files view template.
      *
      * @var string
      */
-    public $uploadTemplateView = '@vendor/yeesoft/yii2-yee-media/widgets/uploader/views/upload';
+    public $uploadTemplateView = '@backend\modules\mediamedia/widgets/uploader/views/upload';
 
     /**
      * Upload files view template.
      *
      * @var string
      */
-    public $downloadTemplateView = '@vendor/yeesoft/yii2-yee-media/widgets/uploader/views/download';
+    public $downloadTemplateView = '@backend\modules\mediamedia/widgets/uploader/views/download';
 
     /**
      * Initializes the widget.

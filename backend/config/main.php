@@ -43,6 +43,9 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'mediamanager' => [
+            'class' => 'backend\modules\mediamanager\MediamanagerModule',
+        ],
         'portfolio' => [
             'class' => 'backend\modules\portfolio\PortfolioModule',
         ],

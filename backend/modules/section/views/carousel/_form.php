@@ -25,26 +25,30 @@ use yii\widgets\Pjax;
     ?>
 <?php
     $JSInsertLink = <<<EOF
-        function(e, data) {
-                      
+        function(e, data) {                      
              console.log(data);
+             var eventData;
+             eventData = {
+                id: data.id,
+                class: $("#carousel").val()
+              
+            };
 
-//        $.ajax({
-//               url: '/admin/media/default/paste-link',
-//               type: 'POST',
-//               data: {id : data.id},
-//               success: function (link) {
-//                  // console.log(link);
-//
-//              document.getElementById("items-link_href").value = link; 
-//               },
-//               error: function () {
-//                   alert('Error!!!');
-//               }
-//           });
-//
-//            $(".items-thumbnail").show();
+        $.ajax({
+               url: '/admin/mediamanager/default/add-media',
+               type: 'POST',
+               data: {eventData : eventData},
+               success: function (res) {
+                   console.log(res);
 
+            
+               },
+               error: function () {
+                   alert('Error!!!');
+               }
+           });
+
+           
        }
 EOF;
     ?>
@@ -87,14 +91,10 @@ EOF;
                     
                      <?= backend\modules\media\widgets\FileInput::widget([
                             'name' => 'image',
-                            'buttonTag' => 'button',
-                            'buttonName' => Yii::t('yee', 'Create'),
-                            'buttonOptions' => ['class' => 'btn btn-primary btn-file-input'],
+                            'buttonOptions' => ['class' => 'btn btn-primary'],
                             'options' => ['class' => 'hidden', 'id' => 'carousel-input'],
-                            'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+                            'template' => '<div class="input">{input}{button}</div>',
                             'thumb' => 'medium',
-                           // 'imageContainer' => '.sortable-placeholder',
-                           // 'pasteData' => backend\modules\media\widgets\FileInput::DATA_ID,
                             'callbackBeforeInsert' => new JsExpression($JSInsertLink), 
                         ])
                         ?>

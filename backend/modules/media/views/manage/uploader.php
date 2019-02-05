@@ -23,9 +23,9 @@ if ($mode !== 'modal') {
             <?= FileUploadUI::widget([
                 'model' => $model,
                 'attribute' => 'file',
-                'formView' => '@vendor/yeesoft/yii2-yee-media/views/upload-widget/form',
-                'uploadTemplateView' => '@vendor/yeesoft/yii2-yee-media/views/upload-widget/upload',
-                'downloadTemplateView' => '@vendor/yeesoft/yii2-yee-media/views/upload-widget/download',
+                'formView' => '@backend/modules/media/views/upload-widget/form',
+                'uploadTemplateView' => '@backend/modules/media/views/upload-widget/upload',
+                'downloadTemplateView' => '@backend/modules/media/views/upload-widget/download',
                 'clientOptions' => [
                     'autoUpload' => Yii::$app->getModule('media')->autoUpload,
                 ],
