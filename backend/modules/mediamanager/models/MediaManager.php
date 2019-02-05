@@ -4,6 +4,7 @@ namespace backend\modules\mediamanager\models;
 
 use Yii;
 use backend\modules\media\models\Media;
+use yeesoft\helpers\Html;
 
 /**
  * This is the model class for table "{{%media_manager}}".
@@ -65,4 +66,29 @@ class MediaManager extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Media::className(), ['id' => 'media_id']);
     }
+    
+    /**
+     * 
+     * @return type array
+     */
+     public static function getMediaThumbList($class, $item_id)
+    {
+         $data = array();
+         
+         $items =  self::find()                
+                ->where(['class' => $class, 'item_id' => $item_id])                
+                ->indexBy('id')->asArray()->all();      
+       // echo '<pre>' . print_r($items, true) . '</pre>';
+        
+        foreach ($items as $key => $item) :
+            
+        $data[$key] = [  
+                'content' => Html::img(Media::findById($item['media_id'])->getDefaultThumbUrl()),            
+        ];
+        endforeach;
+        
+        return $data;
+    } 
+    
+    
 }

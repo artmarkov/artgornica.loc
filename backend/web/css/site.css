@@ -90,6 +90,9 @@ a.desc:after {
 /**
  * Carousel Kartik SortableInput
  */
+.sortable.grid {    
+    min-height: 156px !important;
+}
 .sortable.grid li {   
     min-width: 146px !important;
     min-height: 146px !important;    

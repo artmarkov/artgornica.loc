@@ -25,13 +25,15 @@ use yii\widgets\Pjax;
     ?>
 <?php
     $JSInsertLink = <<<EOF
-        function(e, data) {                      
-             console.log(data);
+        function(e, data) {      
+            
+            // console.log(data);            
              var eventData;
+            
              eventData = {
-                id: data.id,
-                class: $("#carousel").val()
-              
+                id: '{$model->id}',
+                class: '{$model->formName()}',          
+                media: data.id,
             };
 
         $.ajax({
@@ -39,16 +41,17 @@ use yii\widgets\Pjax;
                type: 'POST',
                data: {eventData : eventData},
                success: function (res) {
-                   console.log(res);
-
             
+                    $.pjax.reload({
+                          container: "#carousel-container" 
+                    });
+            
+                 //  console.log(res);
                },
                error: function () {
                    alert('Error!!!');
                }
            });
-
-           
        }
 EOF;
     ?>
@@ -60,7 +63,8 @@ EOF;
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>                   
+                   
 
                 </div>
 
@@ -68,24 +72,18 @@ EOF;
             
              <div class="panel panel-default">
                 <div class="panel-body">
-                <?php Pjax::begin(); ?>
+                <?php Pjax::begin([
+                    'id' => 'carousel-container'
+                ]); ?>
                     
                 <?php
                     echo $form->field($model, 'sort_list')->widget(SortableInput::classname(), [
-                        'sortableOptions' => ['type' => Sortable::TYPE_GRID],
-                        
-                        'items' => [
-                            1 => ['content' => '<div class="grid-item">' . Html::img('/uploads/2019/02/forest-128x128.jpg') . '</div> '
-                                . '<div>' . Html::a('<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true" style="padding-top: 10px;"></span>', 
-                                        ['#']) . '</div>'
-                                ],
-                            2 => ['content' => Html::img('/uploads/2019/02/solar-eclipse-128x128.jpg')],
-                            3 => ['content' => Html::img('/uploads/2019/02/sunset-silhouette-128x128.jpg')],
-                           
-                        ],
+                        'sortableOptions' => ['type' => Sortable::TYPE_GRID],                        
+                        'items' => backend\modules\mediamanager\models\MediaManager::getMediaThumbList($model->formName(), $model->id),
                         'hideInput' => true,
                         'options' => ['id' => 'carousel', 'class' => 'form-control', 'readonly' => true]
                     ]);
+                    //echo '<pre>' . print_r(backend\modules\mediamanager\models\MediaManager::getMediaThumbList('Carousel','1'), true) . '</pre>';
                 ?>
                 <?php Pjax::end(); ?>
                     
