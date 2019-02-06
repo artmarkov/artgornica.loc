@@ -34,6 +34,7 @@ use yii\widgets\Pjax;
                 id: '{$model->id}',
                 class: '{$model->formName()}',          
                 media: data.id,
+                sortList: $("#carousel-sort").val(),
             };
 
         $.ajax({
@@ -46,7 +47,7 @@ use yii\widgets\Pjax;
                           container: "#carousel-container" 
                     });
             
-                 //  console.log(res);
+                   console.log(res);
                },
                error: function () {
                    alert('Error!!!');
@@ -63,11 +64,9 @@ EOF;
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>                   
-                   
+                    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>                     
 
                 </div>
-
             </div>
             
              <div class="panel panel-default">
@@ -75,27 +74,45 @@ EOF;
                 <?php Pjax::begin([
                     'id' => 'carousel-container'
                 ]); ?>
-                    
+                    <?php if( Yii::$app->session->hasFlash('carousel') ): ?>
+                        <div class="alert alert-info alert-dismissible alert-crud" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <?= Yii::$app->session->getFlash('carousel') ?>
+                        </div>
+                    <?php endif;?>
                 <?php
-                    echo $form->field($model, 'sort_list')->widget(SortableInput::classname(), [
+                    echo SortableInput::widget([
+                        'name'=> 'sort_list',
                         'sortableOptions' => ['type' => Sortable::TYPE_GRID],                        
                         'items' => backend\modules\mediamanager\models\MediaManager::getMediaThumbList($model->formName(), $model->id),
                         'hideInput' => true,
-                        'options' => ['id' => 'carousel', 'class' => 'form-control', 'readonly' => true]
+                        'options' => ['id' => 'carousel-sort', 'class' => 'form-control', 'readonly' => false]
                     ]);
                     //echo '<pre>' . print_r(backend\modules\mediamanager\models\MediaManager::getMediaThumbList('Carousel','1'), true) . '</pre>';
                 ?>
                 <?php Pjax::end(); ?>
-                    
-                     <?= backend\modules\media\widgets\FileInput::widget([
+                     
+                    <div class="form-group">
+
+                        <?= backend\modules\media\widgets\FileInput::widget([
                             'name' => 'image',
                             'buttonOptions' => ['class' => 'btn btn-primary'],
                             'options' => ['class' => 'hidden', 'id' => 'carousel-input'],
-                            'template' => '<div class="input">{input}{button}</div>',
+                            'template' => '{input}{button}',
                             'thumb' => 'medium',
-                            'callbackBeforeInsert' => new JsExpression($JSInsertLink), 
+                            'callbackBeforeInsert' => new JsExpression($JSInsertLink),
                         ])
                         ?>
+                        
+                        <?= Html::a(Yii::t('yee', 'Сохранить порядок'), ['#'], [
+                            'class' => 'btn btn-info',
+                            'id' => 'save-sort',
+                        ]);
+                        ?>
+
+                    </div> 
                 </div> 
             </div>
         </div>
@@ -165,3 +182,76 @@ EOF;
     <?php  ActiveForm::end(); ?>
 
 </div>
+<?php
+$js = <<<JS
+
+$('#save-sort').on('click', function (e) {
+
+    e.preventDefault();
+   
+    $.ajax({
+        url: '/admin/mediamanager/default/sort-media',
+        data: {sortList: $("#carousel-sort").val()},
+        type: 'POST',
+        success: function (res) {
+            if (!res) {
+                alert('Error!');
+        }
+        else {
+                $.pjax.reload({
+                    container: "#carousel-container" 
+                });
+                //alert('Данные сортировки сохранены');
+           //console.log(res);          
+        }
+        },
+        error: function () {
+            alert('Error!');
+        }
+    });
+});
+
+$('.data-remove').on('click', function (e) {
+
+    e.preventDefault();
+    
+    var id = $(this).data('id');
+
+    $.ajax({
+        url: '/admin/mediamanager/default/remove-media',
+        data: {id: id},
+        type: 'GET',
+        success: function (res) {
+            if (!res) {
+                alert('Error!');
+        }
+        else {
+                $.pjax.reload({
+                    container: "#carousel-container" 
+                });
+                
+          // console.log(res);          
+        }
+        },
+        error: function () {
+            alert('Error!');
+        }
+    });
+});
+
+JS;
+
+$this->registerJs($js);
+?>
+<?php $this->registerCss('
+ #media-base {  
+   position: absolute;    
+ }
+ #media-remove {  
+    position: relative; 
+    float: right;
+    left: 9px; 
+    top: -10px; 
+ }
+');
+?>
