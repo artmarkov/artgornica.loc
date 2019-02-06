@@ -18,8 +18,8 @@ class CarouselSearch extends Carousel
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'slug', 'plugin_class', 'plugin_options', 'img_class', 'img_width', 'img_height', 'status'], 'safe'],
+            [['id', 'items', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'slug', 'single_item', 'navigation', 'pagination', 'transition_style', 'auto_play', 'status'], 'safe'],
         ];
     }
 
@@ -65,17 +65,18 @@ class CarouselSearch extends Carousel
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'items' => $this->items,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'plugin_class', $this->plugin_class])
-            ->andFilterWhere(['like', 'plugin_options', $this->plugin_options])
-            ->andFilterWhere(['like', 'img_class', $this->img_class])
-            ->andFilterWhere(['like', 'img_width', $this->img_width])
-            ->andFilterWhere(['like', 'img_height', $this->img_height])
+            ->andFilterWhere(['like', 'single_item', $this->single_item])
+            ->andFilterWhere(['like', 'navigation', $this->navigation])
+            ->andFilterWhere(['like', 'pagination', $this->pagination])
+            ->andFilterWhere(['like', 'transition_style', $this->transition_style])
+            ->andFilterWhere(['like', 'auto_play', $this->auto_play])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

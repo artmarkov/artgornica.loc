@@ -98,7 +98,7 @@ YeeAsset::register($this);
                 <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <?  $logo = $assetBundle->baseUrl . '/images/logo-1.png'; ?>
+                <?php  $logo = $assetBundle->baseUrl . '/images/logo-1.png'; ?>
                 <a class="logo" href="<?= \yii\helpers\Url::home(); ?>"><?= Html::img($logo, ['alt' => 'Artgornica.ru']) ?>
                     <h7> Artgornica.ru</h7>
                 </a>

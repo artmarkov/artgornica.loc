@@ -63,40 +63,43 @@ ThemeAsset::register($this);
                 <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee/section', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
                   
             </div>
-
+<br />
             <div class="col-md-6">                
+                <?php if(!empty($carousel)) : ?>
                 <?php
-
+//               echo '<pre>' . print_r($carousel, true) . '</pre>';
                 OwlCarouselWidget::begin([
                     'container' => 'div',
                     'containerOptions' => [
                         'class' => 'owl-carousel controlls-over'
                     ],
                     'pluginOptions' => [
-                        'items' => 1,
-                        'singleItem' => true,
-                        'navigation' => true,
-                        'pagination' => true,
-                        'transitionStyle' => 'fadeUp',
-                        'autoPlay' => 9000,
+                        'items' => $carousel->items,
+                        'singleItem' => $carousel->single_item == 1 ? true : false,
+                        'navigation' => $carousel->navigation == 1 ? true : false,
+                        'pagination' => $carousel->pagination == 1 ? true : false,
+                        'transitionStyle' => $carousel->transition_style,
+                        'autoPlay' => $carousel->auto_play,
                     ]
                 ]);
                 ?>
-                    <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
-                    </div>
-                    <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_3.jpg">
-                    </div>
-                    <div>
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
-                    </div>
-
-
+                
+               <?php 
+               
+               $items = backend\modules\mediamanager\models\MediaManager::getMediaList($carousel->formName(), $carousel->id); 
+               $content = '';
+                foreach ($items as $key => $item) :   
+                    $content .= Html::beginTag('div');
+                    $content .= Html::img(backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']); 
+                    $content .= Html::endTag('div'); 
+                endforeach;
+                
+                echo $content;
+                ?>
                  <?php OwlCarouselWidget::end(); ?>
                 
                 <!-- /carousel -->
-
+                <?php endif; ?>
             </div>
         </div>
     </section>

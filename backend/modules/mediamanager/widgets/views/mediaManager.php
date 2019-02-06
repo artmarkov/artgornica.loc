@@ -1,0 +1,153 @@
+<?php
+
+use yeesoft\helpers\Html;
+use kartik\sortable\Sortable;
+use kartik\sortinput\SortableInput;
+use yii\web\JsExpression;
+use yii\widgets\Pjax;
+use backend\modules\mediamanager\models\MediaManager;
+
+?>
+                    
+<?php
+    $JSInsertLink = <<<EOF
+        function(e, data) {      
+            
+            // console.log(data);            
+             var eventData;
+            
+             eventData = {
+                id: '{$model->id}',
+                class: '{$model->formName()}',          
+                media: data.id,
+                sortList: $("#carousel-sort").val(),
+            };
+
+        $.ajax({
+               url: '/admin/mediamanager/default/add-media',
+               type: 'POST',
+               data: {eventData : eventData},
+//               success: function (res) {
+//            
+//                    $.pjax.reload({
+//                          container: "#pjax-carousel-container" 
+//                    });
+//            
+//                   console.log(res);
+//               },
+//               error: function () {
+//                   alert('Error!!!');
+//               }
+           });
+       }
+EOF;
+?>                    
+                    
+<?php
+//Pjax::begin([
+//    'id' => 'pjax-carousel-container',
+//    'enablePushState' => false,
+//]);
+?>
+        <?php if (Yii::$app->session->hasFlash('carouselMessage')): ?>
+            <div class="alert alert-info alert-dismissible alert-crud" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <?= Yii::$app->session->getFlash('carouselMessage') ?>
+            </div>
+        <?php endif; ?>
+        <div class="form-group clearfix">
+            <label class="control-label" style="float: left; padding-right: 5px;"><?= Yii::t('yee/media', 'Album') ?> :</label>   
+            <span><?= $model->name ?></span>
+        </div>
+        <?php
+        echo SortableInput::widget([
+            'name' => 'sort_list',
+            'sortableOptions' => ['type' => Sortable::TYPE_GRID],
+            'items' => MediaManager::getMediaThumbList($model->formName(), $model->id),
+            'hideInput' => true,
+            'options' => ['id' => 'carousel-sort', 'class' => 'form-control', 'readonly' => false]
+        ]);
+        //echo '<pre>' . print_r(backend\modules\mediamanager\models\MediaManager::getMediaThumbList('Carousel','1'), true) . '</pre>';
+        ?>
+<?//php Pjax::end(); ?>
+
+<div class="form-group">
+
+    <?= backend\modules\media\widgets\FileInput::widget([
+        'name' => 'image',
+        'buttonOptions' => ['class' => 'btn btn-primary'],
+        'options' => ['class' => 'hidden'],
+        'template' => '{input}{button}',
+        'thumb' => 'medium',
+        'callbackBeforeInsert' => new JsExpression($JSInsertLink),
+    ])
+    ?>
+
+    <?= Html::a(Yii::t('yee/media', 'To keep order'), ['#'], [
+        'class' => 'btn btn-info save-sort',
+        
+    ]);
+    ?>
+
+</div> 
+
+<?php
+$js = <<<JS
+
+$('.save-sort').on('click', function (e) {
+
+    e.preventDefault();
+   
+    $.ajax({
+        url: '/admin/mediamanager/default/sort-media',
+        data: {sortList: $("#carousel-sort").val()},
+        type: 'POST',
+    });
+});
+
+$('.remove-media-item').on('click', function (e) {
+
+    e.preventDefault();
+    
+    var id = $(this).data('id');
+
+    $.ajax({
+        url: '/admin/mediamanager/default/remove-media',
+        data: {id: id},
+        type: 'POST',
+    });
+});
+
+JS;
+
+$this->registerJs($js);
+?>
+<?php $this->registerCss('
+/**
+ * Carousel Kartik SortableInput
+ */
+.sortable.grid {    
+    min-height: 156px !important;
+}
+.sortable.grid li {   
+    min-width: 146px !important;
+    min-height: 146px !important;    
+}
+.sortable li.sortable-placeholder {
+    min-width: 146px !important;
+    min-height: 146px !important;
+}
+ #media-base {  
+   position: absolute;    
+ }
+ #media-remove {  
+    position: relative; 
+    float: right;
+    left: 9px; 
+    top: -10px; 
+ }
+');
+?>
+

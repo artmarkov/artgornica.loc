@@ -73,11 +73,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             
             'slug',
-//            'plugin_class',
-//            'plugin_options',
-            // 'img_class',
-            // 'img_width',
-            // 'img_height',
+//            'items',
+//            'single_item',
+            // 'navigation',
+            // 'pagination',
+            // 'transition_style',
+            // 'auto_play',
+            // 'created_at',
+            // 'updated_at',
             [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',
@@ -87,9 +90,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'options' => ['style' => 'width:100px']
                     ],
-            // 'created_at',
-            // 'updated_at',
-
                 ],
             ]);
             ?>

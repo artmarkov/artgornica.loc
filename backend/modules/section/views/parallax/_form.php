@@ -43,17 +43,14 @@ use kartik\switchinput\SwitchInput;
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-2">  
-                            <?=
-                            $form->field($model, 'countdown')->widget(SwitchInput::classname(), [
+                            <?= $form->field($model, 'countdown')->widget(SwitchInput::classname(), [
                                 'pluginOptions' => [
                                     'size' => 'small',
                                 ],
-                            ]);
-                            ?>
+                            ]); ?>
                         </div>
                         <div class="col-md-10">
-                            <?=
-                                    $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())
+                            <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())
                                     ->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput();
                             ?>
 

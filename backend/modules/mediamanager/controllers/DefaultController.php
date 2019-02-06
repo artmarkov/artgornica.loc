@@ -12,17 +12,22 @@ class DefaultController extends \backend\controllers\DefaultController
 {
     public $modelClass  = 'backend\modules\mediamanager\models\MediaManager';
      
-    
+    /**
+     * 
+     * @return type
+     * @throws NotFoundHttpException
+     * @throws HttpException
+     */
     public function actionAddMedia() {
 
         if (!Yii::$app->request->isAjax) {
-            return false;
+             throw new NotFoundHttpException(Yii::t('yee', 'Requires a parameter with AJAX.'));
         }
 
         $eventData = Yii::$app->request->post('eventData');
 
         if (empty($eventData)) {
-            return false;
+            throw new NotFoundHttpException(Yii::t('yee/media', 'Photo not found.'));
         }
 
         $model = new $this->modelClass;
@@ -32,51 +37,63 @@ class DefaultController extends \backend\controllers\DefaultController
 
         // echo '<pre>' . print_r($model, true) . '</pre>';
         if ($model->save()) {
-            return true;
+            Yii::$app->session->setFlash('carouselMessage', Yii::t('yee/media', 'Your photo was successfully added.'));
+            return $this->redirect(Yii::$app->request->referrer);
         } else {
-            return false;
+            throw new HttpException(404, 'Page not found');
         }
     }
-    
+    /**
+     * 
+     * @return boolean
+     * @throws NotFoundHttpException
+     */
      public function actionSortMedia() {
 
         if (!Yii::$app->request->isAjax) {
-            return false;
+            throw new NotFoundHttpException(Yii::t('yee', 'Requires a parameter with AJAX.'));
         }
 
         $sortList = Yii::$app->request->post('sortList');
 
         if (empty($sortList)) {
-            return false;
+            throw new NotFoundHttpException(Yii::t('yee/media', 'Photo not found.'));
         }
       
         // echo '<pre>' . print_r($eventData, true) . '</pre>';
         if ($this->modelClass::sort($sortList)) {
-            Yii::$app->session->setFlash('carousel', Yii::t('yee/media', 'Sort data saved'));
-            return true;
+            Yii::$app->session->setFlash('carouselMessage', Yii::t('yee/media', 'Sort data saved.'));
+            return $this->redirect(Yii::$app->request->referrer);
+            //return true;
         } else {
             return false;
         }
     }
+    /**
+     * 
+     * @return type
+     * @throws NotFoundHttpException
+     * @throws HttpException
+     */
      public function actionRemoveMedia() {
 
         if (!Yii::$app->request->isAjax) {
-            return false;
+            throw new NotFoundHttpException(Yii::t('yee/media', 'Photo not found.'));
         }
 
-        $id = Yii::$app->request->get('id');
+        $id = Yii::$app->request->post('id');
 
         if (empty($id)) {
-            return false;
+           throw new HttpException(404, 'Page not found');
         }
         $model = $this->findModel($id);
        
          //echo '<pre>' . print_r($model, true) . '</pre>';
         if ($model->delete()) {
-            Yii::$app->session->setFlash('carousel', Yii::t('yee', 'Your item has been deleted.'));
-            return true;
+            Yii::$app->session->setFlash('carouselMessage', Yii::t('yee/media', 'Your photo has been removed.'));
+            return $this->redirect(Yii::$app->request->referrer); 
         } else {
-            return false;
+           throw new NotFoundHttpException(Yii::t('yee/media', 'Photo not found.'));
         }
     }
 

@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use backend\modules\event\models\EventSchedule;
 use backend\modules\event\models\EventVid;
 use backend\modules\section\models\Parallax;
+use backend\modules\section\models\Carousel;
 
 /**
  * Site controller
@@ -76,10 +77,16 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->where(['status' => Parallax::STATUS_ACTIVE])
                 ->one();
          
+         $carousel = Carousel::find()
+                ->where(['slug' => 'karusel-main'])
+                ->andWhere(['status' => Carousel::STATUS_ACTIVE])
+                ->one();
+         
         return $this->render('index', [
                 'posts' => $posts,
                 'events' => $events,
                 'parallax' => $parallax,
+                'carousel' => $carousel,
             ]);
     }
 

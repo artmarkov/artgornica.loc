@@ -44,20 +44,6 @@ class MediaManager extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('yee', 'ID'),
-            'media_id' => Yii::t('yee', 'Media ID'),
-            'class' => Yii::t('yee', 'Class'),
-            'item_id' => Yii::t('yee', 'Item ID'),
-            'sort' => Yii::t('yee', 'Sort'),
-        ];
-    }
-
     public function getModelForm()
     {
        return $this->formName();
@@ -73,7 +59,7 @@ class MediaManager extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMediaList($class, $item_id)
+    public static function getMediaList($class, $item_id)
     {
         return self::find()                
                 ->where(['class' => $class, 'item_id' => $item_id])                
@@ -86,7 +72,7 @@ class MediaManager extends \yii\db\ActiveRecord
      * @param type $sortList
      * @return boolean
      */
-    public function sort($sortList) 
+    public static function sort($sortList) 
     {
         $ret = true;
         
@@ -109,7 +95,7 @@ class MediaManager extends \yii\db\ActiveRecord
     {
          $data = array();
          
-         $items =  self::getMediaList($class, $item_id);      
+         $items = self::getMediaList($class, $item_id);      
        // echo '<pre>' . print_r($items, true) . '</pre>';
         
         foreach ($items as $key => $item) :
@@ -118,13 +104,12 @@ class MediaManager extends \yii\db\ActiveRecord
           $content .= Html::img(Media::findById($item['media_id'])->getDefaultThumbUrl());
           $content .= Html::endTag('div');
           $content .= Html::beginTag('div', ['id' => 'media-remove']);
-          $content .= Html::tag('a','<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>', 
-                                    ['class' => 'data-remove', 'data-id' => $item['id'], 'href' => '#']);
+          $content .= Html::tag('a','<span class="glyphicon glyphicon-remove text-muted" aria-hidden="true"></span>', 
+                                    ['class' => 'remove-media-item', 'data-id' => $item['id'], 'href' => '#', 'alt' => '']);
           $content .= Html::endTag('div');
           
-            $data[$key] = [  
-                    'content' => $content,            
-            ];
+          $data[$key] = ['content' => $content];
+            
         endforeach;
         
         return $data;

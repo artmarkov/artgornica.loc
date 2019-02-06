@@ -13,11 +13,12 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property string $name
  * @property string $slug
- * @property string $plugin_class
- * @property string $plugin_options
- * @property string $img_class
- * @property string $img_width
- * @property string $img_height
+ * @property int $items
+ * @property int $single_item
+ * @property int $navigation
+ * @property int $pagination
+ * @property string $transition_style
+ * @property string $auto_play
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
@@ -56,28 +57,28 @@ class Carousel extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'plugin_class', 'plugin_options'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],            
-            [['status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'slug', 'plugin_class', 'plugin_options', 'img_class'], 'string', 'max' => 127],
-            [['img_width', 'img_height'], 'string', 'max' => 32],
+            [['items', 'single_item', 'navigation', 'pagination', 'transition_style', 'auto_play'], 'required'],
+            [['items', 'single_item', 'navigation', 'pagination', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'slug', 'transition_style', 'auto_play'], 'string', 'max' => 127],
+            [['created_at', 'updated_at'], 'safe'], 
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+   public function attributeLabels()
     {
         return [
             'id' => Yii::t('yee', 'ID'),
-            'name' => Yii::t('yee/', 'Name'),
+            'name' => Yii::t('yee', 'Name'),
             'slug' => Yii::t('yee', 'Slug'),
-            'plugin_class' => Yii::t('yee/section', 'Plugin Class'),
-            'plugin_options' => Yii::t('yee/section', 'Plugin Options'),
-            'img_class' => Yii::t('yee/section', 'Img Class'),
-            'img_width' => Yii::t('yee/section', 'Img Width'),
-            'img_height' => Yii::t('yee/section', 'Img Height'),
+            'items' => Yii::t('yee', 'Items'),
+            'single_item' => Yii::t('yee/section', 'Single Item'),
+            'navigation' => Yii::t('yee', 'Navigation'),
+            'pagination' => Yii::t('yee', 'Pagination'),
+            'transition_style' => Yii::t('yee/section', 'Transition Style'),
+            'auto_play' => Yii::t('yee/section', 'Auto Play'),
             'status' => Yii::t('yee', 'Status'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
