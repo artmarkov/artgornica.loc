@@ -59,7 +59,7 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->all();
         }
         else {
-            $posts = $queryPost->orderBy('published_at DESC')
+        $posts = $queryPost->orderBy('published_at DESC')
                 ->limit(Post::COUNT_POST_INDEX)
                 ->all();
         }
@@ -77,11 +77,13 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->where(['status' => Parallax::STATUS_ACTIVE])
                 ->one();
          
-         $carousel = Carousel::find()
+         $query = Carousel::find()
                 ->where(['slug' => 'karusel-main'])
-                ->andWhere(['status' => Carousel::STATUS_ACTIVE])
-                ->one();
+                ->andWhere(['status' => Carousel::STATUS_ACTIVE])->one();
          
+          $carousel = \yii\helpers\ArrayHelper::toArray($query);
+          $carousel['model_name'] = $query->formName();
+          
         return $this->render('index', [
                 'posts' => $posts,
                 'events' => $events,
@@ -194,7 +196,16 @@ class SiteController extends \yeesoft\controllers\BaseController
      */
     public function actionAbout()
     {
-        return $this->render('about');
+         $query = Carousel::find()
+                ->where(['slug' => 'karousel-about'])
+                ->andWhere(['status' => Carousel::STATUS_ACTIVE])->one();
+         
+          $carousel = \yii\helpers\ArrayHelper::toArray($query);
+          $carousel['model_name'] = $query->formName();
+         
+        return $this->render('about', [
+                'carousel' => $carousel,
+            ]);
     }
     
 }

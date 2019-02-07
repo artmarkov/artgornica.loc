@@ -25,27 +25,8 @@ use yeesoft\helpers\Html;
                     <div class="row">
                         <div class="col-md-12">
                             
-                            <?php 
-                            
-//                                use kartik\sortinput\SortableInput;
-//                                echo $form->field($model, 'sort_list')->widget(SortableInput::classname(), [
-//                                   
-//                                'items' => [
-//                                            1 => ['content' => 'Item # 1'],
-//                                            2 => ['content' => 'Item # 2'],
-//                                            3 => ['content' => 'Item # 3'],
-//                                            4 => ['content' => 'Item # 4'],
-//                                            5 => ['content' => 'Item # 5'],
-//                                            ],
-//                                    
-//                                'hideInput' => false,
-//                                'options' => ['class'=>'form-control', 'readonly'=>true],
-//                                    
-//                                ]);
-                                ?>
-                            
                             <?php $data = \backend\modules\section\models\SlidesLayers::getSlidesLayersList($model->id); ?>
-<?php if (!empty($data)): ?>
+                            <?php if (!empty($data)): ?>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
@@ -63,7 +44,7 @@ use yeesoft\helpers\Html;
                                         <tbody>
    
                                             
-    <?php foreach ($data as $id => $item): ?>
+                            <?php foreach ($data as $id => $item): ?>
                                             
    
                                                 <tr>
@@ -86,12 +67,12 @@ use yeesoft\helpers\Html;
                                                         ?>
                                                     </td>
                                                 </tr>
-    <?php endforeach ?>
+                             <?php endforeach ?>
                                                
                                         </tbody>
                                     </table>
                                 </div>
-<?php endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

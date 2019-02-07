@@ -3,12 +3,13 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yeesoft\comments\models\Comment;
-use frontend\widgets\owlcarousel\OwlCarouselWidget;
+use yii\helpers\ArrayHelper;
 
 /* @var $post yeesoft\post\models\Post */
 
 $page = (isset($page)) ? $page : 'post';
 $post->updateRevision();
+//echo '<pre>' . print_r($post->getCarouselOption(), true) . '</pre>';
 ?>
 
 <!-- article title -->
@@ -28,49 +29,26 @@ $post->updateRevision();
     </small>
 </header>
 
-<?php if ($page === 'post'): ?>
     <!-- carousel -->
-    <?php
-
-                OwlCarouselWidget::begin([
-                    'container' => 'div',
-                    'containerOptions' => [
-                        'class' => 'owl-carousel controlls-over'
-                    ],
-                    'pluginOptions' => [
-                        'items' => 1,
-                        'singleItem' => true,
-                        'navigation' => true,
-                        'pagination' => true,
-                        'transitionStyle' => 'fadeUp',
-                        'autoPlay' => 9000,
-                    ]
-                ]);
-                ?>
-                    <div class="item">
-                        <img src="/uploads/2019/02/forest-31198261920-768x432.jpg" class="img-responsive" alt="img" />
-                    </div>
-                    <div class="item">
-                        <img src="/uploads/2019/02/forest-31198261920-768x432.jpg" class="img-responsive" alt="img" />
-                    </div>
-<!--                <div class="item">
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_1.jpg">
-                    </div>
-                    <div class="item">
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_3.jpg">
-                    </div>
-                    <div class="item">
-                        <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_slider_2.jpg">
-                    </div>-->
-
-
-                 <?php OwlCarouselWidget::end(); ?>
-    <!-- carousel -->
-<?php else: ?>
     
-    <?= Html::img('../frontend/web/images/demo/screens/scr4.jpg', ['alt' => 'img', 'class' => 'img-responsive']) ?>
+    <?php
+    $carousel = ArrayHelper::merge($post->getCarouselOption(), [
+                'model_name' => $post->formName(),
+                'id' => $post->id,
+    ]);
+    echo \frontend\widgets\CarouselWidget::widget(
+            [
+                'model' => $carousel,
+                'options' =>
+                [
+                    'type' => 'images',
+                    'size' => 'large',
+                    'class' => 'owl-carousel controlls-over',
+                ],
+    ]);
+    ?>
+    <!-- carousel -->
 
-<?php endif; ?>
     <!-- TAGS -->
 <?php $tags = $post->tags; ?>
 <?php if (!empty($tags)): ?>

@@ -344,4 +344,19 @@ class Post extends ActiveRecord
     {
         return 'created_by';
     }
+     /**
+     *
+     * @inheritdoc
+     */
+    public static function getCarouselOption()
+    {
+    return [
+            'items' => 1,
+            'single_item' => true,
+            'navigation' => true,
+            'pagination' => true,
+            'transition_style' => 'fadeUp',
+            'auto_play' => '9000',           
+            ];
+    }
 }

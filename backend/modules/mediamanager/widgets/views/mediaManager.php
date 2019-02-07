@@ -49,17 +49,9 @@ EOF;
 //    'enablePushState' => false,
 //]);
 ?>
-        <?php if (Yii::$app->session->hasFlash('carouselMessage')): ?>
-            <div class="alert alert-info alert-dismissible alert-crud" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <?= Yii::$app->session->getFlash('carouselMessage') ?>
-            </div>
-        <?php endif; ?>
+       
         <div class="form-group clearfix">
-            <label class="control-label" style="float: left; padding-right: 5px;"><?= Yii::t('yee/media', 'Album') ?> :</label>   
-            <span><?= $model->name ?></span>
+            <label class="control-label" style="float: left; padding-right: 5px;"><?= Yii::t('yee/media', 'Album') ?></label>               
         </div>
         <?php
         echo SortableInput::widget([

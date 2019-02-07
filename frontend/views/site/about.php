@@ -18,35 +18,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Who Am I -->
         <article class="row">
             <div class="col-md-6">
-                <?php
-
-                OwlCarouselWidget::begin([
-                    'container' => 'div',
-                    'containerOptions' => [
-                        'class' => 'owl-carousel controlls-over'
-                    ],
-                    'pluginOptions' => [
-                        'items' => 1,
-                        'singleItem' => true,
-                        'navigation' => true,
-                        'pagination' => true,
-                        'transitionStyle' => 'fadeUp',
-                        'autoPlay' => 9000,
-                    ]
-                ]);
-                ?>
-                    <div>
-                        <img alt="" class="img-responsive" src="/uploads/2019/02/forest-31198261920-640x360.jpg">
-                    </div>
-                    <div>
-                        <img alt="" class="img-responsive" src="/uploads/2019/02/forest-31198261920-640x360.jpg">
-                    </div>
-                    <div>
-                        <img alt="" class="img-responsive" src="/uploads/2019/02/forest-31198261920-640x360.jpg">
-                    </div>
-
-
-                 <?php OwlCarouselWidget::end(); ?>
+                <?= \frontend\widgets\CarouselWidget::widget(
+                   [
+                       'model' => $carousel, 
+                       'options' => 
+                            [
+                                'type' => 'images',
+                                'size' => 'medium',
+                                'class' => 'owl-carousel controlls-over',
+                            ],
+                   ]); 
+            ?>
             </div>
             <div class="col-md-6">
                 <h4><i class="fa fa-heart-o"></i> Кто Я?</h4>

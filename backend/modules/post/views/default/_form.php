@@ -44,9 +44,17 @@ use yii\helpers\Url;
             <div class="panel panel-default">
                 <div class="panel-body">
                      
+            <?php if (!$model->isNewRecord) : ?>
+            
+            <div class="panel panel-default">
+                <div class="panel-body">
                     
+                    <?= \backend\modules\mediamanager\widgets\MediaManagerWidget::widget(['model' => $model]); ?>
                     
-                    
+                </div> 
+            </div>
+            
+            <?php endif; ?>
 
                 </div> 
             </div>

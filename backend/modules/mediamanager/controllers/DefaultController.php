@@ -37,7 +37,7 @@ class DefaultController extends \backend\controllers\DefaultController
 
         // echo '<pre>' . print_r($model, true) . '</pre>';
         if ($model->save()) {
-            Yii::$app->session->setFlash('carouselMessage', Yii::t('yee/media', 'Your photo was successfully added.'));
+            Yii::$app->session->setFlash('crudMessage', Yii::t('yee/media', 'Your photo was successfully added.'));
             return $this->redirect(Yii::$app->request->referrer);
         } else {
             throw new HttpException(404, 'Page not found');
@@ -62,7 +62,7 @@ class DefaultController extends \backend\controllers\DefaultController
       
         // echo '<pre>' . print_r($eventData, true) . '</pre>';
         if ($this->modelClass::sort($sortList)) {
-            Yii::$app->session->setFlash('carouselMessage', Yii::t('yee/media', 'Sort data saved.'));
+            Yii::$app->session->setFlash('crudMessage', Yii::t('yee/media', 'Sort data saved.'));
             return $this->redirect(Yii::$app->request->referrer);
             //return true;
         } else {
@@ -90,7 +90,7 @@ class DefaultController extends \backend\controllers\DefaultController
        
          //echo '<pre>' . print_r($model, true) . '</pre>';
         if ($model->delete()) {
-            Yii::$app->session->setFlash('carouselMessage', Yii::t('yee/media', 'Your photo has been removed.'));
+            Yii::$app->session->setFlash('crudMessage', Yii::t('yee/media', 'Your photo has been removed.'));
             return $this->redirect(Yii::$app->request->referrer); 
         } else {
            throw new NotFoundHttpException(Yii::t('yee/media', 'Photo not found.'));
