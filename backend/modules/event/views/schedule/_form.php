@@ -62,10 +62,7 @@ use yii\helpers\Url;
 
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-                    <?//= $form->field($model, 'all_day')->textInput() ?>
-
-                    <?=
-                    $form->field($model, 'users_list')->widget(kartik\select2\Select2::className(), [
+                    <?= $form->field($model, 'users_list')->widget(kartik\select2\Select2::className(), [
                         'data' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),
                         'options' => ['placeholder' => Yii::t('yee/event', 'Select Users...'), 'multiple' => true],                        
                     ])
@@ -126,8 +123,7 @@ use yii\helpers\Url;
                                 <span><?= $model->id ?></span>
                             </div>
                                 <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
-                                <?=
-                                Html::a(Yii::t('yee', 'Delete'), ['/event/schedule/delete', 'id' => $model->id], [
+                                <?= Html::a(Yii::t('yee', 'Delete'), ['/event/schedule/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

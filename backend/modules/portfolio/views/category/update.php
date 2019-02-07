@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('yee','Update'). ': ' . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('yee/section','Portfolio Items'), 'url' => ['default/index']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/section','Portfolio Categories'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/section','Portfolio Category'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('yee','Update');
 ?>
 <div class="category-update">

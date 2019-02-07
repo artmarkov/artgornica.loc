@@ -272,6 +272,5 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public static function find()
     {
         return new \backend\modules\event\models\query\EventScheduleQuery(get_called_class());
-    }
-    
+    }    
 }    

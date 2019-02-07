@@ -8,9 +8,10 @@ use yii\helpers\Html;
     <!-- item -->
     <div class="item-box appear-animation pull-left inner" data-animation="fadeInDown">
         <figure>
-
-            <img alt="" class="img-responsive" src="../frontend/web/images/demo/home/church_thumb_1.jpg"
-                 width="409" height="271"/>
+            <?php
+            $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->formName(), $post->id);             
+            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'], ['class' => 'img-responsive', 'width' => '409', 'height' => '271', 'alt' => '']); 
+            ?>
         </figure>
         <div class="item-box-desc">
             <h4><?= '<span class="uppercase">' . $post->title . '</span>' ?></h4>

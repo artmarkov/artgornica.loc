@@ -87,3 +87,10 @@ a.desc:after {
    
     margin: -1px 0 0 3px !important;
 }
+.dw-media-image {
+    
+    margin-right: 10px !important;
+}
+img.dw-media-image {
+        width: 150px !important;
+}

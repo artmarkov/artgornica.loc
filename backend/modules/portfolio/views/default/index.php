@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'category_id',
                     'value' => 'categoryName',
-                    'label' => Yii::t('yee/event', 'Category Name'),
+                    'label' => Yii::t('yee/section', 'Portfolio Category'),
                     'filter' => Category::getCategories(),
                     'options' => ['style' => 'width:350px'],
                 ],

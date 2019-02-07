@@ -73,7 +73,7 @@ class Carousel extends \yeesoft\db\ActiveRecord
             'id' => Yii::t('yee', 'ID'),
             'name' => Yii::t('yee', 'Name'),
             'slug' => Yii::t('yee', 'Slug'),
-            'items' => Yii::t('yee', 'Items'),
+            'items' => Yii::t('yee/section', 'Items Qty'),
             'single_item' => Yii::t('yee/section', 'Single Item'),
             'navigation' => Yii::t('yee', 'Navigation'),
             'pagination' => Yii::t('yee', 'Pagination'),

@@ -15,7 +15,7 @@
                         <?php foreach ($recent as $item) : ?>
                             <div class="clearfix dw-media">
                                 <div class="pull-left">
-                                    <img class="dw-media-image" src="<?= $item->getThumbUrl('small') ?>">
+                                    <img class="dw-media-image" src="<?= $item->getThumbUrl('small') ?>" width="250px">
                                 </div>
                                 <div class="dw-media-info">
                                     <div>
@@ -63,6 +63,7 @@ $css = <<<CSS
 }
 .dw-media-info {
     margin-left: 140px;
+    padding: 10px;
 }
 .dw-quick-links{
     position: absolute;

@@ -1,9 +1,6 @@
 <?php
 
-use yeesoft\widgets\ActiveForm;
-use yeesoft\helpers\Html;
-use backend\modules\event\models\EventSchedule;
-use frontend\widgets\owlcarousel\OwlCarouselWidget;
+use yii\helpers\ArrayHelper;
 
 /* @var $model backend\modules\event\models\EventItemProgramm */
 /* @var $form yeesoft\widgets\ActiveForm */
@@ -19,37 +16,25 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <article class="row">
              <div class="col-md-6">
-                 <?php
-
-                OwlCarouselWidget::begin([
-                    'container' => 'div',
-                    'containerOptions' => [
-                        'class' => 'owl-carousel controlls-over'
-                    ],
-                    'pluginOptions' => [
-                        'items' => 1,
-                        'singleItem' => true,
-                        'navigation' => true,
-                        'pagination' => true,
-                        'transitionStyle' => 'fadeUp',
-                        'autoPlay' => 9000,
-                    ]
+                 <!-- carousel -->
+    
+                <?php
+                $carousel = ArrayHelper::merge($model->item->getCarouselOption(), [
+                            'model_name' => $model->item->formName(),
+                            'id' => $model->item_id,
+                ]);
+                echo \frontend\widgets\CarouselWidget::widget(
+                        [
+                            'model' => $carousel,
+                            'options' =>
+                            [
+                                'type' => 'images',
+                                'size' => 'medium',
+                                'class' => 'owl-carousel controlls-over',
+                            ],
                 ]);
                 ?>
-                     <div>
-                         <img class="img-responsive" src="../../frontend/web/images/sunset-1.jpg" width="555" height="311" alt="">
-                     </div>
-                     <div>
-                         <img class="img-responsive" src="../../frontend/web/images/fishermen-1.jpg" width="555" height="311" alt="">
-                     </div>
-                     <div>
-                         <img class="img-responsive" src="../../frontend/web/images/sunset-silhouette-2081796_1920.jpg" width="555" height="311" alt="">
-                     </div>
-
-
-                 <?php OwlCarouselWidget::end(); ?>
-                    
-                 
+                <!-- carousel -->
              </div>
              <div class="col-md-6">
                  <h4><i class="fa fa-heart-o"></i> <?= Yii::t('yee/event', 'Event Name'); ?>:</h4>

@@ -26,13 +26,9 @@ use kartik\switchinput\SwitchInput;
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <?//= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
                     <?= $form->field($model, 'parallax_class')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'background_ratio')->textInput(['maxlength' => true]) ?>
-
-                    <?//= $form->field($model, 'content_image')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'content')->textarea(['rows' => 12]) ?>
 

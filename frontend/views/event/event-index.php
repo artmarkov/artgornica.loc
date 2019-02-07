@@ -13,7 +13,12 @@ use yii\helpers\Html;
             <span class="block fa fa-plus fsize20"></span>
             <strong>ДЕТАЛИ</strong> ЗАНЯТИЯ</span>', ['/event/view', 'id' => $event->id], ['class' => 'item-hover']);
             ?>
-            <img class="img-responsive" src="../frontend/web/images/demo/portfolio/scouter-600x403.jpg" width="260" height="260" alt="">
+            <?php
+            $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($event->item->formName(), $event->item_id);             
+            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'], ['class' => 'img-responsive', 'width' => '260', 'height' => '260', 'alt' => '']); 
+            else echo Html::img('/images/noimg.png', ['class' => 'img-responsive', 'width' => '260', 'height' => '260', 'alt' => '']); 
+           
+            ?>
         </figure>
         <div class="item-box-desc">
             <h5><?= $event->itemName ?></h5>

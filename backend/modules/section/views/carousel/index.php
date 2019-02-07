@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel backend\modules\section\models\search\CarouselSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $this->title = Yii::t('yee/section', 'Carousels');
+$this->title = $this->title = Yii::t('yee/section', 'Carousel');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="carousel-index">

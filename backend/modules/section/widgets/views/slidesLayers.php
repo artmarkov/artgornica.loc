@@ -32,7 +32,7 @@ use yeesoft\helpers\Html;
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th><?= Yii::t('yee/section', 'Content'); ?></th>
+                                                <th><?= Yii::t('yee', 'Content'); ?></th>
                                                 <th><?= Yii::t('yee/section', 'Data X'); ?></th>
                                                 <th><?= Yii::t('yee/section', 'Data Y'); ?></th>
                                                 <th><?= Yii::t('yee/section', 'Data Speed'); ?></th>

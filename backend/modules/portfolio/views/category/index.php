@@ -12,7 +12,7 @@ use yeesoft\grid\GridPageSize;
 /* @var $searchModel backend\modules\portfolio\models\search\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/section', 'Portfolio Categories');
+$this->title = Yii::t('yee/section', 'Portfolio Category');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">

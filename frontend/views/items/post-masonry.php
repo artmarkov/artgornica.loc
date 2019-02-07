@@ -30,8 +30,10 @@ $page = (isset($page)) ? $page : 'post';
 
             <!-- image -->
             <figure>
-
-                <?= Html::img('/uploads/2019/02/forest-31198261920-1280x720.jpg', ['alt' => 'img', 'class' => 'img-responsive']) ?>
+            <?php
+            $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->formName(), $post->id);            
+            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'], ['class' => 'img-responsive', 'alt' => '']); 
+             ?>     
             </figure>
             <!-- TAGS -->
             <?php $tags = $post->tags; ?>

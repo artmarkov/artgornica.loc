@@ -131,8 +131,7 @@ use yeesoft\helpers\Html;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-                        <?//= $form->field($model, 'img_alt')->textInput(['maxlength' => true]) ?>
-                       
+                        
                         <?= $form->field($model, 'img_src')->widget(backend\modules\media\widgets\FileInput::className(), [
                             'name' => 'image',
                             'buttonTag' => 'button',

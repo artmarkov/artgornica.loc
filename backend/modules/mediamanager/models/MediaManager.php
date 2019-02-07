@@ -66,6 +66,17 @@ class MediaManager extends \yii\db\ActiveRecord
                 ->indexBy('id')
                 ->orderBy('sort')
                 ->asArray()->all();    
+    } 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public static function getMediaFirst($class, $item_id)
+    {
+        return self::find()                
+                ->where(['class' => $class, 'item_id' => $item_id])                
+                ->indexBy('id')
+                ->orderBy('sort')
+                ->asArray()->one();    
     }
     /**
      * 
