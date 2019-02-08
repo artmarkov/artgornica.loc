@@ -282,7 +282,7 @@ class Post extends ActiveRecord
             self::MAIN_OFF => Yii::t('yee', 'Off'),
         ];
     }
- /**
+    /**
      * getStatusOptionsList
      * @return array
      */
@@ -316,7 +316,7 @@ class Post extends ActiveRecord
             self::COMMENT_STATUS_CLOSED => Yii::t('yee', 'Closed')
         ];
     }
- /**
+    /**
      * getTypeList
      * @return array
      */

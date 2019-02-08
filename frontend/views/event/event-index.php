@@ -15,7 +15,7 @@ use yii\helpers\Html;
             ?>
             <?php
             $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($event->item->formName(), $event->item_id);             
-            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'], ['class' => 'img-responsive', 'width' => '260', 'height' => '260', 'alt' => '']); 
+            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'width' => '260', 'height' => '260', 'alt' => '']); 
             else echo Html::img('/images/noimg.png', ['class' => 'img-responsive', 'width' => '260', 'height' => '260', 'alt' => '']); 
            
             ?>
