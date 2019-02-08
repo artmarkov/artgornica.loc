@@ -32,7 +32,7 @@ $page = (isset($page)) ? $page : 'post';
             <figure>
             <?php
             $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->formName(), $post->id);            
-            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'], ['class' => 'img-responsive', 'alt' => '']); 
+            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']); 
              ?>     
             </figure>
             <!-- TAGS -->

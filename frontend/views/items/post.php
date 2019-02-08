@@ -42,7 +42,7 @@ $post->updateRevision();
                 'options' =>
                 [
                     'type' => 'images',
-                    'size' => 'medium',
+                    'size' => 'large',
                     'class' => 'owl-carousel controlls-over',
                 ],
     ]);

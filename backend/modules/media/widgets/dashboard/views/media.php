@@ -15,7 +15,7 @@
                         <?php foreach ($recent as $item) : ?>
                             <div class="clearfix dw-media">
                                 <div class="pull-left">
-                                    <img class="dw-media-image" src="<?= $item->getThumbUrl('small') ?>" width="250px">
+                                    <img class="dw-media-image" src="<?= $item->getThumbUrl('small') ?>">
                                 </div>
                                 <div class="dw-media-info">
                                     <div>

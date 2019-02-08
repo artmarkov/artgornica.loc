@@ -46,38 +46,41 @@ ThemeAsset::register($this);
 
     <!-- Positive -->
     <section class="container">
-        <div class="row">
-            <div class="col-md-6 padding50 nopadding-top">
-                <h2>
-                    <strong class="styleColor">Для кого </strong>Этот курс? 
-                </h2>	
-                <ul class="list-icon star-o color">
-                    <li>Вы хотите заниматься тем, что доставляет удовольствие и быть счастливым, но Вы не решаетесь сделать шаг навстречу своим желаниям и мечтам?</li>
-                    <li>Начните сейчас жить, не цепляясь за старое и страшась перемен! </li>
-                    <li>Впустите в свою жизнь радость!</li>
-                    <li>Почувствуйте себя, свой внутренний мир, свои ценности! </li>
-                    <li>Поверьте в свои способности! Цените свое время! Познавайте новое! </li>
-                    <li>Создайте намерение, цель, свою мечту!</li>
-                    <li>Зажгите в себе энергию и направьте ее на что-то важное, следуйте за своей мечтой!</li>
-                </ul>
-                <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee/section', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
-                  
-            </div>
+        <div class="container">
+            <div class="row">
 
-            <div class="col-md-6">                
-           <?= \frontend\widgets\CarouselWidget::widget(
-                   [
-                       'model' => $carousel, 
-                       'options' => 
+                <div class="col-md-6 padding50 nopadding-top">
+                    <h2>
+                        <strong class="styleColor">Для кого </strong>Этот курс? 
+                    </h2>	
+                    <ul class="list-icon star-o color">
+                        <li>Вы хотите заниматься тем, что доставляет удовольствие и быть счастливым, но Вы не решаетесь сделать шаг навстречу своим желаниям и мечтам?</li>
+                        <li>Начните сейчас жить, не цепляясь за старое и страшась перемен! </li>
+                        <li>Впустите в свою жизнь радость!</li>
+                        <li>Почувствуйте себя, свой внутренний мир, свои ценности! </li>
+                        <li>Поверьте в свои способности! Цените свое время! Познавайте новое! </li>
+                        <li>Создайте намерение, цель, свою мечту!</li>
+                        <li>Зажгите в себе энергию и направьте ее на что-то важное, следуйте за своей мечтой!</li>
+                    </ul>
+                    <?= Html::a('<i class="fa fa-chevron-circle-right"></i>' . Yii::t('yee/section', 'Sign up for class') . '</span>', ["/site/contact"], ['class' => 'btn btn-primary btn-lg']) ?>
+
+                </div>
+
+                <div class="col-md-6">                
+                    <?=
+                    \frontend\widgets\CarouselWidget::widget(
                             [
-                                'type' => 'images',
-                                'size' => 'medium',
-                                'class' => 'owl-carousel controlls-over',
-                            ],
-                   ]); 
-            ?>
+                                'model' => $carousel,
+                                'options' =>
+                                [
+                                    'type' => 'images',
+                                    'size' => 'medium',
+                                    'class' => 'owl-carousel controlls-over',
+                                ],
+                    ]);
+                    ?>
+                </div>
             </div>
-        </div>
     </section>
     <!-- /Positive -->
 
@@ -87,17 +90,23 @@ ThemeAsset::register($this);
               
     <!-- POST -->
     <section id = "post" class="container padding50 nopadding-top">
-        <h2>
-            <strong class="styleColor">Это </strong>Интересно
-        </h2>
-        <p class="lead">Приглашаю Вас посетить мой Блог, где Вы найдете много интересных и занимательных статей.
-        </p>
-        <div class="row text-center">
-            <?php foreach ($posts as $post) : ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>
+                        <strong class="styleColor">Это </strong>Интересно
+                    </h2>
+                    <p class="lead">Приглашаю Вас посетить мой Блог, где Вы найдете много интересных и занимательных статей.
+                    </p>
+                    <div class="row text-center">
+                        <?php foreach ($posts as $post) : ?>
 
-                <?= $this->render('/items/post-index.php', ['post' => $post]) ?>
+                            <?= $this->render('/items/post-index.php', ['post' => $post]) ?>
 
-            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- /POST -->
@@ -122,69 +131,72 @@ ThemeAsset::register($this);
     <!-- /PORTFOLIO -->    
  
     <!-- SERVICES -->
-	<section class="margin-top50">
+    <section class="margin-top50">
         <div class="container">
 
-            <h2>Формат работы студии <strong>Артгорница</strong></h2>
-
             <div class="row">
-                <p class="lead">Перед тем как заключить договор мы с Вами встречаемся на один час, 
-                    чтобы понять Ваш волнующий вопрос и насколько мы подходим друг другу. 
-                    Эта первая встреча бесплатно.</p>
-                <hr />
+                <div class="col-md-12">
+
+                    <h2>Формат работы студии <strong>Артгорница</strong></h2>
+
+                    <p class="lead">Перед тем как заключить договор мы с Вами встречаемся на один час, 
+                        чтобы понять Ваш волнующий вопрос и насколько мы подходим друг другу. 
+                        Эта первая встреча бесплатно.</p>
+                    <hr />
 
 
-                <h2><strong>Варианты</strong> дальнейшей работы:</h2>
-                
-                <!-- SERVICE 1 -->
-                <div class="row margin-top30">
+                    <h2><strong>Варианты</strong> дальнейшей работы:</h2>
 
                     <!-- SERVICE 1 -->
-                    <div class="col-md-2 text-center">
-                        <i class="nomargin featured-icon fa fa-heart-o"></i>
+                    <div class="row margin-top30">
+
+                        <!-- SERVICE 1 -->
+                        <div class="col-md-2 text-center margin-bottom20">
+                            <i class="nomargin featured-icon fa fa-heart-o"></i>
+                        </div>
+
+                        <div class="col-md-10">
+                            <h3><strong>Индивидуальное</strong> консультирование</h3>
+                            <p>Для индивидуального консультирования разработан авторский курс 
+                                «30 встреч» - Путь к поиску себя! 
+                            </p>
+                            <p>Курс "30 встреч" помогает познать себя и окружающий мир, раскрыть в себе новые способности, 
+                                не бояться изменять свою жизнь, осознать свою способность быть счастливым и делиться этим счастьем с другими!</p>
+                            <p>После заключения договора на авторский курс «30 встреч» мы с Вами встречаемся 2 раза в неделю в течение 4х месяцев. </p>
+                            <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Learn more...') . '</span>', ["/site/consult"], ['class' => 'btn btn-xs pull-right']) ?>
+
+                        </div>
+
                     </div>
 
-                    <div class="col-md-10">
-                        <h3><strong>Индивидуальное</strong> консультирование</h3>
-                        <p>Для индивидуального консультирования разработан авторский курс 
-                            «30 встреч» - Путь к поиску себя! 
-                        </p>
-                        <p>Курс "30 встреч" помогает познать себя и окружающий мир, раскрыть в себе новые способности, 
-                            не бояться изменять свою жизнь, осознать свою способность быть счастливым и делиться этим счастьем с другими!</p>
-                        <p>После заключения договора на авторский курс «30 встреч» мы с Вами встречаемся 2 раза в неделю в течение 4х месяцев. </p>
-                        <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Learn more...') . '</span>', ["/site/consult"], ['class' => 'btn btn-xs pull-right']) ?>
-                    
+                    <div class="divider half-margins"><!-- divider -->
+                        <i class="fa fa-plus-circle"></i>
                     </div>
 
-                </div>
+                    <!-- SERVICE 2 -->
+                    <div class="row margin-top30">
 
-                <div class="divider half-margins"><!-- divider -->
-                    <i class="fa fa-plus-circle"></i>
-                </div>
+                        <div class="col-md-2 text-center margin-bottom20">
+                            <i class="nomargin featured-icon fa fa-smile-o"></i>
+                        </div>
 
-                <!-- SERVICE 2 -->
-                <div class="row margin-top30">
+                        <div class="col-md-10">
+                            <h3>Психологическая работа в <strong>группе</strong></h3>
+                            <p>Работа в группе из 6-7 участников проходит в формате от 2 до 10 встреч. </p>
+                            <p>Темы и даты проведения занятий предварительно публикуются в Фейсбуке и Инстаграмме. 
+                                Это могут быть темы: «Общество в миниатюре», «Мой внутренний мир», «Мой внутренний ребенок», 
+                                «Эмоциональный интеллект», «Марафон прощания с обидами» и другие. </p>
+                            <p>Вы сами выбираете интересующую Вас тему. </p>
+                            <p>Вы записываетесь на мероприятие по телефону или отправляете сообщение в месенджере или на сайте.</p>
+                            <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Learn more...') . '</span>', ["/site/author-course"], ['class' => 'btn btn-xs pull-right']) ?>
 
-                    <div class="col-md-2 text-center">
-                        <i class="nomargin featured-icon fa fa-smile-o"></i>
+                        </div>
+
                     </div>
-
-                    <div class="col-md-10">
-                        <h3>Психологическая работа в <strong>группе</strong></h3>
-                        <p>Работа в группе из 6-7 участников проходит в формате от 2 до 10 встреч. </p>
-                        <p>Темы и даты проведения занятий предварительно публикуются в Фейсбуке и Инстаграмме. 
-                            Это могут быть темы: «Общество в миниатюре», «Мой внутренний мир», «Мой внутренний ребенок», 
-                            «Эмоциональный интеллект», «Марафон прощания с обидами» и другие. </p>
-                        <p>Вы сами выбираете интересующую Вас тему. </p>
-                        <p>Вы записываетесь на мероприятие по телефону или отправляете сообщение в месенджере или на сайте.</p>
-                         <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('yee', 'Learn more...') . '</span>', ["/site/author-course"], ['class' => 'btn btn-xs pull-right']) ?>
-                    
-                    </div>
-
-                </div>
+                </div>  
             </div>  
-</div>
-           </section>
+        </div>
+    </section>
     <!-- /SERVICES -->    
     <div class="divider  styleColor"><!-- divider -->
         <i class="fa fa-leaf"></i>

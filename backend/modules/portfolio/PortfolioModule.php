@@ -12,14 +12,14 @@ class PortfolioModule extends \yii\base\Module
      */
     public $controllerNamespace = 'backend\modules\portfolio\controllers';
     
-    public $thumbnailSize = 'small';
+    public $thumbnailSize = 'medium';
     /**
      * {@inheritdoc}
      */
     public function init()
     {
          if (in_array($this->thumbnailSize, [])) {
-            $this->thumbnailSize = 'small';
+            $this->thumbnailSize = 'medium';
         }
         parent::init();
 

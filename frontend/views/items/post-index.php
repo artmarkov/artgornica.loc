@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 /* @var $post backend\modules\post\models\Post */
 ?>
-<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="col-md-4 col-sm-6">
     <!-- item -->
     <div class="item-box appear-animation pull-left inner" data-animation="fadeInDown">
         <figure>
             <?php
             $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->formName(), $post->id);             
-            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'], ['class' => 'img-responsive', 'width' => '409', 'height' => '271', 'alt' => '']); 
+            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']); 
             ?>
         </figure>
         <div class="item-box-desc">

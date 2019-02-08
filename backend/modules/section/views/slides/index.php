@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['style' => 'width:200px'],
                     'value' => function(Slides $model) {
                             !empty($model->img_src) ? $img = $model->img_src : $img = '/images/noimg.png';
-                            return Html::img($img, ['width' => '128']);
+                            return Html::img($img, ['class'=> 'dw-media-image']);
                     },
                             'format' => 'html',
                     ],
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['style' => 'width:200px'],
                     'value' => function(Slides $model) {
                          !empty($model->data_lazyload) ? $img = $model->data_lazyload : $img = '/images/noimg.png';
-                            return Html::img($img, ['width' => '128']);
+                            return Html::img($img, ['class'=> 'dw-media-image']);
                     },
                             'format' => 'html',
                     ],

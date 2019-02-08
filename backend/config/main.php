@@ -74,7 +74,7 @@ return [
             'thumbs' => [
             'small' => [
                 'name' => 'Мелкий',
-                'size' => [512, 288],
+                'size' => [128, 72],
             ],
             'medium' => [
                 'name' => 'Средний',

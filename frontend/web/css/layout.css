@@ -675,7 +675,7 @@ header#topNav li a i.fa {
 	#slider .image-caption .inner .btn {
 		margin-top:40px;
 		font-size:30px;
-		padding-bottom:15x;
+		padding-bottom:15px;
 		font-weight:200;
 		-webkit-text-stroke: 0.2px;
 	}
@@ -1436,7 +1436,7 @@ footer .footer-bar .toTop:hover {
 
 		/* footer logo */
 		footer .column.logo {
-			position:rtelative;
+			position:relative;
 			background:#292f38;
 			display:block;
 			margin-top:-30px;

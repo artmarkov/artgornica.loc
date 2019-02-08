@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:250px'],
                         'controller' => '/section/parallax',
                         'title' => function(Parallax $model) {
-                            return Html::a(Html::img($model->bg_image, ['width' => '128']), ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                            return Html::a(Html::img($model->bg_image, ['class'=> 'dw-media-image']), ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['style' => 'width:250px'],
                     'value' => function(Parallax $model) {
                              !empty($model->content_image) ? $img = $model->content_image : $img = '/images/noimg.png';
-                            return Html::img($img, ['width' => '128']);
+                            return Html::img($img, ['class'=> 'dw-media-image']);
                     },
                             'format' => 'html',
                     ],
