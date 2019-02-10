@@ -11,14 +11,16 @@ use yii\base\Widget;
  */
 class CarouselWidget extends Widget {
 
-    public $model;
+    public $owl_options;
     public $options;
+    public $content_items;
 
     public function run() {
 
         return $this->render('carousel', [
-                    'model' => $this->model,
+                    'owl_options' => $this->owl_options,
                     'options' => $this->options,
+                    'content_items' => $this->content_items,
         ]);
     }
 

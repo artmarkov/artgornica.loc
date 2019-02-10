@@ -170,10 +170,23 @@ class Feedback extends \yii\db\ActiveRecord
     return [
             'items' => 1,
             'single_item' => true,
-            'navigation' => true,
-            'pagination' => true,
-            'transition_style' => 'fadeUp',
+            'navigation' => false,
+            'pagination' => false,
+            'transition_style' => 'fade',
             'auto_play' => '9000',           
             ];
     }
+
+    /**
+     * 
+     */
+    public static function getFeedbackList() {
+        
+    return self::find()                
+                ->where(['status' => self::STATUS_PUBLISHED, 'main_flag' => self::MAIN_ON])                
+                ->indexBy('id')
+//                ->orderBy('sort')
+                ->asArray()->all();        
+    
+     }
 }

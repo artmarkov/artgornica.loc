@@ -2,49 +2,57 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use backend\modules\mediamanager\models\MediaManager;
 use backend\modules\media\models\Media;
 use frontend\widgets\owlcarousel\OwlCarouselWidget;
 
 ?>  
-<?php if(!empty($model)) : ?>
+<?php if(!empty($owl_options)) : ?>
         <?php
-//               echo '<pre>' . print_r($model, true) . '</pre>';
+//     echo '<pre>' . print_r($owl_options, true) . '</pre>';
         OwlCarouselWidget::begin([
             'container' => 'div',
             'containerOptions' => [
                 'class' => $options['class'],
             ],
             'pluginOptions' => [
-                'items' => $model['items'],
-                'singleItem' => $model['single_item'] == 1 ? true : false,
-                'navigation' => $model['navigation'] == 1 ? true : false,
-                'pagination' => $model['pagination'] == 1 ? true : false,
-                'transitionStyle' => $model['transition_style'],
-                'autoPlay' => $model['auto_play'],
+                'items' => $owl_options['items'],
+                'singleItem' => $owl_options['single_item'] == 1 ? true : false,
+                'navigation' => $owl_options['navigation'] == 1 ? true : false,
+                'pagination' => $owl_options['pagination'] == 1 ? true : false,
+                'transitionStyle' => $owl_options['transition_style'],
+                'autoPlay' => $owl_options['auto_play'],
             ]
         ]);
         ?>
        <?php 
-        if($options['type'] === 'images') {
-
-       $items = MediaManager::getMediaList($model['model_name'], $model['id']); 
        $content = '';
-        foreach ($items as $key => $item) :   
-            $content .= Html::beginTag('div');
-            $content .= Html::img(Media::findById($item['media_id'])->getThumbs()[$options['size']], ['class' => 'img-responsive', 'alt' => '']); 
-            $content .= Html::endTag('div'); 
-        endforeach;
-//        $content .= '<div class="testimonial white">
-//                            <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
-//                            <cite><strong>Jessica Doe</strong>, Customer</cite>
-//                        </div>';
+       
+        if($options['type'] === 'images') {
+            
+            foreach ($content_items as $key => $item) :   
+                $content .= Html::beginTag('div');
+                $content .= Html::img(Media::findById($item['media_id'])->getThumbs()[$options['size']], ['class' => 'img-responsive', 'alt' => '']); 
+                $content .= Html::endTag('div'); 
+            endforeach;
+        
         }
+        elseif($options['type'] === 'text') { 
+       
+            foreach ($content_items as $key => $item) :   
+                $content .= Html::beginTag('div',['class' => 'testimonial white']);
+                $content .= $item['content'];
+                $content .= Html::beginTag('cite');
+                $content .= Html::tag('strong', $item['username']);           
+                $content .= ', ' . $item['business'];
+                $content .= Html::endTag('cite'); 
+                $content .= Html::endTag('div'); 
+
+            endforeach;
+            
+        }        
         
         echo $content;
         ?>
 
          <?php OwlCarouselWidget::end(); ?>
-
-        <!-- /carousel -->
 <?php endif; ?>

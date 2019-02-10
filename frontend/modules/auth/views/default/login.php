@@ -7,6 +7,7 @@
 use yeesoft\auth\widgets\AuthChoice;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use kartik\switchinput\SwitchInput;
 
 $this->title = Yii::t('yee/auth', 'Authorization');
 
@@ -20,9 +21,9 @@ $col3 = (int) ($col12 / 4);
         <div class="row">
             <div class="col-md-<?= $col6 ?> col-md-offset-<?= $col3 ?>">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+<!--                    <div class="panel-heading">
                         <h3 class="panel-title"><?= $this->title ?></h3>
-                    </div>
+                    </div>-->
                     <div class="panel-body">
 
                         <?php
@@ -31,17 +32,22 @@ $col3 = (int) ($col12 / 4);
                             'options' => ['autocomplete' => 'off'],
                             'validateOnBlur' => false,
                             'fieldConfig' => [
-                                'template' => "{input}\n{error}",
+                                //'template' => "{input}\n{error}",
                             ],
                         ])
                         ?>
 
-                        <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username'), 'autocomplete' => 'off']) ?>
+                        <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username'), 'autocomplete' => 'off'])->label(false) ?>
 
-                        <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password'), 'autocomplete' => 'off']) ?>
+                        <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password'), 'autocomplete' => 'off'])->label(false) ?>
 
-                        <?= $form->field($model, 'rememberMe')->checkbox(['value' => true]) ?>
-
+                        <?= $form->field($model, 'rememberMe')->widget(SwitchInput::classname(), [
+                           
+                                'pluginOptions' => [
+                                    'size' => 'small',
+                                ],
+                            ]) ?>
+                        
                         <?= Html::submitButton(Yii::t('yee/auth', 'Login'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
 
                         <div class="row registration-block">

@@ -35,10 +35,55 @@ use kartik\switchinput\SwitchInput;
                         </div>
                     </div>
 
-                    <?= $form->field($model, 'content')->widget(TinyMce::className()); ?>
+                    <?php
+                    $users = ['Ivan' => 'ИВАН', 'Kola' => 'КОЛЯ'];
+    $usersList = \yii\helpers\Json::encode($users);
+                    $tinyMCECallback = <<< JS
+    function (editor) {
+
+        let usersList = $usersList;
+        let options = [];
+
+        //iterate the user array and create the options with text and 
+        //onclick event to insert the content on click to the editor
+
+        $.each(usersList, function(label, mapping) {
+            options.push({
+                text: label, 
+                onclick: function() { tinymce.activeEditor.insertContent(label); }
+            });
+        });
+
+        //add the dropdown button to the editor 
+        editor.addButton('users', {
+            type: 'menubutton',
+            text: 'Users',
+            icon: false,
+            menu: options
+        });
+    }
+
+JS;
+            
+            
+            echo $form->field($model, 'content')->widget(
+        TinyMce::class, [
+            'options' => ['rows' => 10],
+            //'language' => 'en',
+            'clientOptions' => [
+                'menubar' => false,
+                'statusbar' => false,
+                'toolbar' => "undo redo | users",
+                'setup' => new \yii\web\JsExpression($tinyMCECallback),
+            ],
+        ]
+    );
+
+
+
+    ?>
                     
                 </div>
-
             </div>
         </div>
 
@@ -66,17 +111,18 @@ use kartik\switchinput\SwitchInput;
                                 </label>
                                 <span><?= $model->updatedDatetime ?></span>
                             </div>
+                        <?php endif; ?>
                             <?= $form->field($model, 'published_at')
                                 ->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd', 'options' => ['class' => 'form-control']]);
                             ?>
-                        <?php endif; ?>
-                            <?= $form->field($model, 'status')->dropDownList(Feedback::getStatusList()) ?>
                         
                             <?= $form->field($model, 'main_flag')->widget(SwitchInput::classname(), [
                                 'pluginOptions' => [
                                     'size' => 'small',
                                 ],
                             ]); ?>
+                        
+                            <?= $form->field($model, 'status')->dropDownList(Feedback::getStatusList()) ?>
                         <div class="form-group">
                             <?php  if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>

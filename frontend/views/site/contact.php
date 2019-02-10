@@ -5,6 +5,7 @@
 
 use yeesoft\widgets\ActiveForm;
 use yii\helpers\Html;
+use kartik\switchinput\SwitchInput;
 
 $this->title = Yii::t('yee', 'Contact');
 $this->params['breadcrumbs'][] = $this->title;
@@ -38,7 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $this->render('@common/widgets/views/_captcha', ['model' => $model, 'form' => $form]) ?>
             </div>
             <div class="col-md-8">
-                <?= $form->field($model->loadDefaultValues(), 'subscribe')->checkbox(['value' => true])->label(Yii::t('yee', 'Subscribe to news')) ?>
+                <?= $form->field($model->loadDefaultValues(), 'subscribe')->widget(SwitchInput::classname(), [
+                                'pluginOptions' => [
+                                    'size' => 'small',
+                                ],
+                            ])->label(Yii::t('yee', 'Subscribe to news')); ?>
             </div>
         </div>
         <div class="row pull-right">

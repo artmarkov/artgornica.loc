@@ -74,7 +74,7 @@ use kartik\switchinput\SwitchInput;
 
                         <?= $form->field($model, 'items')->textInput() ?>
                      
-                        <?= $form->field($model, 'transition_style')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'transition_style')->textInput(['maxlength' => true])->hint('fade, backSlide, goDown, fadeUp') ?>
 
                         <?= $form->field($model, 'auto_play')->textInput(['maxlength' => true]) ?>
                         

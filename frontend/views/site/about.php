@@ -4,7 +4,6 @@
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\ThemeAsset;
-use frontend\widgets\owlcarousel\OwlCarouselWidget;
 use backend\modules\portfolio\models\Menu;
 use backend\modules\portfolio\models\Items;
 
@@ -20,7 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-6">
                 <?= \frontend\widgets\CarouselWidget::widget(
                    [
-                       'model' => $carousel, 
+                       'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($carousel['model_name'], $carousel['id']),
+                       'owl_options' => $carousel,
                        'options' => 
                             [
                                 'type' => 'images',

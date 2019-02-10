@@ -11,6 +11,7 @@ ThemeAsset::register($this);
 
 ?>
 <div class="site-index">
+   
     <!-- REVOLUTION SLIDER -->
      
 <?= SliderRevolution::widget([
@@ -22,7 +23,9 @@ ThemeAsset::register($this);
 ]);
 
 ?>
+   
     <!-- /REVOLUTION SLIDER -->
+    
     <!-- WELCEOME -->
     <section id = "welcome" class="container">
         <h1 class="text-center">
@@ -39,11 +42,12 @@ ThemeAsset::register($this);
             не бояться изменять свою жизнь, осознать свою способность быть счастливым и делиться этим счастьем с
             другими!
         </p>
-        <div class="divider"><!-- divider -->
-        </div>
+        
     </section>
     <!-- /WELCOME -->
 
+        <div class="divider"></div><!-- divider -->
+        
     <!-- Positive -->
     <section class="container">
         <div class="container">
@@ -70,7 +74,8 @@ ThemeAsset::register($this);
                     <?=
                     \frontend\widgets\CarouselWidget::widget(
                             [
-                                'model' => $carousel,
+                                'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($carousel['model_name'], $carousel['id']),
+                                'owl_options' => $carousel,
                                 'options' =>
                                 [
                                     'type' => 'images',
@@ -220,43 +225,19 @@ ThemeAsset::register($this);
                 <div class="col-md-6">
                     <h3>Что о нас говорят <strong>клиенты</strong>?</h3>
                 <!-- transitionStyle: fade, backSlide, goDown, fadeUp,  --> 
-                     <?php
-                OwlCarouselWidget::begin([
-                    'container' => 'div',
-                    'containerOptions' => [
-                        'class' => 'owl-carousel text-center'
-                    ],
-                    'pluginOptions' => [
-                        'items' => 1,
-                        'singleItem' => true,
-                        'navigation' => false,
-                        'pagination' => true,
-                        'transitionStyle' => 'fade',
-                        'autoPlay' => true,
-                    ]
-                ]);
-                ?>
-                    <div class="testimonial white">
-                            <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                            <cite><strong>John Doe</strong>, Customer</cite>
-                        </div>
+                
 
-                        <div class="testimonial white">
-                            <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
-                            <cite><strong>Jessica Doe</strong>, Customer</cite>
-                        </div>
-
-                        <div class="testimonial white">
-                            <p>Praesent est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                            <cite><strong>Dorin Doe</strong>, Customer</cite>
-                        </div>
-
-                        <div class="testimonial white">
-                            <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
-                            <cite><strong>Melissa Doe</strong>, Customer</cite>
-                        </div>
-
-                 <?php OwlCarouselWidget::end(); ?>   
+                     <?=  \frontend\widgets\CarouselWidget::widget(
+                            [
+                                'content_items' => backend\modules\section\models\Feedback::getFeedbackList(),
+                                'owl_options' => backend\modules\section\models\Feedback::getCarouselOption(),
+                                'options' =>
+                                [
+                                    'type' => 'text',
+                                    'class' => 'owl-carousel text-center',
+                                ],
+                    ]);
+                    ?>
                         
                  
                     <div class="row text-center nomargin-bottom">

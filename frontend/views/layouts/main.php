@@ -30,6 +30,7 @@ YeeAsset::register($this);
        
     </head>
     <body>
+        <span id="header_shadow" ></span>
         <?php $this->beginBody() ?>
         <!-- Top Bar -->
         <header id="topHead" class="color fixed">

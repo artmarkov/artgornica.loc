@@ -67,7 +67,7 @@ class FeedbackSearch extends Feedback
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'published_at' => $this->published_at,
+           // 'published_at' => $this->published_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'main_flag' => $this->main_flag,

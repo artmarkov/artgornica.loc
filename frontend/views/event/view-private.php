@@ -25,7 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 echo \frontend\widgets\CarouselWidget::widget(
                         [
-                            'model' => $carousel,
+                            'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($carousel['model_name'], $carousel['id']),
+                            'owl_options' => $carousel,
                             'options' =>
                             [
                                 'type' => 'images',

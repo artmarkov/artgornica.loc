@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             . $model->publishedDate . '</span>';
                         },
                         'format' => 'raw',
-                        'options' => ['style' => 'width:250px'],
+                        'options' => ['style' => 'width:150px'],
                     ],
 
                 ],
