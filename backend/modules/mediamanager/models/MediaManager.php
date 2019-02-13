@@ -115,10 +115,15 @@ class MediaManager extends \yii\db\ActiveRecord
           $content .= Html::img(Media::findById($item['media_id'])->getDefaultThumbUrl());
           $content .= Html::endTag('div');
           $content .= Html::beginTag('div', ['id' => 'media-remove']);
-          $content .= Html::tag('a','<span class="glyphicon glyphicon-remove text-muted" aria-hidden="true"></span>', 
-                                    ['class' => 'remove-media-item', 'data-id' => $item['id'], 'href' => '#', 'alt' => '']);
+          $content .= Html::tag('a','<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>', 
+                                    [
+                                        'class' => 'btn btn-sm btn-default remove-media-item', 
+                                        'data-id' => $item['id'], 
+                                        'href' => '#', 
+                                        'alt' => '', 
+                                        'title' => Yii::t('yee', 'Delete')
+                                    ]);
           $content .= Html::endTag('div');
-          
           $data[$key] = ['content' => $content];
             
         endforeach;

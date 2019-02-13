@@ -125,20 +125,19 @@ $this->registerJs($js);
 }
 .sortable.grid li {   
     min-width: 146px !important;
-    min-height: 146px !important;    
+    min-height: 180px !important;    
 }
 .sortable li.sortable-placeholder {
     min-width: 146px !important;
-    min-height: 146px !important;
+    min-height: 180px !important;
 }
  #media-base {  
    position: absolute;    
  }
  #media-remove {  
     position: relative; 
-    float: right;
-    left: 9px; 
-    top: -10px; 
+    float: center;
+    top: 135px; 
  }
 ');
 ?>
