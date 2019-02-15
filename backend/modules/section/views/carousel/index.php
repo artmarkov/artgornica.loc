@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [Carousel::STATUS_INACTIVE, Yii::t('yee', 'Inactive'), 'info'],
                         ],
                         'options' => ['style' => 'width:100px']
-                    ],
+            ],
                 ],
             ]);
             ?>

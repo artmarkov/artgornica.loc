@@ -58,7 +58,9 @@
     "kv4nt/yii2-owl-carousel2": "*",
     "nerburish/yii2-isotope-view": "dev-master",
     "yeesoft/yii2-lightbox": "~0.1.0",
-    "mihaildev/yii2-elfinder": "*"
+    "mihaildev/yii2-elfinder": "*",
+    "wbraganca/yii2-dynamicform": "*",
+    "unclead/yii2-multiple-input": "~2.0"
         
   },
   "require-dev": {
@@ -70,7 +72,7 @@
   "config": {
     "process-timeout": 1800,
     "github-oauth": {
-        "github.com": "083d46421b3313f8b583c185332e579f62ffc0d8"
+        "github.com": "fd010bcb65836fe2ecdf896a41f6cd570328653a"
     }
   },
   "extra": {

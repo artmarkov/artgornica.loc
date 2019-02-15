@@ -2,19 +2,28 @@
 
 namespace backend\modules\section\controllers;
 
-use yii\web\Controller;
+use Yii;
+use yeesoft\controllers\admin\BaseController;
 
 /**
- * Default controller for the `block` module
+ * DefaultController implements the CRUD actions for backend\modules\section\models\SectionPage model.
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController 
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionIndex()
+    public $modelClass       = 'backend\modules\section\models\SectionPage';
+    public $modelSearchClass = 'backend\modules\section\models\search\SectionPage';
+
+    protected function getRedirectPage($action, $model = null)
     {
-        return $this->render('index');
+        switch ($action) {
+            case 'update':
+                return ['update', 'id' => $model->id];
+                break;
+            case 'create':
+                return ['update', 'id' => $model->id];
+                break;
+            default:
+                return parent::getRedirectPage($action, $model);
+        }
     }
 }
