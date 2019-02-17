@@ -14,13 +14,7 @@ use unclead\multipleinput\examples\models\ExampleModel;
 
 <div class="section-page-form">
 
-   <?php $form = ActiveForm::begin([
-    'enableAjaxValidation'      => true,
-    'enableClientValidation'    => false,
-    'validateOnChange'          => false,
-    'validateOnSubmit'          => true,
-    'validateOnBlur'            => false,
-]);?>
+   <?php $form = ActiveForm::begin();?>
     
 
     <div class="row">
@@ -41,6 +35,8 @@ use unclead\multipleinput\examples\models\ExampleModel;
                     
                     <?= $form->field($model, 'emails')->widget(MultipleInput::className(), [
                         'max' => 4,
+                         'cloneButton' => true,
+                         'sortable' => true,
                      ]);
                     ?>                 
 

@@ -60,7 +60,8 @@
     "yeesoft/yii2-lightbox": "~0.1.0",
     "mihaildev/yii2-elfinder": "*",
     "wbraganca/yii2-dynamicform": "*",
-    "unclead/yii2-multiple-input": "~2.0"
+    "unclead/yii2-multiple-input": "~2.0",
+    "udokmeci/yii2-kont-trevor": "*"
         
   },
   "require-dev": {
@@ -72,7 +73,7 @@
   "config": {
     "process-timeout": 1800,
     "github-oauth": {
-        "github.com": "fd010bcb65836fe2ecdf896a41f6cd570328653a"
+         "github.com": "c963cb2863ae8fa8165eab531222807172d048d8"
     }
   },
   "extra": {
