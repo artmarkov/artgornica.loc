@@ -57,6 +57,7 @@ class AppAsset extends AssetBundle
 //        'plugins/superslides/dist/jquery.superslides.min.js',
         
         'js/scripts.js',
+        'js/site.js',
         
         'plugins/jquery-countdown/jquery.countdown.min.js',
         'js/countdown.js'

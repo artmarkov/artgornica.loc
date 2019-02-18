@@ -148,7 +148,13 @@ YeeAsset::register($this);
                 </header>
             <?php endif; ?>
                 <section class="container">
-                    <?= Alert::widget() ?>
+                    <?= Alert::widget(
+                            [
+                                'options' =>[
+                                    'class' => 'frontend',
+                                ],
+                            ]
+                            ) ?>
                 </section>
             <?= $content ?>
 

@@ -23,7 +23,7 @@
   "prefer-stable": true,
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": "=2.0.15.1",
+    "yiisoft/yii2": "~2.0.6",
     "yiisoft/yii2-bootstrap": "~2.0.6",
     "yiisoft/yii2-swiftmailer": "~2.0.6",
     "yeesoft/yii2-yee-core": "~0.1.0",

@@ -110,7 +110,7 @@ class ManageController extends \backend\controllers\DefaultController
         /**
          * @var backend\modules\media\models\Media
          */
-        $model = Media::findOne(["{$tableName}.id" => $id]);
+        $model = Media::findOne(["{$tableName}.[[id]]" => $id]);
         $message = Yii::t('yee/media', "Changes haven't been saved.");
 
         if (User::hasPermission('editMedia')) {
@@ -144,7 +144,7 @@ class ManageController extends \backend\controllers\DefaultController
         /**
          * @var backend\modules\media\models\Media
          */
-        $model = Media::findOne(["{$tableName}.id" => $id]);
+        $model = Media::findOne(["{$tableName}.[[id]]" => $id]);
 
         if (User::hasPermission('deleteMedia')) {
             if ($model->isImage()) {
@@ -191,7 +191,7 @@ class ManageController extends \backend\controllers\DefaultController
         /**
          * @var backend\modules\media\models\Media
          */
-        $model = Media::findOne(["{$tableName}.id" => $id]);
+        $model = Media::findOne(["{$tableName}.[[id]]" => $id]);
 
         return $this->renderPartial('info', [
             'model' => $model,
