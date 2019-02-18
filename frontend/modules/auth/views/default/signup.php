@@ -20,9 +20,6 @@ $col3 = (int) ($col12 / 4);
     <div class="row">
         <div class="col-md-<?= $col6 ?> col-md-offset-<?= $col3 ?>">
             <div class="panel panel-default">
-<!--                <div class="panel-heading">
-                    <h3 class="panel-title"><?= $this->title ?></h3>
-                </div>-->
                 <div class="panel-body">
 
                     <?php $form = ActiveForm::begin([
@@ -38,12 +35,9 @@ $col3 = (int) ($col12 / 4);
                     <?= $form->field($model, 'password')->passwordInput(['maxlength' => 255]) ?>
 
                     <?= $form->field($model, 'repeat_password')->passwordInput(['maxlength' => 255]) ?>
-
-                    <?= $form->field($model, 'captcha')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-sm-' . $col3 . '">{image}</div><div class="col-sm-' . $col3 . '">{input}</div></div>',
-                        'captchaAction' => [\yii\helpers\Url::to(['/auth/captcha'])]
-                    ]) ?>
-
+                  
+                    <?= $this->render('@common/widgets/views/_captcha', ['model' => $model, 'form' => $form]) ?>
+                    
                     <?= Html::submitButton(Yii::t('yee/auth', 'Signup'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
 
                     <div class="row registration-block">

@@ -28,4 +28,8 @@ class ExamplesController extends DefaultController
          $model = new ExampleModel;
        return $this->render('elfinder', compact('model'));
     }
+     public function actionIndex5() {
+         $model = new ExampleModel;
+       return $this->render('tinyMce', compact('model'));
+    }
 }
