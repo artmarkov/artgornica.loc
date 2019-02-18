@@ -20,8 +20,7 @@ use yii\behaviors\SluggableBehavior;
  */
 class SectionPage extends \yii\db\ActiveRecord
 {
-    public  $emails;
-
+   
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
     

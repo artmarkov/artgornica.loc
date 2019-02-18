@@ -59,9 +59,7 @@
     "nerburish/yii2-isotope-view": "dev-master",
     "yeesoft/yii2-lightbox": "~0.1.0",
     "mihaildev/yii2-elfinder": "*",
-    "wbraganca/yii2-dynamicform": "*",
-    "unclead/yii2-multiple-input": "~2.0",
-    "udokmeci/yii2-kont-trevor": "*"
+    "unclead/yii2-multiple-input": "~2.0"
         
   },
   "require-dev": {

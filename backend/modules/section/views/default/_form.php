@@ -30,19 +30,7 @@ use unclead\multipleinput\examples\models\ExampleModel;
                 </div>
 
             </div>
-             <div class="panel panel-default">
-                <div class="panel-body">
-                    
-                    <?= $form->field($model, 'emails')->widget(MultipleInput::className(), [
-                        'max' => 4,
-                         'cloneButton' => true,
-                         'sortable' => true,
-                     ]);
-                    ?>                 
-
-                </div>
-
-            </div>
+             
         </div>
 
         <div class="col-md-3">

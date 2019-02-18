@@ -24,4 +24,8 @@ class ExamplesController extends DefaultController
         $models = [new Item()];
        return $this->render('tabular-input', compact('models'));
     }
+     public function actionIndex4() {
+         $model = new ExampleModel;
+       return $this->render('elfinder', compact('model'));
+    }
 }

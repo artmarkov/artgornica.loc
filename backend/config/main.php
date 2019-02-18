@@ -134,12 +134,12 @@ return [
                 //'<controller:(test)>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 //'<controller:(test)>/<action:\w+>' => '<controller>/<action>',
                 //yee cms and other modules routes
-                '<module:\w+>/' => '<module>/default/index',
-                '<module:\w+>/<action:\w+>/<id:\d+>' => '<module>/default/<action>',
-                '<module:\w+>/<action:(create)>' => '<module>/default/<action>',
-                '<module:\w+>/<controller:\w+>' => '<module>/<controller>/index',
-                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+//                '<module:\w+>/' => '<module>/default/index',
+//                '<module:\w+>/<action:\w+>/<id:\d+>' => '<module>/default/<action>',
+//                '<module:\w+>/<action:(create)>' => '<module>/default/<action>',
+//                '<module:\w+>/<controller:\w+>' => '<module>/<controller>/index',
+//                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
+//                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             )
         ],
         'log' => [
@@ -153,7 +153,28 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
+        ],        
+    ],
+    'controllerMap' => [
+        'elfinder' => [
+			'class' => 'mihaildev\elfinder\PathController',
+			'access' => ['@'],
+			'root' => [
+				'driver' => 'LocalFileSystem',
+                                'path' => '../../',
+                                
+                               //  'name' => 'Global',
+			],
+//			'watermark' => [
+//						'source'         => __DIR__.'/logo.png', // Path to Water mark image
+//						 'marginRight'    => 5,          // Margin right pixel
+//						 'marginBottom'   => 5,          // Margin bottom pixel
+//						 'quality'        => 95,         // JPEG image save quality
+//						 'transparency'   => 70,         // Water mark image transparency ( other than PNG )
+//						 'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
+//						 'targetMinPixel' => 200         // Target image minimum pixel size
+//			]
+		]
     ],
     'params' => $params,
 ];
