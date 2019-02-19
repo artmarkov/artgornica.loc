@@ -2,10 +2,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 use yeesoft\auth\assets\AvatarAsset;
-use yeesoft\assets\YeeAsset;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
-use frontend\assets\ThemeAsset;
 use yeesoft\models\Menu;
 use yii\bootstrap\Nav;
 use yii\helpers\Url;
@@ -14,7 +12,6 @@ use yii\widgets\Breadcrumbs;
 
 Yii::$app->assetManager->forceCopy = true;$assetBundle = AppAsset::register($this);
 AvatarAsset::register($this);
-YeeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

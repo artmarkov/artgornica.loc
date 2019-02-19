@@ -1,17 +1,17 @@
 <?php
 
-namespace backend\modules\section\controllers;
+namespace backend\modules\user\controllers;
 
 use Yii;
-use yeesoft\controllers\admin\BaseController;
+use backend\controllers\DefaultController;
 
 /**
- * DefaultController implements the CRUD actions for backend\modules\section\models\SectionPage model.
+ * RelationController implements the CRUD actions for common\models\user\UserRelation model.
  */
-class DefaultController extends \backend\controllers\DefaultController 
+class RelationController extends DefaultController 
 {
-    public $modelClass       = 'backend\modules\section\models\SectionPage';
-    public $modelSearchClass = 'backend\modules\section\models\search\SectionPage';
+    public $modelClass       = 'common\models\user\UserRelation';
+    public $modelSearchClass = '';
 
     protected function getRedirectPage($action, $model = null)
     {

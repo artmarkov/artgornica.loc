@@ -41,7 +41,7 @@ return [
     'homeUrl' => '/admin',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log'],    
     'modules' => [
         'mediamanager' => [
             'class' => 'backend\modules\mediamanager\MediamanagerModule',
@@ -100,14 +100,14 @@ return [
             'class' => 'yeesoft\translation\TranslationModule',
         ],
         'user' => [
-            'class' => 'yeesoft\user\UserModule',
+            'class' => 'backend\modules\user\Module',
         ],
 
         'page' => [
             'class' => 'yeesoft\page\PageModule',
         ],
         'seo' => [
-            'class' => 'yeesoft\seo\SeoModule',
+            'class' => 'backend\modules\seo\SeoModule',
         ],
     ],
     'components' => [

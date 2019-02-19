@@ -5,7 +5,7 @@ use yeesoft\assets\MetisMenuAsset;
 use yeesoft\assets\YeeAsset;
 use yeesoft\models\Menu;
 use yeesoft\widgets\LanguageSelector;
-use yeesoft\widgets\Nav;
+use common\widgets\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
