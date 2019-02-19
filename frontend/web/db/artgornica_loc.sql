@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 19 2019 г., 00:29
+-- Время создания: Фев 19 2019 г., 23:24
 -- Версия сервера: 5.7.23
 -- Версия PHP: 7.0.31
 
@@ -823,10 +823,7 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `subject`, `body`, `subscribe`, `created_at`) VALUES
-(1, 'Артур', 'artmarkov@mail.ru', 'Запись на консультацию', 'Я хочу у Вас заниматься. Когда можно подъехать?', 1, 1545901921),
-(2, '1111111111', 'artmarkov@mail.ru', '111111111111111', '11111111111111111111111111111111111111111111111111111111 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111', 1, 1550524762),
-(3, '1111111111', 'artmarkov@mail.ru', '111111111111111', ' \'js/scripts.js\', \'js/scripts.js\', \'js/scripts.js\', \'js/scripts.js\',1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111', 0, 1550524987),
-(4, '1111111111', 'artmarkov@mail.ru', '111111111111111', '11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111', 0, 1550525054);
+(1, 'Артур', 'artmarkov@mail.ru', 'Запись на консультацию', 'Я хочу у Вас заниматься. Когда можно подъехать?', 1, 1545901921);
 
 -- --------------------------------------------------------
 
@@ -1410,7 +1407,7 @@ INSERT INTO `menu_link` (`id`, `menu_id`, `link`, `parent_id`, `image`, `alwaysV
 ('paralax', 'admin-menu', '/section/parallax/index', 'landing-page', '', 0, 23, 1548333227, 1548340198, 1, 1),
 ('portfolio', 'admin-menu', '/portfolio/default/index', 'portfolio_main', '', 0, 26, 1548880921, 1548923248, 1, 1),
 ('portfolio_category', 'admin-menu', '/portfolio/category/index', 'portfolio_main', '', 0, 28, 1548880996, 1549574144, 1, 1),
-('portfolio_main', 'admin-menu', '/portfolio/default/index', 'landing-page', '', 0, 25, 1548922592, 1548923360, 1, 1),
+('portfolio_main', 'admin-menu', '/portfolio/default/index', 'landing-page', '', 0, 25, 1548922592, 1550604111, 1, 1),
 ('post', 'admin-menu', '', '', 'pencil', 0, 2, NULL, 1545053615, 1, 1),
 ('post-category', 'admin-menu', '/post/category/index', 'post', NULL, 0, 5, NULL, NULL, 1, NULL),
 ('post-post', 'admin-menu', '/post/default/index', 'post', '', 0, 3, NULL, 1545053627, 1, 1),
@@ -2000,7 +1997,8 @@ INSERT INTO `message` (`id`, `source_id`, `language`, `translation`) VALUES
 (604, 458, 'ru', 'Ссылка на действие'),
 (606, 460, 'ru', 'Вид деятельности'),
 (607, 461, 'ru', 'Отзывы'),
-(608, 462, 'ru', 'Узнать больше...');
+(608, 462, 'ru', 'Узнать больше...'),
+(611, 465, 'ru', 'Отправить в корзину');
 
 -- --------------------------------------------------------
 
@@ -2469,7 +2467,8 @@ INSERT INTO `message_source` (`id`, `category`, `message`, `immutable`) VALUES
 (458, 'yee/section', 'Link Href', 0),
 (460, 'yee', 'Business', 0),
 (461, 'yee/section', 'Feedback', 0),
-(462, 'yee', 'Learn more...', 0);
+(462, 'yee', 'Learn more...', 0),
+(465, 'yee', 'Move to Trash', 0);
 
 -- --------------------------------------------------------
 
@@ -3328,7 +3327,17 @@ INSERT INTO `user_visit_log` (`id`, `token`, `ip`, `language`, `user_agent`, `br
 (7, '5c6b1c126152a', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36', 'Chrome', 'mac', 1, 1550523410),
 (8, '5c6b1c921cc61', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36', 'Chrome', 'mac', 1, 1550523538),
 (9, '5c6b1c9e05f0b', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36', 'Chrome', 'mac', 1, 1550523550),
-(10, '5c6b1d1461217', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36', 'Chrome', 'mac', 1, 1550523668);
+(10, '5c6b1d1461217', '::1', 'ru', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36', 'Chrome', 'mac', 1, 1550523668),
+(11, '5c6bcb833a5fb', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550568323),
+(12, '5c6bdfa850e97', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550573480),
+(13, '5c6be178d2b7e', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550573944),
+(14, '5c6be20c24c32', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550574092),
+(15, '5c6be2a2c0563', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550574242),
+(16, '5c6be391e214d', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550574481),
+(17, '5c6be46c5692a', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550574700),
+(18, '5c6be61db6034', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550575133),
+(19, '5c6be705249ea', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550575365),
+(20, '5c6c10a476991', '127.0.0.1', 'ru', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 'Chrome', 'Windows', 1, 1550586020);
 
 --
 -- Индексы сохранённых таблиц
@@ -3953,13 +3962,13 @@ ALTER TABLE `menu_link_lang`
 -- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=609;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=612;
 
 --
 -- AUTO_INCREMENT для таблицы `message_source`
 --
 ALTER TABLE `message_source`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=466;
 
 --
 -- AUTO_INCREMENT для таблицы `page`
@@ -4121,7 +4130,7 @@ ALTER TABLE `user_setting`
 -- AUTO_INCREMENT для таблицы `user_visit_log`
 --
 ALTER TABLE `user_visit_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

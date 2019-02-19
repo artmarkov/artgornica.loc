@@ -5,24 +5,23 @@ use yeesoft\grid\GridQuickLinks;
 use yeesoft\grid\GridView;
 use yeesoft\helpers\Html;
 use yeesoft\models\User;
-use backend\modules\post\models\Post;
+use backend\modules\page\models\Page;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\post\models\search\PostSearch */
+/* @var $searchModel backend\modules\page\models\search\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/post', 'Posts');
+$this->title = Yii::t('yee/page', 'Pages');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-index">
+<div class="page-index">
 
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['create'], ['class' => 'btn btn-sm btn-primary']) ?>
-            <?= Html::a(Yii::t('yee/media', 'Categories'), ['/post/category/index'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/page/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -32,34 +31,30 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <div class="col-sm-6">
                     <?= GridQuickLinks::widget([
-                        'model' => Post::className(),
+                        'model' => Page::className(),
                         'searchModel' => $searchModel,
                         'labels' => [
                             'all' => Yii::t('yee', 'All'),
                             'active' => Yii::t('yee', 'Published'),
                             'inactive' => Yii::t('yee', 'Pending'),
-                        ]
+                        ],
                     ]) ?>
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <?= GridPageSize::widget(['pjaxId' => 'post-grid-pjax']) ?>
+                    <?= GridPageSize::widget(['pjaxId' => 'page-grid-pjax']) ?>
                 </div>
             </div>
 
-            <?php
-            Pjax::begin([
-                'id' => 'post-grid-pjax',
-            ])
-            ?>
+            <?php Pjax::begin(['id' => 'page-grid-pjax']) ?>
 
             <?=
             GridView::widget([
-                'id' => 'post-grid',
+                'id' => 'page-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'bulkActionOptions' => [
-                    'gridId' => 'post-grid',
+                    'gridId' => 'page-grid',
                     'actions' => [
                         Url::to(['bulk-activate']) => Yii::t('yee', 'Publish'),
                         Url::to(['bulk-deactivate']) => Yii::t('yee', 'Unpublish'),
@@ -70,16 +65,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'controller' => '/post/default',
-                        'title' => function (Post $model) {
-                            return Html::a($model->title, ['update', 'id' => $model->id], ['data-pjax' => 0]);
+                        'controller' => '/page/default',
+                        'title' => function (Page $model) {
+                            return Html::a($model->title, ['/page/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
-                        'buttonsTemplate' => '{update} {delete}',
                     ],
                     [
                         'attribute' => 'created_by',
-                        'filter' => yeesoft\models\User::getUsersList(),
-                        'value' => function (Post $model) {
+                        'filter' => User::getUsersList(),
+                        'value' => function (Page $model) {
                             return Html::a($model->author->username,
                                 ['/user/default/update', 'id' => $model->created_by],
                                 ['data-pjax' => 0]);
@@ -90,20 +84,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'class' => 'yeesoft\grid\columns\StatusColumn',
-                        'attribute' => 'main_flag',
-                        'optionsArray' => Post::getMainOptionsList(),
-                        'options' => ['style' => 'width:60px'],
-                    ],
-                    [
-                        'class' => 'yeesoft\grid\columns\StatusColumn',
                         'attribute' => 'status',
-                        'optionsArray' => Post::getStatusOptionsList(),
+                        'optionsArray' => Page::getStatusOptionsList(),
                         'options' => ['style' => 'width:60px'],
                     ],
                     [
-                        'class' => 'common\components\grid\columns\DateFilterColumn',
+                        'class' => 'yeesoft\grid\columns\DateFilterColumn',
                         'attribute' => 'published_at',
-                        'value' => function (Post $model) {
+                        'value' => function (Page $model) {
                             return '<span style="font-size:85%;" class="label label-'
                             . ((time() >= $model->published_at) ? 'primary' : 'default') . '">'
                             . $model->publishedDate . '</span>';

@@ -96,3 +96,15 @@ img.dw-media-image {
         border: 1px solid #888;
         border-radius: 5px;
 }
+/**
+* bootstrap-switch
+**/
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+   
+    background: #2b517e !important;
+}
+.bootstrap-switch.bootstrap-switch-focused {
+    
+  border-color: #2b517e !important;  
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(43, 81, 126, 0.6) !important;
+}

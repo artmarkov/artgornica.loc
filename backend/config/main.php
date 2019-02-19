@@ -94,17 +94,17 @@ return [
             'class' => 'backend\modules\settings\Module',
         ],
         'menu' => [
-            'class' => 'yeesoft\menu\MenuModule',
+            'class' => 'backend\modules\menu\Module',
         ],
         'translation' => [
-            'class' => 'yeesoft\translation\TranslationModule',
+            'class' => 'backend\modules\translation\Module',
         ],
         'user' => [
             'class' => 'backend\modules\user\Module',
         ],
 
         'page' => [
-            'class' => 'yeesoft\page\PageModule',
+            'class' => 'backend\modules\page\Module',
         ],
         'seo' => [
             'class' => 'backend\modules\seo\SeoModule',

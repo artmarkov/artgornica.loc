@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         Url::to(['bulk-activate']) => Comments::t('comments', 'Approve'),
                         Url::to(['bulk-deactivate']) => Comments::t('comments', 'Unapprove'),
                         Url::to(['bulk-spam']) => Comments::t('comments', 'Mark as Spam'),
-                        Url::to(['bulk-trash']) => Comments::t('comments', 'Move to Trash'),
+                        Url::to(['bulk-trash']) => Yii::t('yee', 'Move to Trash'),
                         Url::to(['bulk-delete']) => Yii::t('yee', 'Delete'),
                     ]
                 ],
@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:60px'],
                     ],
                     [
-                        'class' => 'yeesoft\grid\columns\DateFilterColumn',
+                        'class' => 'common\components\grid\columns\DateFilterColumn',
                         'attribute' => 'created_at',
                         'value' => function (Comment $model) {
                             return '<span style="font-size:85%;" class="label label-'

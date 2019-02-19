@@ -11,4 +11,5 @@ class DefaultController extends SettingsBaseController
 {
     public $modelClass = 'backend\modules\settings\models\GeneralSettings';
     public $viewPath = '@backend/modules/settings/views/default/index';
+    public $layout = '@backend/views/layouts/main.php';
 }

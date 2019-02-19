@@ -11,5 +11,6 @@ class ReadingController extends SettingsBaseController
 {
     public $modelClass = 'backend\modules\settings\models\ReadingSettings';
     public $viewPath = '@backend/modules/settings/views/reading/index';
+    public $layout = '@backend/views/layouts/main.php';
 
 }

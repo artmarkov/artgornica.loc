@@ -13,8 +13,8 @@ use yii\filters\VerbFilter;
 
 class DefaultController extends BaseController {
 
-
-
+    public $layout = '@backend/views/layouts/main.php';
+    
     //Путь к файлам БД по-умолчанию
     public $dumpPath = '@frontend/web/db/';
 

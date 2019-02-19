@@ -36,7 +36,7 @@ MetisMenuAsset::register($this);
         <?php
         $logo = $assetBundle->baseUrl . '/images/yee-logo.png';
         NavBar::begin([
-            'brandLabel' => Html::img($logo, ['class' => 'yee-logo', 'alt' => 'YeeCMS']) . '<b>Artgornica</b> ' . Yii::t('yee', 'Control Panel'),
+            'brandLabel' => Html::img($logo, ['class' => 'yee-logo', 'alt' => 'AIS Soft']) . '<b>AIS Soft</b> ' . Yii::t('yee', 'Control Panel'),
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar-static-top',
