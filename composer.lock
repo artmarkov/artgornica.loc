@@ -2481,7 +2481,6 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/fullcalendar/-/fullcalendar-3.8.0.tgz",
-                "reference": null,
                 "shasum": "4c0fe494a62b0a8d640c6de8eb883b49a212b5dc"
             },
             "require": {
@@ -2542,7 +2541,6 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/fullcalendar-scheduler/-/fullcalendar-scheduler-1.9.1.tgz",
-                "reference": null,
                 "shasum": "a9f5d7af913e9fe4a16cbc4589964f40b76bf01f"
             },
             "require": {
@@ -2591,7 +2589,6 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
-                "reference": null,
                 "shasum": "958ce29e81c9790f31be7792df5d4d95fc57fbca"
             },
             "type": "npm-asset-library",
@@ -2641,7 +2638,6 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/moment/-/moment-2.24.0.tgz",
-                "reference": null,
                 "shasum": "0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
             },
             "type": "npm-asset-library",
