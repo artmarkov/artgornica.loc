@@ -82,6 +82,34 @@ ul li {
 /* portfolio */
 #portfolio ul.fullcenter .item-box {
    
-    border-radius: 15px !important;
+    border-radius: 6px !important;
     padding: 1px !important;
+}
+/* Комментарии на главной*/
+
+ .recent-comment{
+    border-bottom: 1px solid #ddd;   
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    
+}
+ .recent-comment .content{
+    position: relative;
+    left: 60px;
+    top: -5px;   
+    font-size: 0.8em;
+}
+ .recent-comment .avatar{
+    position: absolute;
+    border: 1px solid #ddd; 
+    border-radius: 3px;
+} 
+ .recent-comment .text{
+    padding-top: 5px;
+    line-height: normal;
+    width: 180px;
+}       
+ .recent-comment .btn-comment{
+    padding: 3px 3px;
+    font-size: 0.8em;
 }
