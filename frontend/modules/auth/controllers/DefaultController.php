@@ -533,24 +533,24 @@ class DefaultController extends \yeesoft\controllers\BaseController
     /**
      * @return string|\yii\web\Response
      */
-    public function actionProfile()
-    {
-        if($this->module->profileLayout){
-            $this->layout = $this->module->profileLayout;
-        }
-                
-        if (Yii::$app->user->isGuest) {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-        }
-
-        $model = User::findIdentity(Yii::$app->user->id);
-
-        if ($model->load(Yii::$app->request->post()) AND $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('yee', 'Your item has been updated.'));
-        }
-
-        return $this->renderIsAjax('profile', compact('model'));
-    }
+//    public function actionProfile()
+//    {
+//        if($this->module->profileLayout){
+//            $this->layout = $this->module->profileLayout;
+//        }
+//                
+//        if (Yii::$app->user->isGuest) {
+//            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+//        }
+//
+//        $model = User::findIdentity(Yii::$app->user->id);
+//
+//        if ($model->load(Yii::$app->request->post()) AND $model->save()) {
+//            Yii::$app->session->setFlash('success', Yii::t('yee', 'Your item has been updated.'));
+//        }
+//
+//        return $this->renderIsAjax('profile', compact('model'));
+//    }
 
     public function actionUploadAvatar()
     {

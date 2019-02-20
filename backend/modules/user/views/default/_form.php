@@ -84,7 +84,7 @@ use yeesoft\helpers\YeeHelper;
                         
                         <?= $form->field($model, 'skype')->textInput(['maxlength' => 64]) ?>
                         
-                        <?= $form->field($model, 'phone')->textInput(['maxlength' => 24]) ?>
+                        <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput(); ?>
 
                         <?php if (User::hasPermission('bindUserToIp')): ?>
                             <?= $form->field($model, 'bind_to_ip')->textInput(['maxlength' => 255])->hint(Yii::t('yee', 'For example') . ' : 123.34.56.78, 234.123.89.78') ?>

@@ -12,20 +12,21 @@ use yeesoft\helpers\YeeHelper;
  * @var yii\web\View $this
  * @var yeesoft\auth\models\forms\SetEmailForm $model
  */
-$this->title = Yii::t('yee/auth', 'User Profile');
-$this->params['breadcrumbs'][] = $this->title;
+//$this->title = Yii::t('yee/auth', 'User Profile');
+//$this->params['breadcrumbs'][] = $this->title;
 
 AvatarUploaderAsset::register($this);
 AvatarAsset::register($this);
 
-$col12 = $this->context->module->gridColumns;
+//$col12 = $this->context->module->gridColumns;
+$col12 = 12;
 $col9 = (int) ($col12 * 3 / 4);
 $col6 = (int) ($col12 / 2);
 $col3 = (int) ($col12 / 4);
 ?>
 
-<div class="profile-index">
-<section id="profile" class="container">
+<div id="profile">
+<!--<section id="profile" class="container">-->
     <div class="row" style="margin-bottom: 20px;">
        
         <div class="text-right col-md-<?= $col12 ?>">
@@ -51,7 +52,8 @@ $col3 = (int) ($col12 / 4);
                 </div>
                 <div class="image-actions">
                     <span class="btn btn-primary btn-file"
-                          title="<?= Yii::t('yee/auth', 'Change profile picture') ?>" data-toggle="tooltip"
+                          data-original-title="<?= Yii::t('yee/auth', 'Change profile picture') ?>" 
+                          data-toggle="tooltip"
                           data-placement="left">
                         <i class="fa fa-folder-open fa-lg"></i>
                         <?= Html::fileInput('image', null, ['class' => 'image-input']) ?>
@@ -60,7 +62,7 @@ $col3 = (int) ($col12 / 4);
                     <?=
                     Html::submitButton('<i class="fa fa-save fa-lg"></i>', [
                         'class' => 'btn btn-primary image-submit',
-                        'title' => Yii::t('yee/auth', 'Save profile picture'),
+                        'data-original-title' => Yii::t('yee/auth', 'Save profile picture'),
                         'data-toggle' => 'tooltip',
                         'data-placement' => 'top',
                     ])
@@ -68,9 +70,10 @@ $col3 = (int) ($col12 / 4);
 
                     <span class="btn btn-primary image-remove"
                           data-action="<?= Url::to(['/auth/default/remove-avatar']) ?>"
-                          title="<?= Yii::t('yee/auth', 'Remove profile picture') ?>" data-toggle="tooltip"
+                          data-original-title="<?= Yii::t('yee/auth', 'Remove profile picture') ?>" 
+                          data-toggle="tooltip"
                           data-placement="right">
-                        <i class="fa fa-remove fa-lg"></i>
+                        <i class="fa fa-times fa-lg"></i>
                     </span>
                 </div>
                 <div class="upload-status"></div>
@@ -81,7 +84,8 @@ $col3 = (int) ($col12 / 4);
             <div class="oauth-services">
                 <div class="oauth-authorized-services">
                     <div class="label label-primary space-down"
-                         title="<?= Yii::t('yee/auth', 'Click to unlink service') ?>" data-toggle="tooltip"
+                         data-original-title="<?= Yii::t('yee/auth', 'Click to unlink service') ?>" 
+                         data-toggle="tooltip"
                          data-placement="right">
                         <?= Yii::t('yee/auth', 'Authorized Services') ?>:
                     </div>
@@ -98,7 +102,8 @@ $col3 = (int) ($col12 / 4);
 
                 <div>
                     <div class="label label-primary space-down"
-                         title="<?= Yii::t('yee/auth', 'Click to connect with service') ?>" data-toggle="tooltip"
+                         data-original-title="<?= Yii::t('yee/auth', 'Click to connect with service') ?>" 
+                         data-toggle="tooltip"
                          data-placement="right">
                         <?= Yii::t('yee/auth', 'Non Authorized Services') ?>:
                     </div>
@@ -170,7 +175,7 @@ $col3 = (int) ($col12 / 4);
                             <?= $form->field($model, 'skype')->textInput(['maxlength' => 64]) ?>
                         </div>
                         <div class="col-md-<?= $col6 ?>">
-                            <?= $form->field($model, 'phone')->textInput(['maxlength' => 24]) ?>
+                            <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.phone_mask')])->textInput(); ?>
                         </div>
                     </div>
 
@@ -185,8 +190,8 @@ $col3 = (int) ($col12 / 4);
         </div>
         <?php ActiveForm::end(); ?>
     </div>
-</section>
-</div>
+<!--</section>
+--></div>
 
 
 

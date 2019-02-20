@@ -21,26 +21,26 @@ class EventController extends \yeesoft\controllers\BaseController
      * @return type
      * @throws NotFoundHttpException
      */
-    public function actionIndex() {
-        
-        if (Yii::$app->user->isGuest) {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-        }
-
-        $query = EventSchedule::find()
-                ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
-                ->where(['event_schedule_users.user_id' => Yii::$app->user->id]);
-
-        $pagination = new Pagination([
-            'totalCount' => $query->count(), 
-            'defaultPageSize' => Yii::$app->settings->get('reading.page_size', 10)
-            ]);
-        $model = $query->orderBy('start_timestamp DESC')->offset($pagination->offset)
-                ->limit($pagination->limit)
-                ->all();
-                //echo '<pre>' . print_r($model, true) . '</pre>';
-        return $this->render('index', compact('model', 'pagination'));
-    }
+//    public function actionIndex() {
+//        
+//        if (Yii::$app->user->isGuest) {
+//            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+//        }
+//
+//        $query = EventSchedule::find()
+//                ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
+//                ->where(['event_schedule_users.user_id' => Yii::$app->user->id]);
+//
+//        $pagination = new Pagination([
+//            'totalCount' => $query->count(), 
+//            'defaultPageSize' => Yii::$app->settings->get('reading.page_size', 10)
+//            ]);
+//        $model = $query->orderBy('start_timestamp DESC')->offset($pagination->offset)
+//                ->limit($pagination->limit)
+//                ->all();
+//                //echo '<pre>' . print_r($model, true) . '</pre>';
+//        return $this->render('index', compact('model', 'pagination'));
+//    }
     
     
     /**

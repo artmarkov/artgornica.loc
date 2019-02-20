@@ -113,3 +113,14 @@ ul li {
     padding: 3px 3px;
     font-size: 0.8em;
 }
+/* tabs */
+div.tabs ul.nav-tabs li.active a {	
+	background: #f5f5f5 !important;
+}
+
+div.tabs ul.nav-tabs a {	
+	background: #fff !important;	
+}
+div.tabs div.tab-content {	
+	background-color: #f5f5f5 !important;
+}

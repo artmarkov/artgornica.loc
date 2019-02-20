@@ -63,14 +63,8 @@ AvatarAsset::register($this);
                         $avatar = ($userAvatar = Yii::$app->user->identity->getAvatar('small')) ? $userAvatar : AvatarAsset::getDefaultAvatar('small');
                         $menuItems[] = [
                             'label' => '<img src="' . $avatar . '" class="user-image" alt="User Image"/>' . Yii::$app->user->identity->username,
-                            'url' => ['/auth/default/profile'],
+                            'url' => ['/site/private'],
                         ];
-
-                        $menuItems[] = [
-                            'label' => '<i class="fa fa-ticket" style="margin: 5px;"></i>' . Yii::t('yee/event', 'Private'),
-                            'url' => \yii\helpers\Url::to(['/event/index'])
-                        ];
-
                         $menuItems[] = [
                             'label' => '<i class="fa fa-sign-out" style="margin: 5px;"></i>' . Yii::t('yee/auth', 'Logout'),
                             'url' => ['/auth/default/logout', 'language' => false],

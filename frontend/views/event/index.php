@@ -4,17 +4,12 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::t('yee/event', 'Private');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="event-index">
-     <section id="index" class="container">
+<div id="user-schedule">     
          
          <?= \frontend\widgets\ScheduleUserWidget::widget(['model' => $model, 'pagination' => $pagination]); ?>
 
-     </section>
 </div>
-
 
 <!--        модал просмотра события пользователя -->
     <?php \yii\bootstrap\Modal::begin([
