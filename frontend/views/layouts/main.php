@@ -10,7 +10,9 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
-Yii::$app->assetManager->forceCopy = true;$assetBundle = AppAsset::register($this);
+Yii::$app->assetManager->forceCopy = true;
+$assetBundle = AppAsset::register($this);
+
 AvatarAsset::register($this);
 ?>
 <?php $this->beginPage() ?>

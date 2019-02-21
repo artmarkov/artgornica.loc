@@ -15,7 +15,7 @@ ThemeAsset::register($this);
     <!-- REVOLUTION SLIDER -->
      
 <?= SliderRevolution::widget([
-    'config' => ['delay' => 9000, 'startwidth' => 1170, 'startheight' => 500, 'hideThumbs' => 200, 'fullWidth' => '"on"', 'forceFullWidth' => '"on"'],
+    'config' => ['delay' => 9000, 'startwidth' => 1170, 'startheight' => 500, 'hideThumbs' => 200, 'fullWidth' => '"on"', 'forceFullWidth' => '"off"'],
     'container' => ['class' => 'fullwidthbanner-container roundedcorners'],
     'wrapper' => ['class' => 'fullwidthbanner'],
     'ulOptions' => [],

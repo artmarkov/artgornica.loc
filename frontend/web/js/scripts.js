@@ -398,7 +398,7 @@ function _superslide() {
 
 		}
 
-		jQuery(window).load(function () {
+		jQuery(window).on('load' ,function () {
 			jQuery("#slider").css({"background":"none"});
 		});
 
@@ -661,7 +661,7 @@ function _parallax() {
 
 	}
 
-	jQuery(window).load(function () {
+	jQuery(window).on('load' ,function () {
 
 		if(jQuery(".parallax").length > 0) {
 
@@ -669,12 +669,12 @@ function _parallax() {
 
 				jQuery(window).stellar({
 
-					responsive:				true,
-					scrollProperty: 		'scroll',
-					parallaxElements:		false,
-					horizontalScrolling: 	false,
-					horizontalOffset: 		0,
-					verticalOffset: 		0
+                                        responsive: true,
+                                        scrollProperty: 'scroll',
+                                        parallaxElements: false,
+                                        horizontalScrolling: false,
+                                        horizontalOffset: 0,
+                                        verticalOffset: 0
 				});
 
 			} else {
@@ -701,7 +701,7 @@ function _parallax() {
  **************************************************************** **/
 function _masonry() {
 
-	jQuery(window).load(function() {
+	jQuery(window).on('load' ,function() {
 
 		jQuery("span.js_loader").remove();
 		jQuery("li.masonry-item").addClass('fadeIn');
@@ -729,7 +729,7 @@ function _masonry() {
 
 		if(destination.get(0)) {
 
-			jQuery(window).load(function() {
+			jQuery(window).on('load' ,function() {
 
 				destination.isotope({
 					itemSelector: 	"li",
@@ -763,7 +763,7 @@ function _masonry() {
 	});
 
 
-	jQuery(window).load(function() {
+	jQuery(window).on('load' ,function() {
 
 		jQuery("ul.isotope").addClass('fadeIn');
 

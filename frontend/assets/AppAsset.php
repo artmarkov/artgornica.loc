@@ -49,6 +49,7 @@ class AppAsset extends AssetBundle
         'plugins/jquery.appear.js',
         'plugins/jquery.isotope.js',
         'plugins/masonry.js',
+        
         'plugins/magnific-popup/jquery.magnific-popup.min.js',
 //        'plugins/owl-carousel/owl.carousel.min.js',
         'plugins/stellar/jquery.stellar.min.js',
