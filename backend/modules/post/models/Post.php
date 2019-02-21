@@ -265,12 +265,19 @@ class Post extends ActiveRecord
          
        return $result;        
     } 
-    
-    public function getShortContent($delimiter = '<!-- pagebreak -->', $allowableTags = '<a><p><blockquote>')
+    /**
+     * 
+     * @param type $length
+     * @param type $allowableTags
+     * @return type
+     */
+    public function getShortContent($length = 256, $allowableTags = '')
     {
-        $content = explode($delimiter, $this->content);
-        return strip_tags($content[0], $allowableTags);
+        $content = strip_tags($this->content, $allowableTags);
+        $result = mb_substr(Html::encode($content), 0, $length, "UTF-8") . ((strlen($content) > $length) ? ' ...' : '');
+        return Html::tag('p', strip_tags($result, $allowableTags));
     }
+    
     /**
      * getTypeList
      * @return array
@@ -352,10 +359,10 @@ class Post extends ActiveRecord
     {
     return [
             'items' => 1,
-            'single_item' => true,
+            'single_item' => false,
             'navigation' => true,
             'pagination' => true,
-            'transition_style' => 'fadeUp',
+            'transition_style' => 'fade',
             'auto_play' => '9000',           
             ];
     }

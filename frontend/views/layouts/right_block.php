@@ -50,7 +50,7 @@ use yii\helpers\Url;
     $categoryKey = '__categoryKey' . Yii::$app->language;
 
     if (!$menuCategory = Yii::$app->cache->get($categoryKey)) {
-        $menuCategory = \frontend\components\MenuCategoryWidget::widget();
+        $menuCategory = \frontend\widgets\MenuCategoryWidget::widget();
 
         Yii::$app->cache->set($categoryKey, $menuCategory, 3600);
     }
@@ -67,8 +67,8 @@ use yii\helpers\Url;
     $tagCloudKey = '__cloudKey' . Yii::$app->language;
 
     if (!$TagCloud = Yii::$app->cache->get($tagCloudKey)) {
-        $TagCloud = \frontend\components\TagCloudWidget::widget([
-                    'maxTags' => false,
+        $TagCloud = \frontend\widgets\TagCloudWidget::widget([
+                    'maxTags' => 30,
                     'urlRoute' => '/tag/index',
                     'tagClasses' => ['fsize13', 'fsize14', 'fsize15', 'fsize16', 'fsize17', 'fsize18', 'fsize19', 'fsize20', 'fsize26'],
                     'tagsArray' => \backend\modules\post\models\Tag::getTagsCloud()

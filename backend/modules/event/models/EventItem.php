@@ -265,7 +265,7 @@ class EventItem extends \yeesoft\db\ActiveRecord
             'single_item' => true,
             'navigation' => true,
             'pagination' => true,
-            'transition_style' => 'fadeUp',
+            'transition_style' => 'fade',
             'auto_play' => '9000',           
             ];
     }

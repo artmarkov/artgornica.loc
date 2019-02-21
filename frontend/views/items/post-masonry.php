@@ -13,8 +13,10 @@ $page = (isset($page)) ? $page : 'post';
         <!-- article title -->
         <div class="item">
             <!-- article title -->
-            <div class="item-title">
+            <header class="blog-post-masonry">
+
                 <h2><?= $post->title ?></h2>
+                 <p class="fsize13 nopadding-bottom">
 
                 <?php if ($post->category): ?>
 
@@ -24,9 +26,10 @@ $page = (isset($page)) ? $page : 'post';
                 <?php endif; ?>
 
                 <span class="scrollTo label label-success light"><i class="fa fa-comment-o"></i> 
-                    <?php echo Comment::activeCount($post->className(), $post->id); ?> Comments</span>
-                <span class="label label-info light"><i class="fa fa-user" aria-hidden="true"></i> <?= $post->author->username ?>: <?= $post->publishedDate ?></span>
-            </div>
+                    <?php echo Comment::activeCount($post->className(), $post->id); ?></span>
+                <span class="label label-info light"><i class="fa fa-pencil" aria-hidden="true"></i> <?= $post->publishedDate ?></span>
+             </p>
+</header>
 
             <!-- image -->
             <figure>

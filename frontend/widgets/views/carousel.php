@@ -20,7 +20,7 @@ use frontend\widgets\owlcarousel\OwlCarouselWidget;
                 'navigation' => $owl_options['navigation'] == 1 ? true : false,
                 'pagination' => $owl_options['pagination'] == 1 ? true : false,
                 'transitionStyle' => $owl_options['transition_style'],
-                'autoPlay' => $owl_options['auto_play'],
+                'autoPlay' => count($content_items) != 1 ? $owl_options['auto_play'] : false,
             ]
         ]);
         ?>

@@ -24,7 +24,7 @@ $post->updateRevision();
         <?php endif; ?>
 
         <span class="scrollTo label label-success light"><i class="fa fa-comment-o"></i> 
-            <?php echo Comment::activeCount($post->className(), $post->id); ?> Comments</span>
+            <?php echo Comment::activeCount($post->className(), $post->id); ?> коммент.</span>
         <span class="label label-info light"><i class="fa fa-user" aria-hidden="true"></i> <?= $post->author->username ?>: <?= $post->publishedDate ?></span>
     </small>
 </header>
