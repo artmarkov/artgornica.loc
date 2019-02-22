@@ -32,6 +32,9 @@ img.user-image {
 #welcome h1{
     line-height: 60px !important;
 }
+
+/* post-masonry */
+
 .blog-post-masonry {
     margin-bottom: 20px;    
 }
@@ -39,7 +42,18 @@ img.user-image {
     line-height: 30px;
     padding-bottom: 10px;  
 }
+.blog-post-masonry h2 a {   
+    color: #2E363F !important;
+}
+.blog-post-masonry h2 :hover {   
+    color: #F15757 !important;
+}
+.masonry-item .item-box figure {   
+    overflow: visible;  
+}
+
 /* layaut.css */
+
 body {	
     background-color:#ffffff !important;	
 }
@@ -54,8 +68,6 @@ body {
 .item-box {
     margin:5px !important;	
 }
-
-
 
 /* essentials.css */
 
@@ -133,6 +145,7 @@ article p {
     font-size: 0.8em;
 }
 /* tabs */
+
 div.tabs ul.nav-tabs li.active a {	
     background: #f5f5f5 !important;
 }

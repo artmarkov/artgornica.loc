@@ -11,7 +11,7 @@ use yii\helpers\Html;
         <figure>                            
             <?= Html::a('<span class="overlay color2"></span><span class="inner">
             <span class="block fa fa-plus fsize20"></span>
-            <strong>ДЕТАЛИ</strong> ЗАНЯТИЯ</span>', ['/event/view', 'id' => $event->id], ['class' => 'item-hover']);
+            <span class="uppercase"><strong>детали</strong> занятия</span>', ['/event/view', 'id' => $event->id], ['class' => 'item-hover']);
             ?>
             <?php
             $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($event->item->formName(), $event->item_id);             

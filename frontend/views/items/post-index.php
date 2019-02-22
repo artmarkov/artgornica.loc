@@ -10,7 +10,14 @@ use yii\helpers\Html;
         <figure>
             <?php
             $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->formName(), $post->id);             
-            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']); 
+            if(!empty($item)) {
+                
+               echo Html::a('<span class="overlay color"></span><span class="inner">
+                    <span class="block fa fa-plus fsize20"></span>
+                    <span class="uppercase"><strong>читать</strong> дальше</span>', ["/site/{$post->slug}"], ['class' => 'item-hover']);
+               echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']); 
+                    
+                    }
             ?>
         </figure>
         <div class="item-box-desc">

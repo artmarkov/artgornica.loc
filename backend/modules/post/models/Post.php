@@ -241,7 +241,7 @@ class Post extends ActiveRecord
         $this->updateCounters(['revision' => 1]);
     }
 
-    public function getAllContent($delimiter = '<p>', $allowableTags = '<a><blockquote><!-- pagebreak -->')
+    public function getAllContent($delimiter = '<p>', $allowableTags = '<a><blockquote><ul><li>')
     {
          $result = '';
          $i = 0;
