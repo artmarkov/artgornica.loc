@@ -59,7 +59,7 @@ class Slides extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_transition', 'data_slotamount', 'data_masterspeed', 'data_fullwidthcentering', 'name'], 'required'],
+            [['data_transition', 'data_slotamount', 'data_masterspeed', 'name'], 'required'],
             [['status', 'sort'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['data_slotamount', 'data_masterspeed'], 'integer'],

@@ -91,6 +91,23 @@ class Post extends ActiveRecord
                     'tags' => 'tag_list',
                 ],
             ],
+            'search' => [
+                'class' => \himiklab\yii2\search\behaviors\SearchBehavior::className(),
+                'searchScope' => function ($model) {
+                    /** @var \yii\db\ActiveQuery $model */
+                    $model->select([ 'id', 'slug']);
+                    //$model->andWhere(['indexed' => true]);
+                },
+                'searchFields' => function ($model) {
+                    /** @var self $model */
+                    return [
+                        ['name' => 'slug', 'value' => $model->slug],
+                       // ['name' => 'content', 'value' => strip_tags($model->content)],
+//                        ['name' => 'url', 'value' => '/blog/'.$model->id.'-'.$this->alias, 'type' => SearchBehavior::FIELD_KEYWORD],
+                        // ['name' => 'model', 'value' => 'page', 'type' => SearchBehavior::FIELD_UNSTORED],
+                    ];
+                }
+            ],
         ];
     }
 
@@ -296,8 +313,8 @@ class Post extends ActiveRecord
     public static function getMainOptionsList()
     {
         return [
-            [self::MAIN_ON, Yii::t('yee', 'On'), 'default'],
-            [self::MAIN_OFF, Yii::t('yee', 'Off'), 'primary']
+            [self::MAIN_ON, Yii::t('yee', 'On'), 'primary'],
+            [self::MAIN_OFF, Yii::t('yee', 'Off'), 'default']
         ];
     }
     /**
@@ -359,7 +376,7 @@ class Post extends ActiveRecord
     {
     return [
             'items' => 1,
-            'single_item' => false,
+            'single_item' => true,
             'navigation' => true,
             'pagination' => true,
             'transition_style' => 'fade',

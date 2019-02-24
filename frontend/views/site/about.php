@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'type' => 'images',
                                 'size' => 'medium',
-                                'class' => 'owl-carousel controlls-over',
+                                'class' => 'owl-carousel text-center controlls-over',
                             ],
                    ]); 
             ?>

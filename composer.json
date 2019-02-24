@@ -59,7 +59,9 @@
     "nerburish/yii2-isotope-view": "dev-master",
     "yeesoft/yii2-lightbox": "~0.1.0",
     "mihaildev/yii2-elfinder": "*",
-    "unclead/yii2-multiple-input": "~2.0"
+    "unclead/yii2-multiple-input": "~2.0",
+    "himiklab/yii2-search-component-v2" : "*",
+    "zendframework/zendsearch": "2.0.0rc6"
         
   },
   "require-dev": {

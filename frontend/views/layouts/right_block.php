@@ -3,17 +3,8 @@ use yii\helpers\Url;
 
 ?>
 <!-- blog search -->
-<div class="widget">
 
-    <h4 class="uppercase"><?= Yii::t('yee/post', 'Blog search') ?></h4>
-
-    <form method="get" action="#" class="input-group">
-        <input type="text" class="form-control" name="k" id="k" value="" placeholder="search..." />
-        <span class="input-group-btn">
-            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
-        </span>
-    </form>
-</div>
+<?= $this->render('@frontend/views/site/_search_form', ['text' => '']) ?>
 
 <!-- recent work -->
 <!--<div class="widget">

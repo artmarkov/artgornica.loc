@@ -23,7 +23,7 @@ LanguagePillsAsset::register($this);
         </div>
     </div>
 
-    <?= backend\modules\media\widgets\Gallery::widget() ?>
+    <?= backend\modules\media\widgets\Gallery::widget(['pageSize' => '24']) ?>
 
 </div>
 

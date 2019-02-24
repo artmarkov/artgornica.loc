@@ -162,12 +162,14 @@ class Tag extends ActiveRecord implements OwnerAccess
                     ->innerJoin('post_tag_post', 'post_tag_post.tag_id = post_tag.id')
                     ->where(['post_tag.id' => $tag->id])
                     ->count();
-            $result[] = [
-                'id' => $tag->id,
-                'name' => $tag->title,
-                'slug' => $tag->slug,
-                'count' => $count
-            ];
+            if ($count != 0) {
+                $result[] = [
+                    'id' => $tag->id,
+                    'name' => $tag->title,
+                    'slug' => $tag->slug,
+                    'count' => $count
+                ];
+            }
         }
 
         return $result;

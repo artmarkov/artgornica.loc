@@ -123,6 +123,7 @@ use yii\helpers\Url;
                         $form->field($model, 'tag_list')->widget(nex\chosen\Chosen::className(), [
                             'items' => Tag::getTags(),
                             'multiple' => true,
+                            'translateCategory' => 'yee/post',
                             'placeholder' => Yii::t('yee/post', 'Select Tags...'),
                         ])
                         ?>

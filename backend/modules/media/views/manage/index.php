@@ -2,6 +2,6 @@
 
 use backend\modules\media\widgets\Gallery;
 
-echo Gallery::widget(['pageSize' => 15, 'mode' => 'modal']);
+echo Gallery::widget(['pageSize' => 16, 'mode' => 'modal']);
 
 
