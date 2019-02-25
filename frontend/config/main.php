@@ -81,12 +81,20 @@ return [
 //                ],
 //            ],
 //        ],
-        'search' => [
-            'class' => 'himiklab\yii2\search\Search',
+        'searcher' => [
+            'class' => \vintage\search\SearchComponent::class,
             'models' => [
-                'backend\modules\post\models\Post',
+                'post' => [
+                    'class' => \frontend\models\PostGlobalSearch::class,
+                    'label' => 'Posts',
+                 ],
+//                 'products' => [
+//                    'class' => \common\models\Product::class,
+//                    'label' => 'Shop products',
+//                 ],
+                
             ],
-        ],
+      ],
     ],
     'params' => $params,
 ];

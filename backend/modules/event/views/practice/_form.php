@@ -3,6 +3,7 @@
 use yeesoft\widgets\ActiveForm;
 use backend\modules\event\models\EventPractice;
 use yeesoft\helpers\Html;
+use backend\modules\media\widgets\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventPractice */
@@ -26,7 +27,7 @@ use yeesoft\helpers\Html;
 
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>           
+                    <?= $form->field($model, 'description')->widget(TinyMce::className()); ?>          
 
                 </div>
 

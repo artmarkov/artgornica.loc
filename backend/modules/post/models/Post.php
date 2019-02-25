@@ -90,24 +90,7 @@ class Post extends ActiveRecord
                 'relations' => [
                     'tags' => 'tag_list',
                 ],
-            ],
-            'search' => [
-                'class' => \himiklab\yii2\search\behaviors\SearchBehavior::className(),
-                'searchScope' => function ($model) {
-                    /** @var \yii\db\ActiveQuery $model */
-                    $model->select([ 'id', 'slug']);
-                    //$model->andWhere(['indexed' => true]);
-                },
-                'searchFields' => function ($model) {
-                    /** @var self $model */
-                    return [
-                        ['name' => 'slug', 'value' => $model->slug],
-                       // ['name' => 'content', 'value' => strip_tags($model->content)],
-//                        ['name' => 'url', 'value' => '/blog/'.$model->id.'-'.$this->alias, 'type' => SearchBehavior::FIELD_KEYWORD],
-                        // ['name' => 'model', 'value' => 'page', 'type' => SearchBehavior::FIELD_UNSTORED],
-                    ];
-                }
-            ],
+            ],           
         ];
     }
 

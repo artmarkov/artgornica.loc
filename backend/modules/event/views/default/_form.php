@@ -4,6 +4,7 @@ use yeesoft\widgets\ActiveForm;
 use backend\modules\event\models\EventItem;
 use backend\modules\event\models\EventPractice;
 use yeesoft\helpers\Html;
+use backend\modules\media\widgets\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventItem */
@@ -27,17 +28,8 @@ use yeesoft\helpers\Html;
                     
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'description')->widget(TinyMce::className()); ?>
 
-                    <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [
-                            'data' => backend\modules\event\models\EventPractice::getEventPracticeList(),
-                            'options' => [
-                                'placeholder' => Yii::t('yee/event', 'Select Practice...'), 
-                                'multiple' => true
-                            ],                              
-                        ])
-                    ?>
-                    
                 </div>
        
             </div>
@@ -88,7 +80,15 @@ use yeesoft\helpers\Html;
                                 'prompt' => Yii::t('yee/event', 'Select Vid...')
                             ])->label(Yii::t('yee/event', 'Event Vid'));
                         ?>
-                        
+                        <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [
+                            'data' => backend\modules\event\models\EventPractice::getEventPracticeList(),
+                            'options' => [
+                                'placeholder' => Yii::t('yee/event', 'Select Practice...'), 
+                                'multiple' => true
+                            ],                              
+                        ])
+                        ?>
+                    
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>

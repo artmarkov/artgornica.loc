@@ -251,25 +251,31 @@ class SiteController extends \yeesoft\controllers\BaseController
      * @param type $q
      * @return type
      */
-    public function actionSearch($q = 'risunki_iz_peska')
+    public function actionSearch()
     {
-        /** @var \himiklab\yii2\search\Search $search */
-        $search = Yii::$app->search;
-       $searchData = $search->find($q); // Search by full index.
-      //   $searchData = $search->find($q, ['model' => 'post']); // Search by index provided only by model `page`.
-//echo '<pre>' . print_r($searchData, true) . '</pre>';
-        $dataProvider = new ArrayDataProvider([
-            'allModels' => $searchData['results'],
-            'pagination' => ['pageSize' => 10],
-        ]);
-
+        $q = Yii::$app->request->get('q');
+       
+        //$search = Yii::$app->search;
+       $searchData = Yii::$app->get('searcher')->search($q);
+//        $query = Post::find();
+//        $searchQuery = '%slug%';
+//        $searchData = \frontend\models\PostSearch::getQuery($query, $q, $searchQuery);
+       // $searchData = $search->find($q); // Search by full index.
+       // $searchData = $search->find($q, ['model' => 'post']); // Search by index provided only by model `page`.
+         // echo '<pre>' . print_r($searchData, true) . '</pre>';
+//        $dataProvider = new ArrayDataProvider([
+//            'allModels' => $searchData['results'],
+//            'pagination' => ['pageSize' => 10],
+//        ]);
+//
         return $this->render(
-            'found',
-            [
-                'hits' => $dataProvider->getModels(),
-                'pagination' => $dataProvider->getPagination(),
-                'query' => $searchData['query']
-            ]
+            'found'
+//                ,
+//            [
+//                'hits' => $dataProvider->getModels(),
+//                'pagination' => $dataProvider->getPagination(),
+//                'query' => $searchData['query']
+//            ]
         );
     }
 }

@@ -60,8 +60,7 @@
     "yeesoft/yii2-lightbox": "~0.1.0",
     "mihaildev/yii2-elfinder": "*",
     "unclead/yii2-multiple-input": "~2.0",
-    "himiklab/yii2-search-component-v2" : "*",
-    "zendframework/zendsearch": "2.0.0rc6"
+    "vintage/yii2-search": "~2.0"
         
   },
   "require-dev": {

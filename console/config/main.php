@@ -25,12 +25,6 @@ return [
                 ],
             ],
         ],
-        'search' => [
-            'class' => 'himiklab\yii2\search\Search',
-            'models' => [
-                'backend\modules\post\models\Post',
-            ],
-        ],
     ],
     'params' => $params,
 ];

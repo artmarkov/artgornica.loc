@@ -7,6 +7,7 @@ use backend\modules\event\models\EventPractice;
 use yeesoft\helpers\Html;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
+use backend\modules\media\widgets\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventSchedule */
@@ -44,30 +45,9 @@ use yii\helpers\Url;
                             ]
                         ])->label(Yii::t('yee/event', 'Event Name'));
                         
-                         echo $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
-                            'type' => DepDrop::TYPE_SELECT2,
-                            'data' => EventPractice::getEventPracticeByName($model->item_id),
-                            'options' => ['multiple' => true, 'prompt' => Yii::t('yee/event', 'Select Practice...'), 'id' => 'practice_list'],
-                            'pluginOptions' => [
-                                'depends' => ['item_id'],
-                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
-                                'url' => Url::to(['/event/schedule/practice'])
-                            ]
-                        ])->label(Yii::t('yee/event', 'Practice List'));
                         ?>
+                    <?= $form->field($model, 'description')->widget(TinyMce::className()); ?>
 
-                    <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
-
-                    <?= $form->field($model, 'end_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
-
-                    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-                    <?= $form->field($model, 'users_list')->widget(kartik\select2\Select2::className(), [
-                        'data' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),
-                        'options' => ['placeholder' => Yii::t('yee/event', 'Select Users...'), 'multiple' => true],                        
-                    ])
-                    ?>
-                   
                 </div>
 
             </div>
@@ -84,8 +64,7 @@ use yii\helpers\Url;
                                 <label class="control-label" style="float: left; padding-right: 5px;">
                              <?= $model->attributeLabels()['created_at'] ?> :
                                 </label>
-                                <span><?= $model->createdDatetime ?></span>
-                                <span><?= $model->itemProgramm->price ?></span>
+                                <span><?= $model->createdDatetime ?></span>                                
                             </div>
 
                             <div class="form-group clearfix">
@@ -99,7 +78,7 @@ use yii\helpers\Url;
                                 <label class="control-label" style="float: left; padding-right: 5px;">Расчет: </label>
                                 <span><?= $model->itemProgramm->price ?></span> / 
                                 <span><?= $model->itemProgramm->qty_items ?></span> = 
-                                <span><?= round($model->itemProgramm->price/$model->itemProgramm->qty_items, 2); ?> руб.</span>
+                                <span><?= round(($model->itemProgramm->price/$model->itemProgramm->qty_items), 2); ?> руб.</span>
                             </div>
                         <?php endif; ?>
                     
@@ -109,9 +88,30 @@ use yii\helpers\Url;
                                 'prompt' => Yii::t('yee/event', 'Select Places...')
                             ])->label(Yii::t('yee/event', 'Place Name'));
                         ?>
-
-                        <?= $form->field($model, 'price')->textInput() ?>
                         
+                        <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
+
+                        <?= $form->field($model, 'end_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
+
+                    
+                        <?= $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
+                            'type' => DepDrop::TYPE_SELECT2,
+                            'data' => EventPractice::getEventPracticeByName($model->item_id),
+                            'options' => ['multiple' => true, 'prompt' => Yii::t('yee/event', 'Select Practice...'), 'id' => 'practice_list'],
+                            'pluginOptions' => [
+                                'depends' => ['item_id'],
+                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
+                                'url' => Url::to(['/event/schedule/practice'])
+                            ]
+                        ])->label(Yii::t('yee/event', 'Practice List'));
+                        ?>
+                        <?= $form->field($model, 'price')->textInput() ?>
+                        <?= $form->field($model, 'users_list')->widget(kartik\select2\Select2::className(), [
+                        'data' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),
+                        'options' => ['placeholder' => Yii::t('yee/event', 'Select Users...'), 'multiple' => true],                        
+                         ])
+                        ?>
+                   
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
