@@ -4,7 +4,7 @@ use yii\helpers\Url;
 ?>
 <!-- blog search -->
 
-<?= $this->render('@frontend/views/site/_search_form', ['text' => '']) ?>
+<?= $this->render('@frontend/views/site/_blog_search', ['text' => '']) ?>
 
 <!-- recent work -->
 <!--<div class="widget">

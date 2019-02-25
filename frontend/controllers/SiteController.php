@@ -251,31 +251,26 @@ class SiteController extends \yeesoft\controllers\BaseController
      * @param type $q
      * @return type
      */
-    public function actionSearch()
-    {
+    public function actionSearch() {
         $q = Yii::$app->request->get('q');
-       
-        //$search = Yii::$app->search;
-       $searchData = Yii::$app->get('searcher')->search($q);
-//        $query = Post::find();
-//        $searchQuery = '%slug%';
-//        $searchData = \frontend\models\PostSearch::getQuery($query, $q, $searchQuery);
-       // $searchData = $search->find($q); // Search by full index.
-       // $searchData = $search->find($q, ['model' => 'post']); // Search by index provided only by model `page`.
-         // echo '<pre>' . print_r($searchData, true) . '</pre>';
-//        $dataProvider = new ArrayDataProvider([
-//            'allModels' => $searchData['results'],
-//            'pagination' => ['pageSize' => 10],
-//        ]);
-//
+
+        $searchData = Yii::$app->get('searcher')->search($q);
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $searchData,
+            'pagination' => [
+                'pageSize' => Yii::$app->settings->get('reading.page_size', 10)
+            ],
+        ]);
+        $rows = $dataProvider->getModels();
+       // echo '<pre>' . print_r($rows, true) . '</pre>';
         return $this->render(
-            'found'
-//                ,
-//            [
-//                'hits' => $dataProvider->getModels(),
-//                'pagination' => $dataProvider->getPagination(),
-//                'query' => $searchData['query']
-//            ]
+                        'found', [
+                                'hits' => $rows,
+                                'pagination' => $dataProvider->getPagination(),
+                                'query' => $q
+                        ]
         );
     }
+
 }

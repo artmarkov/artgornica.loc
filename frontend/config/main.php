@@ -85,16 +85,19 @@ return [
             'class' => \vintage\search\SearchComponent::class,
             'models' => [
                 'post' => [
-                    'class' => \frontend\models\PostGlobalSearch::class,
+                    'class' => \frontend\models\PostBlogSearch::class,
                     'label' => 'Posts',
-                 ],
-//                 'products' => [
-//                    'class' => \common\models\Product::class,
-//                    'label' => 'Shop products',
-//                 ],
-                
+                ],
+                'category' => [
+                    'class' => \frontend\models\CategoryBlogSearch::class,
+                    'label' => 'Category',
+                ],
+                'tag' => [
+                    'class' => \frontend\models\TagBlogSearch::class,
+                    'label' => 'Tag',
+                ],
             ],
-      ],
+        ],
     ],
     'params' => $params,
 ];

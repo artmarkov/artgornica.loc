@@ -9,14 +9,14 @@ use yii\db\ActiveQueryInterface;
  * @property string $short_description
  * @property string $content
  */
-class PostGlobalSearch extends \backend\modules\post\models\Post implements \vintage\search\interfaces\CustomSearchInterface
+class TagBlogSearch extends \backend\modules\post\models\Tag implements \vintage\search\interfaces\CustomSearchInterface
 {
     /**
      * @inheritdoc
      */
     public function getSearchTitle()
     {
-        return $this->slug;
+        return $this->title;
     }
 
     /**
@@ -24,7 +24,7 @@ class PostGlobalSearch extends \backend\modules\post\models\Post implements \vin
      */
     public function getSearchDescription()
     {
-        return $this->content;
+        return NULL;
     }
 
     /**
@@ -32,7 +32,7 @@ class PostGlobalSearch extends \backend\modules\post\models\Post implements \vin
      */
     public function getSearchUrl()
     {
-       return \yii\helpers\Url::toRoute(['/news/default/index', 'slug' => $this->slug]);
+       return \yii\helpers\Url::toRoute(["/tag/{$this->slug}"]);
     }
 
    /**
@@ -42,8 +42,6 @@ class PostGlobalSearch extends \backend\modules\post\models\Post implements \vin
     {
         return [
             'slug',
-//            'short_description',
-//            'content',
         ];
     }
  
@@ -53,7 +51,7 @@ class PostGlobalSearch extends \backend\modules\post\models\Post implements \vin
     public function getQuery(ActiveQueryInterface $query, $field, $searchQuery)
     {
         return $query
-                ->joinWith('translations')
-                ->where(['like', $field, $searchQuery]);
+                ->joinWith('translations')->select(['post_tag_lang.title', 'post_tag.slug'])
+                ->where(['like', 'post_tag_lang.title', $searchQuery]);
     }
 }
