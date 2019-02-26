@@ -20,7 +20,7 @@ use yii\helpers\Html;
             ?>
         </figure>
         <div class="item-box-desc">
-            <h5><?= $event->itemName ?></h5>
+            <h4><?= $event->itemName ?></h4>
             <h3 class="text-danger"><?= $event->start_time ?></h3>
         </div>
     </div>

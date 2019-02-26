@@ -70,7 +70,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
     {
         return $this->item->name;
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */

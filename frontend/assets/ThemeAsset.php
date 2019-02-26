@@ -20,15 +20,15 @@ class ThemeAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'plugins/bootstrap/css/bootstrap.min.css',
+//        'plugins/bootstrap/css/bootstrap.min.css',
     ];
     public $js = [
-        'plugins/jquery-2.0.3.min.js',
-        'plugins/bootstrap/js/bootstrap.min.js',
+//        'plugins/jquery-2.0.3.min.js',
+//        'plugins/bootstrap/js/bootstrap.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapPluginAsset',
+//        'yii\web\YiiAsset',
+//        'yii\bootstrap\BootstrapPluginAsset',
     ];
 
 }

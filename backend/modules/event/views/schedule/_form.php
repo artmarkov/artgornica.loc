@@ -76,9 +76,9 @@ use backend\modules\media\widgets\TinyMce;
                         
                             <div class="form-group clearfix">
                                 <label class="control-label" style="float: left; padding-right: 5px;">Расчет: </label>
-                                <span><?= $model->itemProgramm->price ?></span> / 
-                                <span><?= $model->itemProgramm->qty_items ?></span> = 
-                                <span><?//= round(($model->itemProgramm->price/$model->itemProgramm->qty_items), 2); ?> руб.</span>
+                                <span><?= $model->priceItems ?></span> / 
+                                <span><?= $model->qtyItems ?></span> = 
+                                <span><?= round(($model->priceItems/$model->qtyItems), 2); ?> руб.</span>
                             </div>
                         <?php endif; ?>
                     

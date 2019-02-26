@@ -11,6 +11,10 @@ a.label.label-primary.light:focus {
 #portfolio ul.isotope-filter li.active a:hover {
     background-color: #ee3939 !important;
 }
+#portfolio .item-box-desc h4 {   
+    min-height: 90px;   
+    margin-bottom: 10px;
+}
 ul.menu-top.nav-main > li {
     display: inline !important;	
     list-style: none !important;	
@@ -75,6 +79,9 @@ p,
 ol li,
 ul li {
     color: #7e8998 !important;	
+}
+.parallax p {
+    color: #c1c1c1 !important;
 }
 .divider .fa {
     background: #ffffff !important;	

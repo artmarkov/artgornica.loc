@@ -225,6 +225,16 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     {
         return $this->item->name;
     }
+     /* Геттер для ко-ва занятий */
+    public function getQtyItems()
+    {
+        return $this->itemProgramm->qty_items;
+    }
+     /* Геттер для стоимости занятий в программе */
+    public function getPriceItems()
+    {
+        return $this->itemProgramm->price;
+    }
     /* Геттер для содержания события */
     public function getItemDescription()
     {

@@ -244,23 +244,28 @@ class SiteController extends \yeesoft\controllers\BaseController
     public function actionSearch() {
         $q = Yii::$app->request->get('q');
 
-        $searchData = Yii::$app->get('searcher')->search($q);
+        if (strlen($q > 2)) {
+            $searchData = Yii::$app->get('searcher')->search($q);
 
-        $dataProvider = new ArrayDataProvider([
-            'allModels' => $searchData,
-            'pagination' => [
-                'pageSize' => Yii::$app->settings->get('reading.page_size', 10)
-            ],
-        ]);
-        $rows = $dataProvider->getModels();
-       // echo '<pre>' . print_r($rows, true) . '</pre>';
-        return $this->render(
-                        'found', [
-                                'hits' => $rows,
-                                'pagination' => $dataProvider->getPagination(),
-                                'query' => $q
-                        ]
-        );
+            $dataProvider = new ArrayDataProvider([
+                'allModels' => $searchData,
+                'pagination' => [
+                    'pageSize' => Yii::$app->settings->get('reading.page_size', 10)
+                ],
+            ]);
+            $rows = $dataProvider->getModels();
+            // echo '<pre>' . print_r($rows, true) . '</pre>';
+            return $this->render(
+                            'found', [
+                        'hits' => $rows,
+                        'pagination' => $dataProvider->getPagination(),
+                        'query' => $q
+                            ]
+            );
+        } else {
+            Yii::$app->session->setFlash('warning', Yii::t('yee', 'Для запроса введите не менее 3-х символов.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        }
     }
 
 }

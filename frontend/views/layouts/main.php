@@ -105,17 +105,17 @@ AvatarAsset::register($this);
                         <?php
                         $navItems = Menu::getMenuItems('main-menu');
                        
-//                        $navItems[] = [
-//                            'label' => '<form method="get" action="#" class="input-group pull-right">
-//                                    <input type="text" class="form-control" name="k" id="k" value="" placeholder="Поиск...">
-//                                    <span class="input-group-btn">
-//                                        <button class="btn btn-primary "><i class="fa fa-search"></i>
-//                                        </button>
-//                                    </span>
-//                                </form>',
-//                            'options' => ['class' => 'search'],
-//                        ];
-//                         
+                        $navItems[] = [
+                            'label' => '<form method="get" action="/site/search" class="input-group pull-right">
+                                    <input type="text" class="form-control" name="q" id="k" value="" placeholder="Поиск...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary "><i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </form>',
+                            'options' => ['class' => 'search'],
+                        ];
+                         
                         echo Nav::widget([
                             'id' => 'topMain',
                             'encodeLabels' => false,
@@ -139,7 +139,6 @@ AvatarAsset::register($this);
                         <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
                     </div>
                 </header>
-            <?php endif; ?>
                 <section class="container">
                     <?= Alert::widget(
                             [
@@ -149,6 +148,8 @@ AvatarAsset::register($this);
                             ]
                             ) ?>
                 </section>
+            <?php endif; ?>
+                
             <?= $content ?>
 
         </div>
