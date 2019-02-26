@@ -49,10 +49,17 @@ use frontend\widgets\owlcarousel\OwlCarouselWidget;
 
             endforeach;
             
-        }        
-        
-        echo $content;
-        ?>
+        }
+        elseif ($options['type'] === 'event')
+    {
+
+        foreach ($content_items as $key => $item) :
+            $content .= $this->render('/event/event-index.php', ['event' => $item]);
+        endforeach;
+    }
+
+    echo $content;
+    ?>
 
          <?php OwlCarouselWidget::end(); ?>
 <?php endif; ?>

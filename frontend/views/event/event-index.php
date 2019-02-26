@@ -5,7 +5,6 @@ use yii\helpers\Html;
 /* @var $event backend\modules\post\models\EventSchedule */
 ?>
 <!-- item -->
-<div class="col-md-3">
 
     <div class="item-box appear-animation pull-left inner" data-animation="fadeInDown">
         <figure>                            
@@ -15,15 +14,14 @@ use yii\helpers\Html;
             ?>
             <?php
             $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($event->item->formName(), $event->item_id);             
-            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'width' => '260', 'height' => '260', 'alt' => '']); 
-            else echo Html::img('/images/noimg.png', ['class' => 'img-responsive', 'width' => '260', 'height' => '260', 'alt' => '']); 
+            if(!empty($item)) echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive',  'alt' => '']); 
+            else echo Html::img('/images/noimg.png', ['class' => 'img-responsive','alt' => '']); 
            
             ?>
         </figure>
         <div class="item-box-desc">
             <h5><?= $event->itemName ?></h5>
-            <small class="styleColor"><?= $event->start_time ?></small>
+            <h3 class="text-danger"><?= $event->start_time ?></h3>
         </div>
     </div>
-</div>
 <!-- /item -->

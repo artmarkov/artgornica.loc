@@ -272,5 +272,36 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public static function find()
     {
         return new \backend\modules\event\models\query\EventScheduleQuery(get_called_class());
-    }    
+    } 
+    /**
+     *
+     * @inheritdoc
+     */
+    public static function getCarouselOption()
+    {
+    return [
+            'items' => 3,
+            'single_item' => false,
+            'navigation' => true,
+            'pagination' => true,
+            'transition_style' => 'fade',
+            'auto_play' => '9000',           
+            ];
+    }
+
+    /**
+     * 
+     */
+    public static function getEventScheduleList() {
+        
+    return self::find()
+                ->innerJoin('event_programm', 'event_programm.id = event_schedule.programm_id')
+                ->innerJoin('event_vid', 'event_vid.id = event_programm.vid_id')
+                ->where(['event_vid.status_vid' => EventVid::STATUS_VID_GROUP])
+               // ->where(['>=', 'start_timestamp', time()])
+                ->orderBy('start_timestamp DESC')
+               // ->limit(EventSchedule::COUNT_EVENT_INDEX)
+                ->all();      
+    
+     }
 }    

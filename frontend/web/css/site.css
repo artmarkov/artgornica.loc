@@ -156,3 +156,7 @@ div.tabs ul.nav-tabs a {
 div.tabs div.tab-content {	
     background-color: #f5f5f5 !important;
 }
+/* carousel */
+.event .owl-carousel .owl-item {   
+    padding: 10px !important;
+}

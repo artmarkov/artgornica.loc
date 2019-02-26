@@ -17,14 +17,14 @@ class PostBlogSearch extends \backend\modules\post\models\Post implements \vinta
     public function getSearchTitle()
     {
         return $this->title;
-    }
-
+    } 
+   
     /**
      * @inheritdoc
      */
     public function getSearchDescription()
     {
-        return $this->getShortContent();
+        return $this->content;
     }
 
     /**
@@ -58,5 +58,24 @@ class PostBlogSearch extends \backend\modules\post\models\Post implements \vinta
             ['like', 'post_lang.content', $searchQuery],
         ]
           );
+    }
+    /**
+     * Подсветка слова в тексте
+     * 
+     * @param type $text
+     * @param type $word
+     * @return type string
+     */
+    public static function getFragment($text, $word){
+        if ($word)
+        {
+            $text = strip_tags($text);
+            $pos = max(mb_stripos($text, $word, null, 'UTF-8') - 100, 0);
+            $fragment = mb_substr($text, $pos, 200, 'UTF-8');
+            $highlighted = str_ireplace($word, '<mark>' . $word . '</mark>', $fragment);
+        } else {
+            $highlighted = mb_substr($text, 0, 200, 'UTF-8');
+        }
+        return $highlighted;
     }
 }

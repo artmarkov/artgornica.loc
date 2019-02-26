@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use frontend\models\PostBlogSearch;
 
 $query = yii\helpers\Html::encode($query);
 
@@ -14,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="blog_search">
-    <section class="container masonry-sidebar">
+    <section class="container">
         <div class="row">
             <div class="left col-md-9">
 
@@ -22,15 +23,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 if (!empty($hits)):
                     // echo '<pre>' . print_r($hits, true) . '</pre>';
                     foreach ($hits as $hit):
-                        ?>
-                        <h3><a href="<?= yii\helpers\Url::to($hit->url, true) ?>"><?= $hit->title ?></a></h3>
-                        <p class="search"><?= $hit->description ?></p>
-                        <hr />
+                        switch ($hit->modelName)
+                        {
+                            case 'frontend\models\TagBlogSearch':
+                                $hit->title = '<i class="fa fa-tags"></i> ' . PostBlogSearch::getFragment($hit->title, $query);
+                                break;
+                            case 'frontend\models\CategoryBlogSearch':
+                                $hit->title = '<i class="fa fa-circle-o"></i> ' . PostBlogSearch::getFragment($hit->title, $query);
+                                break;
+                            default: break;
+                        }
+                        ?>                      
+                        <h4><a href="<?= yii\helpers\Url::to($hit->url, true) ?>"><?= $hit->title ?></a></h4>
+                        <?= PostBlogSearch::getFragment($hit->description, $query) ?>
+                        <hr class="half-margins">
                         <?php
                     endforeach;
                 else:
                     ?>
-                    <div class="alert alert-danger"><h3>По запросу "<?= $query ?>" ничего не найдено!</h3></div>
+                    <div class="alert alert-danger margin-top50"><h4>По запросу "<?= $query ?>" ничего не найдено!</h4></div>
                 <?php
                 endif;
                 ?>
@@ -41,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
             <aside class="right col-md-3">
-                 <?= $this->render('_blog_search', ['text' => "{$query}"]) ?>
+                <?= $this->render('_blog_search', ['text' => "{$query}"]) ?>
             </aside>
         </div>
     </section>

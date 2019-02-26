@@ -64,15 +64,6 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->all();
         }
         
-        $events = EventSchedule::find()
-                ->innerJoin('event_programm', 'event_programm.id = event_schedule.programm_id')
-                ->innerJoin('event_vid', 'event_vid.id = event_programm.vid_id')
-                ->where(['event_vid.status_vid' => EventVid::STATUS_VID_GROUP])
-                ->orderBy('start_timestamp DESC')
-                ->limit(EventSchedule::COUNT_EVENT_INDEX)
-                ->all();
-        
-       
          $parallax = Parallax::find()
                 ->where(['status' => Parallax::STATUS_ACTIVE])
                 ->one();
@@ -86,7 +77,6 @@ class SiteController extends \yeesoft\controllers\BaseController
           
         return $this->render('index', [
                 'posts' => $posts,
-                'events' => $events,
                 'parallax' => $parallax,
                 'carousel' => $carousel,
             ]);

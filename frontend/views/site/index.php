@@ -121,16 +121,21 @@ ThemeAsset::register($this);
     <!-- PARALLAX -->
 
     <!-- PORTFOLIO -->
-    <section id="portfolio" class="special-row padding50">
+    <section id="portfolio" class="event special-row padding50">
         <div class="container">
             <h2><strong>Ближайшие</strong> Занятия</h2>
-            <div class="row">
-                <?php foreach ($events as $event): ?>
-                
-                      <?= $this->render('/event/event-index.php', ['event' => $event]) ?>
-                
-                <?php endforeach ?>
-            </div>          
+            
+            <?= \frontend\widgets\CarouselWidget::widget(
+                    [
+                        'content_items' => backend\modules\event\models\EventSchedule::getEventScheduleList(),
+                        'owl_options' => backend\modules\event\models\EventSchedule::getCarouselOption(),
+                        'options' =>
+                        [
+                            'type' => 'event',
+                            'class' => 'owl-carousel text-center',
+                        ],
+            ]);
+            ?>
         </div>
     </section>
     <!-- /PORTFOLIO -->    
