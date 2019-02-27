@@ -48,9 +48,9 @@ AvatarAsset::register($this);
                 <div class="pull-right nav hidden-xs">
 
                     <?php
-                    $menuItems = [
-                        ['label' => '<i class="fa fa-home" style="margin: 5px;"></i>' . Yii::t('yee', 'Home'), 'url' => Yii::$app->urlManager->hostInfo],
-                    ];
+//                    $menuItems = [
+//                        ['label' => '<i class="fa fa-home" style="margin: 5px;"></i>' . Yii::t('yee', 'Home'), 'url' => Yii::$app->urlManager->hostInfo],
+//                    ];
                     // $menuItems = Menu::getMenuItems('main-menu');
                     if (Yii::$app->user->isGuest) {
                         $menuItems[] = [
