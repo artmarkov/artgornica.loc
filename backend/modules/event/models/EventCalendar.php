@@ -69,8 +69,8 @@ class EventCalendar extends \yeesoft\db\ActiveRecord
             [['start_timestamp', 'end_timestamp'], 'safe'],
             [['all_day'], 'default', 'value' => 0],
             [['created_at', 'updated_at'], 'safe'],
-            ['start_time', 'date', 'format' => 'php:d-m-Y H:i'],
-            ['end_time', 'date', 'format' => 'php:d-m-Y H:i'],           
+            ['start_time', 'date', 'format' => 'php:d.m.Y H:i'],
+            ['end_time', 'date', 'format' => 'php:d.m.Y H:i'],           
           ];
     }   
 }    

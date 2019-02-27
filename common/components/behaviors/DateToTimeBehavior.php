@@ -23,11 +23,11 @@ class DateToTimeBehavior extends AttributeBehavior {
                 $this->owner->{$this->attributes[$event->name]}
             );
 
-            return date('d-m-Y H:i', $this->owner->{$this->timeAttribute});
+            return date('d.m.Y H:i', $this->owner->{$this->timeAttribute});
         } else if (!empty($this->owner->{$this->timeAttribute})
             && is_numeric($this->owner->{$this->timeAttribute})
         ) {
-            $this->owner->{$this->attributes[$event->name]} = date('d-m-Y H:i',
+            $this->owner->{$this->attributes[$event->name]} = date('d.m.Y H:i',
                 $this->owner->{$this->timeAttribute}
             );
 

@@ -76,7 +76,7 @@ class Parallax extends ActiveRecord
             [['status', 'countdown'], 'integer'],
             ['countdown', 'default', 'value' => 0],
             [['bg_color', 'bg_image', 'parallax_class', 'background_ratio', 'content_image', 'url', 'btn_icon', 'btn_name', 'btn_class'], 'string', 'max' => 127],
-            ['start_time', 'date', 'format' => 'php:d-m-Y H:i'],
+            ['start_time', 'date', 'format' => 'php:d.m.Y H:i'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }

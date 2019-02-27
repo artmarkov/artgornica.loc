@@ -29,7 +29,7 @@ use Yii;
  */
 class EventSchedule extends \yeesoft\db\ActiveRecord
 {
-    const COUNT_EVENT_INDEX = 4;
+    const COUNT_EVENT_INDEX = 5;
     
     public $start_time;
     public $end_time;
@@ -94,8 +94,8 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['item_id' => 'id']],
             ['start_timestamp', 'compareTimestamp'],
             [['created_at', 'updated_at'], 'safe'],
-            ['start_time', 'date', 'format' => 'php:d-m-Y H:i'],
-            ['end_time', 'date', 'format' => 'php:d-m-Y H:i'],
+            ['start_time', 'date', 'format' => 'php:d.m.Y H:i'],
+            ['end_time', 'date', 'format' => 'php:d.m.Y H:i'],
             [['users_list', 'practice_list'], 'safe'],
           ];
     }
@@ -166,6 +166,11 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     {
         return "{$this->updatedDate} {$this->updatedTime}";
     }
+    
+    public function getStartDate()
+    {
+        return Yii::$app->formatter->asDate($this->start_timestamp);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -218,7 +223,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
      */
     public function getItemProgramm()
     {
-        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_id']);
+        return $this->hasOne(EventItemProgramm::className(), ['item_id' => 'item_id', 'programm_id' => 'programm_id']);
     }
     /* Геттер для названия события */
     public function getItemName()
@@ -290,7 +295,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public static function getCarouselOption()
     {
     return [
-            'items' => 3,
+            'items' => 2,
             'single_item' => false,
             'navigation' => true,
             'pagination' => true,
@@ -302,16 +307,26 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     /**
      * 
      */
-    public static function getEventScheduleList() {
-        
-    return self::find()
+    public static function getEventScheduleList()
+    {
+        $data = self::find()
                 ->innerJoin('event_programm', 'event_programm.id = event_schedule.programm_id')
                 ->innerJoin('event_vid', 'event_vid.id = event_programm.vid_id')
-                ->where(['event_vid.status_vid' => EventVid::STATUS_VID_GROUP])
-               // ->where(['>=', 'start_timestamp', time()])
-                ->orderBy('start_timestamp DESC')
-               // ->limit(EventSchedule::COUNT_EVENT_INDEX)
-                ->all();      
-    
-     }
+                ->where(['event_vid.status_vid' => EventVid::STATUS_VID_GROUP]);
+
+        $data_count = clone $data;
+        $count = $data_count->where(['>=', 'start_timestamp', time()])->count();
+        if ($count >= EventSchedule::COUNT_EVENT_INDEX)
+        {
+            return $data->where(['>=', 'start_timestamp', time()]) //выводим все новые занятия
+                            ->orderBy('start_timestamp DESC')
+                            ->all();
+        }
+        else
+        {
+            return $data->limit(EventSchedule::COUNT_EVENT_INDEX) 
+                            ->orderBy('start_timestamp DESC')
+                            ->all();
+        }
+    }
 }    

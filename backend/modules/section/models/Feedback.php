@@ -157,8 +157,8 @@ class Feedback extends \yii\db\ActiveRecord
      public static function getMainOptionsList()
     {
         return [
-            [self::MAIN_ON, Yii::t('yee', 'On'), 'default'],
-            [self::MAIN_OFF, Yii::t('yee', 'Off'), 'primary']
+            [self::MAIN_ON, Yii::t('yee', 'On'), 'primary'],
+            [self::MAIN_OFF, Yii::t('yee', 'Off'), 'default']
         ];
     }
      /**

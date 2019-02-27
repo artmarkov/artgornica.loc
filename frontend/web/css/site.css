@@ -13,7 +13,7 @@ a.label.label-primary.light:focus {
 }
 #portfolio .item-box-desc h4 {   
     min-height: 90px;   
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 ul.menu-top.nav-main > li {
     display: inline !important;	
@@ -81,7 +81,7 @@ ul li {
     color: #7e8998 !important;	
 }
 .parallax p {
-    color: #c1c1c1 !important;
+    color: #efefef !important;
 }
 .divider .fa {
     background: #ffffff !important;	
