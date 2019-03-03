@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f46f01d98231f166c9e6aae7d6b6d65",
+    "content-hash": "eb47f421aff6180ac634768b2b0ac2f8",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -1426,6 +1426,50 @@
                 "yii2"
             ],
             "time": "2018-11-08T09:49:58+00:00"
+        },
+        {
+            "name": "himiklab/yii2-sortable-grid-view-widget",
+            "version": "1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/himiklab/yii2-sortable-grid-view-widget.git",
+                "reference": "4e3f419da917db8a7d61a00c963b799593c66e31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/himiklab/yii2-sortable-grid-view-widget/zipball/4e3f419da917db8a7d61a00c963b799593c66e31",
+                "reference": "4e3f419da917db8a7d61a00c963b799593c66e31",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "himiklab\\sortablegrid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "HimikLab",
+                    "homepage": "https://github.com/himiklab"
+                }
+            ],
+            "description": "Sortable modification of standard Yii2 GridView widget",
+            "keywords": [
+                "grid",
+                "gridview",
+                "sortable",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-02-27T13:58:01+00:00"
         },
         {
             "name": "ikimea/browser",

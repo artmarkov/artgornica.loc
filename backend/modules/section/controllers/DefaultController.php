@@ -4,6 +4,7 @@ namespace backend\modules\section\controllers;
 
 use Yii;
 use yeesoft\controllers\admin\BaseController;
+use himiklab\sortablegrid\SortableGridAction;
 
 /**
  * DefaultController implements the CRUD actions for backend\modules\section\models\SectionPage model.
@@ -26,4 +27,14 @@ class DefaultController extends \backend\controllers\DefaultController
                 return parent::getRedirectPage($action, $model);
         }
     }
+
+public function actions()
+{
+    return [
+        'sort' => [
+            'class' => SortableGridAction::className(),
+            'modelName' => \backend\modules\section\models\SectionPage::className(),
+        ],
+    ];
+}
 }

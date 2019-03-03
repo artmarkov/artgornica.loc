@@ -18,7 +18,7 @@ class SectionPage extends SectionPageModel
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'created_at', 'updated_at','sortOrder'], 'integer'],
             [['name', 'slug', 'status'], 'safe'],
         ];
     }
@@ -50,7 +50,7 @@ class SectionPage extends SectionPageModel
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'sortOrder' => SORT_ASC,
                 ],
             ],
         ]);

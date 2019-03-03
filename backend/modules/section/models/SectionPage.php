@@ -6,6 +6,7 @@ use Yii;
 
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\SluggableBehavior;
+use himiklab\sortablegrid\SortableGridBehavior;
 /**
  * This is the model class for table "section_page".
  *
@@ -13,6 +14,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $name
  * @property string $slug
  * @property int $status
+ * @property int $sortOrder
  * @property int $created_at
  * @property int $updated_at
  *
@@ -44,6 +46,10 @@ class SectionPage extends \yii\db\ActiveRecord
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name',
             ],
+            'sort' => [
+            'class' => SortableGridBehavior::className(),
+            'sortableAttribute' => 'sortOrder'
+        ],
         ];
     }
     /**
@@ -53,10 +59,10 @@ class SectionPage extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'status'], 'required'],
-            [['status'], 'integer'],
+            [['status','sortOrder'], 'integer'],
             [['name', 'slug'], 'string', 'max' => 127],
             [['created_at', 'updated_at'], 'safe'],
-            ['emails', 'validateEmails']
+//            ['emails', 'validateEmails']
         ];
     }
 
