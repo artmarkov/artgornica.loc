@@ -12,6 +12,7 @@ use Yii;
  * @property int $vid_id
  * @property string $name
  * @property string $description
+ * @property string $assignment
  * @property int $created_at
  * @property int $updated_at
  *
@@ -57,7 +58,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
         return [
             [['vid_id', 'name'], 'required'],
             [['vid_id'], 'integer'],
-            [['description'], 'string'],
+            [['description', 'assignment'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 127],
             [['vid_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventVid::className(), 'targetAttribute' => ['vid_id' => 'id']],
@@ -75,6 +76,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             'vid_id' => Yii::t('yee', 'Vid ID'),
             'name' => Yii::t('yee', 'Name'),
             'description' => Yii::t('yee', 'Description'),
+            'assignment' => Yii::t('yee/event', 'Assignment'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
             'gridItemsSearch' => Yii::t('yee/event', 'Events List'),

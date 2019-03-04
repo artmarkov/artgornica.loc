@@ -114,3 +114,6 @@ img.dw-media-image {
 .ui-sortable-handle {  
     cursor: move;
 }
+#nested-grid.grid-view tbody tr td {
+    height: auto !important;
+}

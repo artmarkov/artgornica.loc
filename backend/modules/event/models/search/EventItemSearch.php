@@ -12,7 +12,6 @@ use backend\modules\event\models\EventItem;
  */
 class EventItemSearch extends EventItem
 {
-    public $vidName;
    
     /**
      * @inheritdoc
@@ -20,9 +19,8 @@ class EventItemSearch extends EventItem
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'vid_id'], 'integer'],
-            [['name', 'description'], 'safe'],            
-            ['vidName', 'string'],
+            [['id', 'created_at', 'updated_at', 'sortOrder'], 'integer'],
+            [['name', 'description'], 'safe'],   
             ['gridPracticeSearch', 'string'],
         ];
     }
@@ -54,7 +52,7 @@ class EventItemSearch extends EventItem
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'sortOrder' => SORT_ASC,
                 ],
             ],
         ]);
@@ -67,10 +65,8 @@ class EventItemSearch extends EventItem
             return $dataProvider;
         }
         
-      //жадная загрузка       
-        $query->with(['vid']);
-        $query->with(['eventPractices']);
-       
+      //жадная загрузка   
+        $query->with(['eventPractices']);       
         
         if ($this->gridPracticeSearch) {
             $query->joinWith(['eventPractices']);
@@ -78,7 +74,6 @@ class EventItemSearch extends EventItem
         
         $query->andFilterWhere([
             'id' => $this->id,
-            'vid_id' => $this->vid_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'event_item_practice.practice_id' => $this->gridPracticeSearch,

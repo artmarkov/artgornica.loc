@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'programm_id',
                         'value' => 'programmName',
                         'label' => Yii::t('yee/event', 'Programm Name'),
-                        'options' => ['style' => 'width:150px'],
+                        'options' => ['style' => 'width:250px'],
                         'filter' => backend\modules\event\models\EventProgramm::getProgrammList(),
                     ],
                     [
@@ -86,16 +86,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function (EventSchedule $model) {
                             return implode(',<br>',
                                 yii\helpers\ArrayHelper::map($model->scheduleUsers, 'id', 'fullName'));
-                        },
-                        'options' => ['style' => 'width:250px'],
-                        'format' => 'raw',
-                    ],
-                    [
-                        'attribute' => 'gridPracticeSearch',
-                        'filter' => backend\modules\event\models\EventPractice::getEventPracticeList(),
-                        'value' => function (EventSchedule $model) {
-                            return implode(', ',
-                                yii\helpers\ArrayHelper::map($model->schedulePractices, 'id', 'name'));
                         },
                         'options' => ['style' => 'width:250px'],
                         'format' => 'raw',

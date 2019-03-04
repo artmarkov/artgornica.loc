@@ -2,6 +2,7 @@
 
 namespace backend\modules\event\models;
 use yii\behaviors\TimestampBehavior;
+use himiklab\sortablegrid\SortableGridBehavior;
 
 use Yii;
 
@@ -9,13 +10,13 @@ use Yii;
  * This is the model class for table "{{%event_item}}".
  *
  * @property int $id
- * @property int $vid_id
+ * @property int $sortOrder
  * @property string $name
  * @property string $description
+ * @property string $assignment
  * @property int $created_at
  * @property int $updated_at
  * 
- * @property EventVid $vid
  * @property EventItemPractice[] $eventItemPractices
  * @property EventItemProgramm[] $eventItemProgramms
  * @property EventSchedule[] $eventSchedules
@@ -35,7 +36,8 @@ class EventItem extends \yeesoft\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             [
                 'class' => TimestampBehavior::className(),
@@ -46,6 +48,10 @@ class EventItem extends \yeesoft\db\ActiveRecord
                     'eventPractices' => 'practice_list',
                 ],
             ],
+            'sort' => [
+                'class' => SortableGridBehavior::className(),
+                'sortableAttribute' => 'sortOrder',
+            ],
         ];
     }
 
@@ -55,14 +61,13 @@ class EventItem extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'vid_id'], 'required'],
-            [['vid_id'], 'integer'],
-            [['description'], 'string'],           
+            [['name', 'description'], 'required'],
+            [['sortOrder'], 'integer'],
+            [['description', 'assignment'], 'string'],           
             [['created_at', 'updated_at'], 'safe'],
             [['practice_list'], 'safe'],
             [['name'], 'string', 'max' => 127],
-            [['vid_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventVid::className(), 'targetAttribute' => ['vid_id' => 'id']],
-       
+            
         ];
     }
 
@@ -73,9 +78,9 @@ class EventItem extends \yeesoft\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yee', 'ID'),
-            'vid_id' => Yii::t('yee/event', 'Vid ID'),
             'name' => Yii::t('yee', 'Name'),
             'description' => Yii::t('yee', 'Description'),
+            'assignment' => Yii::t('yee/event', 'Assignment'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
             'practice_list' => Yii::t('yee/event', 'Practice List'),
@@ -114,20 +119,6 @@ class EventItem extends \yeesoft\db\ActiveRecord
         return "{$this->updatedDate} {$this->updatedTime}";
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getVid()
-    {
-        return $this->hasOne(EventVid::className(), ['id' => 'vid_id']);
-    }
-    
-    /* Геттер для названия вида */
-    public function getVidName()
-    {
-        return $this->vid->name;
-    }
-    
     /* Геттер для времени проведения */
     public function getTimeVolume()
     {
@@ -149,9 +140,8 @@ class EventItem extends \yeesoft\db\ActiveRecord
     public static function getEventItemList()
     {
         return \yii\helpers\ArrayHelper::map(static::find()
-                ->innerJoin('event_vid', 'event_vid.id = event_item.vid_id')
-                ->select('event_item.id as id, event_item.name as name, event_vid.name as name_category')
-                ->asArray()->all(), 'id', 'name', 'name_category');
+                ->select('event_item.id as id, event_item.name as name')
+                ->asArray()->all(), 'id', 'name');
     }
    
     /**
@@ -209,11 +199,8 @@ class EventItem extends \yeesoft\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      * Полный список занятий по name
      */
-    public static function getEventItemByName($vid_id) {
-        $data = self::find()
-                        ->innerJoin('event_vid', 'event_vid.id = event_item.vid_id')
-                        ->where(['event_item.vid_id' => $vid_id])
-                        ->select(['event_item.name', 'event_item.id'])
+    public static function getEventItemByName() {
+        $data = self::find()->select(['event_item.name', 'event_item.id'])
                         ->indexBy('id')->column();
 
         return $data;

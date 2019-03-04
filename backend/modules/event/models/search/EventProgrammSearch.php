@@ -23,7 +23,7 @@ class EventProgrammSearch extends EventProgramm
             [['id', 'created_at', 'updated_at', 'vid_id'], 'integer'],
             [['name', 'description'], 'safe'],            
             ['vidName', 'string'],
-            ['gridItemsSearch', 'string'],
+//            ['gridItemsSearch', 'string'],
         ];
     }
 
@@ -69,19 +69,19 @@ class EventProgrammSearch extends EventProgramm
 
        //жадная загрузка       
         $query->with(['vid']);
-        $query->with(['eventItems']);
+//        $query->with(['eventItems']);
        
         
-        if ($this->gridItemsSearch) {
-            $query->joinWith(['eventItems']);
-        }
+//        if ($this->gridItemsSearch) {
+//            $query->joinWith(['eventItems']);
+//        }
         
         $query->andFilterWhere([
             'id' => $this->id,
             'event_programm.vid_id' => $this->vid_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'event_item_programm.item_id' => $this->gridItemsSearch,
+//            'event_item_programm.item_id' => $this->gridItemsSearch,
         ]);
 
         $query->andFilterWhere(['like', 'event_programm.name', $this->name])

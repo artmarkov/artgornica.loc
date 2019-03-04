@@ -27,11 +27,13 @@ use backend\modules\media\widgets\TinyMce;
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'description')->widget(TinyMce::className()); ?>
+                    
+                    <?= $form->field($model, 'assignment')->widget(TinyMce::className()); ?>
 
                 </div>
 
             </div>
-        <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     <?php if (!$model->isNewRecord) : ?>
                         <?= backend\modules\event\widgets\ItemProgrammWidget::widget(['model' => $model]); ?>
@@ -39,6 +41,17 @@ use backend\modules\media\widgets\TinyMce;
                 </div>
 
             </div>
+             <?php if (!$model->isNewRecord) : ?>
+            
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    
+                    <?= \backend\modules\mediamanager\widgets\MediaManagerWidget::widget(['model' => $model]); ?>
+                    
+                </div> 
+            </div>
+            
+            <?php endif; ?>
         </div>
         <div class="col-md-3">
 

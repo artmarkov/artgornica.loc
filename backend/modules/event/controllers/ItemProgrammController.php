@@ -5,6 +5,7 @@ namespace backend\modules\event\controllers;
 use Yii;
 use backend\controllers\DefaultController;
 use backend\modules\event\models\EventItemProgramm;
+use himiklab\sortablegrid\SortableGridAction;
 
 /**
  * EventItemProgrammController implements the CRUD actions for backend\modules\event\models\EventItemProgramm model.
@@ -118,6 +119,19 @@ class ItemProgrammController extends DefaultController
         $model->delete();
         Yii::$app->session->setFlash('crudMessage', Yii::t('yee', 'Your item has been deleted.'));
         return $this->redirect(Yii::$app->request->referrer); 
+    }
+    /**
+     * action sort for himiklab\sortablegrid\SortableGridBehavior
+     * @return type
+     */
+    public function actions()
+    {
+        return [
+            'sort' => [
+                'class' => SortableGridAction::className(),
+                'modelName' => $this->modelClass,
+            ],
+        ];
     }
      
 }

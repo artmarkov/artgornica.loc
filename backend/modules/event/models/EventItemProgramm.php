@@ -3,6 +3,7 @@
 namespace backend\modules\event\models;
 
 use Yii;
+use himiklab\sortablegrid\SortableGridBehavior;
 
 /**
  * This is the model class for table "{{%event_item_programm}}".
@@ -12,7 +13,7 @@ use Yii;
  * @property int $item_id
  * @property int $qty_items
  * @property int $price
- *
+ * @property int $sortOrder
  * @property EventItem $item
  * @property EventProgramm $programm
  * @property EventSchedule[] $eventSchedules
@@ -20,12 +21,35 @@ use Yii;
  */
 class EventItemProgramm extends \yii\db\ActiveRecord
 {
+    public $practice_list;
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return '{{%event_item_programm}}';
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
+                'relations' => [
+                    'itemProgrammPractices' => 'practice_list',
+                ],
+            ],
+            'sort' => [
+                'class' => SortableGridBehavior::className(),
+                'sortableAttribute' => 'sortOrder',
+                'scope' => function ($query) {
+                    $query->andWhere(['programm_id' => $this->programm_id]);
+                },
+            ],
+        ];
     }
 
     /**
@@ -35,7 +59,8 @@ class EventItemProgramm extends \yii\db\ActiveRecord
     {
         return [
             [['programm_id', 'item_id'], 'required'],
-            [['programm_id', 'item_id', 'qty_items', 'price'], 'integer'],
+            [['programm_id', 'item_id', 'qty_items', 'price', 'sortOrder'], 'integer'],
+            ['practice_list', 'safe'],
             [['qty_items'], 'default', 'value' => 1],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['item_id' => 'id']],
             [['programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventProgramm::className(), 'targetAttribute' => ['programm_id' => 'id']],
@@ -54,6 +79,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
             'qty_items' => Yii::t('yee/event', 'Qty Items'),
             'price' => Yii::t('yee/event', 'Price'),
             'itemName' => Yii::t('yee', 'Name'),
+            'practice_list' => Yii::t('yee/event', 'Practice List'),
         ];
     }
 
@@ -78,25 +104,12 @@ class EventItemProgramm extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EventProgramm::className(), ['id' => 'programm_id']);
     }
-
-    /**
-     * @param $programm_id
-     * @return array|\yii\db\ActiveRecord[]
+     /**
+     * @return \yii\db\ActiveQuery
      */
-    public static function getEventItemProgrammList($programm_id)
+    public function getItemProgrammPractices()
     {
-        $data = self::find()            
-            ->innerJoin('event_item', 'event_item.id = event_item_programm.item_id')
-            ->andWhere(['in', 'event_item_programm.programm_id' , $programm_id])
-            ->select(['event_item.id as item_id',
-                      'event_item_programm.id as id',
-                      'event_item.name as name',
-                      'event_item_programm.qty_items as qty',
-                      'event_item_programm.price as price'                      
-                ])
-            ->orderBy('event_item_programm.id')
-            ->asArray()->all(); 
-
-      return $data; 
+        return $this->hasMany(EventPractice::className(), ['id' => 'practice_id'])
+                ->viaTable('{{%event_item_programm_practice}}', ['item_programm_id' => 'id']);
     }
 }

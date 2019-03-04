@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 use yii\widgets\Pjax;
-use yeesoft\grid\GridView;
+use common\components\grid\SortableGridView;
 use yeesoft\grid\GridQuickLinks;
 use backend\modules\event\models\EventItem;
 use backend\modules\event\models\EventPractice;
@@ -51,8 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ])
             ?>
 
-            <?= 
-            GridView::widget([
+            <?= SortableGridView::widget([
                 'id' => 'event-item-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -62,6 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    ['class' => 'yii\grid\SerialColumn', 'options' => ['style' => 'width:20px']],                    
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/event/default',
@@ -70,13 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
-                    ],
-                    [
-                        'attribute' => 'vid_id',
-                        'value' => 'vidName',
-                        'label' => Yii::t('yee/event', 'Event Vid'),
-                        'filter' => backend\modules\event\models\EventVid::getVidList(),
-                        'options' => ['style' => 'width:300px'],
                     ],
                     [
                         'attribute' => 'gridPracticeSearch',

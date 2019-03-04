@@ -35,7 +35,6 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public $end_time;
     
     public $gridUsersSearch;
-    public $gridPracticeSearch;
     
     /**
      * {@inheritdoc}
@@ -57,7 +56,6 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
                 'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
                 'relations' => [
                     'scheduleUsers' => 'users_list',
-                    'schedulePractices' => 'practice_list',
                 ],
             ],
             [
@@ -96,7 +94,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             ['start_time', 'date', 'format' => 'php:d.m.Y H:i'],
             ['end_time', 'date', 'format' => 'php:d.m.Y H:i'],
-            [['users_list', 'practice_list'], 'safe'],
+            [['users_list'], 'safe'],
           ];
     }
     /**
@@ -132,8 +130,6 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
             'updated_at' => Yii::t('yee', 'Updated At'),
             'users_list' => Yii::t('yee/event', 'Users List'),
             'gridUsersSearch' => Yii::t('yee/event', 'Users List'),
-            'practice_list' => Yii::t('yee/event', 'Practice List'),
-            'gridPracticeSearch' => Yii::t('yee/event', 'Practice List'),
         ];
     }
 
@@ -268,16 +264,6 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
                 ->orderBy('user.last_name')
                 ->asArray()->all();
         return \yii\helpers\ArrayHelper::map($users, 'id', 'name');
-    }
-    
-     /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSchedulePractices()
-    {
-        return $this->hasMany(EventPractice::className(), ['id' => 'practice_id'])
-                ->viaTable('{{%event_schedule_practice}}', ['schedule_id' => 'id']);
-                             
     }
      
     /**

@@ -29,6 +29,8 @@ use backend\modules\media\widgets\TinyMce;
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'description')->widget(TinyMce::className()); ?>
+                    
+                    <?= $form->field($model, 'assignment')->widget(TinyMce::className()); ?>
 
                 </div>
        
@@ -74,12 +76,7 @@ use backend\modules\media\widgets\TinyMce;
                                 <span><?= $model->timeVolume . ' ' . Yii::t('yee/event', 'min'); ?></span>
                             </div>
                         <?php endif; ?>
-                        
-                        <?= $form->field($model, 'vid_id')
-                            ->dropDownList(backend\modules\event\models\EventVid::getVidList(), [
-                                'prompt' => Yii::t('yee/event', 'Select Vid...')
-                            ])->label(Yii::t('yee/event', 'Event Vid'));
-                        ?>
+                     
                         <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [
                             'data' => backend\modules\event\models\EventPractice::getEventPracticeList(),
                             'options' => [

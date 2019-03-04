@@ -1,7 +1,7 @@
 <?php
 
 namespace backend\modules\event\controllers;
-
+use himiklab\sortablegrid\SortableGridAction;
 use Yii;
 
 
@@ -43,5 +43,18 @@ class DefaultController extends \backend\controllers\DefaultController
        
         return $this->redirect($this->getRedirectPage('delete', $model));
        
+    }
+    /**
+     * action sort for himiklab\sortablegrid\SortableGridBehavior
+     * @return type
+     */
+    public function actions()
+    {
+        return [
+            'sort' => [
+                'class' => SortableGridAction::className(),
+                'modelName' => $this->modelClass,
+            ],
+        ];
     }
 }

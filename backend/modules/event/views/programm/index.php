@@ -79,16 +79,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'filter' => backend\modules\event\models\EventVid::getVidList(),
                         'options' => ['style' => 'width:300px'],
                     ],
-                    [
-                        'attribute' => 'gridItemsSearch',
-                        'filter' => backend\modules\event\models\EventItem::getEventItemList(),
-                        'value' => function (EventProgramm $model) {
-                            return implode(',<br>',
-                                ArrayHelper::map($model->eventItems, 'id', 'name'));
-                        },
-                        'options' => ['style' => 'width:600px'],
-                        'format' => 'raw',
-                    ],
+//                    [
+//                        'attribute' => 'gridItemsSearch',
+//                        'filter' => backend\modules\event\models\EventItem::getEventItemList(),
+//                        'value' => function (EventProgramm $model) {
+//                            return implode(',<br>',
+//                                ArrayHelper::map($model->eventItems, 'id', 'name'));
+//                        },
+//                        'options' => ['style' => 'width:600px'],
+//                        'format' => 'raw',
+//                    ],
                    
 //            'id',
 //            'vid_id',

@@ -2,6 +2,9 @@
 
 use yeesoft\widgets\ActiveForm;
 use yeesoft\helpers\Html;
+use backend\modules\event\models\EventPractice;
+use kartik\depdrop\DepDrop;
+use yii\helpers\Url;
 
 /* @var $model backend\modules\event\models\EventItemProgramm */
 /* @var $form yeesoft\widgets\ActiveForm */
@@ -39,9 +42,23 @@ use yeesoft\helpers\Html;
                 <div class="col-md-6">
                      <?= $form->field($model, 'price')->textInput() ?>                    
                 </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
+                            'type' => DepDrop::TYPE_SELECT2,
+                            'data' => EventPractice::getEventPracticeByName($model->item_id),
+                            'options' => ['multiple' => true, 'prompt' => Yii::t('yee/event', 'Select Practice...'), 'id' => 'practice_list'],
+                            'pluginOptions' => [
+                                'depends' => ['item_id'],
+                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
+                                'url' => Url::to(['/event/schedule/practice'])
+                            ]
+                        ])->label(Yii::t('yee/event', 'Practice List'));
+                        ?>                   
+                </div>
             </div>
 
             <?= $form->field($model, 'programm_id')->label(false)->hiddenInput() ?>
+            
             <?= $form->field($model, 'item_id')->label(false)->hiddenInput() ?>
 
             <?php if ($model->isNewRecord) {

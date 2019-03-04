@@ -33,7 +33,7 @@ public function actions()
     return [
         'sort' => [
             'class' => SortableGridAction::className(),
-            'modelName' => \backend\modules\section\models\SectionPage::className(),
+            'modelName' => $this->modelClass,
         ],
     ];
 }

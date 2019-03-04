@@ -3,6 +3,8 @@
 use yeesoft\widgets\ActiveForm;
 use yeesoft\helpers\Html;
 use kartik\select2\Select2;
+use yii\widgets\Pjax;
+use himiklab\sortablegrid\SortableGridView;
 
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -18,7 +20,7 @@ use kartik\select2\Select2;
                              <?=
                             $form->field($model, 'item_id')->widget(Select2::classname(), [
 
-                                'data' => backend\modules\event\models\EventItem::getEventItemByName($model->vid_id),  
+                                'data' => backend\modules\event\models\EventItem::getEventItemByName(),  
                                 'theme' => Select2::THEME_KRAJEE,
                                 'options' => ['placeholder' => Yii::t('yee/event', 'Select Events...')],
                                 'pluginOptions' => [
@@ -40,57 +42,51 @@ use kartik\select2\Select2;
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <?php Pjax::begin(); ?>
+   
+<?php
 
-                            <?php $data = \backend\modules\event\models\EventItemProgramm::getEventItemProgrammList($model->id); ?>
-<?php if (!empty($data)): ?>
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th><?= Yii::t('yee/event', 'Event Name'); ?></th>
-                                                <th><?= Yii::t('yee/event', 'Qty Items'); ?></th>                                                
-                                                <th><?= Yii::t('yee/event', 'Price'); ?></th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-    <?php $qty_summ = $price_summ = 0; ?>
-                                            
-    <?php foreach ($data as $id => $item): ?>
-                                            
-    <?php $qty_summ += $item['qty'];
-          $price_summ += $item['price'];
-    ?>
-                                                <tr>
-                                                    <td><?= ++$id ?></td>
-                                                    <td><?= $item['name'] ?></td>
-                                                    <td><?= $item['qty'] ?></td>
-                                                    <td><?= $item['price'] ?></td>
-                                                    <td><?= Html::a('<span class="glyphicon glyphicon-pencil text-color-default" aria-hidden="true"></span>', ['#'], [
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => \backend\modules\event\models\EventItemProgramm::find()
+                ->andWhere(['in', 'programm_id' , $model->id])
+                ->orderBy('sortOrder'),
+        ]);
+?>
+    <?= SortableGridView::widget([
+        'id' => 'nested-grid',
+        'dataProvider' => $dataProvider,
+        'sortableAction' => ['item-programm/sort'],
+        //'filterModel' => $searchModel,
+        'layout' => '{items}',
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+           
+            'itemName',
+            'qty_items',
+            'price',
+
+            [
+                'class' =>  \yii\grid\ActionColumn::className(),
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                         return Html::a('<span class="glyphicon glyphicon-pencil text-color-default" aria-hidden="true"></span>', ['#'], [
                                                             'class' => 'update-programm',
-                                                            'data-id' => $item['id'],
+                                                            'data-id' => $model->id,
                                                         ]);
-                                                        ?>
-                                                    <?= Html::a('<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>', ['#'], [
+                    },
+                    'delete' => function ($url, $model) {
+                         return Html::a('<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>', ['#'], [
                                                             'class' => 'remove-programm',
-                                                            'data-id' => $item['id'],
+                                                            'data-id' => $model->id,
                                                         ]);
-                                                        ?>
-                                                    </td>
-                                                </tr>
-    <?php endforeach ?>
-                                                <tr>
-                                                    <td></td>
-                                                    <td><b class = 'pull-right'>ИТОГО:</b></td>
-                                                    <td><b><?= $qty_summ ?></b></td>
-                                                    <td><b><?= $price_summ ?></b></td>
-                                                    <td></td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-<?php endif; ?>
+                    },     
+                    ],
+                'template' => '{update} {delete}',
+                'controller' => 'item-programm',
+            ],
+        ],
+    ]); ?>
+    <?php Pjax::end(); ?>
                         </div>
                     </div>
                 </div>

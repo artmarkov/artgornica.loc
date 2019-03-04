@@ -42,21 +42,6 @@ use yii\helpers\Url;
                             'url' => Url::to(['/event/schedule/item'])
                         ]
                     ])->label(Yii::t('yee/event', 'Event Name'));
-                    
-                    echo $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
-                        'type' => DepDrop::TYPE_SELECT2,
-                        'data' => EventPractice::getEventPracticeByName($model->item_id),
-                        'options' => [
-                            'multiple' => true, 
-                            'prompt' => Yii::t('yee/event', 'Select Practice...'), 
-                            'id' => 'practice_list'
-                            ],
-                        'pluginOptions' => [
-                            'depends' => ['item_id'],
-                            'placeholder' => Yii::t('yee/event', 'Select Practice...'),
-                            'url' => Url::to(['/event/schedule/practice'])
-                        ]
-                    ])->label(Yii::t('yee/event', 'Practice List'));
                     ?>
 
                     <?=
