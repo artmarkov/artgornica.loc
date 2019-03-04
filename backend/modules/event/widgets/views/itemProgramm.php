@@ -50,12 +50,13 @@ use himiklab\sortablegrid\SortableGridView;
             'query' => \backend\modules\event\models\EventItemProgramm::find()
                 ->andWhere(['in', 'programm_id' , $model->id])
                 ->orderBy('sortOrder'),
+            'sort' => false,
         ]);
 ?>
     <?= SortableGridView::widget([
         'id' => 'nested-grid',
         'dataProvider' => $dataProvider,
-        'sortableAction' => ['item-programm/sort'],
+        'sortableAction' => ['item-programm/sort'],        
         //'filterModel' => $searchModel,
         'layout' => '{items}',
         'columns' => [
