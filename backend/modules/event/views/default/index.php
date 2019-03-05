@@ -90,6 +90,16 @@ $this->params['breadcrumbs'][] = $this->title;
 //                        'filter' => backend\modules\event\models\EventVid::getVidList(),
 //                        'options' => ['style' => 'width:300px'],
                     ],
+                    [
+                        'attribute' => 'mediaFirst',
+                        'value' => function ($model)
+                                {
+                        $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($model->formName(), $model->id);
+                        !empty($item) ? $img = \backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'] : $img = '/images/noimg.png';
+                            return Html::img($img, ['class'=> 'dw-media-image']);
+                    },
+                            'format' => 'html',
+                    ],   
 //              'timeVolume',
 //            'id',
 //            'name',

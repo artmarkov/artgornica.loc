@@ -25,7 +25,7 @@ class EventScheduleSearch extends EventSchedule
     {
         return [
             [['id', 'programm_id', 'item_id', 'place_id',], 'integer'],
-            [['description', 'price', 'all_day'], 'safe'],
+            [['description', 'all_day'], 'safe'],
             [['placeName','programmName','itemName'], 'string'],
             [['gridUsersSearch'], 'string'],
         ];
@@ -84,9 +84,6 @@ class EventScheduleSearch extends EventSchedule
             'item_id' => $this->item_id,
             'programm_id' => $this->programm_id,
             'event_schedule_users.user_id' => $this->gridUsersSearch,
-            'price' => $this->price,
-//            'start_timestamp' => $this->start_timestamp,
-//            'end_timestamp' => $this->end_timestamp,
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description])

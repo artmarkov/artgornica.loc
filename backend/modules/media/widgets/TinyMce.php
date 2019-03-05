@@ -32,7 +32,7 @@ class TinyMce extends InputWidget
      */
     public $clientOptions = [
         'menubar' => false,
-        'height' => 400,
+        'height' => 200,
         'image_dimensions' => true,
         'entity_encoding' => 'raw',
         'plugins' => [

@@ -3,7 +3,6 @@
 use yeesoft\widgets\ActiveForm;
 use backend\modules\event\models\EventProgramm;
 use backend\modules\event\models\EventItem;
-use backend\modules\event\models\EventPractice;
 use yeesoft\helpers\Html;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
@@ -50,8 +49,6 @@ use yii\helpers\Url;
                                 'prompt' => Yii::t('yee/event', 'Select Places...')
                             ])->label(Yii::t('yee/event', 'Place Name'));
                     ?>
-
-                    <?= $form->field($model, 'price')->textInput() ?>
                     
                     <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
 
@@ -101,11 +98,9 @@ $('.create-event').on('click', function (e) {
                 id : $('#eventschedule-id').val(),
                 programmId : $('#programm_id').val(),
                 itemId : $('#item_id').val(),
-                practiceList : $('#practice_list').val(),
                 resourceId : $('#eventschedule-place_id').val(),
                 description : $('#eventschedule-description').val(),
                 users : $('#eventschedule-users_list').val(),
-                price : $('#eventschedule-price').val(),
                 start : $('#eventschedule-start_time').val(),
                 end : $('#eventschedule-end_time').val(),
             };

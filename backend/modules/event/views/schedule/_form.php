@@ -72,13 +72,7 @@ use backend\modules\media\widgets\TinyMce;
                                 </label>
                                 <span><?= $model->updatedDatetime ?></span>
                             </div>
-                        
-                            <div class="form-group clearfix">
-                                <label class="control-label" style="float: left; padding-right: 5px;">Расчет: </label>
-                                <span><?= $model->priceItems ?></span> / 
-                                <span><?= $model->qtyItems ?></span> = 
-                                <span><?= round(($model->priceItems/$model->qtyItems), 2); ?> руб.</span>
-                            </div>
+                           
                         <?php endif; ?>
                     
                    
@@ -91,8 +85,6 @@ use backend\modules\media\widgets\TinyMce;
                         <?= $form->field($model, 'start_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput(); ?>
 
                         <?= $form->field($model, 'end_time')->widget(kartik\datetime\DateTimePicker::classname())->widget(\yii\widgets\MaskedInput::className(), ['mask' => Yii::$app->settings->get('reading.date_time_mask')])->textInput() ?>
-
-                        <?= $form->field($model, 'price')->textInput() ?>
                         
                         <?= $form->field($model, 'users_list')->widget(kartik\select2\Select2::className(), [
                         'data' => backend\modules\event\models\EventSchedule::getScheduleUsersList(),

@@ -108,13 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:150px'],
                         'format' => 'datetime',
                         
-                    ],
-                    [
-                        'attribute' => 'price',
-                        'value' => function (EventSchedule $model) {
-                            return $model->price . ' ' . Yii::t('yee/event', 'руб');
-                        },
-                    ],
+                    ],                    
                 ],
             ]);
             ?>

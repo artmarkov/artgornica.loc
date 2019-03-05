@@ -13,9 +13,9 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $assignment
+ * @property int $programm_price
  * @property int $created_at
  * @property int $updated_at
- *
  * @property EventItemProgramm[] $eventItemProgramms
  * @property EventVid $vid
  * @property EventSchedule[] $eventSchedules
@@ -24,7 +24,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
 {
      public $gridItemsSearch;
      public $item_id;
-
+     public $mediaFirst;
 
      /**
      * {@inheritdoc}
@@ -42,12 +42,6 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ],
-//            [
-//                'class' => \common\components\behaviors\ManyHasManyBehavior::className(),
-//                'relations' => [
-//                    'eventItems' => 'items_list',
-//                ],
-//            ],
         ];
     }
     /**
@@ -57,7 +51,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
     {
         return [
             [['vid_id', 'name'], 'required'],
-            [['vid_id'], 'integer'],
+            [['vid_id', 'programm_price'], 'integer'],
             [['description', 'assignment'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 127],
@@ -81,9 +75,19 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             'updated_at' => Yii::t('yee', 'Updated At'),
             'gridItemsSearch' => Yii::t('yee/event', 'Events List'),
             'item_id' => Yii::t('yee/event', 'Events List'),
+            'programm_price' => Yii::t('yee/event', 'Programm Price'),
+            'fullPrice' => Yii::t('yee/event', 'Price Summ'),                      
+            'mediaFirst' => Yii::t('yee/media', 'Media First'),   
         ];
     }
-     
+    
+     /* Геттер для стоимости всей пролграммы */
+    
+    public function getFullPrice()
+    {
+        return EventItemProgramm::getFullItemPrice($this->id);
+    }
+    
     public function getCreatedDate()
     {
         return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->created_at);

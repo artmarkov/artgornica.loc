@@ -176,10 +176,8 @@ class ScheduleController extends DefaultController
         if(!empty($eventData['resourceId']))  $model->place_id = $eventData['resourceId'];
         if(!empty($eventData['programmId']))  $model->programm_id = $eventData['programmId'];
         if(!empty($eventData['itemId']))      $model->item_id = $eventData['itemId'];
-        if(!empty($eventData['practiceList']))$model->practice_list = $eventData['practiceList'];
         if(!empty($eventData['users']))       $model->users_list = $eventData['users'];
         if(!empty($eventData['description'])) $model->description = $eventData['description'];
-        if(!empty($eventData['price']))       $model->price = $eventData['price'];
 
         if($model->save()) {
             return true;

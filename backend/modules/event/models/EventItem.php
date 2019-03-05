@@ -24,6 +24,7 @@ use Yii;
 class EventItem extends \yeesoft\db\ActiveRecord
 {
      public $gridPracticeSearch;
+     public $mediaFirst;
      
      /**
      * {@inheritdoc}
@@ -86,6 +87,7 @@ class EventItem extends \yeesoft\db\ActiveRecord
             'practice_list' => Yii::t('yee/event', 'Practice List'),
             'gridPracticeSearch' => Yii::t('yee/event', 'Practice List'),
             'timeVolume' => Yii::t('yee/event', 'Time Volume'),           
+            'mediaFirst' => Yii::t('yee/media', 'Media First'),           
         ];
     }
     

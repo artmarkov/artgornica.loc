@@ -78,7 +78,7 @@ use backend\modules\media\widgets\TinyMce;
                         <?php endif; ?>
                      
                         <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [
-                            'data' => backend\modules\event\models\EventPractice::getEventPracticeList(),
+                            'data' => EventPractice::getEventPracticeList(),
                             'options' => [
                                 'placeholder' => Yii::t('yee/event', 'Select Practice...'), 
                                 'multiple' => true

@@ -33,13 +33,12 @@ use backend\modules\media\widgets\TinyMce;
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-md-12">
+           <div class="panel panel-default">
+                <div class="panel-body">
                     <?php if (!$model->isNewRecord) : ?>
                         <?= backend\modules\event\widgets\ItemProgrammWidget::widget(['model' => $model]); ?>
                     <?php endif; ?>
                 </div>
-
             </div>
              <?php if (!$model->isNewRecord) : ?>
             
@@ -81,6 +80,9 @@ use backend\modules\media\widgets\TinyMce;
                                     'id' => 'vid_id'
                                 ])->label(Yii::t('yee/event', 'Event Vid'));
                             ?>
+                        
+                        <?= $form->field($model, 'programm_price')->textInput(['maxlength' => true]) ?>
+                        
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
                             <span><?=  $model->id ?></span>

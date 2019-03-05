@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                  <p><?= $model->programmDescription ?></p>
                  <h4><i class="fa fa-heart-o"></i>  <?= Yii::t('yee/event', 'Practice List'); ?>:</h4>
                     <ul class="list-icon heart-o color">
-                     <?php foreach ($model->schedulePractices as $data): ?>
+                     <?php foreach ($model->item->eventPractices as $data): ?>                        
                         <li><?= $data->name ?></li>
                      <?php endforeach ?>
                     </ul>

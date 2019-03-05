@@ -156,6 +156,24 @@ class EventPractice extends \yeesoft\db\ActiveRecord
         // echo '<pre>' . print_r($result, true) . '</pre>';
         return $result;
     }
+    /**
+     * метод считает сумму минут включенных практик выбранного занятия $item_programm_id в рамках программы 
+     * @param type $id model EventItemProgramm
+     * @return type integer
+     */
+    public static function getEventProgrammPracticeTime($item_programm_id) {
+        $result = 0;
+        $practices = static::find()
+                        ->innerJoin('event_item_programm_practice', 'event_item_programm_practice.practice_id = event_practice.id')
+                        ->where(['event_item_programm_practice.item_programm_id' => $item_programm_id])
+                        ->select('event_practice.time_volume')
+                        ->asArray()->all();
+        foreach ($practices as $items) {
+            $result += $items['time_volume'];
+        }
+        // echo '<pre>' . print_r($result, true) . '</pre>';
+        return $result;
+    }
 
     /**
      * @return \yii\db\ActiveQuery

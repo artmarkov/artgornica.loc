@@ -5,6 +5,7 @@ use yeesoft\helpers\Html;
 use kartik\select2\Select2;
 use yii\widgets\Pjax;
 use himiklab\sortablegrid\SortableGridView;
+use yii\helpers\ArrayHelper;
 
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -59,33 +60,52 @@ use himiklab\sortablegrid\SortableGridView;
         'sortableAction' => ['item-programm/sort'],        
         //'filterModel' => $searchModel,
         'layout' => '{items}',
+        'tableOptions' => ['class' => 'table table-striped'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
            
             'itemName',
-            'qty_items',
+            'name_short',
             'price',
-
             [
-                'class' =>  \yii\grid\ActionColumn::className(),
-                'buttons' => [
-                    'update' => function ($url, $model) {
-                         return Html::a('<span class="glyphicon glyphicon-pencil text-color-default" aria-hidden="true"></span>', ['#'], [
-                                                            'class' => 'update-programm',
-                                                            'data-id' => $model->id,
-                                                        ]);
-                    },
-                    'delete' => function ($url, $model) {
-                         return Html::a('<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>', ['#'], [
-                                                            'class' => 'remove-programm',
-                                                            'data-id' => $model->id,
-                                                        ]);
-                    },     
-                    ],
-                'template' => '{update} {delete}',
-                'controller' => 'item-programm',
+                'attribute' => 'timeVolume',
+                'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
+                    return $model->timeVolume . ' ' . Yii::t('yee/event', 'min');
+                },
             ],
+            [
+                'attribute' => 'gridPractice',
+                'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
+                    return implode(', ',
+                        ArrayHelper::map($model->itemProgrammPractices, 'id', 'name'));
+                },
+                'options' => ['style' => 'width:350px'],
+                'format' => 'raw',
+            ],   
+            [
+            'options' => ['style' => 'width:20px'],
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a('<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>', ['#'], [
+                            'title' => Yii::t('yii', 'Update'),
+                            'class' => 'btn btn-sm btn-primary update-programm',
+                            'data-id' => $model->id,
+                ]);
+            },
+            ],
+            [
+            'options' => ['style' => 'width:20px'],
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', ['#'], [
+                            'title' => Yii::t('yii', 'Delete'),
+//                          'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            'class' => 'btn btn-sm btn-danger remove-programm',
+                            'data-id' => $model->id,
+                ]);
+            },
         ],
+    ],
     ]); ?>
     <?php Pjax::end(); ?>
                         </div>

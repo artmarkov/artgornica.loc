@@ -17,7 +17,6 @@ use Yii;
  * @property int $place_id
  * @property int $start_timestamp
  * @property int $end_timestamp
- * @property int $price стоимость занятия
  * @property string $description
  * @property int $all_day
  * @property int $created_at
@@ -82,10 +81,10 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['programm_id', 'item_id', 'place_id', 'start_time', 'end_time', 'practice_list'], 'required'],
-            [['programm_id', 'item_id', 'place_id', 'all_day', 'price'], 'integer'],
+            [['programm_id', 'item_id', 'place_id', 'start_time', 'end_time'], 'required'],
+            [['programm_id', 'item_id', 'place_id', 'all_day'], 'integer'],
             [['start_timestamp', 'end_timestamp'], 'safe'],
-            [['all_day', 'price'], 'default', 'value' => 0],
+            [['all_day'], 'default', 'value' => 0],
             [['description'], 'string'],
             [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventPlace::className(), 'targetAttribute' => ['place_id' => 'id']],
             [['programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventProgramm::className(), 'targetAttribute' => ['programm_id' => 'id']],
@@ -124,7 +123,6 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
             'start_time' => Yii::t('yee/event', 'Start Time'),
             'end_time' => Yii::t('yee/event', 'End Time'),
             'description' => Yii::t('yee', 'Description'),
-            'price' => Yii::t('yee/event', 'Price'),
             'all_day' => Yii::t('yee/event', 'All Day'),
             'created_at' => Yii::t('yee', 'Created At'),
             'updated_at' => Yii::t('yee', 'Updated At'),
@@ -231,11 +229,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     {
         return $this->itemProgramm->qty_items;
     }
-     /* Геттер для стоимости занятий в программе */
-    public function getPriceItems()
-    {
-        return $this->itemProgramm->price;
-    }
+    
     /* Геттер для содержания события */
     public function getItemDescription()
     {

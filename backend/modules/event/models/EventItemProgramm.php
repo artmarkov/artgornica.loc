@@ -11,9 +11,9 @@ use himiklab\sortablegrid\SortableGridBehavior;
  * @property int $id
  * @property int $programm_id
  * @property int $item_id
- * @property int $qty_items
  * @property int $price
  * @property int $sortOrder
+ * @property string $name_short
  * @property EventItem $item
  * @property EventProgramm $programm
  * @property EventSchedule[] $eventSchedules
@@ -21,7 +21,8 @@ use himiklab\sortablegrid\SortableGridBehavior;
  */
 class EventItemProgramm extends \yii\db\ActiveRecord
 {
-    public $practice_list;
+    public $gridPractice;
+    
     /**
      * {@inheritdoc}
      */
@@ -59,9 +60,9 @@ class EventItemProgramm extends \yii\db\ActiveRecord
     {
         return [
             [['programm_id', 'item_id'], 'required'],
-            [['programm_id', 'item_id', 'qty_items', 'price', 'sortOrder'], 'integer'],
+            [['programm_id', 'item_id', 'name_short', 'price', 'sortOrder'], 'integer'],
             ['practice_list', 'safe'],
-            [['qty_items'], 'default', 'value' => 1],
+            ['name_short', 'string', 'max' => 32],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['item_id' => 'id']],
             [['programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventProgramm::className(), 'targetAttribute' => ['programm_id' => 'id']],
         ];
@@ -76,10 +77,11 @@ class EventItemProgramm extends \yii\db\ActiveRecord
             'id' => Yii::t('yee/event', 'ID'),
             'programm_id' => Yii::t('yee/event', 'Programm ID'),
             'item_id' => Yii::t('yee/event', 'Item ID'),
-            'qty_items' => Yii::t('yee/event', 'Qty Items'),
+            'name_short' => Yii::t('yee/event', 'Name Short'),
             'price' => Yii::t('yee/event', 'Price'),
             'itemName' => Yii::t('yee', 'Name'),
             'practice_list' => Yii::t('yee/event', 'Practice List'),
+            'gridPractice' => Yii::t('yee/event', 'Practice List'),            
         ];
     }
 
@@ -97,6 +99,11 @@ class EventItemProgramm extends \yii\db\ActiveRecord
         return $this->item->name;
     }
     
+     /* Геттер для времени проведения */
+    public function getTimeVolume()
+    {
+        return EventPractice::getEventProgrammPracticeTime($this->id);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -104,6 +111,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EventProgramm::className(), ['id' => 'programm_id']);
     }
+    
      /**
      * @return \yii\db\ActiveQuery
      */
@@ -111,5 +119,23 @@ class EventItemProgramm extends \yii\db\ActiveRecord
     {
         return $this->hasMany(EventPractice::className(), ['id' => 'practice_id'])
                 ->viaTable('{{%event_item_programm_practice}}', ['item_programm_id' => 'id']);
+    } 
+    
+    /**
+     * метод считает полную стоимость программы
+     * @param type $programm_id
+     * @return type integer
+     */
+    public static function getFullItemPrice($programm_id) {
+        $result = 0;
+        $data = static::find()
+                        ->where(['programm_id' => $programm_id])
+                        ->select('price')
+                        ->asArray()->all();
+        foreach ($data as $items) {
+            $result += $items['price'];
+        }
+        // echo '<pre>' . print_r($result, true) . '</pre>';
+        return $result;    
     }
 }

@@ -2,9 +2,6 @@
 
 use yeesoft\widgets\ActiveForm;
 use yeesoft\helpers\Html;
-use backend\modules\event\models\EventPractice;
-use kartik\depdrop\DepDrop;
-use yii\helpers\Url;
 
 /* @var $model backend\modules\event\models\EventItemProgramm */
 /* @var $form yeesoft\widgets\ActiveForm */
@@ -37,23 +34,21 @@ use yii\helpers\Url;
             
             <div class="row">
                 <div class="col-md-6">
-                    <?= $form->field($model, 'qty_items')->textInput() ?>
+                    <?= $form->field($model, 'name_short')->textInput() ?>
                 </div>
                 <div class="col-md-6">
                      <?= $form->field($model, 'price')->textInput() ?>                    
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'practice_list')->widget(DepDrop::classname(), [
-                            'type' => DepDrop::TYPE_SELECT2,
-                            'data' => EventPractice::getEventPracticeByName($model->item_id),
-                            'options' => ['multiple' => true, 'prompt' => Yii::t('yee/event', 'Select Practice...'), 'id' => 'practice_list'],
-                            'pluginOptions' => [
-                                'depends' => ['item_id'],
-                                'placeholder' => Yii::t('yee/event', 'Select Practice...'),
-                                'url' => Url::to(['/event/schedule/practice'])
-                            ]
-                        ])->label(Yii::t('yee/event', 'Practice List'));
-                        ?>                   
+                    
+                     <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [
+                            'data' => backend\modules\event\models\EventPractice::getEventPracticeByName($model->item_id),
+                            'options' => [
+                                'placeholder' => Yii::t('yee/event', 'Select Practice...'), 
+                                'multiple' => true
+                            ],                              
+                        ])
+                        ?>
                 </div>
             </div>
 
