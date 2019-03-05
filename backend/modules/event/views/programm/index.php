@@ -83,17 +83,26 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:150px'],
                         'value' => function ($model)
                                 {
-                                    return $model->programm_price . ' ' . Yii::t('yee/event', 'руб');
+                                    return empty($model->programm_price)? NULL : $model->programm_price . ' ' . Yii::t('yee/event', 'руб');
                                 }
                     ],
-                    [
-                        'attribute' => 'fullPrice',
-                        'options' => ['style' => 'width:150px'],
+//                    'countItem',
+                            [
+                        'attribute' => 'countItem',
                         'value' => function ($model)
                                 {
-                                    return $model->fullPrice . ' ' . Yii::t('yee/event', 'руб');
-                                }
-                    ],
+                        return backend\modules\event\models\EventItemProgramm::getCountItem($model->id);
+                        
+                    },
+                    ],   
+//                    [
+//                        'attribute' => 'fullPrice',
+//                        'options' => ['style' => 'width:150px'],
+//                        'value' => function ($model)
+//                                {
+//                                    return $model->fullPrice . ' ' . Yii::t('yee/event', 'руб');
+//                                }
+//                    ],
                     [
                         'attribute' => 'mediaFirst',
                         'value' => function ($model)

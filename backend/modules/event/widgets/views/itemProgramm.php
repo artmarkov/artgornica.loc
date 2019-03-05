@@ -53,6 +53,7 @@ use yii\helpers\ArrayHelper;
                 ->orderBy('sortOrder'),
             'sort' => false,
         ]);
+        $dataProvider->pagination = false;
 ?>
     <?= SortableGridView::widget([
         'id' => 'nested-grid',
@@ -61,18 +62,26 @@ use yii\helpers\ArrayHelper;
         //'filterModel' => $searchModel,
         'layout' => '{items}',
         'tableOptions' => ['class' => 'table table-striped'],
+        'showFooter' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
            
-            'itemName',
-            'name_short',
-            'price',
             [
-                'attribute' => 'timeVolume',
+               'attribute' => 'itemName',
+               'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
+                    return $model->itemName;
+                },                        
+               'footer' => 'Всего:',
+            ],    
+            'name_short',
+            [
+                'attribute' =>  'price',
                 'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
-                    return $model->timeVolume . ' ' . Yii::t('yee/event', 'min');
+                    return $model->price;
                 },
+                'footer' => $model->fullPrice. ' ' . Yii::t('yee/event', 'руб'),
             ],
+            'timeVolume',
             [
                 'attribute' => 'gridPractice',
                 'value' => function (\backend\modules\event\models\EventItemProgramm $model) {

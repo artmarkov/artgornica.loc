@@ -32,9 +32,9 @@ use yii\helpers\Url;
                         'id' => 'programm_id'
                     ])->label(Yii::t('yee/event', 'Programm Name'));
 
-                    echo $form->field($model, 'item_id')->widget(DepDrop::classname(), [
-                        'data' => EventItem::getItemByName($model->programm_id),
-                        'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'item_id'],
+                    echo $form->field($model, 'item_programm_id')->widget(DepDrop::classname(), [
+                        'data' => backend\modules\event\models\EventItemProgramm::getItemByName($model->programm_id),
+                        'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'item_programm_id'],
                         'pluginOptions' => [
                             'depends' => ['programm_id'],
                             'placeholder' => Yii::t('yee/event', 'Select Event...'),
@@ -97,7 +97,7 @@ $('.create-event').on('click', function (e) {
             eventData = {
                 id : $('#eventschedule-id').val(),
                 programmId : $('#programm_id').val(),
-                itemId : $('#item_id').val(),
+                itemProgrammId : $('#item_programm_id').val(),
                 resourceId : $('#eventschedule-place_id').val(),
                 description : $('#eventschedule-description').val(),
                 users : $('#eventschedule-users_list').val(),

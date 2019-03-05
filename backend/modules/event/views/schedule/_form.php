@@ -34,9 +34,9 @@ use backend\modules\media\widgets\TinyMce;
                             'id' => 'programm_id'
                         ])->label(Yii::t('yee/event', 'Programm Name'));
 
-                        echo $form->field($model, 'item_id')->widget(DepDrop::classname(), [
-                            'data' => EventItem::getItemByName($model->programm_id),
-                            'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'item_id'],
+                        echo $form->field($model, 'item_programm_id')->widget(DepDrop::classname(), [
+                            'data' => backend\modules\event\models\EventItemProgramm::getItemByName($model->programm_id),
+                            'options' => ['prompt' => Yii::t('yee/event', 'Select Event...'), 'id' => 'item_programm_id'],
                             'pluginOptions' => [
                                 'depends' => ['programm_id'],
                                 'placeholder' => Yii::t('yee/event', 'Select Event...'),

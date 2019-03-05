@@ -175,7 +175,7 @@ class ScheduleController extends DefaultController
         
         if(!empty($eventData['resourceId']))  $model->place_id = $eventData['resourceId'];
         if(!empty($eventData['programmId']))  $model->programm_id = $eventData['programmId'];
-        if(!empty($eventData['itemId']))      $model->item_id = $eventData['itemId'];
+        if(!empty($eventData['itemProgrammId']))  $model->item_programm_id = $eventData['itemProgrammId'];
         if(!empty($eventData['users']))       $model->users_list = $eventData['users'];
         if(!empty($eventData['description'])) $model->description = $eventData['description'];
 
@@ -238,29 +238,29 @@ class ScheduleController extends DefaultController
 
             if (!empty($parents)) {
                 $cat_id = $parents[0];
-                $out = \backend\modules\event\models\EventItem::getItemByProgrammId($cat_id);
+                $out = \backend\modules\event\models\EventItemProgramm::getItemByProgrammId($cat_id);
 
                 return json_encode(['output' => $out, 'selected' => '']);
             }
         }
         return json_encode(['output' => '', 'selected' => '']);
     }
-    /**
-     * 
-     *  формируем список практик для widget DepDrop::classname()
-     */
-    public function actionPractice() {
-        $out = [];
-        if (isset($_POST['depdrop_parents'])) {
-            $parents = $_POST['depdrop_parents'];
-
-            if (!empty($parents)) {
-                $cat_id = $parents[0];
-                $out = \backend\modules\event\models\EventPractice::getEventPracticeByItemId($cat_id);
-
-                return json_encode(['output' => $out, 'selected' => '']);
-            }
-        }
-        return json_encode(['output' => '', 'selected' => '']);
-    }
+//    /**
+//     * 
+//     *  формируем список практик для widget DepDrop::classname()
+//     */
+//    public function actionPractice() {
+//        $out = [];
+//        if (isset($_POST['depdrop_parents'])) {
+//            $parents = $_POST['depdrop_parents'];
+//
+//            if (!empty($parents)) {
+//                $cat_id = $parents[0];
+//                $out = \backend\modules\event\models\EventPractice::getEventPracticeByItemId($cat_id);
+//
+//                return json_encode(['output' => $out, 'selected' => '']);
+//            }
+//        }
+//        return json_encode(['output' => '', 'selected' => '']);
+//    }
 }

@@ -63,6 +63,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
             [['programm_id', 'item_id', 'name_short', 'price', 'sortOrder'], 'integer'],
             ['practice_list', 'safe'],
             ['name_short', 'string', 'max' => 32],
+            ['name_short', 'default', 1],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['item_id' => 'id']],
             [['programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventProgramm::className(), 'targetAttribute' => ['programm_id' => 'id']],
         ];
@@ -137,5 +138,60 @@ class EventItemProgramm extends \yii\db\ActiveRecord
         }
         // echo '<pre>' . print_r($result, true) . '</pre>';
         return $result;    
+    }
+    /**
+     * 
+     * @param type $programm_id
+     * @return type integer
+     */
+     public static function getCountItem($programm_id) {
+       
+        return static::find()->where(['programm_id' => $programm_id])->count();    
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список занятий по name
+     */
+    public static function getItemByName($programm_id) {
+        $data = self::find()
+                        ->innerJoin('event_item', 'event_item.id = event_item_programm.item_id')
+                        ->where(['event_item_programm.programm_id' => $programm_id])
+                        //->select(['event_item.name AS name', 'event_item_programm.id as id'])
+                        ->select(["CONCAT(event_item.name,' ',event_item_programm.name_short) AS name", 'event_item_programm.id as id'])
+                ->orderBy('event_item_programm.sortOrder')
+                
+                        ->indexBy('id')->column();
+
+        return $data;
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     * Полный список занятий по programm_id
+     */
+    public static function getItemByProgrammId($programm_id) {
+        $data = self::find()
+                        ->innerJoin('event_item', 'event_item.id = event_item_programm.item_id')
+                        ->where(['event_item_programm.programm_id' => $programm_id])
+                       //->select(['event_item.name AS name', 'event_item_programm.id as id'])
+                        ->select(["CONCAT(event_item.name,' ',event_item_programm.name_short) AS name", 'event_item_programm.id as id'])
+                ->orderBy('event_item_programm.sortOrder')
+                        ->asArray()->all();
+
+        return $data;
+    }
+
+     /**
+     * 
+     * @return type array
+     */
+    public static function getEventItemList()
+    {
+        return \yii\helpers\ArrayHelper::map(static::find()
+                ->innerJoin('event_item', 'event_item.id = event_item_programm.item_id')
+                ->innerJoin('event_programm', 'event_programm.id = event_item_programm.programm_id')
+                       
+                ->select(["CONCAT(event_item.name,' ',event_item_programm.name_short) AS name", 'event_item_programm.id as id', 'event_programm.name as programm_name'])
+                ->orderBy('event_item_programm.sortOrder')
+                        ->asArray()->all(), 'id', 'name', 'programm_name');
     }
 }

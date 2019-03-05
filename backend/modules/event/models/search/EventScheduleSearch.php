@@ -24,7 +24,7 @@ class EventScheduleSearch extends EventSchedule
     public function rules()
     {
         return [
-            [['id', 'programm_id', 'item_id', 'place_id',], 'integer'],
+            [['id', 'programm_id', 'item_programm_id', 'place_id',], 'integer'],
             [['description', 'all_day'], 'safe'],
             [['placeName','programmName','itemName'], 'string'],
             [['gridUsersSearch'], 'string'],
@@ -81,7 +81,7 @@ class EventScheduleSearch extends EventSchedule
         $query->andFilterWhere([
             'id' => $this->id,
             'place_id' => $this->place_id,
-            'item_id' => $this->item_id,
+            'item_programm_id' => $this->item_programm_id,
             'programm_id' => $this->programm_id,
             'event_schedule_users.user_id' => $this->gridUsersSearch,
         ]);

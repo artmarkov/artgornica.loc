@@ -25,6 +25,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
      public $gridItemsSearch;
      public $item_id;
      public $mediaFirst;
+     public $countItem;
 
      /**
      * {@inheritdoc}
@@ -78,6 +79,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             'programm_price' => Yii::t('yee/event', 'Programm Price'),
             'fullPrice' => Yii::t('yee/event', 'Price Summ'),                      
             'mediaFirst' => Yii::t('yee/media', 'Media First'),   
+            'countItem' => Yii::t('yee/event', 'Count Item'),   
         ];
     }
     
@@ -131,7 +133,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
      */
     public function getEventItemProgramms()
     {
-        return $this->hasMany(EventItemProgramm::className(), ['prigramm_id' => 'id']);
+        return $this->hasMany(EventItemProgramm::className(), ['programm_id' => 'id']);
     }
    
     /**
@@ -147,7 +149,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
     {
         return $this->vid->name;
     }
-    
+     
     /**
      * 
      * @return type array

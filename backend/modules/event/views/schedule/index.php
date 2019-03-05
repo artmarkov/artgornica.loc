@@ -64,10 +64,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/event/schedule',
-                        'attribute' => 'item_id',
+                        'attribute' => 'item_programm_id',
                         'options' => ['style' => 'width:350px'],
                         'label' => Yii::t('yee/event', 'Event Name'),
-                        'filter' => backend\modules\event\models\EventItem::getEventItemList(),
+                        'filter' => backend\modules\event\models\EventItemProgramm::getEventItemList(),
                         'title' => function(EventSchedule $model) {
                             return Html::a($model->itemName, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },

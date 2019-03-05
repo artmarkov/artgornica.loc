@@ -13,7 +13,7 @@ use Yii;
  *
  * @property int $id
  * @property int $programm_id
- * @property int $item_id
+ * @property int $item_programm_id
  * @property int $place_id
  * @property int $start_timestamp
  * @property int $end_timestamp
@@ -81,14 +81,14 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public function rules()
     {
         return [
-            [['programm_id', 'item_id', 'place_id', 'start_time', 'end_time'], 'required'],
-            [['programm_id', 'item_id', 'place_id', 'all_day'], 'integer'],
+            [['programm_id', 'item_programm_id', 'place_id', 'start_time', 'end_time'], 'required'],
+            [['programm_id', 'item_programm_id', 'place_id', 'all_day'], 'integer'],
             [['start_timestamp', 'end_timestamp'], 'safe'],
             [['all_day'], 'default', 'value' => 0],
             [['description'], 'string'],
             [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventPlace::className(), 'targetAttribute' => ['place_id' => 'id']],
             [['programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventProgramm::className(), 'targetAttribute' => ['programm_id' => 'id']],
-            [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['item_id' => 'id']],
+            [['item_programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItemProgramm::className(), 'targetAttribute' => ['item_programm_id' => 'id']],
             ['start_timestamp', 'compareTimestamp'],
             [['created_at', 'updated_at'], 'safe'],
             ['start_time', 'date', 'format' => 'php:d.m.Y H:i'],
@@ -116,7 +116,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
         return [
             'id' => Yii::t('yee/event', 'ID'),
             'programm_id' => Yii::t('yee/event', 'Programm ID'),
-            'item_id' => Yii::t('yee/event', 'Item ID'),
+            'item_programm_id' => Yii::t('yee/event', 'Item ID'),
             'place_id' => Yii::t('yee/event', 'Place ID'),
             'start_timestamp' => Yii::t('yee/event', 'Start Time'),
             'end_timestamp' => Yii::t('yee/event', 'End Time'),
@@ -209,7 +209,8 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
      */
     public function getItem()
     {
-        return $this->hasOne(EventItem::className(), ['id' => 'item_id']);
+        return $this->hasOne(EventItem::className(), ['id' => 'item_id'])
+                ->viaTable('{{%event_item_programm}}', ['id' => 'item_programm_id']); 
     }
 
      /**
@@ -217,7 +218,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
      */
     public function getItemProgramm()
     {
-        return $this->hasOne(EventItemProgramm::className(), ['item_id' => 'item_id', 'programm_id' => 'programm_id']);
+        return $this->hasOne(EventItemProgramm::className(), ['item_programm_id' => 'id']);
     }
     /* Геттер для названия события */
     public function getItemName()

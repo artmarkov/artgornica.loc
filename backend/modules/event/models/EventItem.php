@@ -169,34 +169,7 @@ class EventItem extends \yeesoft\db\ActiveRecord
     {
         return new \backend\modules\event\models\query\EventItemQuery(get_called_class());
     }
-    /**
-     * @return \yii\db\ActiveQuery
-     * Полный список занятий по programm_id
-     */
-    public static function getItemByProgrammId($programm_id) {
-        $data = self::find()
-                        ->innerJoin('event_item_programm', 'event_item_programm.item_id = event_item.id')
-                        ->where(['event_item_programm.programm_id' => $programm_id])
-                        ->select(['event_item.name', 'event_item.id'])
-                        ->asArray()->all();
-
-        return $data;
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     * Полный список занятий по name
-     */
-    public static function getItemByName($programm_id) {
-        $data = self::find()
-                        ->innerJoin('event_item_programm', 'event_item_programm.item_id = event_item.id')
-                        ->where(['event_item_programm.programm_id' => $programm_id])
-                        ->select(['event_item.name as name', 'event_item.id as id'])
-                        ->indexBy('id')->column();
-
-        return $data;
-    }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      * Полный список занятий по name
