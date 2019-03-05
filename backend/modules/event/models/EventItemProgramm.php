@@ -63,7 +63,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
             [['programm_id', 'item_id', 'name_short', 'price', 'sortOrder'], 'integer'],
             ['practice_list', 'safe'],
             ['name_short', 'string', 'max' => 32],
-            ['name_short', 'default', 1],
+            ['name_short', 'default', 'value' => 1],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['item_id' => 'id']],
             [['programm_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventProgramm::className(), 'targetAttribute' => ['programm_id' => 'id']],
         ];
