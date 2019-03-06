@@ -68,7 +68,7 @@ class EventPlan extends ActiveRecord
     public function rules()
     {
         return [
-            [['programm_id', 'place_id', 'start_time', 'end_time'], 'required'],
+            [['programm_id', 'start_time', 'end_time'], 'required'],
             [['programm_id', 'place_id', 'created_at', 'updated_at'], 'integer'],
             [['start_timestamp', 'end_timestamp'], 'safe'],
             [['description'], 'string'],
@@ -156,10 +156,15 @@ class EventPlan extends ActiveRecord
         return $this->hasOne(EventPlace::className(), ['id' => 'place_id']);
     }
 
+    /* Геттер для названия цвета */
+    public function getPlaceColor()
+    {
+        return $this->place->event_color;
+    }
      /* Геттер для названия места */
     public function getPlaceName()
     {
-        return $this->place->name;
+        return empty($this->place) ? NULL : $this->place->name;
     }
     
     /**

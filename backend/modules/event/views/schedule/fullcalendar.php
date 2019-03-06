@@ -164,7 +164,7 @@ EOF;
                                     'editable' => true,
                                     'allDaySlot' => false, // запрет на слот "весь день"
                                     'eventDurationEditable' => true, // разрешить изменение размера
-                                    'eventOverlap' => false, // разрешить перекрытие событий
+                                    'eventOverlap' => true, // разрешить перекрытие событий
                                     'eventLimit' => true,
                                     'select' => new JsExpression($JSSelect),
                                     'eventClick' => new JsExpression($JSEventClick),

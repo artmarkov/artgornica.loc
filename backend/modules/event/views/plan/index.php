@@ -82,13 +82,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'start_timestamp',
                         'options' => ['style' => 'width:150px'],
-                        'format' => 'date',
+                        'format' => 'datetime',
                         
                     ],
                     [
                         'attribute' => 'end_timestamp',
                         'options' => ['style' => 'width:150px'],
-                        'format' => 'date',
+                        'format' => 'datetime',
                         
                     ],       
 

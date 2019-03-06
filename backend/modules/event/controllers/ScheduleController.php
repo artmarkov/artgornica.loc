@@ -3,6 +3,7 @@
 namespace backend\modules\event\controllers;
 
 use backend\modules\event\models\EventSchedule;
+use backend\modules\event\models\EventPlan;
 use edofre\fullcalendarscheduler\models\Event as BaseEvent;
 use Yii;
 use backend\controllers\DefaultController;
@@ -97,6 +98,8 @@ class ScheduleController extends DefaultController
     public function actionCalendar()
     {
 
+        $tasks = [];
+        $delta = 86400*30;
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         $start = Yii::$app->request->get('start');
@@ -105,17 +108,36 @@ class ScheduleController extends DefaultController
         $start_timestamp = Yii::$app->formatter->asTimestamp($start);
         $end_timestamp = Yii::$app->formatter->asTimestamp($end);
 
-        $events = EventSchedule::find()
-            ->where(
-                "start_timestamp > :start_timestamp and end_timestamp < :end_timestamp",
-                [
-                    ":start_timestamp" => $start_timestamp,
-                    ":end_timestamp" => $end_timestamp
-                ]
-            )
-            ->orderBy('start_timestamp')
-            ->all();
-        $tasks = [];
+        $events_plan = EventPlan::find()
+                ->where(
+                        "start_timestamp >= :start_timestamp and end_timestamp <= :end_timestamp", [
+                    ":start_timestamp" => $start_timestamp - $delta,
+                    ":end_timestamp" => $end_timestamp + $delta
+                        ]
+                )
+                ->orderBy('start_timestamp')
+                ->all();
+
+
+        foreach ($events_plan as $item) {
+
+            $event = new BaseEvent();
+            
+            if (!empty($item->place_id)) {
+//                $event->resourceId = $item->place_id;
+                $event->color = $item->placeColor;
+            } else {
+                $event->color = $item->color;
+            }
+            $event->rendering = 'background'; // для фоновых событий
+            $event->start = Yii::$app->formatter->asDatetime($item->start_timestamp,"php:Y.m.d H:i");
+            $event->end = Yii::$app->formatter->asDatetime($item->end_timestamp,"php:Y.m.d H:i");
+            
+            $tasks[] = $event;
+        }
+       
+        $events = EventSchedule::find()->all();       
+       
         foreach ($events as $item) {
 
             $event = new BaseEvent();
@@ -131,8 +153,8 @@ class ScheduleController extends DefaultController
             
             $tasks[] = $event;
         }
-//         echo '<pre>' . print_r($events, true) . '</pre>';
-
+//        echo '<pre>' . print_r($events_plan, true) . '</pre>';
+       
         return $tasks;
     }
     
@@ -245,22 +267,4 @@ class ScheduleController extends DefaultController
         }
         return json_encode(['output' => '', 'selected' => '']);
     }
-//    /**
-//     * 
-//     *  формируем список практик для widget DepDrop::classname()
-//     */
-//    public function actionPractice() {
-//        $out = [];
-//        if (isset($_POST['depdrop_parents'])) {
-//            $parents = $_POST['depdrop_parents'];
-//
-//            if (!empty($parents)) {
-//                $cat_id = $parents[0];
-//                $out = \backend\modules\event\models\EventPractice::getEventPracticeByItemId($cat_id);
-//
-//                return json_encode(['output' => $out, 'selected' => '']);
-//            }
-//        }
-//        return json_encode(['output' => '', 'selected' => '']);
-//    }
 }
