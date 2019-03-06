@@ -39,8 +39,8 @@ $mode = Yii::$app->getRequest()->get('mode', 'normal');
                     :</b> <?= ($model->created_by) ? (($model->author) ? $model->author->username : 'DELETED') : 'GUEST' ?>
             </li>
             <li><b><?= Yii::t('yee', 'Type') ?>:</b> <?= $model->type ?></li>
-            <li><b><?= Yii::t('yee', 'Uploaded') ?>:</b> <?= date("Y-m-d", $model->created_at) ?></li>
-            <li><b><?= Yii::t('yee', 'Updated') ?>:</b> <?= date("Y-m-d", $model->getLastChanges()) ?></li>
+            <li><b><?= Yii::t('yee', 'Uploaded') ?>:</b> <?= date("Y.m.d", $model->created_at) ?></li>
+            <li><b><?= Yii::t('yee', 'Updated') ?>:</b> <?= date("Y.m.d", $model->getLastChanges()) ?></li>
             <?php if ($model->isImage()) : ?>
                 <li><b><?= Yii::t('yee/media', 'Dimensions') ?>
                         :</b> <?= $model->getOriginalImageSize($this->context->module->routes) ?></li>

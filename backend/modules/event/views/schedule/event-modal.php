@@ -2,7 +2,6 @@
 
 use yeesoft\widgets\ActiveForm;
 use backend\modules\event\models\EventProgramm;
-use backend\modules\event\models\EventItem;
 use yeesoft\helpers\Html;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;

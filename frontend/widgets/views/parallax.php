@@ -21,7 +21,7 @@ use yeesoft\helpers\Html;
                             <h3 class="nopadding nomargin"><?= $parallax->countdown_prompt ?></h3>
                             <div class="countdown-widget nopadding" 
                                  id="countdown-widget" 
-                                 data-time="<?= \Yii::$app->formatter->asDatetime($parallax->start_timestamp, "php:Y-m-d H:i:s"); ?>">
+                                 data-time="<?= \Yii::$app->formatter->asDatetime($parallax->start_timestamp, "php:Y.m.d H:i:s"); ?>">
                             </div>
                         </div>
                     <?php endif; ?>

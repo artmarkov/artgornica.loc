@@ -67,19 +67,19 @@ use yii\helpers\ArrayHelper;
             ['class' => 'yii\grid\SerialColumn'],
            
             [
-               'attribute' => 'itemName',
+               'attribute' => 'fullItemName',
                'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
-                    return $model->itemName;
+                    return $model->fullItemName;
                 },                        
-               'footer' => 'Всего:',
+               'footer' => '<strong>Всего:</strong>',
             ],    
-            'name_short',
+//            'name_short',
             [
                 'attribute' =>  'price',
                 'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
                     return $model->price;
                 },
-                'footer' => $model->fullPrice. ' ' . Yii::t('yee/event', 'руб'),
+                'footer' => '<strong>' . $model->fullPrice. ' ' . Yii::t('yee/event', 'руб') . '</strong>',
             ],
             'timeVolume',
             [

@@ -34,6 +34,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public $end_time;
     
     public $gridUsersSearch;
+    public $item_id;
     
     /**
      * {@inheritdoc}
@@ -114,7 +115,7 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yee/event', 'ID'),
+            'id' => Yii::t('yee', 'ID'),
             'programm_id' => Yii::t('yee/event', 'Programm ID'),
             'item_programm_id' => Yii::t('yee/event', 'Item ID'),
             'place_id' => Yii::t('yee/event', 'Place ID'),
@@ -218,12 +219,12 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
      */
     public function getItemProgramm()
     {
-        return $this->hasOne(EventItemProgramm::className(), ['item_programm_id' => 'id']);
+        return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_programm_id']);
     }
     /* Геттер для названия события */
-    public function getItemName()
+    public function getFullItemName()
     {
-        return $this->item->name;
+        return $this->itemProgramm->fullItemName;
     }
      /* Геттер для ко-ва занятий */
     public function getQtyItems()
@@ -236,14 +237,14 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
     {
         return $this->item->description;
     }
+    
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getScheduleUsers()
     {
         return $this->hasMany(User::className(), ['id' => 'user_id'])
-                ->viaTable('{{%event_schedule_users}}', ['schedule_id' => 'id']);
-                             
+                ->viaTable('{{%event_schedule_users}}', ['schedule_id' => 'id']);                             
     }
     
     /**

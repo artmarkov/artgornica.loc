@@ -170,7 +170,7 @@ EOF;
                                     'eventClick' => new JsExpression($JSEventClick),
                                     'eventResize'=> new JsExpression($JSEventResize),
                                     'eventDrop'=> new JsExpression($JSEventDrop),
-                                    'defaultDate' => date('Y-m-d H:i'),
+                                    'defaultDate' => date('Y.m.d H:i'),
                                     'defaultTimedEventDuration' => '02:00:00', // при перетаскивании события в календарь задается длительность события
                                     'defaultAllDayEventDuration' => [
                                         'days' => '1'// то-же при перетаскиваниив в allDay
@@ -250,6 +250,7 @@ $this->registerJs($js);
 
 	#color-places .fc-event {
 		margin: 10px 0;
+                padding: 0px 5px;
 		//cursor: pointer;
 	}
 ');

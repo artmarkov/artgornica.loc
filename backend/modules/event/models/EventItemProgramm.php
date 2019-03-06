@@ -81,6 +81,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
             'name_short' => Yii::t('yee/event', 'Name Short'),
             'price' => Yii::t('yee/event', 'Price'),
             'itemName' => Yii::t('yee', 'Name'),
+            'fullItemName' => Yii::t('yee', 'Name'),
             'practice_list' => Yii::t('yee/event', 'Practice List'),
             'gridPractice' => Yii::t('yee/event', 'Practice List'),            
         ];
@@ -94,10 +95,15 @@ class EventItemProgramm extends \yii\db\ActiveRecord
         return $this->hasOne(EventItem::className(), ['id' => 'item_id']);
     }
     
-     /* Геттер для названия занятия */
+     /* Геттер для названия события */
     public function getItemName()
     {
         return $this->item->name;
+    }  
+    /* Геттер для полного названия события */
+    public function getFullItemName()
+    {
+        return $this->item->name . ' ' . $this->name_short;
     }
     
      /* Геттер для времени проведения */
@@ -146,7 +152,7 @@ class EventItemProgramm extends \yii\db\ActiveRecord
      */
      public static function getCountItem($programm_id) {
        
-        return static::find()->where(['programm_id' => $programm_id])->count();    
+        return static::find()->where(['event_item_programm.programm_id' => $programm_id])->count();    
     }
     /**
      * @return \yii\db\ActiveQuery
@@ -156,10 +162,8 @@ class EventItemProgramm extends \yii\db\ActiveRecord
         $data = self::find()
                         ->innerJoin('event_item', 'event_item.id = event_item_programm.item_id')
                         ->where(['event_item_programm.programm_id' => $programm_id])
-                        //->select(['event_item.name AS name', 'event_item_programm.id as id'])
                         ->select(["CONCAT(event_item.name,' ',event_item_programm.name_short) AS name", 'event_item_programm.id as id'])
-                ->orderBy('event_item_programm.sortOrder')
-                
+                        ->orderBy('event_item_programm.sortOrder')                
                         ->indexBy('id')->column();
 
         return $data;
@@ -172,26 +176,10 @@ class EventItemProgramm extends \yii\db\ActiveRecord
         $data = self::find()
                         ->innerJoin('event_item', 'event_item.id = event_item_programm.item_id')
                         ->where(['event_item_programm.programm_id' => $programm_id])
-                       //->select(['event_item.name AS name', 'event_item_programm.id as id'])
                         ->select(["CONCAT(event_item.name,' ',event_item_programm.name_short) AS name", 'event_item_programm.id as id'])
-                ->orderBy('event_item_programm.sortOrder')
+                        ->orderBy('event_item_programm.sortOrder')
                         ->asArray()->all();
 
         return $data;
-    }
-
-     /**
-     * 
-     * @return type array
-     */
-    public static function getEventItemList()
-    {
-        return \yii\helpers\ArrayHelper::map(static::find()
-                ->innerJoin('event_item', 'event_item.id = event_item_programm.item_id')
-                ->innerJoin('event_programm', 'event_programm.id = event_item_programm.programm_id')
-                       
-                ->select(["CONCAT(event_item.name,' ',event_item_programm.name_short) AS name", 'event_item_programm.id as id', 'event_programm.name as programm_name'])
-                ->orderBy('event_item_programm.sortOrder')
-                        ->asArray()->all(), 'id', 'name', 'programm_name');
     }
 }

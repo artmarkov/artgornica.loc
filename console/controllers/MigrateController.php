@@ -455,7 +455,7 @@ class MigrateController extends Controller
                 echo "Total $n " . ($n === 1 ? 'migration has' : 'migrations have') . " been applied before:\n";
             }
             foreach ($migrations as $version => $info) {
-                echo "    (" . date('Y-m-d H:i:s', $info['apply_time']) . ') ' . $version . "\n";
+                echo "    (" . date('Y.m.d H:i:s', $info['apply_time']) . ') ' . $version . "\n";
             }
         }
     }

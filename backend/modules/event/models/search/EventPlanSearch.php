@@ -5,29 +5,24 @@ namespace backend\modules\event\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\event\models\EventSchedule;
+use backend\modules\event\models\EventPlan;
 
 /**
- * EventScheduleSearch represents the model behind the search form about `backend\modules\event\models\EventSchedule`.
+ * EventPlanSearch represents the model behind the search form about `backend\modules\event\models\EventPlan`.
  */
-class EventScheduleSearch extends EventSchedule
+class EventPlanSearch extends EventPlan
 {
-    
      public $placeName;
      public $programmName;
-     public $itemName;
-
-
-     /**
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'programm_id', 'place_id', 'item_id'], 'integer'],
-            [['description', 'all_day'], 'safe'],
-            [['placeName','programmName','itemName'], 'string'],
-            [['gridUsersSearch'], 'string'],
+            [['id', 'programm_id', 'place_id', 'start_timestamp', 'end_timestamp', 'created_at', 'updated_at'], 'integer'],
+            [['color', 'description'], 'safe'],
+            [['placeName','programmName'], 'string'],
         ];
     }
 
@@ -49,7 +44,7 @@ class EventScheduleSearch extends EventSchedule
      */
     public function search($params)
     {
-        $query = EventSchedule::find();
+        $query = EventPlan::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -71,27 +66,18 @@ class EventScheduleSearch extends EventSchedule
             return $dataProvider;
         }
 
-        //жадная загрузка       
-        $query->with(['scheduleUsers']);
-        $query->with(['item']);
-               
-        if ($this->gridUsersSearch) {
-            $query->joinWith(['scheduleUsers']);
-        }
-        if ($this->item_id) {
-            $query->joinWith(['item']);
-        }
-         
         $query->andFilterWhere([
             'id' => $this->id,
+            'programm_id' => $this->programm_id,
             'place_id' => $this->place_id,
-            'event_item_programm.item_id' => $this->item_id,
-            'event_item_programm.programm_id' => $this->programm_id,
-            'event_schedule_users.user_id' => $this->gridUsersSearch,
+            'start_timestamp' => $this->start_timestamp,
+            'end_timestamp' => $this->end_timestamp,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'all_day', $this->all_day]);
+        $query->andFilterWhere(['like', 'color', $this->color])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

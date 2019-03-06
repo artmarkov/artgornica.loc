@@ -126,8 +126,8 @@ class ScheduleController extends DefaultController
             // $event->url = Url::to(['/calendar/event/view', 'id' => $item->id]); // ссылка для просмотра события - перебивает событие по клику!!!
             $item->all_day == 1 ? $event->allDay = true : $event->allDay = false;
 
-            $event->start = Yii::$app->formatter->asDatetime($item->start_timestamp,"php:Y-m-d H:i");
-            $event->end = Yii::$app->formatter->asDatetime($item->end_timestamp,"php:Y-m-d H:i");
+            $event->start = Yii::$app->formatter->asDatetime($item->start_timestamp,"php:Y.m.d H:i");
+            $event->end = Yii::$app->formatter->asDatetime($item->end_timestamp,"php:Y.m.d H:i");
             
             $tasks[] = $event;
         }

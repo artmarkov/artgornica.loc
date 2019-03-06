@@ -116,7 +116,7 @@ use backend\modules\media\widgets\TinyMce;
 </div>
 <!--        модал добавления занятия в программу-->
         <?php \yii\bootstrap\Modal::begin([
-            'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/event', 'Add Events') . '</h3>',
+            'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('yee/event', 'Events') . '</h3>',
            // 'size' => 'modal-sm',
             'id' => 'item-programm-modal',
             //'footer' => 'footer',
