@@ -222,6 +222,11 @@ class EventSchedule extends \yeesoft\db\ActiveRecord
         return $this->hasOne(EventItemProgramm::className(), ['id' => 'item_programm_id']);
     }
     /* Геттер для названия события */
+    public function getItemName()
+    {
+        return $this->item->name;
+    }
+    /* Геттер для названия события */
     public function getFullItemName()
     {
         return $this->itemProgramm->fullItemName;

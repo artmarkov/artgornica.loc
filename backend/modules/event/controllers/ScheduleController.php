@@ -99,7 +99,7 @@ class ScheduleController extends DefaultController
     {
 
         $tasks = [];
-        $delta = 86400*30;
+       
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         $start = Yii::$app->request->get('start');
@@ -108,34 +108,6 @@ class ScheduleController extends DefaultController
         $start_timestamp = Yii::$app->formatter->asTimestamp($start);
         $end_timestamp = Yii::$app->formatter->asTimestamp($end);
 
-        $events_plan = EventPlan::find()
-                ->where(
-                        "start_timestamp >= :start_timestamp and end_timestamp <= :end_timestamp", [
-                    ":start_timestamp" => $start_timestamp - $delta,
-                    ":end_timestamp" => $end_timestamp + $delta
-                        ]
-                )
-                ->orderBy('start_timestamp')
-                ->all();
-
-
-        foreach ($events_plan as $item) {
-
-            $event = new BaseEvent();
-            
-            if (!empty($item->place_id)) {
-//                $event->resourceId = $item->place_id;
-                $event->color = $item->placeColor;
-            } else {
-                $event->color = $item->color;
-            }
-            $event->rendering = 'background'; // для фоновых событий
-            $event->start = Yii::$app->formatter->asDatetime($item->start_timestamp,"php:Y.m.d H:i");
-            $event->end = Yii::$app->formatter->asDatetime($item->end_timestamp,"php:Y.m.d H:i");
-            
-            $tasks[] = $event;
-        }
-       
         $events = EventSchedule::find()->all();       
        
         foreach ($events as $item) {
@@ -158,7 +130,7 @@ class ScheduleController extends DefaultController
         return $tasks;
     }
     
- public function actionResources()
+    public function actionResources()
     {
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
