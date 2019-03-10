@@ -17,6 +17,7 @@ use yeesoft\db\ActiveRecord;
  * @property int $start_timestamp
  * @property int $end_timestamp
  * @property string $description
+ * @property int $all_day
  * @property int $created_at
  * @property int $updated_at
  *
@@ -33,7 +34,7 @@ class EventPlan extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'event_plan';
+        return '{{%event_plan}}';
     }
 
      /**
@@ -69,8 +70,9 @@ class EventPlan extends ActiveRecord
     {
         return [
             [['programm_id', 'start_time', 'end_time'], 'required'],
-            [['programm_id', 'place_id', 'created_at', 'updated_at'], 'integer'],
+            [['programm_id', 'place_id', 'created_at', 'updated_at', 'all_day'], 'integer'],
             [['start_timestamp', 'end_timestamp'], 'safe'],
+            [['all_day'], 'default', 'value' => 0],
             [['description'], 'string'],
             ['start_timestamp', 'compareTimestamp'],
             [['created_at', 'updated_at'], 'safe'],

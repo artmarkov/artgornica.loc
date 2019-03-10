@@ -3,7 +3,7 @@
 namespace backend\modules\event\controllers;
 
 use Yii;
-use yeesoft\controllers\admin\BaseController;
+use backend\controllers\DefaultController;
 use backend\modules\event\models\EventPlan;
 use edofre\fullcalendarscheduler\models\Event as BaseEvent;
 use edofre\fullcalendarscheduler\models\Resource;
@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * EventPlanController implements the CRUD actions for backend\modules\event\models\EventPlan model.
  */
-class PlanController extends BaseController 
+class PlanController extends DefaultController 
 {
     public $modelClass       = 'backend\modules\event\models\EventPlan';
     public $modelSearchClass = 'backend\modules\event\models\search\EventPlanSearch';
@@ -129,6 +129,7 @@ class PlanController extends BaseController
                 $event->color = $item->color;
             }
 //            $event->rendering = 'background'; // для фоновых событий
+            $item->all_day == 1 ? $event->allDay = true : $event->allDay = false;
             $event->start = Yii::$app->formatter->asDatetime($item->start_timestamp,"php:Y.m.d H:i");
             $event->end = Yii::$app->formatter->asDatetime($item->end_timestamp,"php:Y.m.d H:i");
             
@@ -150,7 +151,7 @@ class PlanController extends BaseController
             $resource = new Resource();
             $resource->id = $item->id;
             $resource->eventColor = $item->event_color; 
-            $resource->eventTextColor = $item->event_text_color;
+//            $resource->eventTextColor = $item->event_text_color;
             $resource->title = $item->name;
            
             $tasks[] = $resource;
@@ -177,8 +178,8 @@ class PlanController extends BaseController
         
         if(!empty($eventData['resourceId']))  $model->place_id = $eventData['resourceId'];
         if(!empty($eventData['programmId']))  $model->programm_id = $eventData['programmId'];
-        if(!empty($eventData['itemProgrammId']))  $model->item_programm_id = $eventData['itemProgrammId'];
-        if(!empty($eventData['users']))       $model->users_list = $eventData['users'];
+//        if(!empty($eventData['itemProgrammId']))  $model->item_programm_id = $eventData['itemProgrammId'];
+//        if(!empty($eventData['users']))       $model->users_list = $eventData['users'];
         if(!empty($eventData['description'])) $model->description = $eventData['description'];
 
         if($model->save()) {
@@ -194,10 +195,10 @@ class PlanController extends BaseController
     public function actionRefactorEvent()
     {
         $eventData = Yii::$app->request->post('eventData');
-       // echo '<pre>' . print_r($eventData, true) . '</pre>';       
+//        echo '<pre>' . print_r($eventData, true) . '</pre>';       
         $id = $eventData['id'];
 
-        $model = \backend\modules\event\models\EventCalendar::findOne($id);
+        $model = EventPlan::findOne($id);
                    
         $model->start_time = $eventData['start'];
         $model->end_time = $eventData['end'];

@@ -65,8 +65,8 @@ $JSEventClick = <<<EOF
             eventData = {
                 id: calEvent.id,
             };
-        console.log('кликаем по событию');
-        console.log(eventData);
+//        console.log('кликаем по событию');
+//        console.log(eventData);
       $.ajax({
             url: '/admin/event/plan/init-event',
             type: 'POST',
@@ -91,7 +91,7 @@ $JSEventResize = <<<EOF
                 start: event.start.format(),
                 end: event.end.format(),
                 allDay: event.allDay,
-                resourceId: event.resourceId
+                resourceId: event.resourceId == null ? null : event.resourceId
             };
 //        console.log('растягиваем/сжимаем событие мышкой');
 //        console.log(eventData);
@@ -118,7 +118,7 @@ $JSEventDrop = <<<EOF
                 start: event.start.format(),
                 end: event.end == null ? null : event.end.format(),
                 allDay: event.allDay,
-                resourceId: event.resourceId
+                resourceId: event.resourceId == null ? null : event.resourceId
             };
 
 //     console.log('перетаскиваем событие, удерживая мышкой');
@@ -150,7 +150,7 @@ EOF;
                                 'header' => [
                                     'left'   => 'today prev,next',
                                     'center' => 'title',
-                                   // 'right'  => 'agendaDay,agendaWeek,month,listMonth',
+                                    'right'  => 'agendaDay,agendaWeek,month,listMonth',
                                 ],
                                 'clientOptions' => [
                                     'schedulerLicenseKey' => 'GPL-My-Project-Is-Open-Source',

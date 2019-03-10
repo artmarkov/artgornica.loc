@@ -3,7 +3,6 @@
 namespace backend\modules\event\controllers;
 
 use backend\modules\event\models\EventSchedule;
-use backend\modules\event\models\EventPlan;
 use edofre\fullcalendarscheduler\models\Event as BaseEvent;
 use Yii;
 use backend\controllers\DefaultController;
