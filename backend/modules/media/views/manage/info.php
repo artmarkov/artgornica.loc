@@ -46,6 +46,13 @@ $mode = Yii::$app->getRequest()->get('mode', 'normal');
                         :</b> <?= $model->getOriginalImageSize($this->context->module->routes) ?></li>
             <?php endif; ?>
             <li><b><?= Yii::t('yee/media', 'File Size') ?>:</b> <?= $model->getFileSize() ?></li>
+            <li><b><?= Yii::t('yee/media', 'Manager') ?>:</b> <?php 
+                    foreach ($model::getMediaById($model->id) as $key => $value) {
+                        echo $value['class'] . '-' . $value['item_id'] . '</br>';
+                    }
+//                    echo '<pre>' . print_r($model::getMediaById($model->id), true) . '</pre>';
+                   
+                    ?></li>
         </ul>
     </div>
 <?php endif; ?>

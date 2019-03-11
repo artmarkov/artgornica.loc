@@ -475,4 +475,14 @@ class Media extends ActiveRecord implements OwnerAccess
     {
         return $this->hasOne(Album::className(), ['id' => 'album_id']);
     }
+    
+     public static function getMediaById($id) {
+        return self::find()
+                        ->leftJoin('media_manager', 'media_manager.media_id = media.id')
+                        ->where(['media.id' => $id])
+                        ->select(['media_manager.class AS class', 'media_manager.item_id as item_id'])
+                        ->orderBy('media_manager.id')
+                        ->asArray()->all();
+    }
+
 }
