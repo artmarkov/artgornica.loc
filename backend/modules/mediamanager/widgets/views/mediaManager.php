@@ -10,6 +10,8 @@ use backend\modules\mediamanager\models\MediaManager;
 ?>
                     
 <?php
+    $modelClass = str_replace("\\","\\\\", $model->className());
+
     $JSInsertLink = <<<EOF
         function(e, data) {      
             
@@ -18,7 +20,7 @@ use backend\modules\mediamanager\models\MediaManager;
             
              eventData = {
                 id: '{$model->id}',
-                class: '{$model->formName()}',          
+                class: '{$modelClass}',          
                 media: data.id,
                 sortList: $("#carousel-sort").val(),
             };
@@ -57,7 +59,7 @@ EOF;
         echo SortableInput::widget([
             'name' => 'sort_list',
             'sortableOptions' => ['type' => Sortable::TYPE_GRID],
-            'items' => MediaManager::getMediaThumbList($model->formName(), $model->id),
+            'items' => MediaManager::getMediaThumbList($model->className(), $model->id),
             'hideInput' => true,
             'options' => ['id' => 'carousel-sort', 'class' => 'form-control', 'readonly' => false]
         ]);

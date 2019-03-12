@@ -33,7 +33,7 @@ $post->updateRevision();
     
     <?php
     $carousel = ArrayHelper::merge($post->getCarouselOption(), [
-                'model_name' => $post->formName(),
+                'model_name' => $post->className(),
                 'id' => $post->id,
     ]);
     echo \frontend\widgets\CarouselWidget::widget(

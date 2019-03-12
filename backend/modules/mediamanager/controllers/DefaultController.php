@@ -35,7 +35,7 @@ class DefaultController extends \backend\controllers\DefaultController
         $model->media_id = $eventData['media'];
         $model->class = $eventData['class'];
 
-        // echo '<pre>' . print_r($model, true) . '</pre>';
+//         echo '<pre>' . print_r($model, true) . '</pre>';
         if ($model->save()) {
             Yii::$app->session->setFlash('crudMessage', Yii::t('yee/media', 'Your photo was successfully added.'));
             return $this->redirect(Yii::$app->request->referrer);

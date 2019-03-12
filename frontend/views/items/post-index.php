@@ -9,7 +9,7 @@ use yii\helpers\Html;
     <div class="item-box appear-animation pull-left inner" data-animation="fadeInDown">
         <figure>
             <?php
-            $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->formName(), $post->id);             
+            $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->className(), $post->id);             
             if(!empty($item)) {
                 
                echo Html::a('<span class="overlay color"></span><span class="inner">

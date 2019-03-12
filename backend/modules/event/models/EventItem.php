@@ -231,5 +231,17 @@ class EventItem extends \yeesoft\db\ActiveRecord
             'auto_play' => '9000',           
             ];
     }
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public static function getMediaInfo($id)
+    {
+       //$model_name = $class::getTableSchema()->fullName;
+        return self::find()                 
+                ->where(['id' => $id])
+                ->select(['name AS name', "CONCAT('event/update/',id) AS url"])
+                ->asArray()
+                ->one();    
+    }
     
 }

@@ -13,7 +13,7 @@ use yii\helpers\Html;
             <span class="uppercase"><strong>детали</strong> занятия</span>', ['/event/view', 'id' => $event->id], ['class' => 'item-hover']);
         ?>
         <?php
-        $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($event->item->formName(), $event->item_id);
+        $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($event->item->className(), $event->item_id);
         if (!empty($item))
             echo Html::img(\backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']);
         else

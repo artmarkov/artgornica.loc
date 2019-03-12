@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'mediaFirst',
                         'value' => function ($model)
                                 {
-                        $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($model->formName(), $model->id);
+                        $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($model->className(), $model->id);
                         !empty($item) ? $img = \backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'] : $img = '/images/noimg.png';
                             return Html::img($img, ['class'=> 'dw-media-image']);
                     },

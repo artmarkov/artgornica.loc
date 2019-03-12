@@ -61,7 +61,8 @@ class MediaManager extends \yii\db\ActiveRecord
      */
     public static function getMediaList($class, $item_id)
     {
-        return self::find()                
+        return self::find()
+                ->innerJoin('media', 'media.id = media_manager.media_id')                
                 ->where(['class' => $class, 'item_id' => $item_id])                
                 ->indexBy('id')
                 ->orderBy('sort')
@@ -73,7 +74,8 @@ class MediaManager extends \yii\db\ActiveRecord
     public static function getMediaFirst($class, $item_id)
     {
         return self::find()                
-                ->where(['class' => $class, 'item_id' => $item_id])                
+                ->innerJoin('media', 'media.id = media_manager.media_id')                
+                ->where(['class' => $class, 'item_id' => $item_id])                  
                 ->indexBy('id')
                 ->orderBy('sort')
                 ->asArray()->one();    
@@ -130,17 +132,4 @@ class MediaManager extends \yii\db\ActiveRecord
         
         return $data;
     } 
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-//    public static function getMediaInfo($class, $item_id)
-//    {
-//        return self::find() 
-//                ->leftJoin('media_manager', 'media_manager.media_id = media.id')
-//                ->where(['class' => $class, 'item_id' => $item_id])                
-////                ->indexBy('id')
-////                ->orderBy('sort')
-//                ->asArray()->one();    
-//    }
 }

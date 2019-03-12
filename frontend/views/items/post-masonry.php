@@ -35,7 +35,7 @@ $page = (isset($page)) ? $page : 'post';
             <figure>
 
                 <?php
-                $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->formName(), $post->id);
+                $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($post->className(), $post->id);
 
                 if (!empty($item))
                 {

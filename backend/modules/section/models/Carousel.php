@@ -137,4 +137,16 @@ class Carousel extends \yeesoft\db\ActiveRecord
         return new \backend\modules\section\models\query\CarouselQuery(get_called_class());
     }
     
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public static function getMediaInfo($id)
+    {
+       //$model_name = $class::getTableSchema()->fullName;
+        return self::find()                 
+                ->where(['id' => $id])
+                ->select(['name AS name', "CONCAT('section/carousel/update/',id) AS url"])
+                ->asArray()
+                ->one();    
+    }
 }

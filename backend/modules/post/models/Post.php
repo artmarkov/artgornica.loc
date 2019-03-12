@@ -366,4 +366,16 @@ class Post extends ActiveRecord
             'auto_play' => '9000',           
             ];
     }
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public static function getMediaInfo($id)
+    {
+       //$model_name = $class::getTableSchema()->fullName;
+        return self::find() 
+                ->where(['id' => $id])
+                ->select(['title AS name', "CONCAT('post/update/',id) AS url"])
+                ->asArray()
+                ->one();    
+    }
 }

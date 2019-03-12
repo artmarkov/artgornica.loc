@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
                 <?php
                 $carousel = ArrayHelper::merge($model->item->getCarouselOption(), [
-                            'model_name' => $model->item->formName(),
+                            'model_name' => $model->item->className(),
                             'id' => $model->item_id,
                 ]);
                 echo \frontend\widgets\CarouselWidget::widget(
