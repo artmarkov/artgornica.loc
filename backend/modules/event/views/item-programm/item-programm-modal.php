@@ -33,12 +33,12 @@ use yeesoft\helpers\Html;
             </div>
             
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <?= $form->field($model, 'name_short')->textInput() ?>
                 </div>
-                <div class="col-md-6">
+<!--                <div class="col-md-6">
                      <?= $form->field($model, 'price')->textInput() ?>                    
-                </div>
+                </div>-->
                 <div class="col-md-12">
                     
                      <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [

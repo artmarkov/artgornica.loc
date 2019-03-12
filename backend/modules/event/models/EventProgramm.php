@@ -16,6 +16,8 @@ use Yii;
  * @property int $programm_price
  * @property int $created_at
  * @property int $updated_at
+ * @property int $item_hours
+ * @property int $item_price
  * @property EventItemProgramm[] $eventItemProgramms
  * @property EventVid $vid
  * @property EventSchedule[] $eventSchedules
@@ -26,6 +28,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
      public $item_id;
      public $mediaFirst;
      public $countItem;
+     public $programmHours;
 
      /**
      * {@inheritdoc}
@@ -52,7 +55,7 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
     {
         return [
             [['vid_id', 'name'], 'required'],
-            [['vid_id', 'programm_price'], 'integer'],
+            [['vid_id', 'programm_price', 'item_hours', 'item_price'], 'integer'],
             [['description', 'assignment'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 127],
@@ -80,6 +83,9 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
             'fullPrice' => Yii::t('yee/event', 'Price Summ'),                      
             'mediaFirst' => Yii::t('yee/media', 'Media First'),   
             'countItem' => Yii::t('yee/event', 'Count Item'),   
+            'item_hours' => Yii::t('yee/event', 'Item Hours'),   
+            'item_price' => Yii::t('yee/event', 'Item Price'),   
+            'programmHours' => Yii::t('yee/event', 'Programm Hours'),   
         ];
     }
     
@@ -87,7 +93,10 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
     
     public function getFullPrice()
     {
-        return EventItemProgramm::getFullItemPrice($this->id);
+        $count = \backend\modules\event\models\EventItemProgramm::getCountItem($this->id);
+                            
+                       
+        return $this->item_price * $count;
     }
     
     public function getCreatedDate()
@@ -208,5 +217,18 @@ class EventProgramm extends \yeesoft\db\ActiveRecord
          else {
             return false;
         }
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public static function getMediaInfo($id)
+    {
+       //$model_name = $class::getTableSchema()->fullName;
+        return self::find()                 
+                ->where(['id' => $id])
+                ->select(['name AS name', "CONCAT('event/programm/update/',id) AS url"])
+                ->asArray()
+                ->one();    
     }
 }

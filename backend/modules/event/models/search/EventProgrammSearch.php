@@ -22,7 +22,7 @@ class EventProgrammSearch extends EventProgramm
         return [
             [['id', 'created_at', 'updated_at', 'vid_id'], 'integer'],
             [['name', 'description'], 'safe'],            
-            [['programm_price', 'vidName'], 'string'],
+            [['vidName'], 'string'],
 //            ['gridItemsSearch', 'string'],
         ];
     }
@@ -81,7 +81,7 @@ class EventProgrammSearch extends EventProgramm
             'event_programm.vid_id' => $this->vid_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'programm_price' => $this->programm_price,
+//            'programm_price' => $this->programm_price,
 //            'event_item_programm.item_id' => $this->gridItemsSearch,
         ]);
 

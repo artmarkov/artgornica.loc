@@ -79,6 +79,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:300px'],
                     ],
                     [
+                        'attribute' => 'fullPrice',
+                        'options' => ['style' => 'width:150px'],
+                        'value' => function ($model)
+                                {
+                                    return $model->fullPrice . ' ' . Yii::t('yee/event', 'руб');
+                                }
+                    ],
+                    [
                         'attribute' => 'programm_price',
                         'options' => ['style' => 'width:150px'],
                         'value' => function ($model)
@@ -86,28 +94,28 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return empty($model->programm_price)? NULL : $model->programm_price . ' ' . Yii::t('yee/event', 'руб');
                                 }
                     ],
-//                    'countItem',
-                            [
+                    'item_hours',
+                    [
                         'attribute' => 'countItem',
                         'value' => function ($model)
                                 {
                         return backend\modules\event\models\EventItemProgramm::getCountItem($model->id);
                         
                     },
-                    ],   
-//                    [
-//                        'attribute' => 'fullPrice',
-//                        'options' => ['style' => 'width:150px'],
-//                        'value' => function ($model)
-//                                {
-//                                    return $model->fullPrice . ' ' . Yii::t('yee/event', 'руб');
-//                                }
-//                    ],
+                    ],
+                    [
+                        'attribute' => 'programmHours',
+                        'value' => function ($model)
+                                {
+                        return backend\modules\event\models\EventItemProgramm::getCountItem($model->id) * $model->item_hours;
+                        
+                    },
+                    ], 
                     [
                         'attribute' => 'mediaFirst',
                         'value' => function ($model)
                                 {
-                        $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($model->formName(), $model->id);
+                        $item = \backend\modules\mediamanager\models\MediaManager::getMediaFirst($model->className(), $model->id);
                         !empty($item) ? $img = \backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'] : $img = '/images/noimg.png';
                             return Html::img($img, ['class'=> 'dw-media-image']);
                     },

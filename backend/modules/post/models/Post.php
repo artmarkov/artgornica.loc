@@ -369,13 +369,12 @@ class Post extends ActiveRecord
      /**
      * @return \yii\db\ActiveQuery
      */
-    public static function getMediaInfo($id)
-    {
-       //$model_name = $class::getTableSchema()->fullName;
-        return self::find() 
-                ->where(['id' => $id])
-                ->select(['title AS name', "CONCAT('post/update/',id) AS url"])
-                ->asArray()
-                ->one();    
+    public static function getMediaInfo($id) {
+        $model = Post::findOne($id);
+        return [
+            'name' => $model->title,
+            'url' => 'post/update/' . $model->id,
+        ];
     }
+
 }

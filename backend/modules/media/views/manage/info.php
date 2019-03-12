@@ -46,24 +46,27 @@ $mode = Yii::$app->getRequest()->get('mode', 'normal');
                         :</b> <?= $model->getOriginalImageSize($this->context->module->routes) ?></li>
             <?php endif; ?>
             <li><b><?= Yii::t('yee/media', 'File Size') ?>:</b> <?= $model->getFileSize() ?></li>
-            <li><b><?= Yii::t('yee/media', 'Links') ?>:</b> 
-                <?php                 
-                    foreach ($model::getMediaById($model->id) as $key => $value) {
-//                         echo '<pre>' . print_r($value, true) . '</pre>';
-                        if(!empty($value['class'])) {
-                            $data = $value['class']::getMediaInfo($value['item_id']);
-                            echo Html::tag('a', $data['name'], 
-                                          [
-                                              'class' => '', 
-                                              'href' => $data['url'], 
-                                              'target' => 'blank',
-                                              'alt' => '', 
-                                          ]) . ' ';  
-                        }
-                    }
-                    ?>
-            </li>
         </ul>
+    </div>
+    <!--формируем ссылки на модели где применяются фотки-->
+    <div class="clearfix" style="padding-bottom: 5px;">
+        <h5><?= Yii::t('yee/media', 'Links') ?>:</h5>
+            <ol>
+                <?php foreach ($model::getMediaById($model->id) as $key => $value) : ?>
+                    <?php if (!empty($value['class'])) : ?>
+                        <?php $data = $value['class']::getMediaInfo($value['item_id']); ?>
+                        <?php if ($data) : ?>
+                            <li><?= Html::tag('a', $data['name'], [
+                                    'class' => '',
+                                    'href' => $data['url'],
+                                    'target' => 'blank',
+                                    'alt' => '',
+                                ]); ?>
+                            </li>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>  
+            </ol>
     </div>
 <?php endif; ?>
 

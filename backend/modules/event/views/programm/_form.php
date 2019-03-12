@@ -81,7 +81,16 @@ use backend\modules\media\widgets\TinyMce;
                                 ])->label(Yii::t('yee/event', 'Event Vid'));
                             ?>
                         
-                        <?= $form->field($model, 'programm_price')->textInput(['maxlength' => true]) ?>
+                        <?php  $count = \backend\modules\event\models\EventItemProgramm::getCountItem($model->id);
+                            $hint_price = 'Расчет полной стоимости: ' . $count . 'x' . $model->item_price . '=' . ($count*$model->item_price) . ' ₽';
+                        ?>
+                        
+                        <?= $form->field($model, 'programm_price')->textInput(['maxlength' => true])->hint($hint_price) ?>
+                        
+                        <?= $form->field($model, 'item_hours')->textInput(['maxlength' => true]) ?>
+                        
+                        <?= $form->field($model, 'item_price')->textInput(['maxlength' => true]) ?>
+                        
                         
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>

@@ -71,16 +71,16 @@ use yii\helpers\ArrayHelper;
                'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
                     return $model->fullItemName;
                 },                        
-               'footer' => '<strong>Всего:</strong>',
+//               'footer' => '<strong>Всего:</strong>',
             ],    
 //            'name_short',
-            [
-                'attribute' =>  'price',
-                'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
-                    return $model->price;
-                },
-                'footer' => '<strong>' . $model->fullPrice. ' ' . Yii::t('yee/event', 'руб') . '</strong>',
-            ],
+//            [
+//                'attribute' =>  'price',
+//                'value' => function (\backend\modules\event\models\EventItemProgramm $model) {
+//                    return $model->price;
+//                },
+//                'footer' => '<strong>' . $model->fullPrice. ' ' . Yii::t('yee/event', 'руб') . '</strong>',
+//            ],
             'timeVolume',
             [
                 'attribute' => 'gridPractice',
