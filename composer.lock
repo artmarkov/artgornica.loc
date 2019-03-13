@@ -820,16 +820,16 @@
         },
         {
             "name": "bower-asset/metismenu",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metismenu.git",
-                "reference": "8175e7bd387c22b090f4fec72675fb72ced679d4"
+                "reference": "b96b99f6b2f52bdb8789a18a241cf5d681969b6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onokumus/metismenu/zipball/8175e7bd387c22b090f4fec72675fb72ced679d4",
-                "reference": "8175e7bd387c22b090f4fec72675fb72ced679d4",
+                "url": "https://api.github.com/repos/onokumus/metismenu/zipball/b96b99f6b2f52bdb8789a18a241cf5d681969b6d",
+                "reference": "b96b99f6b2f52bdb8789a18a241cf5d681969b6d",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -1632,16 +1632,16 @@
         },
         {
             "name": "kartik-v/dependent-dropdown",
-            "version": "v1.4.8",
+            "version": "v1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/dependent-dropdown.git",
-                "reference": "1349e7f5816a65e89bc227098386aac5b2c89363"
+                "reference": "54a8806002ee21b744508a2edb95ed01d35c6cf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/1349e7f5816a65e89bc227098386aac5b2c89363",
-                "reference": "1349e7f5816a65e89bc227098386aac5b2c89363",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/54a8806002ee21b744508a2edb95ed01d35c6cf9",
+                "reference": "54a8806002ee21b744508a2edb95ed01d35c6cf9",
                 "shasum": ""
             },
             "type": "library",
@@ -1675,7 +1675,7 @@
                 "option",
                 "select"
             ],
-            "time": "2017-08-01T11:43:55+00:00"
+            "time": "2019-03-09T10:53:11+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
