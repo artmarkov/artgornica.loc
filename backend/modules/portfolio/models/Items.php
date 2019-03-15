@@ -52,6 +52,7 @@ class Items extends \yeesoft\db\ActiveRecord
     {
         return [
             [['status', 'category_id', 'link_href', 'thumbnail'], 'required'],
+            ['thumbnail', 'unique'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['link_href', 'img_alt'], 'string', 'max' => 127],
