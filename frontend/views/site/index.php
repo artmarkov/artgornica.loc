@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\assets\ThemeAsset;
 use frontend\modules\sliderrevolution\SliderRevolution;
-use frontend\widgets\owlcarousel\OwlCarouselWidget;
+use frontend\widgets\CarouselWidget;
 
 ThemeAsset::register($this);
 
@@ -71,8 +71,7 @@ ThemeAsset::register($this);
                 </div>
 
                 <div class="col-md-6">                
-                    <?=
-                    \frontend\widgets\CarouselWidget::widget(
+                    <?= CarouselWidget::widget(
                             [
                                 'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($carousel['model_name'], $carousel['id']),
                                 'owl_options' => $carousel,
@@ -125,7 +124,7 @@ ThemeAsset::register($this);
         <div class="container">
             <h2><strong>Ближайшие</strong> Занятия</h2>
             
-            <?= \frontend\widgets\CarouselWidget::widget(
+            <?= CarouselWidget::widget(
                     [
                         'content_items' => backend\modules\event\models\EventSchedule::getEventScheduleList(),
                         'owl_options' => backend\modules\event\models\EventSchedule::getCarouselOption(),
@@ -232,7 +231,7 @@ ThemeAsset::register($this);
                 <!-- transitionStyle: fade, backSlide, goDown, fadeUp,  --> 
                 
 
-                     <?=  \frontend\widgets\CarouselWidget::widget(
+                     <?=  CarouselWidget::widget(
                             [
                                 'content_items' => backend\modules\section\models\Feedback::getFeedbackList(),
                                 'owl_options' => backend\modules\section\models\Feedback::getCarouselOption(),

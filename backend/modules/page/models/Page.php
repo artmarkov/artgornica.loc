@@ -7,7 +7,7 @@ use yeesoft\models\OwnerAccess;
 use yeesoft\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
-use yii\behaviors\SluggableBehavior;
+use common\components\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yeesoft\db\ActiveRecord;
 
@@ -66,10 +66,12 @@ class Page extends ActiveRecord implements OwnerAccess
     {
         return [
             TimestampBehavior::className(),
-            BlameableBehavior::className(),
-            'sluggable' => [
+            BlameableBehavior::className(),           
+            [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'title',
+                'in_attribute' => 'title',
+                'out_attribute' => 'slug',
+                'translit' => true           
             ],
             'multilingual' => [
                 'class' => MultilingualBehavior::className(),

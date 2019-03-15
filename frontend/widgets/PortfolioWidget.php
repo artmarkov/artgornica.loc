@@ -15,7 +15,7 @@ class PortfolioWidget extends \yii\base\Widget {
     // default from docs
     public $container = ['class' => 'row'];
     // none by default
-    public $ulOptions = ['class' => 'sort-destination isotope fullcenter', 'data-sort-id' => 'isotope-list'];
+    public $ulOptions = ['class' => 'sort-destination isotope fullcenter fadeIn', 'data-sort-id' => 'isotope-list'];
     //<li>
     public $itemsOptions = ['class' => 'isotope-item'];
     // <div>

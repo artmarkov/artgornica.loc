@@ -6,7 +6,7 @@ use yeesoft\behaviors\MultilingualBehavior;
 use yeesoft\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
-use yii\behaviors\SluggableBehavior;
+use common\components\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yeesoft\db\ActiveRecord;
 use yii\helpers\Html;
@@ -73,9 +73,11 @@ class Post extends ActiveRecord
         return [
             TimestampBehavior::className(),
             BlameableBehavior::className(),
-            'sluggable' => [
+            [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'title',
+                'in_attribute' => 'title',
+                'out_attribute' => 'slug',
+                'translit' => true           
             ],
             'multilingual' => [
                 'class' => MultilingualBehavior::className(),
@@ -241,7 +243,7 @@ class Post extends ActiveRecord
         $this->updateCounters(['revision' => 1]);
     }
 
-    public function getAllContent($delimiter = '<p>', $allowableTags = '<a><blockquote><ul><li>')
+    public function getAllContent($delimiter = '<p>', $allowableTags = '<a><blockquote><ul><ol><li>')
     {
          $result = '';
          $i = 0;

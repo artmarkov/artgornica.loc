@@ -66,6 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'attribute' => 'name',
                         'controller' => '/event/programm',
+                        'options' => ['style' => 'width:300px'],
                         'title' => function(EventProgramm $model) {
                             return Html::a($model->name, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
@@ -79,38 +80,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['style' => 'width:300px'],
                     ],
                     [
-                        'attribute' => 'fullPrice',
-                        'options' => ['style' => 'width:150px'],
-                        'value' => function ($model)
-                                {
-                                    return $model->fullPrice . ' ' . Yii::t('yee/event', 'руб');
-                                }
-                    ],
-                    [
-                        'attribute' => 'programm_price',
-                        'options' => ['style' => 'width:150px'],
-                        'value' => function ($model)
-                                {
-                                    return empty($model->programm_price)? NULL : $model->programm_price . ' ' . Yii::t('yee/event', 'руб');
-                                }
+                        'attribute' => 'gridItemsSearch',
+                        'filter' => backend\modules\event\models\EventItem::getEventItemList(),
+                        'value' => function (EventProgramm $model) {
+                            return implode(',<br>',
+                                ArrayHelper::map($model->eventItems, 'id', 'name'));
+                        },
+                        'options' => ['style' => 'width:600px'],
+                        'format' => 'raw',
                     ],
                     'item_hours',
-                    [
-                        'attribute' => 'countItem',
-                        'value' => function ($model)
-                                {
-                        return backend\modules\event\models\EventItemProgramm::getCountItem($model->id);
-                        
-                    },
-                    ],
-                    [
-                        'attribute' => 'programmHours',
-                        'value' => function ($model)
-                                {
-                        return backend\modules\event\models\EventItemProgramm::getCountItem($model->id) * $model->item_hours;
-                        
-                    },
-                    ], 
                     [
                         'attribute' => 'mediaFirst',
                         'value' => function ($model)
@@ -121,16 +100,39 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                             'format' => 'html',
                     ],       
+                    
 //                    [
-//                        'attribute' => 'gridItemsSearch',
-//                        'filter' => backend\modules\event\models\EventItem::getEventItemList(),
-//                        'value' => function (EventProgramm $model) {
-//                            return implode(',<br>',
-//                                ArrayHelper::map($model->eventItems, 'id', 'name'));
-//                        },
-//                        'options' => ['style' => 'width:600px'],
-//                        'format' => 'raw',
+//                        'attribute' => 'fullPrice',
+//                        'options' => ['style' => 'width:150px'],
+//                        'value' => function ($model)
+//                                {
+//                                    return $model->fullPrice . ' ' . Yii::t('yee/event', 'руб');
+//                                }
 //                    ],
+//                    [
+//                        'attribute' => 'programm_price',
+//                        'options' => ['style' => 'width:150px'],
+//                        'value' => function ($model)
+//                                {
+//                                    return empty($model->programm_price)? NULL : $model->programm_price . ' ' . Yii::t('yee/event', 'руб');
+//                                }
+//                    ],
+//                    [
+//                        'attribute' => 'countItem',
+//                        'value' => function ($model)
+//                                {
+//                        return backend\modules\event\models\EventItemProgramm::getCountItem($model->id);
+//                        
+//                    },
+//                    ],
+//                    [
+//                        'attribute' => 'programmHours',
+//                        'value' => function ($model)
+//                                {
+//                        return backend\modules\event\models\EventItemProgramm::getCountItem($model->id) * $model->item_hours;
+//                        
+//                    },
+//                    ], 
 //            'id',
 //            'vid_id',
 //            'name',

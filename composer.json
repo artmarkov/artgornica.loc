@@ -61,7 +61,9 @@
     "mihaildev/yii2-elfinder": "*",
     "unclead/yii2-multiple-input": "~2.0",
     "vintage/yii2-search": "~2.0",
-    "himiklab/yii2-sortable-grid-view-widget": "*"
+    "himiklab/yii2-sortable-grid-view-widget": "*",
+    "bower-asset/bootbox": "*",
+    "2amigos/yii2-transliterator-helper": "*"
         
   },
   "require-dev": {

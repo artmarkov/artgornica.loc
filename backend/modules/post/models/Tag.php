@@ -7,7 +7,7 @@ use yeesoft\models\OwnerAccess;
 use yeesoft\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
-use yii\behaviors\SluggableBehavior;
+use common\components\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yeesoft\db\ActiveRecord;
 
@@ -46,10 +46,12 @@ class Tag extends ActiveRecord implements OwnerAccess
     {
         return [
             BlameableBehavior::className(),
-            TimestampBehavior::className(),
-            'sluggable' => [
+            TimestampBehavior::className(),           
+            [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'title',
+                'in_attribute' => 'title',
+                'out_attribute' => 'slug',
+                'translit' => true           
             ],
             'multilingual' => [
                 'class' => MultilingualBehavior::className(),

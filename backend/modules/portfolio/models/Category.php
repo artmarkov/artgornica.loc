@@ -4,7 +4,7 @@ namespace backend\modules\portfolio\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use yii\behaviors\SluggableBehavior;
+use common\components\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "{{%portfolio_category}}".
@@ -43,10 +43,12 @@ class Category extends \yeesoft\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-            ], 
-             'sluggable' => [
+            ],             
+            [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
+                'in_attribute' => 'name',
+                'out_attribute' => 'slug',
+                'translit' => true           
             ],
         ];
     }

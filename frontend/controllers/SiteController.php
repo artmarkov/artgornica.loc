@@ -69,11 +69,11 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->one();
          
          $query = Carousel::find()
-                ->where(['slug' => 'karusel-main'])
+                ->where(['slug' => 'karousel-main'])
                 ->andWhere(['status' => Carousel::STATUS_ACTIVE])->one();
          
           $carousel = \yii\helpers\ArrayHelper::toArray($query);
-          $carousel['model_name'] = $query->formName();
+          $carousel['model_name'] = $query->className();
           
         return $this->render('index', [
                 'posts' => $posts,
@@ -191,7 +191,7 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->andWhere(['status' => Carousel::STATUS_ACTIVE])->one();
          
           $carousel = \yii\helpers\ArrayHelper::toArray($query);
-          $carousel['model_name'] = $query->formName();
+          $carousel['model_name'] = $query->className();
          
         return $this->render('about', [
                 'carousel' => $carousel,

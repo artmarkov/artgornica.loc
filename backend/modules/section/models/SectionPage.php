@@ -5,7 +5,7 @@ namespace backend\modules\section\models;
 use Yii;
 
 use yii\behaviors\TimestampBehavior;
-use yii\behaviors\SluggableBehavior;
+use common\components\behaviors\SluggableBehavior;            
 use himiklab\sortablegrid\SortableGridBehavior;
 /**
  * This is the model class for table "section_page".
@@ -42,9 +42,11 @@ class SectionPage extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ], 
-            'sluggable' => [
+            [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
+                'in_attribute' => 'name',
+                'out_attribute' => 'slug',
+                'translit' => true           
             ],
             'sort' => [
             'class' => SortableGridBehavior::className(),

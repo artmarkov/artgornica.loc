@@ -4,7 +4,7 @@ namespace backend\modules\section\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use yii\behaviors\SluggableBehavior;
+use common\components\behaviors\SluggableBehavior;           
 use yii\helpers\ArrayHelper;
 
 /**
@@ -45,9 +45,11 @@ class Carousel extends \yeesoft\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ], 
-            'sluggable' => [
+            [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
+                'in_attribute' => 'name',
+                'out_attribute' => 'slug',
+                'translit' => true           
             ],
         ];
     }
