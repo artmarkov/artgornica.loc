@@ -3,11 +3,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
-use frontend\assets\ThemeAsset;
 use frontend\modules\sliderrevolution\SliderRevolution;
 use frontend\widgets\CarouselWidget;
 
-ThemeAsset::register($this);
 
 ?>
 <div class="site-index">
@@ -70,7 +68,8 @@ ThemeAsset::register($this);
 
                 </div>
 
-                <div class="col-md-6">                
+                <div class="col-md-6">     
+                    <?php if($carousel['model_name'] != NULL) :?>
                     <?= CarouselWidget::widget(
                             [
                                 'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($carousel['model_name'], $carousel['id']),
@@ -83,6 +82,7 @@ ThemeAsset::register($this);
                                 ],
                     ]);
                     ?>
+                    <?php endif; ?>
                 </div>
             </div>
     </section>

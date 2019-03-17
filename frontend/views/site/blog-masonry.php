@@ -4,9 +4,7 @@
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
 use yeesoft\helpers\Html;
-use frontend\assets\ThemeAsset;
 
-ThemeAsset::register($this);
 $this->title = Yii::t('yee', 'Blog');
 $this->params['breadcrumbs'][] = $this->title;
 ?>

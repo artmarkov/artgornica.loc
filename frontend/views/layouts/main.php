@@ -34,15 +34,16 @@ AvatarAsset::register($this);
         <!-- Top Bar -->
         <header id="topHead" class="color fixed">
             <div class="container">
-                <i class="fa fa-phone"></i> +7 (910) 123-45-67 &bull;
-                <a href="mailto:info@artgornica.ru">info@artgornica.ru</a>
+                <i class="fa fa-phone"></i> <?= Yii::$app->settings->get('general.phone', '+7 (495) 123-45-67');?> &bull;
+                <a href="mailto:<?= Yii::$app->settings->get('general.email', 'info@mail.com');?>"><?= Yii::$app->settings->get('general.email', 'info@mail.com');?></a>
 
-                <div class="pull-right socials">
-                    <a href="https://www.facebook.com/%D0%A1%D1%82%D1%83%D0%B4%D0%B8%D1%8F
-                       -%D0%95%D0%BB%D0%B5%D0%BD%D1%8B
-                       -%D0%98%D1%88%D0%B0%D0%BD%D0%BE%D0%B2%D0%BE%D0%B9-%D0%90%D1%80%D1%82-
-                       %D0%93%D0%BE%D1%80%D0%BD%D0%B8%D1%86%D0%B0-554783454950098/" class="pull-left social fa fa-facebook"></a>
-                    <a href="https://www.instagram.com/elenaishanova/" class="pull-left social fa fa-linkedin"></a>
+                <div class="pull-right socials hidden-xs">
+                    <?php if(!empty(Yii::$app->settings->get('general.facebook'))) :?>
+                        <a href="<?= Yii::$app->settings->get('general.facebook', 'https://www.facebook.com/user/');?>" class="pull-left social fa fa-facebook"></a>
+                    <?php endif;?>
+                    <?php if(!empty(Yii::$app->settings->get('general.instagram'))) :?>
+                        <a href="<?= Yii::$app->settings->get('general.instagram', 'https://www.instagram.com/user/');?>" class="pull-left social fa fa-linkedin"></a>
+                    <?php endif;?>
                 </div>
                 <!-- LINKS -->
                 <div class="pull-right nav hidden-xs">
@@ -92,9 +93,9 @@ AvatarAsset::register($this);
                 <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <?php  $logo = $assetBundle->baseUrl . '/images/logo-1.png'; ?>
-                <a class="logo" href="<?= \yii\helpers\Url::home(); ?>"><?= Html::img($logo, ['alt' => 'Artgornica.ru']) ?>
-                    <h7> Artgornica.ru</h7>
+                <?php  $logo = $assetBundle->baseUrl . '/images/logo.png'; ?>
+                <a class="logo" href="<?= \yii\helpers\Url::home(); ?>"><?= Html::img($logo, ['alt' => Yii::$app->settings->get('general.title', 'ArtSoft Site', Yii::$app->language)]) ?>
+                    <h7><?= Yii::$app->settings->get('general.title', 'ArtSoft Site', Yii::$app->language);?></h7>
                 </a>
 
 
@@ -158,7 +159,7 @@ AvatarAsset::register($this);
             <!-- copyright , scrollTo Top -->
             <div class="footer-bar">
                 <div class="container">
-                    <span class="copyright">Copyright &copy; artgornica.ru,  Все права защищены.</span>
+                    <span class="copyright">Copyright &copy; <?= Yii::$app->settings->get('general.title', 'ArtSoft Site', Yii::$app->language);?>,  <?= Yii::t('yee', 'All rights reserved.');?></span>
                     <a class="toTop" href="#topNav">НАВЕРХ <i class="fa fa-arrow-circle-up"></i></a>
                 </div>
             </div>
@@ -173,14 +174,13 @@ AvatarAsset::register($this);
                             <address class="font-opensans">
                                 <ul>
                                     <li class="footer-sprite address">
-                                        Москва<br/>
-                                        Красногорск<br/>
+                                        Москва, Красногорск
                                     </li>
                                     <li class="footer-sprite phone">
-                                        Тел: 1-800-565-2390
+                                        Тел: <?= Yii::$app->settings->get('general.phone', '+7 (495) 123-45-67');?>
                                     </li>
                                     <li class="footer-sprite email">
-                                        <a href="mailto:support@yourname.com">support@yourname.com</a>
+                                        <a href="mailto:<?= Yii::$app->settings->get('general.email', 'info@mail.com');?>"><?= Yii::$app->settings->get('general.email', 'info@mail.com');?></a>
                                     </li>
                                 </ul>
                             </address>

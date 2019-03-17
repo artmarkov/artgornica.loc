@@ -18,15 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
              <div class="col-md-6">
                  <!-- carousel -->
     
-                <?php
-                $carousel = ArrayHelper::merge($model->item->getCarouselOption(), [
-                            'model_name' => $model->item->className(),
-                            'id' => $model->item_id,
-                ]);
-                echo \frontend\widgets\CarouselWidget::widget(
+                <?= \frontend\widgets\CarouselWidget::widget(
                         [
-                            'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($carousel['model_name'], $carousel['id']),
-                            'owl_options' => $carousel,
+                            'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($model->item->className(), $model->item->id),
+                            'owl_options' => $model->item->getCarouselOption(),
                             'options' =>
                             [
                                 'type' => 'images',

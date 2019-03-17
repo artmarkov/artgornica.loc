@@ -1,9 +1,6 @@
 <?php
 
 use yii\widgets\LinkPager;
-use frontend\assets\ThemeAsset;
-
-ThemeAsset::register($this);
 
 /* @var $this yii\web\View */
 

@@ -11,7 +11,6 @@ use Yii;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 use backend\modules\event\models\EventSchedule;
-use backend\modules\event\models\EventVid;
 use backend\modules\section\models\Parallax;
 use backend\modules\section\models\Carousel;
 use yii\data\ArrayDataProvider;
@@ -68,13 +67,18 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->where(['status' => Parallax::STATUS_ACTIVE])
                 ->one();
          
+         
          $query = Carousel::find()
                 ->where(['slug' => 'karousel-main'])
                 ->andWhere(['status' => Carousel::STATUS_ACTIVE])->one();
-         
+         // echo '<pre>' . print_r($query, true) . '</pre>';
+         if(!empty($query)) {
           $carousel = \yii\helpers\ArrayHelper::toArray($query);
           $carousel['model_name'] = $query->className();
-          
+         }
+         else {
+         $carousel['model_name'] = NULL;
+         }
         return $this->render('index', [
                 'posts' => $posts,
                 'parallax' => $parallax,
@@ -190,12 +194,27 @@ class SiteController extends \yeesoft\controllers\BaseController
                 ->where(['slug' => 'karousel-about'])
                 ->andWhere(['status' => Carousel::STATUS_ACTIVE])->one();
          
+          if(!empty($query)) {
           $carousel = \yii\helpers\ArrayHelper::toArray($query);
           $carousel['model_name'] = $query->className();
+         }
+         else {
+         $carousel['model_name'] = NULL;
+         }
+          
          
         return $this->render('about', [
                 'carousel' => $carousel,
             ]);
+    }
+    /**
+     * 
+     * @return render
+     */
+    public function actionPortfolio()
+    {
+                 
+        return $this->render('portfolio');
     }
     
     /**
@@ -243,8 +262,9 @@ class SiteController extends \yeesoft\controllers\BaseController
      */
     public function actionSearch() {
         $q = Yii::$app->request->get('q');
-
-        if (strlen($q > 2)) {
+        
+        if (strlen($q) > 2) {
+            
             $searchData = Yii::$app->get('searcher')->search($q);
 
             $dataProvider = new ArrayDataProvider([
@@ -257,12 +277,13 @@ class SiteController extends \yeesoft\controllers\BaseController
             // echo '<pre>' . print_r($rows, true) . '</pre>';
             return $this->render(
                             'found', [
-                        'hits' => $rows,
-                        'pagination' => $dataProvider->getPagination(),
-                        'query' => $q
-                            ]
+                                'hits' => $rows,
+                                'pagination' => $dataProvider->getPagination(),
+                                'query' => $q
+                             ]
             );
         } else {
+            
             Yii::$app->session->setFlash('warning', Yii::t('yee', 'Для запроса введите не менее 3-х символов.'));
             return $this->redirect(Yii::$app->request->referrer);
         }

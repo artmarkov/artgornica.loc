@@ -17,9 +17,12 @@ class GeneralSettings extends BaseSettingsModel
     public $title;
     public $description;
     public $email;
+    public $phone;
     public $timezone;
     public $dateformat;
     public $timeformat;
+    public $facebook;
+    public $instagram;
 
     /**
      * @inheritdoc
@@ -30,7 +33,7 @@ class GeneralSettings extends BaseSettingsModel
             [
                 [['title', 'email', 'timezone', 'dateformat', 'timeformat'], 'required'],
                 [['email'], 'email'],
-                [['description'], 'safe'],
+                [['description', 'phone', 'facebook', 'instagram'], 'safe'],
                 ['title', 'default', 'value' => 'Yee Site'],
                 ['timezone', 'default', 'value' => 'Europe/London'],
                 ['dateformat', 'default', 'value' => 'F j, Y'],
@@ -59,6 +62,9 @@ class GeneralSettings extends BaseSettingsModel
             'title' => Yii::t('yee/settings', 'Site Title'),
             'description' => Yii::t('yee/settings', 'Site Description'),
             'email' => Yii::t('yee/settings', 'Admin Email'),
+            'phone' => Yii::t('yee/settings', 'Admin Phone'),
+            'facebook' => Yii::t('yee/settings', 'Admin Facebook'),
+            'instagram' => Yii::t('yee/settings', 'Admin Instagram'),
             'timezone' => Yii::t('yee/settings', 'Timezone'),
             'dateformat' => Yii::t('yee/settings', 'Date Format'),
             'timeformat' => Yii::t('yee/settings', 'Time Format'),

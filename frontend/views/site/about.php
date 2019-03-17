@@ -3,11 +3,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\ThemeAsset;
 use backend\modules\portfolio\models\Menu;
 use backend\modules\portfolio\models\Items;
 
-ThemeAsset::register($this);
 
 $this->title = Yii::t('yee', 'About');
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Who Am I -->
         <article class="row">
             <div class="col-md-6">
+                <?php if($carousel['model_name'] != NULL) :?>
                 <?= \frontend\widgets\CarouselWidget::widget(
                    [
                        'content_items' => \backend\modules\mediamanager\models\MediaManager::getMediaList($carousel['model_name'], $carousel['id']),
@@ -28,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'class' => 'owl-carousel text-center controlls-over',
                             ],
                    ]); 
-            ?>
+                ?>
+                <?php endif; ?>
             </div>
             <div class="col-md-6">
                 <h4><i class="fa fa-heart-o"></i> Кто Я?</h4>
@@ -74,45 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="divider styleColor"><!-- divider -->
             <i class="fa fa-heart"></i>
         </div>
-
-        <section id="portfolio">
-
-            <div class="container">
-
-                <h2><strong>Добро пожаловать</strong> в мою фотогалерею</h2>
-
-                <p class="lead">В фотогалерее представлены фотографии моих работ и работ моих клиентов. 
-                    Также здесь Вы можете познакомиться поближе <a href=""></a>
-                    с Арттерапией. Здесь Вы найдете много видео и фото с наших занятий.</p>
-
-               
-                    <?php 
-
-                    echo yii\widgets\Menu::widget([
-                        'encodeLabels' => false,
-                        'options' => [
-                            'class' => 'nav nav-pills isotope-filter isotope-filter', 
-                            'data-sort-id' => 'isotope-list', 
-                            'data-option-key' => 'filter'
-                            ],
-                        'items' => Menu::getPortfolioMenuItems(),
-                    ]);
-                    
-                    echo frontend\widgets\PortfolioWidget::widget([                        
-                        'slides' => Items::getPortfolioMasonryItems(),
-                    ]);
-                    
-        //echo '<pre>' . print_r(\backend\modules\media\models\Media::findByTypes(\backend\modules\media\models\Media::$imageFileTypes), true) . '</pre>';
-//                    $data = \backend\modules\media\models\Media::findByUrl('/uploads/2018/12/fishermen-1.jpg');
-//                    $data = \backend\modules\media\models\Media::find(6)->one();
-//         echo '<pre>' . print_r($data->getThumbs()['great'], true) . '</pre>';
-         
-                    ?>
-            </div>
-        </section>
-        <div class="divider styleColor"><!-- divider -->
-            <i class="fa fa-leaf"></i>
-        </div>
+        
         <!-- CALLOUT -->
         <section class="container">
 

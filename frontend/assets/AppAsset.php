@@ -22,10 +22,6 @@ class AppAsset extends AssetBundle
 
         'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800',
         'css/font-awesome.css',
-        
-//        'plugins/owl-carousel/owl.carousel.css',
-//        'plugins/owl-carousel/owl.theme.css',
-//        'plugins/owl-carousel/owl.transitions.css',
         'plugins/magnific-popup/magnific-popup.css',        
         
         'css/animate.css',        
@@ -51,11 +47,9 @@ class AppAsset extends AssetBundle
         'plugins/masonry.js',
         
         'plugins/magnific-popup/jquery.magnific-popup.min.js',
-//        'plugins/owl-carousel/owl.carousel.min.js',
         'plugins/stellar/jquery.stellar.min.js',
         'plugins/knob/js/jquery.knob.js',
         'plugins/jquery.backstretch.min.js',
-//        'plugins/superslides/dist/jquery.superslides.min.js',
         
         'js/scripts.js',
         'js/site.js',
