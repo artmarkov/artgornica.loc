@@ -4,12 +4,14 @@ namespace backend\modules\portfolio\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use himiklab\sortablegrid\SortableGridBehavior;
 use yeesoft\helpers\Html;
 
 /**
  * This is the model class for table "{{%portfolio_items}}".
  *
  * @property int $id
+ * @property int $sortOrder
  * @property int $category_id 
  * @property string $link_href
  * @property string $thumbnail
@@ -41,7 +43,11 @@ class Items extends \yeesoft\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-            ],   
+            ], 
+             'sort' => [
+                'class' => SortableGridBehavior::className(),
+                'sortableAttribute' => 'sortOrder',
+            ],
         ];
     }
         
@@ -151,6 +157,7 @@ class Items extends \yeesoft\db\ActiveRecord
     {
         return self::find()
                 ->where(['in', 'status', self::STATUS_ACTIVE])
+                ->orderBy(['sortOrder' => SORT_ASC, 'created_at' => SORT_ASC])
                 ->asArray()->all();        
     } 
      /**

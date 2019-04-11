@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 use yii\widgets\Pjax;
-use yeesoft\grid\GridView;
+use common\components\grid\SortableGridView;
 use yeesoft\grid\GridQuickLinks;
 use backend\modules\portfolio\models\Items;
 use backend\modules\portfolio\models\Category;
@@ -51,8 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ])
             ?>
 
-            <?= 
-            GridView::widget([
+            <?= SortableGridView::widget([
                 'id' => 'items-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,

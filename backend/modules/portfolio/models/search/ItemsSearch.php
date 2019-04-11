@@ -18,7 +18,7 @@ class ItemsSearch extends Items
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'category_id'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'category_id', 'sortOrder'], 'integer'],
             [['link_href', 'status'], 'safe'],
           
         ];
@@ -51,7 +51,8 @@ class ItemsSearch extends Items
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'sortOrder' => SORT_DESC,
+                    'created_at' => SORT_DESC,
                 ],
             ],
         ]);
