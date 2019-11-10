@@ -63,7 +63,7 @@ class PortfolioWidget extends \yii\base\Widget {
 
     public function renderSlide($slide) {
         if (!isset($slide['image']) || !isset($slide['image']['src']) || empty($slide['image']['src'])) {
-            throw new InvalidConfigException('Portfolio Error: Missing slide image!');
+            throw new \yii\base\InvalidConfigException('Portfolio Error: Missing slide image!');
         }
 
         if (!isset($slide['options'])) {
